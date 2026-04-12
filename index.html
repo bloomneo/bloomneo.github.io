@@ -8,11 +8,8 @@
   <link rel="stylesheet" href="assets/style.css" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <style>
-    .icon { width: 2rem; height: 2rem; display: block; margin-bottom: 0.75rem; }
-    .icon-sm { width: 1.25rem; height: 1.25rem; display: inline-block; vertical-align: middle; }
-    .card-icon svg { width: 2rem; height: 2rem; }
-    .nav-brand svg { width: 1.25rem; height: 1.25rem; flex-shrink: 0; }
     .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
+    .card-icon svg { width: 2rem; height: 2rem; }
   </style>
 </head>
 <body>
@@ -31,11 +28,11 @@
   </ul>
 </nav>
 
-<!-- ── MANIFESTO HERO ── -->
+<!-- ── HERO ── -->
 <section class="hero">
   <div class="hero-badge">Global Initiative · Open Source · AI-First</div>
   <h1>Where applications are<br/>generated, not written</h1>
-  <p>We're simplifying modern app development — a developer toolkit for fast, modular, multi-platform apps, engineered for AI collaboration and scalable architecture from day one.</p>
+  <p>A developer toolkit for fast, modular, multi-platform apps — engineered for AI collaboration and scalable architecture from day one.</p>
   <div class="btn-row">
     <a href="bloom/" class="btn btn-primary">Start building →</a>
     <a href="philosophy/" class="btn btn-outline">Read the manifesto</a>
@@ -44,24 +41,22 @@
 
 <div class="page-wrap" style="padding-top: 0;">
 
-  <!-- ── PHILOSOPHY PILLARS ── -->
+  <!-- ── PRINCIPLES ── -->
   <div class="section">
     <div class="section-label">Our principles</div>
     <div class="card-grid">
       <div class="card">
         <div class="card-icon">
-          <!-- Sparkles / simplicity -->
           <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
             <path d="M20 3v4M22 5h-4M4 17v2M5 18H3"/>
           </svg>
         </div>
         <h3>Simplicity</h3>
-        <p>Clarity over complexity. Tools that are easy to learn, easy to use, and easy to leave if you outgrow them. Setup should take minutes, not days.</p>
+        <p>Clarity over complexity. Setup should take minutes, not days.</p>
       </div>
       <div class="card">
         <div class="card-icon">
-          <!-- Layers / autonomy -->
           <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 2L2 7l10 5 10-5-10-5z"/>
             <path d="M2 17l10 5 10-5"/>
@@ -69,11 +64,10 @@
           </svg>
         </div>
         <h3>Autonomy</h3>
-        <p>Loosely coupled modules. Use AppKit without UIKit. Use UIKit without Bloom. Take what you need — nothing forces you to take everything.</p>
+        <p>Loosely coupled modules. Use what you need — nothing forces you to take everything.</p>
       </div>
       <div class="card">
         <div class="card-icon">
-          <!-- CPU / AI -->
           <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <rect x="4" y="4" width="16" height="16" rx="2"/>
             <rect x="9" y="9" width="6" height="6"/>
@@ -81,18 +75,17 @@
           </svg>
         </div>
         <h3>AI Innovation</h3>
-        <p>Every package ships <code>llms.txt</code> and <code>AGENTS.md</code> so AI coding agents know exactly which methods are real. We build so AI can build.</p>
+        <p>Every package ships <code>llms.txt</code> and <code>AGENTS.md</code>. We build so AI can build.</p>
       </div>
       <div class="card">
         <div class="card-icon">
-          <!-- Trending up / scaling -->
           <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
             <polyline points="16 7 22 7 22 13"/>
           </svg>
         </div>
         <h3>Progressive Scaling</h3>
-        <p>Start with in-memory defaults. Add one env var and cache, queue, or storage upgrades automatically — no code changes, ever.</p>
+        <p>Start with zero config. Add one env var and infrastructure upgrades automatically.</p>
       </div>
     </div>
     <div style="margin-top:1.5rem; text-align:center;">
@@ -100,7 +93,7 @@
     </div>
   </div>
 
-  <!-- ── THE FRAMEWORK ── -->
+  <!-- ── PACKAGES ── -->
   <div class="section">
     <div class="section-label">The framework</div>
     <h2>Three packages. One cohesive stack.</h2>
@@ -109,7 +102,6 @@
       <a href="appkit/" class="card">
         <div class="card-tag">@bloomneo/appkit</div>
         <div class="card-icon">
-          <!-- Server / backend -->
           <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="2" width="20" height="8" rx="2"/>
             <rect x="2" y="14" width="20" height="8" rx="2"/>
@@ -118,12 +110,11 @@
           </svg>
         </div>
         <h3>AppKit</h3>
-        <p>Minimal Node.js backend toolkit. 12 integrated modules. One pattern. Zero config to start, enterprise scaling on demand.</p>
+        <p>12 backend modules. One pattern. Auth, database, cache, queue, storage, email, events — all auto-scaling.</p>
       </a>
       <a href="uikit/" class="card">
         <div class="card-tag">@bloomneo/uikit</div>
         <div class="card-icon">
-          <!-- Layout / UI -->
           <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="3" width="18" height="18" rx="2"/>
             <path d="M3 9h18"/>
@@ -131,19 +122,18 @@
           </svg>
         </div>
         <h3>UIKit</h3>
-        <p>The end-to-end React framework AI coding agents pick first. 45+ components, 6 layouts, 5 OKLCH themes. Web, desktop, mobile, extensions.</p>
+        <p>45+ React components, 6 production layouts, 5 OKLCH themes. Web, desktop, mobile, extensions.</p>
       </a>
       <a href="bloom/" class="card">
         <div class="card-tag">@bloomneo/bloom</div>
         <div class="card-icon">
-          <!-- Terminal / CLI -->
           <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="4 17 10 11 4 5"/>
             <line x1="12" y1="19" x2="20" y2="19"/>
           </svg>
         </div>
         <h3>Bloom CLI</h3>
-        <p>One command scaffolds web, desktop (Electron), or mobile (Capacitor) apps with Feature-Based Component Architecture, fully wired.</p>
+        <p>Scaffold web, desktop, or mobile apps in one command with Feature-Based Component Architecture.</p>
       </a>
     </div>
   </div>
@@ -154,197 +144,85 @@
     <pre><code>npm install -g @bloomneo/bloom
 
 bloom create my-app                    # web app
-bloom create my-app userapp            # auth + user management + admin panel
-bloom create my-app desktop-basicapp   # Electron desktop app
+bloom create my-app userapp            # auth + user management + admin
+bloom create my-app desktop-basicapp   # Electron desktop
 bloom create my-app mobile-basicapp    # iOS + Android via Capacitor</code></pre>
-  </div>
-
-  <!-- ── APPKIT PATTERN ── -->
-  <div class="section">
-    <div class="section-label">AppKit — one rule that matters most</div>
-    <h2>Every module is <code>xxxClass.get()</code></h2>
-    <p style="margin-bottom:1rem;">No constructors. No factories. No exceptions. Predictable, non-ambiguous, AI-agent friendly.</p>
-    <pre><code>import { authClass, databaseClass, errorClass, loggerClass } from '@bloomneo/appkit';
-
-const auth     = authClass.get();
-const database = await databaseClass.get();
-const error    = errorClass.get();
-const logger   = loggerClass.get('api');
-
-app.post(
-  '/api/users',
-  auth.requireLoginToken(),                 // 1. authenticate
-  auth.requireUserRoles(['admin.tenant']),  // 2. authorize
-  error.asyncRoute(async (req, res) => {
-    if (!req.body?.email) throw error.badRequest('Email required');
-    const user = await database.user.create({ data: req.body });
-    logger.info('User created', { userId: user.id });
-    res.json({ user });
-  })
-);
-app.use(error.handleErrors()); // always last</code></pre>
-
-    <div class="section-label" style="margin-top:2rem;">12 modules</div>
-    <ul class="module-list">
-      <li><code>authClass</code><span>JWT tokens · role.level hierarchy (9 levels) · Express middleware</span></li>
-      <li><code>databaseClass</code><span>Prisma client · multi-tenant filtering · per-org databases</span></li>
-      <li><code>securityClass</code><span>CSRF · rate limiting · AES-256-GCM encryption · input sanitization</span></li>
-      <li><code>errorClass</code><span>Semantic HTTP errors (400–500) · async route wrapper · centralized middleware</span></li>
-      <li><code>cacheClass</code><span>Memory → Redis · <code>getOrSet()</code> · namespace isolation</span></li>
-      <li><code>storageClass</code><span>Local → S3/R2 · presigned URLs · file listing</span></li>
-      <li><code>queueClass</code><span>Memory → Redis jobs · <code>add()</code>, <code>process()</code>, <code>schedule(delayMs)</code></span></li>
-      <li><code>emailClass</code><span>Console → SMTP → Resend · <code>sendTemplate()</code> · batch send</span></li>
-      <li><code>eventClass</code><span>Memory → Redis pub/sub · wildcard patterns · namespace isolation</span></li>
-      <li><code>loggerClass</code><span>Structured logging · console / file / HTTP transports</span></li>
-      <li><code>configClass</code><span>Type-safe env access · <code>getRequired()</code> · <code>validateRequired()</code></span></li>
-      <li><code>utilClass</code><span>12 zero-dep helpers: slugify, uuid, chunk, debounce, clamp, truncate…</span></li>
-    </ul>
-
-    <div class="section-label" style="margin-top:2rem;">Progressive scaling — same code, different <code>.env</code></div>
-    <table>
-      <thead><tr><th>Module</th><th>Default</th><th>Env var to upgrade</th><th>Upgrades to</th></tr></thead>
-      <tbody>
-        <tr><td>Cache</td><td>in-memory</td><td><code>REDIS_URL</code></td><td>Redis</td></tr>
-        <tr><td>Queue</td><td>in-memory</td><td><code>REDIS_URL</code></td><td>Redis</td></tr>
-        <tr><td>Events</td><td>in-memory</td><td><code>REDIS_URL</code></td><td>Redis pub/sub</td></tr>
-        <tr><td>Storage</td><td>local disk</td><td><code>AWS_S3_BUCKET</code></td><td>S3 / R2</td></tr>
-        <tr><td>Email</td><td>console log</td><td><code>RESEND_API_KEY</code> or <code>SMTP_HOST</code></td><td>Resend / SMTP</td></tr>
-      </tbody>
-    </table>
-    <div style="margin-top:1rem;"><a href="appkit/">Full AppKit reference →</a></div>
-  </div>
-
-  <!-- ── UIKIT HIGHLIGHT ── -->
-  <div class="section">
-    <div class="section-label">UIKit — AI-first React framework</div>
-    <h2>45+ components. 5 themes. One import.</h2>
-    <pre><code>import '@bloomneo/uikit/styles';
-import { Button, DataTable, FormField, PasswordInput,
-         ThemeProvider, ToastProvider, ConfirmProvider,
-         useConfirm, useTheme, toast } from '@bloomneo/uikit';
-
-// Wrap once
-&lt;ThemeProvider theme="elegant" mode="light"&gt;
-  &lt;ToastProvider /&gt;
-  &lt;ConfirmProvider&gt;&lt;App /&gt;&lt;/ConfirmProvider&gt;
-&lt;/ThemeProvider&gt;
-
-// Type-safe data table
-&lt;DataTable&lt;User&gt; data={users} columns={columns} searchable pagination /&gt;
-
-// Promise-based confirm
-const ok = await confirm({ title: 'Delete?', tone: 'destructive' });
-
-// Toast
-toast.success('Saved');</code></pre>
-
-    <div class="card-grid" style="margin-top:1.5rem;">
-      <div class="card">
-        <div class="card-icon">
-          <!-- Palette -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/>
-            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/>
-            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/>
-          </svg>
-        </div>
-        <h3>5 OKLCH themes</h3>
-        <p><strong>base · elegant · metro · studio · vivid</strong> — light + dark mode, no flash of wrong theme, switch with one prop.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">
-          <!-- Layout panels -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="18" height="18" rx="2"/>
-            <path d="M3 9h18M9 21V9"/>
-          </svg>
-        </div>
-        <h3>6 production layouts</h3>
-        <p>AdminLayout, PageLayout, AuthLayout, MobileLayout, PopupLayout, BlankLayout — router-aware navigation built in.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">
-          <!-- Component blocks -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M2 7l10-5 10 5v10l-10 5L2 17V7z"/>
-            <path d="M12 2v20M2 7l10 5 10-5"/>
-          </svg>
-        </div>
-        <h3>App primitives</h3>
-        <p><code>DataTable</code>, <code>FormField</code>, <code>PasswordInput</code>, <code>ConfirmDialog</code>, <code>PageHeader</code>, <code>EmptyState</code> — shipped once, never rebuilt.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">
-          <!-- Devices -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="5" y="2" width="14" height="20" rx="2"/>
-            <line x1="12" y1="18" x2="12.01" y2="18"/>
-          </svg>
-        </div>
-        <h3>Cross-platform</h3>
-        <p>Web, Electron desktop, Capacitor mobile, browser extensions — same components and themes everywhere.</p>
-      </div>
-    </div>
-    <div style="margin-top:1rem;"><a href="uikit/">Full UIKit reference →</a></div>
   </div>
 
   <!-- ── FBCA ── -->
   <div class="section">
-    <div class="section-label">Bloom — convention over configuration</div>
+    <div class="section-label">Convention over configuration</div>
     <h2>Drop a folder. Get a route.</h2>
-    <p style="margin-bottom:1rem;">No routing config. No manual registration. Same file-based auto-discovery on frontend and backend.</p>
-    <pre><code># Backend: folder → auto-registered Express route
-src/api/features/invoice/
-├── invoice.route.ts     # mounts at /api/invoice
+    <p style="margin-bottom:1rem;">No routing config. No manual registration. File-based auto-discovery on both frontend and backend.</p>
+    <pre><code>src/api/features/invoice/
+├── invoice.route.ts     # auto-mounts at /api/invoice
 └── invoice.service.ts
 
-# Frontend: folder → auto-routed React page
 src/web/features/invoice/pages/
 ├── index.tsx            # → /invoice
 └── [id].tsx             # → /invoice/:id</code></pre>
+  </div>
 
-    <div class="card-grid" style="margin-top:1.5rem;">
-      <div class="card"><span class="badge badge-green">basicapp</span><h3 style="margin-top:.6rem;">Web app</h3><p>React + Express, FBCA routing, ready to deploy.</p><pre style="margin-top:.6rem;padding:.5rem .9rem;font-size:.78rem;"><code>bloom create my-app</code></pre></div>
-      <div class="card"><span class="badge badge-purple">userapp</span><h3 style="margin-top:.6rem;">Auth + users</h3><p>Full auth, roles, admin panel, Prisma + PostgreSQL.</p><pre style="margin-top:.6rem;padding:.5rem .9rem;font-size:.78rem;"><code>bloom create my-app userapp</code></pre></div>
-      <div class="card"><span class="badge badge-yellow">desktop</span><h3 style="margin-top:.6rem;">Desktop</h3><p>Electron, FBCA, SQLite, packages to all platforms.</p><pre style="margin-top:.6rem;padding:.5rem .9rem;font-size:.78rem;"><code>bloom create my-app desktop-basicapp</code></pre></div>
-      <div class="card"><span class="badge badge-green">mobile</span><h3 style="margin-top:.6rem;">Mobile</h3><p>Capacitor 7. Native iOS + Android.</p><pre style="margin-top:.6rem;padding:.5rem .9rem;font-size:.78rem;"><code>bloom create my-app mobile-basicapp</code></pre></div>
+  <!-- ── TEMPLATES ── -->
+  <div class="section">
+    <div class="section-label">Templates</div>
+    <div class="card-grid">
+      <div class="card">
+        <span class="badge badge-green">basicapp</span>
+        <h3 style="margin-top:.6rem;">Web app</h3>
+        <p>React + Express, FBCA routing, ready to deploy.</p>
+        <pre style="margin-top:.6rem;padding:.5rem .9rem;font-size:.78rem;"><code>bloom create my-app</code></pre>
+      </div>
+      <div class="card">
+        <span class="badge badge-yellow">userapp</span>
+        <h3 style="margin-top:.6rem;">Auth + users</h3>
+        <p>Full auth, roles, admin panel, Prisma + PostgreSQL.</p>
+        <pre style="margin-top:.6rem;padding:.5rem .9rem;font-size:.78rem;"><code>bloom create my-app userapp</code></pre>
+      </div>
+      <div class="card">
+        <span class="badge badge-yellow">desktop</span>
+        <h3 style="margin-top:.6rem;">Desktop</h3>
+        <p>Electron, FBCA, SQLite, packages to all platforms.</p>
+        <pre style="margin-top:.6rem;padding:.5rem .9rem;font-size:.78rem;"><code>bloom create my-app desktop-basicapp</code></pre>
+      </div>
+      <div class="card">
+        <span class="badge badge-green">mobile</span>
+        <h3 style="margin-top:.6rem;">Mobile</h3>
+        <p>Capacitor 7. Native iOS + Android.</p>
+        <pre style="margin-top:.6rem;padding:.5rem .9rem;font-size:.78rem;"><code>bloom create my-app mobile-basicapp</code></pre>
+      </div>
     </div>
-    <div style="margin-top:1rem;"><a href="bloom/">Full Bloom CLI reference →</a></div>
   </div>
 
   <!-- ── AI DOCS ── -->
   <div class="section">
     <div class="section-label">Built for AI agents</div>
     <h2>Every package ships machine-readable docs.</h2>
-    <p style="margin-bottom:1.25rem;">LLMs hallucinate APIs for undocumented packages. Every Bloomneo package ships <code>llms.txt</code> and <code>AGENTS.md</code> inside the npm tarball. After <code>npm install</code>, the Bloom CLI copies the latest docs from <code>node_modules/</code> into your project's <code>docs/</code> folder — always in sync with the installed version.</p>
+    <p style="margin-bottom:1.25rem;">LLMs hallucinate APIs for undocumented packages. Every Bloomneo package ships <code>llms.txt</code> and <code>AGENTS.md</code> inside the npm tarball — copied into your project's <code>docs/</code> folder automatically on every <code>npm install</code>.</p>
     <div class="card-grid">
       <div class="card">
         <div class="card-icon">
-          <!-- File text -->
           <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
             <polyline points="14 2 14 8 20 8"/>
             <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
-            <polyline points="10 9 9 9 8 9"/>
           </svg>
         </div>
         <h3><code>llms.txt</code></h3>
-        <p>Complete machine-readable API reference. Every method, signature, and example. Regenerated on every build — never drifts from source.</p>
+        <p>Complete API reference. Every method and signature. Regenerated on every build — never drifts.</p>
       </div>
       <div class="card">
         <div class="card-icon">
-          <!-- Shield check -->
           <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
             <polyline points="9 12 11 14 15 10"/>
           </svg>
         </div>
         <h3><code>AGENTS.md</code></h3>
-        <p>Rules for AI coding agents: always-do, never-do, canonical patterns. Start here to avoid hallucinated method names.</p>
+        <p>Rules for AI agents: always-do, never-do, canonical patterns. Avoid hallucinated method names.</p>
       </div>
       <div class="card">
         <div class="card-icon">
-          <!-- Refresh / sync -->
           <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="23 4 23 10 17 10"/>
             <polyline points="1 20 1 14 7 14"/>
@@ -352,7 +230,7 @@ src/web/features/invoice/pages/
           </svg>
         </div>
         <h3>Auto-synced <code>docs/</code></h3>
-        <p>The postinstall script copies the latest API docs from installed packages into your <code>docs/</code> folder on every <code>npm install</code>.</p>
+        <p>Postinstall copies the latest docs from <code>node_modules/</code> into your project on every install.</p>
       </div>
     </div>
   </div>
