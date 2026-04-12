@@ -5,8 +5,8 @@
   --border-bright: #2a2a2a;
   --text: #e8e8e8;
   --muted: #888;
-  --accent: #7c6af7;
-  --accent-dim: #5b4de0;
+  --accent: #E8A830;
+  --accent-dim: #c98e20;
   --green: #4ade80;
   --yellow: #facc15;
   --red: #f87171;
@@ -175,7 +175,7 @@ nav {
 
 .btn-primary {
   background: var(--accent);
-  color: #fff;
+  color: #0a0a0a;
   border: 1px solid var(--accent);
 }
 .btn-primary:hover { background: var(--accent-dim); text-decoration: none; }
@@ -313,7 +313,7 @@ tr:last-child td { border-bottom: none; }
 }
 .badge-green { background: rgba(74,222,128,0.1); color: var(--green); border: 1px solid rgba(74,222,128,0.2); }
 .badge-yellow { background: rgba(250,204,21,0.1); color: var(--yellow); border: 1px solid rgba(250,204,21,0.2); }
-.badge-purple { background: rgba(124,106,247,0.1); color: var(--accent); border: 1px solid rgba(124,106,247,0.2); }
+.badge-purple { background: rgba(232,168,48,0.1); color: var(--accent); border: 1px solid rgba(232,168,48,0.2); }
 
 /* ── Install box ── */
 .install-box {
