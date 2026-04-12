@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bloom CLI — Bloomneo</title>
+  <meta name="description" content="@bloomneo/bloom — CLI scaffolding framework for fullstack web, desktop (Electron), and mobile (Capacitor) apps with FBCA." />
+  <link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-brand">🌸 bloomneo</a>
+  <ul class="nav-links">
+    <li><a href="/appkit/">AppKit</a></li>
+    <li><a href="/uikit/">UIKit</a></li>
+    <li><a href="/bloom/" class="active">Bloom CLI</a></li>
+    <li><a href="/philosophy/">Philosophy</a></li>
+    <li><a href="https://github.com/bloomneo/bloom" target="_blank">GitHub ↗</a></li>
+  </ul>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="page-header">
+    <div class="hero-badge">@bloomneo/bloom</div>
+    <h1>One CLI.<br/>Web, desktop, mobile.</h1>
+    <p style="margin-top:1rem;">Bloom scaffolds fullstack apps with Feature-Based Component Architecture. AppKit backend + UIKit frontend — wired up, configured, ready to run.</p>
+    <div class="btn-row" style="justify-content:flex-start; margin-top:1.5rem;">
+      <a href="https://www.npmjs.com/package/@bloomneo/bloom" target="_blank" class="btn btn-primary">npm ↗</a>
+      <a href="https://github.com/bloomneo/bloom" target="_blank" class="btn btn-outline">GitHub ↗</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Install and create</div>
+    <pre><code>npm install -g @bloomneo/bloom
+
+bloom create my-app                      # web app (default)
+bloom create my-app userapp              # auth + user management + admin
+bloom create my-app desktop-basicapp     # Electron desktop app
+bloom create my-app desktop-userapp      # Electron + auth + SQLite
+bloom create my-app mobile-basicapp      # iOS + Android via Capacitor</code></pre>
+  </div>
+
+  <div class="section">
+    <div class="section-label">After create</div>
+    <pre><code>cd my-app
+npm install     # also copies appkit/uikit docs into docs/
+npm run dev     # starts frontend + backend concurrently</code></pre>
+    <p style="margin-top:0.75rem;">Runs on: <code>http://localhost:5173</code> (frontend) and <code>http://localhost:3000</code> (backend API).</p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Templates</div>
+    <div class="card-grid">
+      <div class="card">
+        <span class="badge badge-green">basicapp</span>
+        <h3 style="margin-top:0.75rem;">Web app</h3>
+        <p>Fullstack web app. React + Express. Feature-based routing. Ready to deploy.</p>
+        <pre style="margin-top:0.75rem;padding:0.75rem 1rem;font-size:0.78rem;"><code>bloom create my-app</code></pre>
+      </div>
+      <div class="card">
+        <span class="badge badge-purple">userapp</span>
+        <h3 style="margin-top:0.75rem;">Auth + users</h3>
+        <p>Complete auth system: registration, email verification, login, password reset. Role-based access, admin panel, Prisma + PostgreSQL.</p>
+        <pre style="margin-top:0.75rem;padding:0.75rem 1rem;font-size:0.78rem;"><code>bloom create my-app userapp</code></pre>
+      </div>
+      <div class="card">
+        <span class="badge badge-yellow">desktop-basicapp</span>
+        <h3 style="margin-top:0.75rem;">Desktop (basic)</h3>
+        <p>Cross-platform Electron app. FBCA architecture. SQLite via better-sqlite3. Packages to Windows, macOS, Linux.</p>
+        <pre style="margin-top:0.75rem;padding:0.75rem 1rem;font-size:0.78rem;"><code>bloom create my-app desktop-basicapp</code></pre>
+      </div>
+      <div class="card">
+        <span class="badge badge-purple">desktop-userapp</span>
+        <h3 style="margin-top:0.75rem;">Desktop + auth</h3>
+        <p>Electron with full auth system, user management, SQLite, and role-based access control.</p>
+        <pre style="margin-top:0.75rem;padding:0.75rem 1rem;font-size:0.78rem;"><code>bloom create my-app desktop-userapp</code></pre>
+      </div>
+      <div class="card">
+        <span class="badge badge-green">mobile-basicapp</span>
+        <h3 style="margin-top:0.75rem;">Mobile (iOS + Android)</h3>
+        <p>Capacitor 7 mobile app. React frontend connecting to any backend. Run on device or emulator in minutes.</p>
+        <pre style="margin-top:0.75rem;padding:0.75rem 1rem;font-size:0.78rem;"><code>bloom create my-app mobile-basicapp</code></pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Feature-Based Component Architecture</div>
+    <h2>Convention over configuration</h2>
+    <p style="margin-bottom:1rem;">Drop a folder in <code>features/</code> and it's automatically discovered — no config, no registration.</p>
+    <pre><code># Backend: drop a folder → auto-registered route
+src/api/features/
+└── invoice/
+    ├── invoice.route.ts     # Auto-mounts at /api/invoice
+    └── invoice.service.ts
+
+# Frontend: drop a folder → auto-routed page
+src/web/features/
+└── invoice/
+    └── pages/
+        ├── index.tsx        # → /invoice
+        └── [id].tsx         # → /invoice/:id</code></pre>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Project structure — basicapp</div>
+    <pre><code>my-app/
+├── src/
+│   ├── api/                  # Express backend (AppKit)
+│   │   ├── features/
+│   │   │   └── welcome/
+│   │   │       ├── welcome.route.ts
+│   │   │       └── welcome.service.ts
+│   │   ├── lib/api-router.ts
+│   │   └── server.ts
+│   └── web/                  # React frontend (UIKit)
+│       ├── features/
+│       │   └── main/pages/index.tsx
+│       ├── shared/components/
+│       └── main.tsx
+├── docs/                     # Auto-generated after npm install
+│   ├── appkit.md             # ← copied from node_modules/@bloomneo/appkit/llms.txt
+│   ├── appkit-agents.md      # ← copied from node_modules/@bloomneo/appkit/AGENTS.md
+│   └── uikit.md              # ← copied from node_modules/@bloomneo/uikit/llms.txt
+├── AGENTS.md                 # AI agent conventions for this project
+└── package.json</code></pre>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Mobile — run on device</div>
+    <pre><code>cd my-mobile-app
+npm install
+
+# iOS simulator
+npm run mobile:run:ios
+
+# Android emulator
+npm run mobile:run:android
+
+# Build APK
+npm run android:build</code></pre>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Desktop — run and package</div>
+    <pre><code>cd my-desktop-app
+npm install
+npm run dev            # Electron window + Vite + Express
+
+npm run build          # Build for production
+npm run preview        # Preview production build in Electron</code></pre>
+  </div>
+
+  <div class="section">
+    <div class="section-label">AI-ready by default</div>
+    <p>Every scaffolded project includes an <code>AGENTS.md</code> at the root documenting conventions, feature structure, and env vars — so AI coding agents start with full project context. Running <code>npm install</code> automatically copies the latest API references from installed packages into <code>docs/</code>.</p>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 Bloomneo &nbsp;·&nbsp; <a href="https://github.com/bloomneo/bloom" target="_blank">GitHub</a> &nbsp;·&nbsp; <a href="https://www.npmjs.com/package/@bloomneo/bloom" target="_blank">npm</a></p>
+</footer>
+
+</body>
+</html>

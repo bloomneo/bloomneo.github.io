@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bloomneo — Developer Docs</title>
+  <meta name="description" content="Build fullstack apps without the boilerplate. Developer documentation for @bloomneo/appkit, @bloomneo/uikit, and the Bloom scaffolding framework." />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-brand">🌸 bloomneo</a>
+  <ul class="nav-links">
+    <li><a href="/appkit/">AppKit</a></li>
+    <li><a href="/uikit/">UIKit</a></li>
+    <li><a href="/bloom/">Bloom CLI</a></li>
+    <li><a href="/philosophy/">Philosophy</a></li>
+    <li><a href="https://github.com/bloomneo" target="_blank">GitHub ↗</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">Build Fast · Stay Modular · Code with AI</div>
+  <h1>Fullstack apps,<br/>without the boilerplate</h1>
+  <p>Bloomneo is a modern fullstack framework — React frontend, Express backend, and a CLI that scaffolds web, desktop, and mobile apps from one command.</p>
+  <div class="btn-row">
+    <a href="/bloom/" class="btn btn-primary">Get started →</a>
+    <a href="/philosophy/" class="btn btn-outline">Our philosophy</a>
+  </div>
+</section>
+
+<div class="page-wrap" style="padding-top: 0;">
+
+  <div class="section">
+    <div class="section-label">Packages</div>
+    <div class="card-grid">
+      <a href="/appkit/" class="card">
+        <div class="card-tag">@bloomneo/appkit</div>
+        <div class="card-icon">⚙️</div>
+        <h3>AppKit</h3>
+        <p>Express backend framework. Auth, database, cache, queue, storage, email, events — all auto-scaling from local to production.</p>
+      </a>
+      <a href="/uikit/" class="card">
+        <div class="card-tag">@bloomneo/uikit</div>
+        <div class="card-icon">🎨</div>
+        <h3>UIKit</h3>
+        <p>Production-ready React component library with 5 themes, OKLCH color science, and cross-platform support (web, desktop, mobile).</p>
+      </a>
+      <a href="/bloom/" class="card">
+        <div class="card-tag">@bloomneo/bloom</div>
+        <div class="card-icon">🌸</div>
+        <h3>Bloom CLI</h3>
+        <p>Scaffold fullstack web, desktop (Electron), and mobile (Capacitor) apps with Feature-Based Component Architecture.</p>
+      </a>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Quick start</div>
+    <pre><code>npm install -g @bloomneo/bloom
+
+bloom create my-app                    # web app
+bloom create my-app userapp            # with auth + user management
+bloom create my-app desktop-basicapp   # Electron desktop
+bloom create my-app mobile-basicapp    # iOS + Android via Capacitor</code></pre>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Architecture</div>
+    <h2>Feature-Based Component Architecture</h2>
+    <p style="margin-bottom:1rem;">Every app follows the same convention. Features live in <code>features/</code> and are auto-discovered — no routing config, no manual registration. One pattern that works across web, desktop, and mobile.</p>
+    <pre><code>src/
+├── api/features/welcome/     # Backend feature — auto-registered
+│   ├── welcome.route.ts      # Mounts at /api/welcome
+│   └── welcome.service.ts
+└── web/features/main/        # Frontend feature — auto-routed
+    └── pages/
+        └── index.tsx         # Renders at /</code></pre>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Why Bloomneo</div>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">🧩</div>
+        <h3>Minimal by default</h3>
+        <p>Smart defaults, clear conventions. No boilerplate decisions to make before you can write real code.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🤖</div>
+        <h3>AI-ready</h3>
+        <p>Every package ships an <code>llms.txt</code> and <code>AGENTS.md</code>. AI coding agents know exactly which methods are real.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📈</div>
+        <h3>Auto-scales</h3>
+        <p>Start with in-memory. Add <code>REDIS_URL</code> and cache, queue, and events scale automatically — no code changes.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 Bloomneo &nbsp;·&nbsp; <a href="https://github.com/bloomneo" target="_blank">GitHub</a> &nbsp;·&nbsp; <a href="https://www.npmjs.com/org/bloomneo" target="_blank">npm</a> &nbsp;·&nbsp; <a href="/philosophy/">Philosophy</a></p>
+</footer>
+
+</body>
+</html>

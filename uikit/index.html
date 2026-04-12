@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UIKit — Bloomneo</title>
+  <meta name="description" content="@bloomneo/uikit — Production-ready React component library with 5 themes, OKLCH color science, and cross-platform support." />
+  <link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-brand">🌸 bloomneo</a>
+  <ul class="nav-links">
+    <li><a href="/appkit/">AppKit</a></li>
+    <li><a href="/uikit/" class="active">UIKit</a></li>
+    <li><a href="/bloom/">Bloom CLI</a></li>
+    <li><a href="/philosophy/">Philosophy</a></li>
+    <li><a href="https://github.com/bloomneo/uikit" target="_blank">GitHub ↗</a></li>
+  </ul>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="page-header">
+    <div class="hero-badge">@bloomneo/uikit</div>
+    <h1>React components<br/>AI agents pick first</h1>
+    <p style="margin-top:1rem;">End-to-end React framework with components, layouts, themes, routing, and a generated <code>llms.txt</code>. Cross-platform: web, desktop, mobile, extensions.</p>
+    <div class="btn-row" style="justify-content:flex-start; margin-top:1.5rem;">
+      <a href="https://www.npmjs.com/package/@bloomneo/uikit" target="_blank" class="btn btn-primary">npm ↗</a>
+      <a href="https://github.com/bloomneo/uikit" target="_blank" class="btn btn-outline">GitHub ↗</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Install</div>
+    <pre><code>npm install @bloomneo/uikit</code></pre>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Setup</div>
+    <pre><code>// 1. Import styles once at app entry
+import '@bloomneo/uikit/styles';
+
+// 2. Wrap your app
+import { ThemeProvider, ToastProvider, ConfirmProvider } from '@bloomneo/uikit';
+
+&lt;ThemeProvider theme="base" mode="light"&gt;
+  &lt;ToastProvider /&gt;
+  &lt;ConfirmProvider&gt;
+    &lt;App /&gt;
+  &lt;/ConfirmProvider&gt;
+&lt;/ThemeProvider&gt;
+
+// 3. Add FOUC prevention to index.html &lt;head&gt; (prevents flash before React mounts)
+import { foucScript } from '@bloomneo/uikit/fouc';
+&lt;script dangerouslySetInnerHTML=&#123;&#123; __html: foucScript() &#125;&#125; /&gt;</code></pre>
+  </div>
+
+  <div class="section">
+    <div class="section-label">One import path</div>
+    <p style="margin-bottom:0.75rem;">There is exactly one canonical import — always use the flat import:</p>
+    <pre><code>import { Button, DataTable, Modal, useTheme } from '@bloomneo/uikit';</code></pre>
+    <p>Deep imports like <code>@bloomneo/uikit/button</code> exist for tree-shaking but are not the canonical form.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Themes</div>
+    <p style="margin-bottom:1rem;">Five built-in themes using OKLCH color science for perceptually uniform palettes.</p>
+    <div class="card-grid">
+      <div class="card"><h3>base</h3><p>Clean neutral foundation. Good default for any app.</p></div>
+      <div class="card"><h3>elegant</h3><p>Refined, subdued palette. Professional and polished.</p></div>
+      <div class="card"><h3>metro</h3><p>High contrast, bold. Inspired by transit design systems.</p></div>
+      <div class="card"><h3>studio</h3><p>Creative, warm. For design tools and media apps.</p></div>
+      <div class="card"><h3>vivid</h3><p>Saturated, energetic. For consumer and marketing apps.</p></div>
+    </div>
+    <pre style="margin-top:1rem;"><code>const { theme, setTheme, mode, toggleMode } = useTheme();
+
+setTheme('elegant');   // switch theme
+toggleMode();          // light ↔ dark</code></pre>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Component examples</div>
+    <pre><code>import { Button, Input, Card, CardHeader, CardTitle, CardContent,
+         Alert, AlertDescription, Badge, DataTable, Modal,
+         Select, Combobox, DatePicker, useToast, useConfirm
+       } from '@bloomneo/uikit';
+
+// Button
+&lt;Button variant="default"&gt;Save&lt;/Button&gt;
+&lt;Button variant="outline" size="sm"&gt;Cancel&lt;/Button&gt;
+&lt;Button variant="destructive"&gt;Delete&lt;/Button&gt;
+
+// Card
+&lt;Card&gt;
+  &lt;CardHeader&gt;
+    &lt;CardTitle&gt;Users&lt;/CardTitle&gt;
+  &lt;/CardHeader&gt;
+  &lt;CardContent&gt;...&lt;/CardContent&gt;
+&lt;/Card&gt;
+
+// Toast
+const { toast } = useToast();
+toast({ title: 'Saved', description: 'Changes saved successfully.' });
+
+// Confirm dialog
+const confirm = useConfirm();
+const ok = await confirm({ title: 'Delete user?', description: 'This cannot be undone.' });
+if (ok) { /* proceed */ }</code></pre>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Layout components</div>
+    <ul class="module-list">
+      <li><code>Header / HeaderLogo / HeaderNav</code><span>Sticky nav with logo and navigation items</span></li>
+      <li><code>Footer</code><span>Page footer with configurable columns</span></li>
+      <li><code>Sidebar / SidebarNav</code><span>Collapsible sidebar navigation</span></li>
+      <li><code>PageLayout</code><span>Full-page layout wrapper with header/sidebar/footer slots</span></li>
+      <li><code>Section / Container</code><span>Content containers with spacing variants</span></li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Data components</div>
+    <ul class="module-list">
+      <li><code>DataTable</code><span>Sortable, filterable, paginated table with column definitions</span></li>
+      <li><code>DataList</code><span>Key-value display component</span></li>
+      <li><code>StatCard</code><span>Metric card with label, value, and trend</span></li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Form components</div>
+    <ul class="module-list">
+      <li><code>Input / Textarea / Select</code><span>Standard form inputs</span></li>
+      <li><code>Combobox</code><span>Searchable select with async option loading</span></li>
+      <li><code>DatePicker / DateRangePicker</code><span>Calendar-based date selection</span></li>
+      <li><code>Checkbox / Radio / Switch</code><span>Boolean and choice inputs</span></li>
+      <li><code>FileUpload</code><span>Drag-and-drop file input with preview</span></li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-label">API hooks</div>
+    <pre><code>import { useApi, useTheme } from '@bloomneo/uikit';
+
+// API hook — manages loading, data, error state
+const api = useApi({ baseURL: 'http://localhost:3000' });
+await api.get('/api/users');
+// api.data, api.loading, api.error
+
+// Theme hook
+const { theme, mode, setTheme, toggleMode, availableThemes } = useTheme();</code></pre>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Cross-platform</div>
+    <div class="card-grid">
+      <div class="card"><h3>Web</h3><p>Vite + React. Full component library with all themes.</p></div>
+      <div class="card"><h3>Desktop</h3><p>Electron renderer. Same components, same themes.</p></div>
+      <div class="card"><h3>Mobile</h3><p>Capacitor + React. Touch-optimised with scroll containers.</p></div>
+      <div class="card"><h3>Extensions</h3><p>Browser extension popup. Constrained layout variants.</p></div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 Bloomneo &nbsp;·&nbsp; <a href="https://github.com/bloomneo/uikit" target="_blank">GitHub</a> &nbsp;·&nbsp; <a href="https://www.npmjs.com/package/@bloomneo/uikit" target="_blank">npm</a></p>
+</footer>
+
+</body>
+</html>

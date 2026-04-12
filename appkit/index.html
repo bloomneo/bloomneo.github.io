@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AppKit — Bloomneo</title>
+  <meta name="description" content="@bloomneo/appkit — Express backend framework with auth, database, cache, queue, storage, email, and events. Auto-scaling from local to production." />
+  <link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-brand">🌸 bloomneo</a>
+  <ul class="nav-links">
+    <li><a href="/appkit/" class="active">AppKit</a></li>
+    <li><a href="/uikit/">UIKit</a></li>
+    <li><a href="/bloom/">Bloom CLI</a></li>
+    <li><a href="/philosophy/">Philosophy</a></li>
+    <li><a href="https://github.com/bloomneo/appkit" target="_blank">GitHub ↗</a></li>
+  </ul>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="page-header">
+    <div class="hero-badge">@bloomneo/appkit</div>
+    <h1>Express backend,<br/>batteries included</h1>
+    <p style="margin-top:1rem;">12 modules. One pattern. Auto-scaling from in-memory to Redis to cloud without changing a line of code.</p>
+    <div class="btn-row" style="justify-content:flex-start; margin-top:1.5rem;">
+      <a href="https://www.npmjs.com/package/@bloomneo/appkit" target="_blank" class="btn btn-primary">npm ↗</a>
+      <a href="https://github.com/bloomneo/appkit" target="_blank" class="btn btn-outline">GitHub ↗</a>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Install</div>
+    <pre><code>npm install @bloomneo/appkit</code></pre>
+  </div>
+
+  <div class="section">
+    <div class="section-label">The universal pattern</div>
+    <h2>One way to instantiate. Always.</h2>
+    <p style="margin-bottom:1rem;">Every module is <code>xxxClass.get()</code>. No constructors. No factories. No exceptions.</p>
+    <pre><code>import {
+  authClass, databaseClass, errorClass, loggerClass,
+  cacheClass, storageClass, queueClass, emailClass,
+  eventClass, configClass, securityClass, utilClass,
+} from '@bloomneo/appkit';
+
+// Always at module scope — never inside route handlers
+const auth     = authClass.get();
+const database = await databaseClass.get();   // async
+const error    = errorClass.get();
+const logger   = loggerClass.get('api');      // optional label
+const cache    = cacheClass.get('users');     // optional namespace</code></pre>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Required env vars</div>
+    <pre><code>BLOOM_AUTH_SECRET=&lt;min 32 chars&gt;    # JWT signing key
+DATABASE_URL=postgresql://...        # Prisma connection</code></pre>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Modules</div>
+    <ul class="module-list">
+      <li><code>authClass</code><span>JWT login/API tokens, role.level hierarchy, Express middleware, password hashing</span></li>
+      <li><code>databaseClass</code><span>Prisma client, multi-tenant filtering, per-org databases</span></li>
+      <li><code>securityClass</code><span>Rate limiting, CSRF, AES-256-GCM encryption, input sanitization</span></li>
+      <li><code>errorClass</code><span>Semantic HTTP errors (400–500), async route wrapper, error middleware</span></li>
+      <li><code>cacheClass</code><span>Memory → Redis auto-scaling, <code>getOrSet()</code> pattern, namespace isolation</span></li>
+      <li><code>storageClass</code><span>Local → S3/R2 auto-scaling, presigned URLs, file listing</span></li>
+      <li><code>queueClass</code><span>Memory → Redis background jobs, <code>add()</code>, <code>process()</code>, <code>schedule(delayMs)</code></span></li>
+      <li><code>emailClass</code><span>Console → SMTP → Resend auto-scaling, <code>sendTemplate()</code>, batch send</span></li>
+      <li><code>eventClass</code><span>Memory → Redis pub/sub, wildcard patterns, namespace isolation</span></li>
+      <li><code>loggerClass</code><span>Structured logging, multi-transport (console / file / HTTP)</span></li>
+      <li><code>configClass</code><span>Type-safe env access, <code>getRequired()</code>, <code>validateRequired()</code></span></li>
+      <li><code>utilClass</code><span>12 zero-dependency helpers: slugify, uuid, chunk, debounce, clamp, and more</span></li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Auth — login flow example</div>
+    <pre><code>const auth  = authClass.get();
+const db    = await databaseClass.get();
+const error = errorClass.get();
+
+app.post('/auth/login', error.asyncRoute(async (req, res) => {
+  const { email, password } = req.body ?? {};
+  if (!email || !password) throw error.badRequest('Email and password required');
+
+  const user = await db.user.findUnique({ where: { email } });
+  if (!user) throw error.unauthorized('Invalid credentials');
+
+  const valid = await auth.comparePassword(password, user.password);
+  if (!valid) throw error.unauthorized('Invalid credentials');
+
+  const token = auth.generateLoginToken({
+    userId: user.id,
+    role: user.role,
+    level: user.level,
+  });
+  res.json({ token });
+}));</code></pre>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Auth — protected route example</div>
+    <pre><code>app.delete(
+  '/admin/users/:id',
+  auth.requireLoginToken(),                 // 1. authenticate
+  auth.requireUserRoles(['admin.tenant']),  // 2. authorize
+  error.asyncRoute(async (req, res) => {
+    await db.user.delete({ where: { id: Number(req.params.id) } });
+    res.json({ deleted: true });
+  })
+);</code></pre>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Role hierarchy</div>
+    <table>
+      <thead><tr><th>Level</th><th>Role.Level</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><code>user.basic</code></td></tr>
+        <tr><td>2</td><td><code>user.pro</code></td></tr>
+        <tr><td>3</td><td><code>user.max</code></td></tr>
+        <tr><td>4</td><td><code>moderator.review</code></td></tr>
+        <tr><td>5</td><td><code>moderator.approve</code></td></tr>
+        <tr><td>6</td><td><code>moderator.manage</code></td></tr>
+        <tr><td>7</td><td><code>admin.tenant</code></td></tr>
+        <tr><td>8</td><td><code>admin.org</code></td></tr>
+        <tr><td>9</td><td><code>admin.system</code></td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:0.75rem;"><code>requireUserRoles(['admin.tenant'])</code> accepts levels 7, 8, and 9 via inheritance.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Cache — the getOrSet pattern</div>
+    <pre><code>const cache = cacheClass.get('users');
+
+// Cache a database query for 5 minutes
+const users = await cache.getOrSet(
+  'all',
+  () => db.user.findMany({ where: { active: true } }),
+  300
+);
+
+// Invalidate on mutation
+await cache.delete('all');</code></pre>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Auto-scaling — add an env var, nothing else</div>
+    <table>
+      <thead><tr><th>Module</th><th>Default</th><th>Set this env var</th><th>Upgrades to</th></tr></thead>
+      <tbody>
+        <tr><td>Cache</td><td>in-memory</td><td><code>REDIS_URL</code></td><td>Redis</td></tr>
+        <tr><td>Queue</td><td>in-memory</td><td><code>REDIS_URL</code></td><td>Redis</td></tr>
+        <tr><td>Events</td><td>in-memory</td><td><code>REDIS_URL</code></td><td>Redis pub/sub</td></tr>
+        <tr><td>Storage</td><td>local disk</td><td><code>AWS_S3_BUCKET</code></td><td>S3 / R2</td></tr>
+        <tr><td>Email</td><td>console log</td><td><code>SMTP_HOST</code> or <code>RESEND_API_KEY</code></td><td>SMTP / Resend</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Subpath imports</div>
+    <pre><code>import { authClass }     from '@bloomneo/appkit/auth';
+import { databaseClass } from '@bloomneo/appkit/database';
+import { errorClass }    from '@bloomneo/appkit/error';
+import { cacheClass }    from '@bloomneo/appkit/cache';
+// ... or import everything from '@bloomneo/appkit'</code></pre>
+  </div>
+
+  <div class="section">
+    <div class="section-label">AI agent reference</div>
+    <p>AppKit ships <code>llms.txt</code> and <code>AGENTS.md</code> in the package root — available after install at <code>node_modules/@bloomneo/appkit/llms.txt</code>. The Bloom CLI copies these into your project's <code>docs/</code> folder automatically on <code>npm install</code>.</p>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 Bloomneo &nbsp;·&nbsp; <a href="https://github.com/bloomneo/appkit" target="_blank">GitHub</a> &nbsp;·&nbsp; <a href="https://www.npmjs.com/package/@bloomneo/appkit" target="_blank">npm</a></p>
+</footer>
+
+</body>
+</html>
