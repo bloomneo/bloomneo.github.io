@@ -6,11 +6,24 @@
   <title>Bloomneo — Developer Docs</title>
   <meta name="description" content="Build Fast. Stay Modular. Code with AI. The Bloomneo developer framework — AppKit, UIKit, and Bloom CLI." />
   <link rel="stylesheet" href="assets/style.css" />
+  <style>
+    .icon { width: 2rem; height: 2rem; display: block; margin-bottom: 0.75rem; }
+    .icon-sm { width: 1.25rem; height: 1.25rem; display: inline-block; vertical-align: middle; }
+    .card-icon svg { width: 2rem; height: 2rem; }
+    .nav-brand svg { width: 1.25rem; height: 1.25rem; flex-shrink: 0; }
+    .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
+  </style>
 </head>
 <body>
 
 <nav>
-  <a href="./" class="nav-brand">🌸 Bloom Developers</a>
+  <a href="./" class="nav-brand">
+    <!-- Bloom flower -->
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)">
+      <path d="M12 2C12 2 12 7 12 9C12 7 14.5 2 18 3C21.5 4 21 8 18.5 10C21 8 26 9 25 12C24 15 20 14 18 13C20 14 22.5 18 20 20C17.5 22 14 19.5 13 17C14 19.5 12 24 12 24C12 24 10 19.5 11 17C10 19.5 6.5 22 4 20C1.5 18 4 14 6 13C4 14 0 15 -1 12C-2 9 3 8 5.5 10C3 8 2.5 4 6 3C9.5 2 12 7 12 9C12 7 12 2 12 2Z"/>
+    </svg>
+    Bloom Developers
+  </a>
   <ul class="nav-links">
     <li><a href="appkit/">AppKit</a></li>
     <li><a href="uikit/">UIKit</a></li>
@@ -38,22 +51,48 @@
     <div class="section-label">Our principles</div>
     <div class="card-grid">
       <div class="card">
-        <div class="card-icon">🧩</div>
+        <div class="card-icon">
+          <!-- Sparkles / simplicity -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
+            <path d="M20 3v4M22 5h-4M4 17v2M5 18H3"/>
+          </svg>
+        </div>
         <h3>Simplicity</h3>
         <p>Clarity over complexity. Tools that are easy to learn, easy to use, and easy to leave if you outgrow them. Setup should take minutes, not days.</p>
       </div>
       <div class="card">
-        <div class="card-icon">🔌</div>
+        <div class="card-icon">
+          <!-- Layers / autonomy -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+            <path d="M2 17l10 5 10-5"/>
+            <path d="M2 12l10 5 10-5"/>
+          </svg>
+        </div>
         <h3>Autonomy</h3>
         <p>Loosely coupled modules. Use AppKit without UIKit. Use UIKit without Bloom. Take what you need — nothing forces you to take everything.</p>
       </div>
       <div class="card">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon">
+          <!-- CPU / AI -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="4" width="16" height="16" rx="2"/>
+            <rect x="9" y="9" width="6" height="6"/>
+            <path d="M15 2v2M9 2v2M15 20v2M9 20v2M2 15h2M2 9h2M20 15h2M20 9h2"/>
+          </svg>
+        </div>
         <h3>AI Innovation</h3>
         <p>Every package ships <code>llms.txt</code> and <code>AGENTS.md</code> so AI coding agents know exactly which methods are real. We build so AI can build.</p>
       </div>
       <div class="card">
-        <div class="card-icon">📈</div>
+        <div class="card-icon">
+          <!-- Trending up / scaling -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
+            <polyline points="16 7 22 7 22 13"/>
+          </svg>
+        </div>
         <h3>Progressive Scaling</h3>
         <p>Start with in-memory defaults. Add one env var and cache, queue, or storage upgrades automatically — no code changes, ever.</p>
       </div>
@@ -71,19 +110,40 @@
     <div class="card-grid">
       <a href="appkit/" class="card">
         <div class="card-tag">@bloomneo/appkit</div>
-        <div class="card-icon">⚙️</div>
+        <div class="card-icon">
+          <!-- Server / backend -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="8" rx="2"/>
+            <rect x="2" y="14" width="20" height="8" rx="2"/>
+            <line x1="6" y1="6" x2="6.01" y2="6"/>
+            <line x1="6" y1="18" x2="6.01" y2="18"/>
+          </svg>
+        </div>
         <h3>AppKit</h3>
         <p>Minimal Node.js backend toolkit. 12 integrated modules. One pattern. Zero config to start, enterprise scaling on demand.</p>
       </a>
       <a href="uikit/" class="card">
         <div class="card-tag">@bloomneo/uikit</div>
-        <div class="card-icon">🎨</div>
+        <div class="card-icon">
+          <!-- Layout / UI -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <path d="M3 9h18"/>
+            <path d="M9 21V9"/>
+          </svg>
+        </div>
         <h3>UIKit</h3>
         <p>The end-to-end React framework AI coding agents pick first. 45+ components, 6 layouts, 5 OKLCH themes. Web, desktop, mobile, extensions.</p>
       </a>
       <a href="bloom/" class="card">
         <div class="card-tag">@bloomneo/bloom</div>
-        <div class="card-icon">🌸</div>
+        <div class="card-icon">
+          <!-- Terminal / CLI -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="4 17 10 11 4 5"/>
+            <line x1="12" y1="19" x2="20" y2="19"/>
+          </svg>
+        </div>
         <h3>Bloom CLI</h3>
         <p>One command scaffolds web, desktop (Electron), or mobile (Capacitor) apps with Feature-Based Component Architecture, fully wired.</p>
       </a>
@@ -181,10 +241,51 @@ const ok = await confirm({ title: 'Delete?', tone: 'destructive' });
 toast.success('Saved');</code></pre>
 
     <div class="card-grid" style="margin-top:1.5rem;">
-      <div class="card"><h3>5 OKLCH themes</h3><p><strong>base · elegant · metro · studio · vivid</strong> — light + dark mode, no flash of wrong theme, switch with one prop.</p></div>
-      <div class="card"><h3>6 production layouts</h3><p>AdminLayout, PageLayout, AuthLayout, MobileLayout, PopupLayout, BlankLayout — router-aware navigation built in.</p></div>
-      <div class="card"><h3>App primitives</h3><p><code>DataTable</code>, <code>FormField</code>, <code>PasswordInput</code>, <code>ConfirmDialog</code>, <code>PageHeader</code>, <code>EmptyState</code> — shipped once, never rebuilt.</p></div>
-      <div class="card"><h3>Cross-platform</h3><p>Web, Electron desktop, Capacitor mobile, browser extensions — same components and themes everywhere.</p></div>
+      <div class="card">
+        <div class="card-icon">
+          <!-- Palette -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/>
+            <circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/>
+            <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/>
+          </svg>
+        </div>
+        <h3>5 OKLCH themes</h3>
+        <p><strong>base · elegant · metro · studio · vivid</strong> — light + dark mode, no flash of wrong theme, switch with one prop.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <!-- Layout panels -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/>
+            <path d="M3 9h18M9 21V9"/>
+          </svg>
+        </div>
+        <h3>6 production layouts</h3>
+        <p>AdminLayout, PageLayout, AuthLayout, MobileLayout, PopupLayout, BlankLayout — router-aware navigation built in.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <!-- Component blocks -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 7l10-5 10 5v10l-10 5L2 17V7z"/>
+            <path d="M12 2v20M2 7l10 5 10-5"/>
+          </svg>
+        </div>
+        <h3>App primitives</h3>
+        <p><code>DataTable</code>, <code>FormField</code>, <code>PasswordInput</code>, <code>ConfirmDialog</code>, <code>PageHeader</code>, <code>EmptyState</code> — shipped once, never rebuilt.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <!-- Devices -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="2" width="14" height="20" rx="2"/>
+            <line x1="12" y1="18" x2="12.01" y2="18"/>
+          </svg>
+        </div>
+        <h3>Cross-platform</h3>
+        <p>Web, Electron desktop, Capacitor mobile, browser extensions — same components and themes everywhere.</p>
+      </div>
     </div>
     <div style="margin-top:1rem;"><a href="uikit/">Full UIKit reference →</a></div>
   </div>
@@ -219,9 +320,42 @@ src/web/features/invoice/pages/
     <h2>Every package ships machine-readable docs.</h2>
     <p style="margin-bottom:1.25rem;">LLMs hallucinate APIs for undocumented packages. Every Bloomneo package ships <code>llms.txt</code> and <code>AGENTS.md</code> inside the npm tarball. After <code>npm install</code>, the Bloom CLI copies the latest docs from <code>node_modules/</code> into your project's <code>docs/</code> folder — always in sync with the installed version.</p>
     <div class="card-grid">
-      <div class="card"><h3><code>llms.txt</code></h3><p>Complete machine-readable API reference. Every method, signature, and example. Regenerated on every build from source — never drifts.</p></div>
-      <div class="card"><h3><code>AGENTS.md</code></h3><p>Rules for AI coding agents: always-do, never-do, canonical patterns. Start here to avoid hallucinated method names.</p></div>
-      <div class="card"><h3>Auto-synced <code>docs/</code></h3><p>The postinstall script copies the latest API docs from installed packages into your <code>docs/</code> folder on every <code>npm install</code>.</p></div>
+      <div class="card">
+        <div class="card-icon">
+          <!-- File text -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+            <polyline points="10 9 9 9 8 9"/>
+          </svg>
+        </div>
+        <h3><code>llms.txt</code></h3>
+        <p>Complete machine-readable API reference. Every method, signature, and example. Regenerated on every build — never drifts from source.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <!-- Shield check -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <polyline points="9 12 11 14 15 10"/>
+          </svg>
+        </div>
+        <h3><code>AGENTS.md</code></h3>
+        <p>Rules for AI coding agents: always-do, never-do, canonical patterns. Start here to avoid hallucinated method names.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <!-- Refresh / sync -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 4 23 10 17 10"/>
+            <polyline points="1 20 1 14 7 14"/>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+          </svg>
+        </div>
+        <h3>Auto-synced <code>docs/</code></h3>
+        <p>The postinstall script copies the latest API docs from installed packages into your <code>docs/</code> folder on every <code>npm install</code>.</p>
+      </div>
     </div>
   </div>
 
