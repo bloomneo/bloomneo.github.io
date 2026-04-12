@@ -1,0 +1,176 @@
+# @bloomneo/bloom — CLI Reference
+
+> Machine-readable reference for AI coding agents.
+> This file covers the Bloom CLI scaffolding tool.
+
+## What this package is
+
+`@bloomneo/bloom` is a CLI scaffolding tool that creates fullstack apps combining:
+- **@bloomneo/appkit** (Express backend)
+- **@bloomneo/uikit** (React frontend)
+
+Using **Feature-Based Component Architecture (FBCA)** — file-based auto-discovery routing for both backend API routes and frontend pages.
+
+Targets: web (Vite + Express), desktop (Electron), mobile (Capacitor iOS/Android).
+
+## Install
+
+```bash
+npm install -g @bloomneo/bloom
+```
+
+## Commands
+
+```bash
+bloom create <project-name>                    # web app (basicapp template)
+bloom create <project-name> <template>         # specific template
+```
+
+## Templates
+
+| Template | Platform | Auth | Database | Command |
+|---|---|---|---|---|
+| `basicapp` | Web | No | No | `bloom create my-app` |
+| `userapp` | Web | Yes (full) | PostgreSQL + Prisma | `bloom create my-app userapp` |
+| `desktop-basicapp` | Electron | No | SQLite | `bloom create my-app desktop-basicapp` |
+| `desktop-userapp` | Electron | Yes (full) | SQLite | `bloom create my-app desktop-userapp` |
+| `mobile-basicapp` | iOS + Android | No | External API | `bloom create my-app mobile-basicapp` |
+
+## After create
+
+```bash
+cd my-app
+npm install     # installs deps AND runs postinstall to copy llms.txt + AGENTS.md into docs/
+npm run dev     # starts frontend + backend concurrently
+```
+
+Dev URLs:
+- Web: `http://localhost:5173` (Vite) + `http://localhost:3000` (Express)
+- Desktop: Electron window at `http://localhost:5183` + `http://localhost:3000`
+- Mobile: Capacitor native shell (configure `VITE_API_URL` to point to backend)
+
+## FBCA — Feature-Based Component Architecture
+
+### Backend routing
+
+Drop a file ending in `.route.ts` inside `src/api/features/<name>/` — it auto-mounts.
+
+```
+src/api/features/invoice/invoice.route.ts  →  /api/invoice
+src/api/features/user/user.route.ts        →  /api/user
+```
+
+### Frontend routing
+
+Page files inside `src/web/features/<name>/pages/` auto-route:
+
+```
+features/main/pages/index.tsx        →  /
+features/blog/pages/index.tsx        →  /blog
+features/blog/pages/[slug].tsx       →  /blog/:slug
+features/docs/pages/[...path].tsx    →  /docs/* (catch-all)
+```
+
+## Project structure (basicapp)
+
+```
+my-app/
+├── src/
+│   ├── api/                      # AppKit backend
+│   │   ├── features/
+│   │   │   └── welcome/
+│   │   │       ├── welcome.route.ts
+│   │   │       └── welcome.service.ts
+│   │   └── server.ts
+│   └── web/                      # UIKit frontend
+│       ├── features/
+│       │   └── main/pages/index.tsx
+│       └── main.tsx
+├── docs/                         # Auto-populated on npm install
+│   ├── appkit.md                 # llms.txt from @bloomneo/appkit
+│   ├── appkit-agents.md          # AGENTS.md from @bloomneo/appkit
+│   └── uikit.md                  # llms.txt from @bloomneo/uikit
+├── AGENTS.md                     # Project AI agent conventions
+└── .env.example
+```
+
+## Project structure (userapp additions)
+
+```
+src/api/features/
+├── auth/                         # Registration, login, email verify, password reset
+│   ├── auth.route.ts
+│   └── auth.service.ts
+├── users/                        # User CRUD, profile management
+└── admin/                        # Admin panel APIs
+
+src/web/features/
+├── auth/pages/                   # Login, register, forgot-password
+├── dashboard/pages/
+└── admin/pages/                  # Admin user management
+
+prisma/
+├── schema.prisma
+└── seed.ts                       # Default admin user
+```
+
+## Desktop project structure
+
+```
+my-desktop-app/
+├── src/desktop/
+│   ├── main/                     # Electron main process (AppKit + Express)
+│   │   └── features/
+│   └── renderer/                 # React frontend (UIKit)
+│       └── features/
+├── electron/main.js              # Electron entry
+└── package.json
+```
+
+## Mobile commands
+
+```bash
+npm run dev                    # Vite dev server (browser preview)
+npm run mobile:run:ios         # Run on iOS Simulator
+npm run mobile:run:android     # Run on Android Emulator
+npm run mobile:build:ios       # Build for Xcode/App Store
+npm run android:build          # Build APK
+```
+
+## Desktop commands
+
+```bash
+npm run dev          # Electron window + hot reload
+npm run build        # Production build
+npm run preview      # Preview in Electron
+```
+
+## Env vars by template
+
+| Template | Required |
+|---|---|
+| `basicapp` | `BLOOM_AUTH_SECRET` |
+| `userapp` | `BLOOM_AUTH_SECRET`, `DATABASE_URL`, `BLOOM_SECURITY_CSRF_SECRET` |
+| `desktop-*` | `BLOOM_AUTH_SECRET` (SQLite auto-configured) |
+| `mobile-basicapp` | `VITE_API_URL` (points to backend) |
+
+## AI-readiness
+
+Every scaffolded project includes:
+
+1. **`AGENTS.md`** at root — project-level AI conventions, feature structure, env vars
+2. **`docs/appkit.md`** — copied from `@bloomneo/appkit/llms.txt` on `npm install`
+3. **`docs/appkit-agents.md`** — copied from `@bloomneo/appkit/AGENTS.md`
+4. **`docs/uikit.md`** — copied from `@bloomneo/uikit/llms.txt`
+
+This means any AI coding agent that reads the `docs/` folder or `AGENTS.md` has full, accurate API context and never needs to guess method names.
+
+## Creating a new feature
+
+1. Create `src/api/features/<name>/`
+2. Add `<name>.route.ts` (exports a default `Router`)
+3. Add `<name>.service.ts` (business logic)
+4. Create `src/web/features/<name>/pages/`
+5. Add `index.tsx` (auto-routes to `/<name>`)
+
+Restart dev server — routes auto-register. No imports, no config.

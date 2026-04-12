@@ -4,15 +4,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bloom CLI — Bloomneo</title>
-  <meta name="description" content="@bloomneo/bloom — CLI scaffolding framework for fullstack web, desktop (Electron), and mobile (Capacitor) apps with FBCA." />
+  <meta name="description" content="@bloomneo/bloom — CLI scaffolding for fullstack web, desktop (Electron), and mobile (Capacitor) apps with Feature-Based Component Architecture." />
   <link rel="stylesheet" href="../assets/style.css" />
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre.hljs-block code').forEach(el => hljs.highlightElement(el));
+    });
+  </script>
 </head>
 <body>
 
 <nav>
-  <a href="../" class="nav-brand"><svg width="22" height="22" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g transform="translate(50,50)"><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(0)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(60)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(120)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(180)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(240)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(300)"/><circle fill="#1B3A1E" r="13"/><circle fill="#E8A830" r="6"/><circle fill="#1B3A1E" r="2.5"/></g></svg>Bloom Developers</a>
-  <ul class="nav-links">
+  <a href="../" class="nav-brand">
+    <svg width="22" height="22" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g transform="translate(50,50)"><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(0)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(60)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(120)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(180)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(240)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(300)"/><circle fill="#1B3A1E" r="13"/><circle fill="#E8A830" r="6"/><circle fill="#1B3A1E" r="2.5"/></g></svg>
+    Bloom Developer
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+  <ul class="nav-links" id="navLinks">
     <li><a href="../appkit/">AppKit</a></li>
     <li><a href="../uikit/">UIKit</a></li>
     <li><a href="../bloom/" class="active">Bloom CLI</a></li>
@@ -24,140 +39,372 @@
 <div class="page-wrap">
 
   <div class="page-header">
-    <div class="hero-badge">@bloomneo/bloom</div>
+    <div class="hero-badge">@bloomneo/bloom · v1.5.3</div>
     <h1>One CLI.<br/>Web, desktop, mobile.</h1>
-    <p style="margin-top:1rem;">Bloom scaffolds fullstack apps with Feature-Based Component Architecture. AppKit backend + UIKit frontend — wired up, configured, ready to run.</p>
+    <p>Bloom scaffolds fullstack apps with Feature-Based Component Architecture. AppKit backend + UIKit frontend — wired up, configured, AI-ready, and running in minutes.</p>
     <div class="btn-row" style="justify-content:flex-start; margin-top:1.5rem;">
       <a href="https://www.npmjs.com/package/@bloomneo/bloom" target="_blank" class="btn btn-primary">npm ↗</a>
       <a href="https://github.com/bloomneo/bloom" target="_blank" class="btn btn-outline">GitHub ↗</a>
     </div>
   </div>
 
+  <!-- QUICK START -->
   <div class="section">
     <div class="section-label">Install and create</div>
-    <pre><code>npm install -g @bloomneo/bloom
+    <pre class="hljs-block"><code class="language-bash">npm install -g @bloomneo/bloom
 
-bloom create my-app                      # web app (default)
-bloom create my-app userapp              # auth + user management + admin
-bloom create my-app desktop-basicapp     # Electron desktop app
-bloom create my-app desktop-userapp      # Electron + auth + SQLite
-bloom create my-app mobile-basicapp      # iOS + Android via Capacitor</code></pre>
+# Web app (React + Express, FBCA routing)
+bloom create my-app
+
+# Auth + user management + admin panel
+bloom create my-app userapp
+
+# Desktop app (Electron, SQLite, cross-platform)
+bloom create my-app desktop-basicapp
+bloom create my-app desktop-userapp
+
+# Mobile app (iOS + Android via Capacitor 7)
+bloom create my-app mobile-basicapp</code></pre>
   </div>
 
+  <!-- AFTER CREATE -->
   <div class="section">
     <div class="section-label">After create</div>
-    <pre><code>cd my-app
-npm install     # also copies appkit/uikit docs into docs/
-npm run dev     # starts frontend + backend concurrently</code></pre>
-    <p style="margin-top:0.75rem;">Runs on: <code>http://localhost:5173</code> (frontend) and <code>http://localhost:3000</code> (backend API).</p>
+    <pre class="hljs-block"><code class="language-bash">cd my-app
+npm install        # installs dependencies AND copies appkit/uikit docs into docs/
+npm run dev        # starts frontend + backend concurrently</code></pre>
+    <table style="margin-top:1rem;">
+      <thead><tr><th>App type</th><th>Frontend</th><th>Backend</th></tr></thead>
+      <tbody>
+        <tr><td>Web app</td><td><code>http://localhost:5173</code> (Vite + React)</td><td><code>http://localhost:3000</code> (Express + AppKit)</td></tr>
+        <tr><td>Desktop app</td><td>Electron window at <code>http://localhost:5183</code></td><td><code>http://localhost:3000</code> (Express + AppKit)</td></tr>
+        <tr><td>Mobile app</td><td>Capacitor native shell</td><td>External API (configure <code>VITE_API_URL</code>)</td></tr>
+      </tbody>
+    </table>
   </div>
 
+  <!-- TEMPLATES -->
   <div class="section">
     <div class="section-label">Templates</div>
-    <div class="card-grid">
-      <div class="card">
-        <span class="badge badge-green">basicapp</span>
-        <h3 style="margin-top:0.75rem;">Web app</h3>
-        <p>Fullstack web app. React + Express. Feature-based routing. Ready to deploy.</p>
-        <pre style="margin-top:0.75rem;padding:0.75rem 1rem;font-size:0.78rem;"><code>bloom create my-app</code></pre>
+    <h2>Pick a starting point.</h2>
+    <div class="template-list">
+      <div class="template-row">
+        <div class="template-meta">
+          <span class="badge badge-green">basicapp</span>
+          <span class="template-name">Web app</span>
+          <span class="template-desc">React + Express, FBCA routing, TypeScript, Vite — ready to deploy</span>
+        </div>
+        <code class="template-cmd">bloom create my-app</code>
       </div>
-      <div class="card">
-        <span class="badge badge-purple">userapp</span>
-        <h3 style="margin-top:0.75rem;">Auth + users</h3>
-        <p>Complete auth system: registration, email verification, login, password reset. Role-based access, admin panel, Prisma + PostgreSQL.</p>
-        <pre style="margin-top:0.75rem;padding:0.75rem 1rem;font-size:0.78rem;"><code>bloom create my-app userapp</code></pre>
+      <div class="template-row">
+        <div class="template-meta">
+          <span class="badge badge-yellow">userapp</span>
+          <span class="template-name">Auth + users</span>
+          <span class="template-desc">Registration, email verification, login, password reset. Role-based access, admin panel, Prisma + PostgreSQL</span>
+        </div>
+        <code class="template-cmd">bloom create my-app userapp</code>
       </div>
-      <div class="card">
-        <span class="badge badge-yellow">desktop-basicapp</span>
-        <h3 style="margin-top:0.75rem;">Desktop (basic)</h3>
-        <p>Cross-platform Electron app. FBCA architecture. SQLite via better-sqlite3. Packages to Windows, macOS, Linux.</p>
-        <pre style="margin-top:0.75rem;padding:0.75rem 1rem;font-size:0.78rem;"><code>bloom create my-app desktop-basicapp</code></pre>
+      <div class="template-row">
+        <div class="template-meta">
+          <span class="badge badge-yellow">desktop-basicapp</span>
+          <span class="template-name">Desktop</span>
+          <span class="template-desc">Electron, FBCA architecture, SQLite via better-sqlite3, packages to Windows / macOS / Linux</span>
+        </div>
+        <code class="template-cmd">bloom create my-app desktop-basicapp</code>
       </div>
-      <div class="card">
-        <span class="badge badge-purple">desktop-userapp</span>
-        <h3 style="margin-top:0.75rem;">Desktop + auth</h3>
-        <p>Electron with full auth system, user management, SQLite, and role-based access control.</p>
-        <pre style="margin-top:0.75rem;padding:0.75rem 1rem;font-size:0.78rem;"><code>bloom create my-app desktop-userapp</code></pre>
+      <div class="template-row">
+        <div class="template-meta">
+          <span class="badge badge-yellow">desktop-userapp</span>
+          <span class="template-name">Desktop + auth</span>
+          <span class="template-desc">Electron with full auth system, role-based access, user management, SQLite</span>
+        </div>
+        <code class="template-cmd">bloom create my-app desktop-userapp</code>
       </div>
-      <div class="card">
-        <span class="badge badge-green">mobile-basicapp</span>
-        <h3 style="margin-top:0.75rem;">Mobile (iOS + Android)</h3>
-        <p>Capacitor 7 mobile app. React frontend connecting to any backend. Run on device or emulator in minutes.</p>
-        <pre style="margin-top:0.75rem;padding:0.75rem 1rem;font-size:0.78rem;"><code>bloom create my-app mobile-basicapp</code></pre>
+      <div class="template-row">
+        <div class="template-meta">
+          <span class="badge badge-green">mobile-basicapp</span>
+          <span class="template-name">Mobile (iOS + Android)</span>
+          <span class="template-desc">Capacitor 7 — native iOS and Android from one React codebase, run on device or simulator in minutes</span>
+        </div>
+        <code class="template-cmd">bloom create my-app mobile-basicapp</code>
       </div>
     </div>
   </div>
 
+  <!-- FBCA -->
   <div class="section">
     <div class="section-label">Feature-Based Component Architecture</div>
-    <h2>Convention over configuration</h2>
-    <p style="margin-bottom:1rem;">Drop a folder in <code>features/</code> and it's automatically discovered — no config, no registration.</p>
-    <pre><code># Backend: drop a folder → auto-registered route
+    <h2>Drop a folder. Get a route.</h2>
+    <p style="margin-bottom:1rem;">No routing config. No manual registration. No import lists. Drop a folder inside <code>features/</code> and it's automatically discovered on both frontend and backend.</p>
+    <pre class="hljs-block"><code class="language-bash"># Backend — drop a folder → auto-registered API route
 src/api/features/
 └── invoice/
     ├── invoice.route.ts     # Auto-mounts at /api/invoice
     └── invoice.service.ts
 
-# Frontend: drop a folder → auto-routed page
+# Frontend — drop a folder → auto-routed page
 src/web/features/
 └── invoice/
     └── pages/
         ├── index.tsx        # → /invoice
-        └── [id].tsx         # → /invoice/:id</code></pre>
+        ├── [id].tsx         # → /invoice/:id (dynamic)
+        └── new.tsx          # → /invoice/new</code></pre>
+
+    <div style="margin-top:1.5rem;">
+      <div class="section-label">Route pattern examples</div>
+      <table>
+        <thead><tr><th>File path</th><th>Becomes route</th></tr></thead>
+        <tbody>
+          <tr><td><code>features/main/pages/index.tsx</code></td><td><code>/</code></td></tr>
+          <tr><td><code>features/blog/pages/index.tsx</code></td><td><code>/blog</code></td></tr>
+          <tr><td><code>features/blog/pages/[slug].tsx</code></td><td><code>/blog/:slug</code></td></tr>
+          <tr><td><code>features/docs/pages/[...path].tsx</code></td><td><code>/docs/*</code> (catch-all)</td></tr>
+          <tr><td><code>features/invoice/invoice.route.ts</code></td><td><code>/api/invoice</code></td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
+  <!-- WEB PROJECT STRUCTURE -->
   <div class="section">
-    <div class="section-label">Project structure — basicapp</div>
-    <pre><code>my-app/
+    <div class="section-label">Project structure — web app (basicapp)</div>
+    <pre class="hljs-block"><code class="language-bash">my-app/
 ├── src/
-│   ├── api/                  # Express backend (AppKit)
+│   ├── api/                      # Express backend (AppKit)
 │   │   ├── features/
 │   │   │   └── welcome/
-│   │   │       ├── welcome.route.ts
+│   │   │       ├── welcome.route.ts   # Auto-mounts at /api/welcome
 │   │   │       └── welcome.service.ts
-│   │   ├── lib/api-router.ts
+│   │   ├── lib/
+│   │   │   └── api-router.ts          # FBCA auto-discovery for routes
 │   │   └── server.ts
-│   └── web/                  # React frontend (UIKit)
+│   └── web/                      # React frontend (UIKit)
 │       ├── features/
-│       │   └── main/pages/index.tsx
-│       ├── shared/components/
+│       │   ├── main/pages/index.tsx   # → /
+│       │   ├── gallery/pages/index.tsx
+│       │   └── welcome/pages/index.tsx
+│       ├── shared/
+│       │   └── components/
 │       └── main.tsx
-├── docs/                     # Auto-generated after npm install
-│   ├── appkit.md             # ← copied from node_modules/@bloomneo/appkit/llms.txt
-│   ├── appkit-agents.md      # ← copied from node_modules/@bloomneo/appkit/AGENTS.md
-│   └── uikit.md              # ← copied from node_modules/@bloomneo/uikit/llms.txt
-├── AGENTS.md                 # AI agent conventions for this project
+├── docs/                         # Auto-populated after npm install
+│   ├── appkit.md                 # ← node_modules/@bloomneo/appkit/llms.txt
+│   ├── appkit-agents.md          # ← node_modules/@bloomneo/appkit/AGENTS.md
+│   └── uikit.md                  # ← node_modules/@bloomneo/uikit/llms.txt
+├── AGENTS.md                     # Project-level AI agent conventions
+├── .env.example                  # Environment variable template
+├── package.json
+└── tsconfig.json</code></pre>
+  </div>
+
+  <!-- USERAPP EXTRAS -->
+  <div class="section">
+    <div class="section-label">Project structure — userapp (with auth)</div>
+    <pre class="hljs-block"><code class="language-bash">my-app/
+├── src/
+│   ├── api/features/
+│   │   ├── auth/                 # Registration, login, email verify, password reset
+│   │   │   ├── auth.route.ts
+│   │   │   └── auth.service.ts
+│   │   ├── users/                # User CRUD, profile, role management
+│   │   │   ├── users.route.ts
+│   │   │   └── users.service.ts
+│   │   └── admin/                # Admin panel APIs
+│   │       ├── admin.route.ts
+│   │       └── admin.service.ts
+│   └── web/features/
+│       ├── auth/pages/           # Login, register, forgot-password pages
+│       ├── dashboard/pages/      # Main dashboard
+│       └── admin/pages/          # Admin user management UI
+├── prisma/
+│   ├── schema.prisma             # User, Role, Session models
+│   └── seed.ts                   # Default admin user
+└── .env.example                  # DATABASE_URL, BLOOM_AUTH_SECRET, etc.</code></pre>
+
+    <div style="margin-top:1.25rem;">
+      <div class="section-label">Setup for userapp</div>
+      <pre class="hljs-block"><code class="language-bash">bloom create my-app userapp
+cd my-app
+npm install
+
+# Configure your .env (copy from .env.example)
+# Set DATABASE_URL, BLOOM_AUTH_SECRET, etc.
+
+npx prisma db push     # create tables
+npm run db:seed        # create default admin user
+npm run dev            # start frontend + backend</code></pre>
+    </div>
+  </div>
+
+  <!-- DESKTOP -->
+  <div class="section">
+    <div class="section-label">Project structure — desktop app (Electron)</div>
+    <pre class="hljs-block"><code class="language-bash">my-desktop-app/
+├── src/
+│   └── desktop/
+│       ├── main/                 # Electron main process (AppKit + Express backend)
+│       │   ├── features/
+│       │   │   └── welcome/
+│       │   │       ├── welcome.route.ts
+│       │   │       └── welcome.service.ts
+│       │   ├── lib/
+│       │   └── server.ts
+│       └── renderer/             # React frontend (UIKit)
+│           ├── features/
+│           ├── shared/
+│           └── main.tsx
+├── electron/
+│   └── main.js                   # Electron main process entry
 └── package.json</code></pre>
+
+    <div style="margin-top:1.25rem;">
+      <div class="section-label">Desktop — develop and package</div>
+      <pre class="hljs-block"><code class="language-bash">npm run dev          # Electron window + Vite hot reload + Express backend
+npm run build        # production build
+npm run preview      # preview production build in Electron
+
+# electron-builder packages for your platform automatically:
+# macOS → .dmg, Windows → .exe installer, Linux → .AppImage</code></pre>
+    </div>
   </div>
 
+  <!-- MOBILE -->
   <div class="section">
-    <div class="section-label">Mobile — run on device</div>
-    <pre><code>cd my-mobile-app
+    <div class="section-label">Project structure — mobile app (Capacitor)</div>
+    <pre class="hljs-block"><code class="language-bash">my-mobile-app/
+├── src/
+│   └── web/                      # React frontend (UIKit)
+│       ├── features/
+│       │   ├── home/pages/index.tsx
+│       │   └── profile/pages/profile.tsx
+│       ├── shared/
+│       │   └── components/
+│       │       └── MobileNav.tsx  # Uses UIKit TabBar + MobileLayout
+│       └── main.tsx
+├── ios/                          # Generated Xcode project
+├── android/                      # Generated Android Studio project
+└── capacitor.config.ts</code></pre>
+
+    <div style="margin-top:1.25rem;">
+      <div class="section-label">Mobile — run on device / emulator</div>
+      <pre class="hljs-block"><code class="language-bash">cd my-mobile-app
 npm install
 
-# iOS simulator
-npm run mobile:run:ios
+npm run dev                    # Vite dev server (browser preview)
 
-# Android emulator
-npm run mobile:run:android
+# iOS
+npm run mobile:run:ios         # iOS Simulator
+npm run mobile:build:ios       # Build for Xcode
 
-# Build APK
-npm run android:build</code></pre>
+# Android
+npm run mobile:run:android     # Android Emulator
+npm run android:build          # Build APK</code></pre>
+    </div>
   </div>
 
+  <!-- CREATING A FEATURE -->
   <div class="section">
-    <div class="section-label">Desktop — run and package</div>
-    <pre><code>cd my-desktop-app
-npm install
-npm run dev            # Electron window + Vite + Express
+    <div class="section-label">Adding a feature — the FBCA way</div>
+    <p style="margin-bottom:1rem;">Every new feature lives in its own folder. No imports to add, no routing files to edit.</p>
+    <pre class="hljs-block"><code class="language-bash"># 1. Create the backend feature
+mkdir -p src/api/features/invoice
+# Add invoice.route.ts (auto-mounts at /api/invoice)
+# Add invoice.service.ts (business logic)
 
-npm run build          # Build for production
-npm run preview        # Preview production build in Electron</code></pre>
+# 2. Create the frontend feature
+mkdir -p src/web/features/invoice/pages
+# Add index.tsx → routes to /invoice
+# Add [id].tsx → routes to /invoice/:id
+
+# That's it. Restart the server — no config needed.</code></pre>
+
+    <div style="margin-top:1.25rem;">
+      <div class="section-label">Example backend feature</div>
+      <pre class="hljs-block"><code class="language-typescript">// src/api/features/invoice/invoice.route.ts
+import { Router } from 'express';
+import { authClass, errorClass } from '@bloomneo/appkit';
+import { InvoiceService } from './invoice.service';
+
+const router = Router();
+const auth  = authClass.get();
+const error = errorClass.get();
+
+router.get('/', auth.requireLoginToken(), error.asyncRoute(async (req, res) => {
+  const invoices = await InvoiceService.list(req.user!.userId);
+  res.json({ invoices });
+}));
+
+router.post('/', auth.requireLoginToken(), error.asyncRoute(async (req, res) => {
+  const invoice = await InvoiceService.create(req.user!.userId, req.body);
+  res.status(201).json({ invoice });
+}));
+
+export default router;</code></pre>
+    </div>
   </div>
 
+  <!-- AI READY -->
   <div class="section">
     <div class="section-label">AI-ready by default</div>
-    <p>Every scaffolded project includes an <code>AGENTS.md</code> at the root documenting conventions, feature structure, and env vars — so AI coding agents start with full project context. Running <code>npm install</code> automatically copies the latest API references from installed packages into <code>docs/</code>.</p>
+    <h2>Every project ships with AI context built in</h2>
+    <div class="card-grid card-grid-3">
+      <div class="card card-centered">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+        </div>
+        <h3><code>docs/</code> folder</h3>
+        <p><code>npm install</code> automatically copies the latest <code>llms.txt</code> and <code>AGENTS.md</code> from installed packages into <code>docs/appkit.md</code>, <code>docs/uikit.md</code>.</p>
+      </div>
+      <div class="card card-centered">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <polyline points="9 12 11 14 15 10"/>
+          </svg>
+        </div>
+        <h3><code>AGENTS.md</code></h3>
+        <p>Project-level AI instructions at the root: feature structure, env vars, always/never rules, and where to look for APIs.</p>
+      </div>
+      <div class="card card-centered">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/>
+            <path d="M15 2v2M9 2v2M15 20v2M9 20v2M2 15h2M2 9h2M20 15h2M20 9h2"/>
+          </svg>
+        </div>
+        <h3>Zero hallucinations</h3>
+        <p>AI coding agents read <code>docs/appkit.md</code> first and never guess method names. LLMs.txt coverage means the first suggestion is usually the correct one.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENV -->
+  <div class="section">
+    <div class="section-label">Environment variables by template</div>
+    <table>
+      <thead><tr><th>Template</th><th>Required env vars</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><code>basicapp</code></td>
+          <td><code>BLOOM_AUTH_SECRET</code></td>
+        </tr>
+        <tr>
+          <td><code>userapp</code></td>
+          <td><code>BLOOM_AUTH_SECRET</code>, <code>DATABASE_URL</code>, <code>BLOOM_SECURITY_CSRF_SECRET</code>, optionally <code>RESEND_API_KEY</code> for email</td>
+        </tr>
+        <tr>
+          <td><code>desktop-basicapp</code> / <code>desktop-userapp</code></td>
+          <td><code>BLOOM_AUTH_SECRET</code> — SQLite path is auto-configured</td>
+        </tr>
+        <tr>
+          <td><code>mobile-basicapp</code></td>
+          <td><code>VITE_API_URL</code> — points to your backend API</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
 </div>
@@ -165,6 +412,12 @@ npm run preview        # Preview production build in Electron</code></pre>
 <footer>
   <p>© 2026 Bloomneo &nbsp;·&nbsp; <a href="https://github.com/bloomneo/bloom" target="_blank">GitHub</a> &nbsp;·&nbsp; <a href="https://www.npmjs.com/package/@bloomneo/bloom" target="_blank">npm</a></p>
 </footer>
+
+<script>
+  document.getElementById('navToggle').addEventListener('click', function() {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+</script>
 
 </body>
 </html>

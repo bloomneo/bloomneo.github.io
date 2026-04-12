@@ -3,16 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Philosophy — Bloomneo</title>
-  <meta name="description" content="The principles and founding manifesto behind Bloomneo — why we build the way we build." />
+  <title>Philosophy — Bloom Developer</title>
+  <meta name="description" content="The founding manifesto behind Bloomneo — why we build the way we build." />
   <link rel="stylesheet" href="../assets/style.css" />
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
 </head>
 <body>
 
 <nav>
-  <a href="../" class="nav-brand"><svg width="22" height="22" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g transform="translate(50,50)"><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(0)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(60)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(120)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(180)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(240)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(300)"/><circle fill="#1B3A1E" r="13"/><circle fill="#E8A830" r="6"/><circle fill="#1B3A1E" r="2.5"/></g></svg>Bloom Developers</a>
-  <ul class="nav-links">
+  <a href="../" class="nav-brand">
+    <svg width="22" height="22" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g transform="translate(50,50)"><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(0)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(60)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(120)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(180)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(240)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(300)"/><circle fill="#1B3A1E" r="13"/><circle fill="#E8A830" r="6"/><circle fill="#1B3A1E" r="2.5"/></g></svg>
+    Bloom Developer
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+  <ul class="nav-links" id="navLinks">
     <li><a href="../appkit/">AppKit</a></li>
     <li><a href="../uikit/">UIKit</a></li>
     <li><a href="../bloom/">Bloom CLI</a></li>
@@ -21,120 +29,220 @@
   </ul>
 </nav>
 
-<div class="page-wrap">
+<!-- ── HERO ── -->
+<section class="hero" style="max-width:860px;">
+  <div class="hero-badge">Founding Manifesto</div>
+  <h1>Why we build<br/>the way we build</h1>
+  <p>Bloomneo is a global initiative to simplify modern app development. We build tools for the AI-first era — fast, modular, multi-platform, and designed so both humans and AI coding agents can ship confidently.</p>
+</section>
 
-  <div class="page-header">
-    <div class="hero-badge">Founding Manifesto</div>
-    <h1>Why we build<br/>the way we build</h1>
-    <p style="margin-top:1rem;">Bloomneo is a global initiative to simplify modern app development — a developer toolkit for fast, modular, multi-platform apps, engineered for AI collaboration and scalable architecture.</p>
-  </div>
+<div class="page-wrap" style="padding-top:0;">
 
+  <!-- ── VISION ── -->
   <div class="section">
     <div class="section-label">Vision</div>
-    <h2>Empower developers to build fast, effortlessly</h2>
-    <p>We're building a world where any developer — from solo builder to enterprise team — can scaffold a production-ready fullstack app in minutes, not days. No framework lock-in. No boilerplate rituals. Just code that works.</p>
+    <h2>Any developer. Production-ready. In minutes.</h2>
+    <p>We're building a world where a solo developer can scaffold a fullstack app in one command, and an enterprise team can scale it to millions without rewriting it. No framework lock-in. No boilerplate rituals. No days lost to configuration.</p>
   </div>
 
+  <!-- ── PROBLEMS ── -->
   <div class="section">
-    <div class="section-label">The problem we're solving</div>
-    <h2>Four frustrations we refuse to accept</h2>
-    <div class="card-grid" style="margin-top:1.25rem;">
+    <div class="section-label">The problems we refuse to accept</div>
+    <div class="card-grid">
       <div class="card">
-        <div class="card-icon">🧱</div>
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 3v6"/>
+          </svg>
+        </div>
         <h3>Complex frameworks</h3>
-        <p>Steep learning curves slow teams down before a single line of product code is written. We believe setup should take minutes, not days.</p>
+        <p>Steep learning curves waste days before a single line of product code is written. Setup should take one command.</p>
       </div>
       <div class="card">
-        <div class="card-icon">🤖</div>
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/>
+            <path d="M15 2v2M9 2v2M15 20v2M9 20v2M2 15h2M2 9h2M20 15h2M20 9h2"/>
+          </svg>
+        </div>
         <h3>Unreliable AI code</h3>
-        <p>LLMs hallucinate APIs for large, undocumented codebases. Every Bloomneo package ships <code>llms.txt</code> and <code>AGENTS.md</code> so AI agents know exactly what's real.</p>
+        <p>LLMs hallucinate method names for undocumented packages. Every Bloomneo package ships <code>llms.txt</code> and <code>AGENTS.md</code> so agents get it right the first time.</p>
       </div>
       <div class="card">
-        <div class="card-icon">🔒</div>
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+          </svg>
+        </div>
         <h3>Rigid architectures</h3>
-        <p>Monoliths that can't grow. We designed FBCA so every feature is isolated, discoverable, and independently deployable from day one.</p>
+        <p>Monoliths that can't grow without pain. FBCA makes every feature isolated and independently deployable from the very first commit.</p>
       </div>
       <div class="card">
-        <div class="card-icon">🔁</div>
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
         <h3>Slow workflows</h3>
-        <p>Rebuilding the same auth, user management, and database patterns on every project. Bloom templates let you start with production patterns already in place.</p>
+        <p>Rebuilding auth, users, and database patterns on every project. Bloom templates ship with production patterns already in place.</p>
       </div>
     </div>
   </div>
 
+  <!-- ── VALUES ── -->
   <div class="section">
     <div class="section-label">Core values</div>
     <h2>What we stand for</h2>
-    <ul class="module-list" style="margin-top:1rem;">
-      <li>
-        <code>Simplicity</code>
-        <span>Clarity over complexity. Tools that are easy to learn, easy to use, and easy to leave if you outgrow them.</span>
-      </li>
-      <li>
-        <code>Autonomy</code>
-        <span>Loosely coupled modules. Use AppKit without UIKit. Use UIKit without Bloom. Take what you need.</span>
-      </li>
-      <li>
-        <code>Modularity</code>
-        <span>Features are isolated by design. A feature added today doesn't break something you built last month.</span>
-      </li>
-      <li>
-        <code>AI Innovation</code>
-        <span>We treat AI coding agents as first-class consumers of our packages. Every API decision considers: will an LLM get this right?</span>
-      </li>
-      <li>
-        <code>Open Ecosystem</code>
-        <span>MIT licensed. No vendor lock-in. No hidden tiers for core features. The framework is the product — not the pricing page.</span>
-      </li>
-      <li>
-        <code>Reliability</code>
-        <span>Auto-scaling from memory to Redis to cloud without code changes. Features you ship in dev work the same in production.</span>
-      </li>
-    </ul>
+    <div class="values-grid" style="margin-top:1.25rem;">
+      <div class="value-item">
+        <div class="value-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Simplicity
+        </div>
+        <p>Clarity over complexity. Tools that are easy to learn, easy to use, and easy to leave if you outgrow them.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Autonomy
+        </div>
+        <p>Loosely coupled modules. Use AppKit without UIKit. Use UIKit without Bloom. Take what you need — nothing forces you to take everything.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Modularity
+        </div>
+        <p>Features are isolated by design. A change made today doesn't break something you built six months ago.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          AI Innovation
+        </div>
+        <p>AI coding agents are first-class consumers of our packages. Every API decision asks: will an LLM get this right without hallucinating?</p>
+      </div>
+      <div class="value-item">
+        <div class="value-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Open Ecosystem
+        </div>
+        <p>MIT licensed. No vendor lock-in. No hidden tiers. The framework is the product — not the pricing page.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Reliability
+        </div>
+        <p>What works in development works in production. No surprises. Auto-scaling happens through env vars, not code rewrites.</p>
+      </div>
+    </div>
   </div>
 
+  <!-- ── DESIGN PRINCIPLES ── -->
   <div class="section">
     <div class="section-label">Design principles</div>
     <h2>How we make decisions</h2>
     <div class="card-grid" style="margin-top:1.25rem;">
       <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>
+          </svg>
+        </div>
         <h3>Convention over configuration</h3>
-        <p>If the right choice is obvious, it shouldn't require configuration. FBCA auto-discovers features. AppKit auto-scales storage. Bloom auto-mounts routes.</p>
+        <p>If the right choice is obvious, it shouldn't require configuration. FBCA auto-discovers features. AppKit auto-scales. Routes auto-mount.</p>
       </div>
       <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+          </svg>
+        </div>
         <h3>One pattern, everywhere</h3>
-        <p><code>xxxClass.get()</code> is the only way to instantiate any AppKit module. No constructors, no factories, no special cases — ever.</p>
+        <p><code>xxxClass.get()</code> is the only way to instantiate any AppKit module. No constructors, no factories, no special cases.</p>
       </div>
       <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>
+          </svg>
+        </div>
         <h3>Start simple, scale naturally</h3>
-        <p>In-memory cache → Redis. Local storage → S3. Console email → Resend. Every module upgrades by setting an env var. No code changes.</p>
+        <p>Memory → Redis. Local → S3. Console → Resend. Every module upgrades by setting one env var. No code changes ever.</p>
       </div>
       <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
+          </svg>
+        </div>
         <h3>Minimal code, maximum intent</h3>
-        <p>We'd rather ship one method that does the right thing than four methods that cover every edge case. Clear, purposeful APIs with smart defaults.</p>
+        <p>One method that does the right thing beats four that cover every edge case. Purposeful APIs with smart defaults — no bloat.</p>
       </div>
     </div>
   </div>
 
+  <!-- ── WHAT WE AVOID ── -->
   <div class="section">
-    <div class="section-label">What we avoid</div>
-    <h2>Things we refuse to build</h2>
-    <ul class="module-list" style="margin-top:1rem;">
-      <li><code>Bloat</code><span>No heavy dependencies. No features that don't earn their weight.</span></li>
-      <li><code>Tight coupling</code><span>Modules must stay independent. A change in one module never breaks another.</span></li>
-      <li><code>AI overpromises</code><span>We don't claim AI generates perfect apps. We make AI agents reliably correct on our APIs.</span></li>
-      <li><code>Paywalled core features</code><span>Everything fundamental is open source. If you need it to build, you get it for free.</span></li>
-      <li><code>Breaking changes without notice</code><span>Semver is a contract. We version, we document, we migrate.</span></li>
-    </ul>
+    <div class="section-label">What we refuse to build</div>
+    <div class="avoids-grid" style="margin-top:1rem;">
+      <div class="avoid-item">
+        <span class="avoid-x">✕</span>
+        <div>
+          <strong>Bloat</strong>
+          <p>No heavy dependencies. No features that don't earn their weight.</p>
+        </div>
+      </div>
+      <div class="avoid-item">
+        <span class="avoid-x">✕</span>
+        <div>
+          <strong>Tight coupling</strong>
+          <p>Modules must stay independent. A change in one never breaks another.</p>
+        </div>
+      </div>
+      <div class="avoid-item">
+        <span class="avoid-x">✕</span>
+        <div>
+          <strong>AI overpromises</strong>
+          <p>We don't claim AI generates perfect apps. We make AI agents reliably correct on our APIs.</p>
+        </div>
+      </div>
+      <div class="avoid-item">
+        <span class="avoid-x">✕</span>
+        <div>
+          <strong>Paywalled core features</strong>
+          <p>Everything fundamental is open source. If you need it to build, you get it free.</p>
+        </div>
+      </div>
+      <div class="avoid-item">
+        <span class="avoid-x">✕</span>
+        <div>
+          <strong>Breaking changes without notice</strong>
+          <p>Semver is a contract. We version, document, and migrate. Always.</p>
+        </div>
+      </div>
+      <div class="avoid-item">
+        <span class="avoid-x">✕</span>
+        <div>
+          <strong>Vendor lock-in</strong>
+          <p>Switch databases, email providers, or storage backends by changing an env var. We never own your infrastructure choices.</p>
+        </div>
+      </div>
+    </div>
   </div>
 
+  <!-- ── COMMITMENT ── -->
   <div class="section">
     <div class="section-label">Our commitment</div>
-    <p style="font-size:1.05rem; line-height:1.85; color:var(--text);">We commit to providing intuitive tools and clear documentation, maintaining a free open-source ecosystem, listening to the community to evolve Bloomneo, and celebrating every contribution that advances the vision.</p>
-    <p style="margin-top:1rem;">As the Bloomneo community, we pledge to build a platform that simplifies development, fosters collaboration, and inspires innovation — tools that empower developers and redefine how fullstack apps are built.</p>
+    <div class="manifesto-block">
+      <p>We commit to providing intuitive tools and clear documentation, maintaining a free open-source ecosystem, and listening to the community to evolve Bloomneo.</p>
+      <p>As the Bloomneo community, we pledge to build a platform that simplifies development, fosters collaboration, and inspires innovation — tools that empower developers and redefine how fullstack apps are built.</p>
+      <p class="manifesto-sign">Built for the AI-first future of development.<br/>Where applications are generated, not written.</p>
+    </div>
     <div class="btn-row" style="justify-content:flex-start; margin-top:2rem;">
       <a href="https://github.com/bloomneo" target="_blank" class="btn btn-primary">Join us on GitHub →</a>
-      <a href="../bloom/" class="btn btn-outline">Get started</a>
+      <a href="../bloom/" class="btn btn-outline">Start building</a>
     </div>
   </div>
 
@@ -143,6 +251,12 @@
 <footer>
   <p>© 2026 Bloomneo &nbsp;·&nbsp; <a href="https://github.com/bloomneo" target="_blank">GitHub</a> &nbsp;·&nbsp; <a href="https://www.npmjs.com/org/bloomneo" target="_blank">npm</a></p>
 </footer>
+
+<script>
+  document.getElementById('navToggle').addEventListener('click', function() {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+</script>
 
 </body>
 </html>

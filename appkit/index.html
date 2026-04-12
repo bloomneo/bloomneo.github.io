@@ -4,15 +4,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AppKit — Bloomneo</title>
-  <meta name="description" content="@bloomneo/appkit — Express backend framework with auth, database, cache, queue, storage, email, and events. Auto-scaling from local to production." />
+  <meta name="description" content="@bloomneo/appkit — 12-module Express backend toolkit. Auth, database, cache, queue, storage, email, events — auto-scaling from local to production." />
   <link rel="stylesheet" href="../assets/style.css" />
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre.hljs-block code').forEach(el => hljs.highlightElement(el));
+    });
+  </script>
 </head>
 <body>
 
 <nav>
-  <a href="../" class="nav-brand"><svg width="22" height="22" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g transform="translate(50,50)"><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(0)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(60)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(120)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(180)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(240)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(300)"/><circle fill="#1B3A1E" r="13"/><circle fill="#E8A830" r="6"/><circle fill="#1B3A1E" r="2.5"/></g></svg>Bloom Developers</a>
-  <ul class="nav-links">
+  <a href="../" class="nav-brand">
+    <svg width="22" height="22" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g transform="translate(50,50)"><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(0)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(60)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(120)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(180)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(240)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(300)"/><circle fill="#1B3A1E" r="13"/><circle fill="#E8A830" r="6"/><circle fill="#1B3A1E" r="2.5"/></g></svg>
+    Bloom Developer
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+  <ul class="nav-links" id="navLinks">
     <li><a href="../appkit/" class="active">AppKit</a></li>
     <li><a href="../uikit/">UIKit</a></li>
     <li><a href="../bloom/">Bloom CLI</a></li>
@@ -24,73 +39,106 @@
 <div class="page-wrap">
 
   <div class="page-header">
-    <div class="hero-badge">@bloomneo/appkit</div>
+    <div class="hero-badge">@bloomneo/appkit · v1.5.2</div>
     <h1>Express backend,<br/>batteries included</h1>
-    <p style="margin-top:1rem;">12 modules. One pattern. Auto-scaling from in-memory to Redis to cloud without changing a line of code.</p>
+    <p>12 modules. One pattern. Auto-scaling from in-memory to Redis to cloud — without changing a single line of code.</p>
     <div class="btn-row" style="justify-content:flex-start; margin-top:1.5rem;">
       <a href="https://www.npmjs.com/package/@bloomneo/appkit" target="_blank" class="btn btn-primary">npm ↗</a>
       <a href="https://github.com/bloomneo/appkit" target="_blank" class="btn btn-outline">GitHub ↗</a>
+      <a href="llms.txt" class="btn btn-outline">llms.txt ↗</a>
     </div>
   </div>
 
+  <!-- INSTALL -->
   <div class="section">
     <div class="section-label">Install</div>
-    <pre><code>npm install @bloomneo/appkit</code></pre>
+    <pre class="hljs-block"><code class="language-bash">npm install @bloomneo/appkit</code></pre>
   </div>
 
+  <!-- UNIVERSAL PATTERN -->
   <div class="section">
     <div class="section-label">The universal pattern</div>
     <h2>One way to instantiate. Always.</h2>
-    <p style="margin-bottom:1rem;">Every module is <code>xxxClass.get()</code>. No constructors. No factories. No exceptions.</p>
-    <pre><code>import {
+    <p style="margin-bottom:1rem;">Every module follows <code>xxxClass.get()</code>. No constructors, no factories, no special cases. If you're writing <code>new SomethingClass()</code>, you're doing it wrong.</p>
+    <pre class="hljs-block"><code class="language-typescript">import {
   authClass, databaseClass, errorClass, loggerClass,
   cacheClass, storageClass, queueClass, emailClass,
   eventClass, configClass, securityClass, utilClass,
 } from '@bloomneo/appkit';
 
-// Always at module scope — never inside route handlers
+// Always at module scope — NEVER inside route handlers
 const auth     = authClass.get();
-const database = await databaseClass.get();   // async
+const database = await databaseClass.get();   // async — initializes Prisma connection
 const error    = errorClass.get();
-const logger   = loggerClass.get('api');      // optional label
-const cache    = cacheClass.get('users');     // optional namespace</code></pre>
+const logger   = loggerClass.get('api');      // optional component label
+const cache    = cacheClass.get('users');     // optional namespace for isolation</code></pre>
   </div>
 
+  <!-- MODULES OVERVIEW -->
   <div class="section">
-    <div class="section-label">Required env vars</div>
-    <pre><code>BLOOM_AUTH_SECRET=&lt;min 32 chars&gt;    # JWT signing key
-DATABASE_URL=postgresql://...        # Prisma connection</code></pre>
-  </div>
-
-  <div class="section">
-    <div class="section-label">Modules</div>
+    <div class="section-label">12 modules at a glance</div>
     <ul class="module-list">
-      <li><code>authClass</code><span>JWT login/API tokens, role.level hierarchy, Express middleware, password hashing</span></li>
+      <li><code>authClass</code><span>JWT login/API tokens, 9-level role hierarchy, Express middleware, password hashing</span></li>
       <li><code>databaseClass</code><span>Prisma client, multi-tenant filtering, per-org databases</span></li>
-      <li><code>securityClass</code><span>Rate limiting, CSRF, AES-256-GCM encryption, input sanitization</span></li>
-      <li><code>errorClass</code><span>Semantic HTTP errors (400–500), async route wrapper, error middleware</span></li>
+      <li><code>securityClass</code><span>Rate limiting, CSRF protection, AES-256-GCM encryption, input sanitization</span></li>
+      <li><code>errorClass</code><span>Semantic HTTP errors (400–500), async route wrapper, centralized error middleware</span></li>
       <li><code>cacheClass</code><span>Memory → Redis auto-scaling, <code>getOrSet()</code> pattern, namespace isolation</span></li>
-      <li><code>storageClass</code><span>Local → S3/R2 auto-scaling, presigned URLs, file listing</span></li>
+      <li><code>storageClass</code><span>Local disk → S3/R2 auto-scaling, presigned URLs, file listing, copy</span></li>
       <li><code>queueClass</code><span>Memory → Redis background jobs, <code>add()</code>, <code>process()</code>, <code>schedule(delayMs)</code></span></li>
       <li><code>emailClass</code><span>Console → SMTP → Resend auto-scaling, <code>sendTemplate()</code>, batch send</span></li>
       <li><code>eventClass</code><span>Memory → Redis pub/sub, wildcard patterns, namespace isolation</span></li>
       <li><code>loggerClass</code><span>Structured logging, multi-transport (console / file / HTTP)</span></li>
       <li><code>configClass</code><span>Type-safe env access, <code>getRequired()</code>, <code>validateRequired()</code></span></li>
-      <li><code>utilClass</code><span>12 zero-dependency helpers: slugify, uuid, chunk, debounce, clamp, and more</span></li>
+      <li><code>utilClass</code><span>12 zero-dependency helpers: slugify, uuid, chunk, debounce, clamp, formatBytes, and more</span></li>
     </ul>
   </div>
 
+  <!-- AUTH -->
   <div class="section">
-    <div class="section-label">Auth — login flow example</div>
-    <pre><code>const auth  = authClass.get();
-const db    = await databaseClass.get();
-const error = errorClass.get();
+    <div class="section-label">Module 1 — Auth</div>
+    <h2>JWT tokens, roles, and middleware</h2>
+    <p style="margin-bottom:1rem;">Two token types: <strong>login tokens</strong> (humans) and <strong>API tokens</strong> (services / webhooks). Both verified with the same <code>verifyToken()</code>.</p>
+    <pre class="hljs-block"><code class="language-typescript">const auth = authClass.get();
+
+// Token generation
+auth.generateLoginToken(payload, expiresIn?: string): string
+//   payload: { userId: number, role: string, level: string, permissions?: string[] }
+//   default expiresIn: '7d'
+
+auth.generateApiToken(payload, expiresIn?: string): string
+//   payload: { keyId: string, role: string, level: string, permissions?: string[] }
+//   default expiresIn: '1y'
+
+// Verification — handles BOTH token types. Throws on invalid token.
+auth.verifyToken(token: string): JwtPayload
+
+// Password hashing
+auth.hashPassword(plain: string, rounds?: number): Promise&lt;string&gt;
+auth.comparePassword(plain: string, hash: string): Promise&lt;boolean&gt;  // never throws
+
+// Express middleware factories
+auth.requireLoginToken(options?): ExpressMiddleware        // authenticate user
+auth.requireApiToken(options?): ExpressMiddleware          // authenticate service
+auth.requireUserRoles(['admin.tenant']): ExpressMiddleware // role check (OR logic)
+auth.requireUserPermissions(['manage:users']): ExpressMiddleware  // permission check (AND logic)
+
+// Request helpers
+auth.user(req): JwtPayload | null   // null-safe extract from req.user
+auth.hasRole(userRole, requiredRole): boolean   // inheritance-aware comparison
+auth.can(user, permission): boolean</code></pre>
+
+    <div class="section-label" style="margin-top:2rem;">Login flow</div>
+    <pre class="hljs-block"><code class="language-typescript">import { authClass, databaseClass, errorClass } from '@bloomneo/appkit';
+
+const auth     = authClass.get();
+const database = await databaseClass.get();
+const error    = errorClass.get();
 
 app.post('/auth/login', error.asyncRoute(async (req, res) => {
   const { email, password } = req.body ?? {};
   if (!email || !password) throw error.badRequest('Email and password required');
 
-  const user = await db.user.findUnique({ where: { email } });
+  const user = await database.user.findUnique({ where: { email } });
   if (!user) throw error.unauthorized('Invalid credentials');
 
   const valid = await auth.comparePassword(password, user.password);
@@ -101,90 +149,465 @@ app.post('/auth/login', error.asyncRoute(async (req, res) => {
     role: user.role,
     level: user.level,
   });
-  res.json({ token });
+  res.json({ token, user: { id: user.id, email: user.email } });
 }));</code></pre>
-  </div>
 
-  <div class="section">
-    <div class="section-label">Auth — protected route example</div>
-    <pre><code>app.delete(
+    <div class="section-label" style="margin-top:2rem;">Protected route with role check</div>
+    <pre class="hljs-block"><code class="language-typescript">app.delete(
   '/admin/users/:id',
-  auth.requireLoginToken(),                 // 1. authenticate
-  auth.requireUserRoles(['admin.tenant']),  // 2. authorize
+  auth.requireLoginToken(),                    // 1. authenticate — sets req.user
+  auth.requireUserRoles(['admin.tenant']),     // 2. authorize — chained AFTER authenticate
   error.asyncRoute(async (req, res) => {
-    await db.user.delete({ where: { id: Number(req.params.id) } });
+    await database.user.delete({ where: { id: Number(req.params.id) } });
     res.json({ deleted: true });
   })
-);</code></pre>
-  </div>
-
-  <div class="section">
-    <div class="section-label">Role hierarchy</div>
-    <table>
-      <thead><tr><th>Level</th><th>Role.Level</th></tr></thead>
-      <tbody>
-        <tr><td>1</td><td><code>user.basic</code></td></tr>
-        <tr><td>2</td><td><code>user.pro</code></td></tr>
-        <tr><td>3</td><td><code>user.max</code></td></tr>
-        <tr><td>4</td><td><code>moderator.review</code></td></tr>
-        <tr><td>5</td><td><code>moderator.approve</code></td></tr>
-        <tr><td>6</td><td><code>moderator.manage</code></td></tr>
-        <tr><td>7</td><td><code>admin.tenant</code></td></tr>
-        <tr><td>8</td><td><code>admin.org</code></td></tr>
-        <tr><td>9</td><td><code>admin.system</code></td></tr>
-      </tbody>
-    </table>
-    <p style="margin-top:0.75rem;"><code>requireUserRoles(['admin.tenant'])</code> accepts levels 7, 8, and 9 via inheritance.</p>
-  </div>
-
-  <div class="section">
-    <div class="section-label">Cache — the getOrSet pattern</div>
-    <pre><code>const cache = cacheClass.get('users');
-
-// Cache a database query for 5 minutes
-const users = await cache.getOrSet(
-  'all',
-  () => db.user.findMany({ where: { active: true } }),
-  300
 );
 
-// Invalidate on mutation
-await cache.delete('all');</code></pre>
+// IMPORTANT: requireUserRoles() always chains AFTER requireLoginToken().
+// requireApiToken() is for service routes — never chain requireUserRoles() after it.</code></pre>
+
+    <div class="section-label" style="margin-top:2rem;">Role hierarchy (9 levels, automatic inheritance)</div>
+    <table>
+      <thead><tr><th>Level</th><th>Role.Level</th><th>Typical use</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><code>user.basic</code></td><td>Free / read-only tier</td></tr>
+        <tr><td>2</td><td><code>user.pro</code></td><td>Paid tier</td></tr>
+        <tr><td>3</td><td><code>user.max</code></td><td>Premium tier</td></tr>
+        <tr><td>4</td><td><code>moderator.review</code></td><td>Can flag content</td></tr>
+        <tr><td>5</td><td><code>moderator.approve</code></td><td>Can publish content</td></tr>
+        <tr><td>6</td><td><code>moderator.manage</code></td><td>Can manage moderators</td></tr>
+        <tr><td>7</td><td><code>admin.tenant</code></td><td>Tenant administrator</td></tr>
+        <tr><td>8</td><td><code>admin.org</code></td><td>Organisation admin</td></tr>
+        <tr><td>9</td><td><code>admin.system</code></td><td>Super admin</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:0.75rem;"><code>requireUserRoles(['admin.tenant'])</code> accepts levels 7, 8, and 9 via inheritance. Add custom roles with <code>BLOOM_AUTH_ROLES=role.level:N,...</code>.</p>
   </div>
 
+  <!-- DATABASE -->
   <div class="section">
-    <div class="section-label">Auto-scaling — add an env var, nothing else</div>
+    <div class="section-label">Module 2 — Database</div>
+    <h2>Multi-tenant Prisma with auto-filtering</h2>
+    <pre class="hljs-block"><code class="language-typescript">const database = await databaseClass.get();
+
+// Standard Prisma queries — auto-filtered by tenant_id when BLOOM_DB_TENANT=auto
+database.user.findMany({ where: { active: true } })
+database.user.create({ data: { email, name } })   // auto-stamps tenant_id
+
+// Cross-tenant queries (admin only)
+const dbAll = await databaseClass.getTenants();
+dbAll.user.groupBy({ by: ['tenant_id'], _count: true })
+
+// Per-org databases (multi-org SaaS)
+const acmeDb = await databaseClass.org('acme').get();  // reads ORG_ACME env var</code></pre>
+    <table style="margin-top:1rem;">
+      <thead><tr><th>Env var</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td><code>DATABASE_URL</code></td><td>Prisma connection string (required)</td></tr>
+        <tr><td><code>BLOOM_DB_TENANT=auto</code></td><td>Enable automatic multi-tenant filtering</td></tr>
+        <tr><td><code>ORG_&lt;NAME&gt;=postgresql://...</code></td><td>Per-org database URL</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SECURITY -->
+  <div class="section">
+    <div class="section-label">Module 3 — Security</div>
+    <h2>Rate limiting, CSRF, encryption</h2>
+    <pre class="hljs-block"><code class="language-typescript">const security = securityClass.get();
+
+// Rate limiting middleware
+app.use(security.requests(100, 900_000));   // 100 req per 15 min per IP
+
+// CSRF — one method that does both injection AND validation on HTML form routes
+app.use(security.forms());
+
+// AES-256-GCM encryption
+const ciphertext = security.encrypt('secret data');
+const plaintext  = security.decrypt(ciphertext);
+
+// Input sanitization (strips XSS — NOT email/URL validation; use zod for those)
+const clean    = security.input(userInput);      // strip XSS + control chars
+const safeHtml = security.html(userHtml);        // strip disallowed HTML tags
+const escaped  = security.escape(userText);      // &amp; &lt; &gt; etc.</code></pre>
+    <table style="margin-top:1rem;">
+      <thead><tr><th>Env var</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td><code>BLOOM_SECURITY_CSRF_SECRET</code></td><td>CSRF token signing (min 32 chars)</td></tr>
+        <tr><td><code>BLOOM_SECURITY_ENCRYPTION_KEY</code></td><td>AES-256-GCM key (64 hex chars)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ERROR -->
+  <div class="section">
+    <div class="section-label">Module 4 — Error</div>
+    <h2>Semantic HTTP errors with auto-middleware</h2>
+    <pre class="hljs-block"><code class="language-typescript">const error = errorClass.get();
+
+// Throw semantic errors — each sets the correct HTTP status automatically
+throw error.badRequest('validation message')   // 400
+throw error.unauthorized('auth failed')        // 401
+throw error.forbidden('access denied')         // 403
+throw error.notFound('resource missing')       // 404
+throw error.conflict('email already exists')   // 409
+throw error.tooMany('slow down')               // 429
+throw error.internal('unexpected error')       // 500
+
+// Wrap async routes — catches thrown errors and forwards to middleware
+app.get('/items/:id', error.asyncRoute(async (req, res) => {
+  const item = await database.item.findUnique({ where: { id: +req.params.id } });
+  if (!item) throw error.notFound('Item not found');
+  res.json(item);
+}));
+
+// Mount LAST — handles all semantic errors globally
+app.use(error.handleErrors());</code></pre>
+  </div>
+
+  <!-- CACHE -->
+  <div class="section">
+    <div class="section-label">Module 5 — Cache</div>
+    <h2>Memory → Redis. Zero code changes.</h2>
+    <pre class="hljs-block"><code class="language-typescript">const cache = cacheClass.get('users');   // namespace for isolation
+
+// The recommended pattern — cache-or-fetch in one call
+const users = await cache.getOrSet(
+  'all-active',
+  () => database.user.findMany({ where: { active: true } }),
+  300   // TTL in seconds
+);
+
+// Low-level operations
+await cache.set('key', value, ttlSeconds?);
+const val = await cache.get&lt;User&gt;('key');    // returns null if missing
+await cache.delete('key');   // NOTE: delete(), not del()
+
+// Check existence — there is no cache.has(). Use null check:
+const v = await cache.get('key');
+if (v !== null) { /* key exists */ }
+
+// Invalidate after mutation
+await cache.delete('all-active');</code></pre>
+    <p style="margin-top:0.75rem;">Set <code>REDIS_URL</code> to upgrade from in-memory to Redis automatically.</p>
+  </div>
+
+  <!-- STORAGE -->
+  <div class="section">
+    <div class="section-label">Module 6 — Storage</div>
+    <h2>Local disk → S3/R2. Same API.</h2>
+    <pre class="hljs-block"><code class="language-typescript">const storage = storageClass.get();
+
+// Upload a file
+await storage.put('avatars/user-123.jpg', buffer, { contentType: 'image/jpeg' });
+
+// Download, check, delete, list
+const buf    = await storage.get('avatars/user-123.jpg');
+const exists = await storage.exists('avatars/user-123.jpg');  // NOTE: exists(), not has()
+await storage.delete('avatars/user-123.jpg');                 // NOTE: delete(), not del()
+const files  = await storage.list('avatars/', 100);
+
+// URLs
+const publicUrl  = storage.url('avatars/user-123.jpg');
+const signedUrl  = await storage.signedUrl('private/doc.pdf', 3600);  // 1hr expiry
+await storage.copy('src/file.jpg', 'dst/file.jpg');</code></pre>
+    <p style="margin-top:0.75rem;">Set <code>AWS_S3_BUCKET</code> (or <code>R2_BUCKET</code>) to upgrade from local disk to cloud storage.</p>
+  </div>
+
+  <!-- QUEUE -->
+  <div class="section">
+    <div class="section-label">Module 7 — Queue</div>
+    <h2>Background jobs with automatic scaling</h2>
+    <pre class="hljs-block"><code class="language-typescript">const queue = queueClass.get();
+
+// Enqueue a job
+await queue.add('send-email', { to: 'user@example.com', template: 'welcome' }, {
+  delay: 0,          // ms to wait before running
+  attempts: 3,       // max retries (NOTE: "attempts" not "retries")
+  priority: 1,       // lower = higher priority
+});
+
+// Register a worker — throw to trigger retry
+queue.process('send-email', async (data) => {
+  await email.sendTemplate('welcome', { to: data.to });
+});
+
+// Delay — schedule once N milliseconds from now (NOT a cron expression)
+await queue.schedule('cleanup-tokens', {}, 8 * 60 * 60 * 1000);  // 8 hours
+
+// Management
+await queue.pause('send-email');
+await queue.resume('send-email');
+const stats = await queue.getStats('send-email');
+await queue.retry(jobId);
+await queue.remove(jobId);</code></pre>
+    <p style="margin-top:0.75rem;">In-memory by default. Set <code>REDIS_URL</code> for persistent, distributed queues.</p>
+  </div>
+
+  <!-- EMAIL -->
+  <div class="section">
+    <div class="section-label">Module 8 — Email</div>
+    <h2>Console → SMTP → Resend. Auto-configured.</h2>
+    <pre class="hljs-block"><code class="language-typescript">const email = emailClass.get();
+
+// Plain or HTML email
+await email.send({
+  to: 'user@example.com',
+  subject: 'Welcome to the platform',
+  text: 'Plain-text fallback',
+  html: '&lt;p&gt;HTML body&lt;/p&gt;',   // send both for best deliverability
+  from: 'noreply@yourapp.com',
+  replyTo: 'support@yourapp.com',
+});
+
+// Convenience shortcuts
+await email.sendText(to, subject, text);
+await email.sendHtml(to, subject, html, text?);
+
+// Template email — all data in one object
+await email.sendTemplate('password-reset', {
+  to: user.email,
+  resetLink: 'https://app.com/reset?token=abc',
+  expiresIn: '1 hour',
+});
+
+// Batch
+await email.sendBatch(emailsArray, batchSize?);</code></pre>
+    <table style="margin-top:1rem;">
+      <thead><tr><th>Strategy</th><th>When active</th></tr></thead>
+      <tbody>
+        <tr><td><code>console</code></td><td>Default in dev — logs email to terminal</td></tr>
+        <tr><td><code>smtp</code></td><td><code>SMTP_HOST</code> + <code>SMTP_USER</code> + <code>SMTP_PASS</code> set</td></tr>
+        <tr><td><code>resend</code></td><td><code>RESEND_API_KEY</code> set</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- EVENT -->
+  <div class="section">
+    <div class="section-label">Module 9 — Event</div>
+    <h2>Pub/Sub with wildcard patterns</h2>
+    <pre class="hljs-block"><code class="language-typescript">const events = eventClass.get();
+const userEvents = eventClass.get('users');   // namespace isolation
+
+// Subscribe
+events.on('user.created', async (data) => {
+  await email.sendTemplate('welcome', { to: data.email });
+});
+
+events.on('user.*', (data) => {   // wildcard pattern
+  logger.info('User event', data);
+});
+
+// Emit
+await events.emit('user.created', { id: 123, email: 'new@example.com' });
+
+// Unsubscribe
+events.off('user.created', handler);</code></pre>
+    <p style="margin-top:0.75rem;">Set <code>REDIS_URL</code> to distribute events across multiple processes or servers via Redis pub/sub.</p>
+  </div>
+
+  <!-- LOGGER -->
+  <div class="section">
+    <div class="section-label">Module 10 — Logger</div>
+    <h2>Structured logging with multi-transport</h2>
+    <pre class="hljs-block"><code class="language-typescript">const logger = loggerClass.get('api');   // component-tagged
+
+logger.debug('Processing request', { path: req.path });
+logger.info('User created', { userId: newUser.id });
+logger.warn('Rate limit approaching', { ip: req.ip, count: 95 });
+logger.error('Database query failed', { error: err.message });
+logger.fatal('Service unresponsive', { service: 'redis' });</code></pre>
+    <table style="margin-top:1rem;">
+      <thead><tr><th>Env var</th><th>Effect</th></tr></thead>
+      <tbody>
+        <tr><td>(none)</td><td>Console transport only (default)</td></tr>
+        <tr><td><code>BLOOM_LOGGER_FILE_PATH=/var/log/app.log</code></td><td>Adds file transport</td></tr>
+        <tr><td><code>BLOOM_LOGGER_HTTP_URL=https://logs.example.com</code></td><td>Adds HTTP transport</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- CONFIG -->
+  <div class="section">
+    <div class="section-label">Module 11 — Config</div>
+    <h2>Type-safe environment variables</h2>
+    <pre class="hljs-block"><code class="language-typescript">const config = configClass.get();
+
+// Read values
+config.get('auth.secret', defaultValue?)          // always returns string | undefined
+config.getRequired('auth.secret')                 // throws if missing
+config.has('auth.secret'): boolean
+config.getMany(['KEY_A', 'KEY_B']): Record&lt;string, string | undefined&gt;
+
+// NOTE: getNumber() and getBoolean() don't exist. Parse manually:
+const port  = Number(config.get('api.port') ?? 3000);
+const debug = config.get('app.debug') === 'true';
+
+// Static helpers — on configClass directly (not on the instance)
+configClass.isDevelopment(): boolean
+configClass.isProduction(): boolean
+configClass.isTest(): boolean
+configClass.validateRequired(['BLOOM_AUTH_SECRET', 'DATABASE_URL'])  // throws if any missing</code></pre>
+  </div>
+
+  <!-- UTIL -->
+  <div class="section">
+    <div class="section-label">Module 12 — Util</div>
+    <h2>12 zero-dependency helpers</h2>
+    <pre class="hljs-block"><code class="language-typescript">const util = utilClass.get();
+
+util.get(obj, 'a.b.c', defaultValue)  // safe deep property read (no util.set())
+util.pick(obj, ['a', 'b'])            // keep listed keys   (no util.omit())
+util.isEmpty(value): boolean          // true for null, undefined, '', [], {}
+util.chunk(array, 5)                  // split into batches of 5
+util.unique(array)                    // deduplicate
+util.clamp(150, 0, 100)              // → 100
+util.debounce(fn, 300)               // (no util.throttle())
+util.sleep(1000)                     // Promise-based delay
+util.uuid()                          // v4 UUID
+util.slugify('Hello World')          // → 'hello-world'
+util.formatBytes(1_572_864)          // → '1.5 MB'
+util.truncate(longText, 80)          // truncate with ellipsis</code></pre>
+  </div>
+
+  <!-- AUTO-SCALING TABLE -->
+  <div class="section">
+    <div class="section-label">Auto-scaling — set an env var, nothing else</div>
     <table>
       <thead><tr><th>Module</th><th>Default</th><th>Set this env var</th><th>Upgrades to</th></tr></thead>
       <tbody>
         <tr><td>Cache</td><td>in-memory</td><td><code>REDIS_URL</code></td><td>Redis</td></tr>
         <tr><td>Queue</td><td>in-memory</td><td><code>REDIS_URL</code></td><td>Redis</td></tr>
         <tr><td>Events</td><td>in-memory</td><td><code>REDIS_URL</code></td><td>Redis pub/sub</td></tr>
-        <tr><td>Storage</td><td>local disk</td><td><code>AWS_S3_BUCKET</code></td><td>S3 / R2</td></tr>
+        <tr><td>Storage</td><td>local disk</td><td><code>AWS_S3_BUCKET</code> or <code>R2_BUCKET</code></td><td>S3 / Cloudflare R2</td></tr>
         <tr><td>Email</td><td>console log</td><td><code>SMTP_HOST</code> or <code>RESEND_API_KEY</code></td><td>SMTP / Resend</td></tr>
+        <tr><td>Logger</td><td>console</td><td><code>BLOOM_LOGGER_FILE_PATH</code></td><td>+ file transport</td></tr>
       </tbody>
     </table>
   </div>
 
+  <!-- ENV REFERENCE -->
   <div class="section">
-    <div class="section-label">Subpath imports</div>
-    <pre><code>import { authClass }     from '@bloomneo/appkit/auth';
-import { databaseClass } from '@bloomneo/appkit/database';
-import { errorClass }    from '@bloomneo/appkit/error';
-import { cacheClass }    from '@bloomneo/appkit/cache';
-// ... or import everything from '@bloomneo/appkit'</code></pre>
+    <div class="section-label">Full environment variable reference</div>
+    <table>
+      <thead><tr><th>Variable</th><th>Purpose</th><th>Required?</th></tr></thead>
+      <tbody>
+        <tr><td><code>BLOOM_AUTH_SECRET</code></td><td>JWT signing key (min 32 chars)</td><td>Yes</td></tr>
+        <tr><td><code>DATABASE_URL</code></td><td>Prisma connection string</td><td>Yes</td></tr>
+        <tr><td><code>BLOOM_SECURITY_CSRF_SECRET</code></td><td>CSRF token signing</td><td>Recommended</td></tr>
+        <tr><td><code>BLOOM_SECURITY_ENCRYPTION_KEY</code></td><td>AES-256-GCM (64 hex chars)</td><td>Recommended</td></tr>
+        <tr><td><code>REDIS_URL</code></td><td>Distributed cache + queue + events</td><td>Optional</td></tr>
+        <tr><td><code>AWS_S3_BUCKET</code></td><td>Cloud storage bucket</td><td>Optional</td></tr>
+        <tr><td><code>RESEND_API_KEY</code></td><td>Production transactional email</td><td>Optional</td></tr>
+        <tr><td><code>SMTP_HOST</code> / <code>SMTP_USER</code> / <code>SMTP_PASS</code></td><td>SMTP email</td><td>Optional</td></tr>
+        <tr><td><code>BLOOM_DB_TENANT=auto</code></td><td>Enable multi-tenant filtering</td><td>Optional</td></tr>
+        <tr><td><code>ORG_&lt;NAME&gt;</code></td><td>Per-org database URL</td><td>Optional</td></tr>
+        <tr><td><code>BLOOM_LOGGER_FILE_PATH</code></td><td>Log to file</td><td>Optional</td></tr>
+        <tr><td><code>BLOOM_LOGGER_HTTP_URL</code></td><td>Log to HTTP endpoint</td><td>Optional</td></tr>
+        <tr><td><code>BLOOM_AUTH_ROLES</code></td><td>Custom role.level definitions</td><td>Optional</td></tr>
+      </tbody>
+    </table>
   </div>
 
+  <!-- SUBPATH IMPORTS -->
+  <div class="section">
+    <div class="section-label">Subpath imports (tree-shaking)</div>
+    <pre class="hljs-block"><code class="language-typescript">// Preferred — flat import when using multiple modules
+import { authClass, databaseClass, errorClass, cacheClass } from '@bloomneo/appkit';
+
+// Alternative — subpath for tree-shaking when only one module is needed
+import { authClass }     from '@bloomneo/appkit/auth';
+import { databaseClass } from '@bloomneo/appkit/database';
+import { securityClass } from '@bloomneo/appkit/security';
+import { errorClass }    from '@bloomneo/appkit/error';
+import { cacheClass }    from '@bloomneo/appkit/cache';
+import { storageClass }  from '@bloomneo/appkit/storage';
+import { queueClass }    from '@bloomneo/appkit/queue';
+import { emailClass }    from '@bloomneo/appkit/email';
+import { eventClass }    from '@bloomneo/appkit/event';
+import { loggerClass }   from '@bloomneo/appkit/logger';
+import { configClass }   from '@bloomneo/appkit/config';
+import { utilClass }     from '@bloomneo/appkit/util';</code></pre>
+  </div>
+
+  <!-- CANONICAL PATTERN -->
+  <div class="section">
+    <div class="section-label">Canonical endpoint pattern</div>
+    <p style="margin-bottom:1rem;">~80% of AppKit endpoints follow this shape. Generate this as the default unless told otherwise.</p>
+    <pre class="hljs-block"><code class="language-typescript">import { authClass, databaseClass, errorClass, loggerClass } from '@bloomneo/appkit';
+
+const auth     = authClass.get();
+const database = await databaseClass.get();
+const error    = errorClass.get();
+const logger   = loggerClass.get('users');
+
+app.post(
+  '/api/users',
+  auth.requireLoginToken(),                   // 1. authenticate
+  auth.requireUserRoles(['admin.tenant']),    // 2. authorize (always chained after authenticate)
+  error.asyncRoute(async (req, res) => {
+    if (!req.body?.email) throw error.badRequest('Email required');
+
+    const user = await database.user.create({ data: req.body });
+    logger.info('User created', { userId: user.id });
+    res.json({ user });
+  })
+);
+
+// Mount once, last in the stack
+app.use(error.handleErrors());</code></pre>
+  </div>
+
+  <!-- AI DOCS -->
   <div class="section">
     <div class="section-label">AI agent reference</div>
-    <p>AppKit ships <code>llms.txt</code> and <code>AGENTS.md</code> in the package root — available after install at <code>node_modules/@bloomneo/appkit/llms.txt</code>. The Bloom CLI copies these into your project's <code>docs/</code> folder automatically on <code>npm install</code>.</p>
+    <div class="card-grid card-grid-3">
+      <div class="card card-centered">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+        </div>
+        <h3><code>llms.txt</code></h3>
+        <p>Full API reference — every method, every signature. Auto-regenerated on each build. <a href="llms.txt">View →</a></p>
+      </div>
+      <div class="card card-centered">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <polyline points="9 12 11 14 15 10"/>
+          </svg>
+        </div>
+        <h3><code>AGENTS.md</code></h3>
+        <p>Rules for AI agents: always-do, never-do, canonical patterns. Prevents hallucinated method names. <a href="AGENTS.md">View →</a></p>
+      </div>
+      <div class="card card-centered">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+          </svg>
+        </div>
+        <h3>Auto-synced <code>docs/</code></h3>
+        <p>Bloom CLI postinstall copies the latest <code>llms.txt</code> and <code>AGENTS.md</code> into your project's <code>docs/</code> on every <code>npm install</code>.</p>
+      </div>
+    </div>
   </div>
 
 </div>
 
 <footer>
-  <p>© 2026 Bloomneo &nbsp;·&nbsp; <a href="https://github.com/bloomneo/appkit" target="_blank">GitHub</a> &nbsp;·&nbsp; <a href="https://www.npmjs.com/package/@bloomneo/appkit" target="_blank">npm</a></p>
+  <p>© 2026 Bloomneo &nbsp;·&nbsp; <a href="https://github.com/bloomneo/appkit" target="_blank">GitHub</a> &nbsp;·&nbsp; <a href="https://www.npmjs.com/package/@bloomneo/appkit" target="_blank">npm</a> &nbsp;·&nbsp; <a href="llms.txt">llms.txt</a></p>
 </footer>
+
+<script>
+  document.getElementById('navToggle').addEventListener('click', function() {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+</script>
 
 </body>
 </html>

@@ -7,19 +7,27 @@
   <meta name="description" content="Build Fast. Stay Modular. Code with AI. The Bloomneo developer framework — AppKit, UIKit, and Bloom CLI." />
   <link rel="stylesheet" href="assets/style.css" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-  <style>
-    .nav-brand { display: flex; align-items: center; gap: 0.5rem; }
-    .card-icon svg { width: 2rem; height: 2rem; }
-  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre.hljs-block code').forEach(el => hljs.highlightElement(el));
+    });
+  </script>
 </head>
 <body>
 
 <nav>
   <a href="./" class="nav-brand">
     <svg width="22" height="22" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g transform="translate(50,50)"><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(0)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(60)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(120)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(180)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(240)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(300)"/><circle fill="#1B3A1E" r="13"/><circle fill="#E8A830" r="6"/><circle fill="#1B3A1E" r="2.5"/></g></svg>
-    Bloom Developers
+    Bloom Developer
   </a>
-  <ul class="nav-links">
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+  <ul class="nav-links" id="navLinks">
     <li><a href="appkit/">AppKit</a></li>
     <li><a href="uikit/">UIKit</a></li>
     <li><a href="bloom/">Bloom CLI</a></li>
@@ -39,101 +47,44 @@
   </div>
 </section>
 
-<div class="page-wrap" style="padding-top: 0;">
-
-  <!-- ── PRINCIPLES ── -->
-  <div class="section">
-    <div class="section-label">Our principles</div>
-    <div class="card-grid">
-      <div class="card">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
-            <path d="M20 3v4M22 5h-4M4 17v2M5 18H3"/>
-          </svg>
-        </div>
-        <h3>Simplicity</h3>
-        <p>Clarity over complexity. Setup should take minutes, not days.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-            <path d="M2 17l10 5 10-5"/>
-            <path d="M2 12l10 5 10-5"/>
-          </svg>
-        </div>
-        <h3>Autonomy</h3>
-        <p>Loosely coupled modules. Use what you need — nothing forces you to take everything.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="4" y="4" width="16" height="16" rx="2"/>
-            <rect x="9" y="9" width="6" height="6"/>
-            <path d="M15 2v2M9 2v2M15 20v2M9 20v2M2 15h2M2 9h2M20 15h2M20 9h2"/>
-          </svg>
-        </div>
-        <h3>AI Innovation</h3>
-        <p>Every package ships <code>llms.txt</code> and <code>AGENTS.md</code>. We build so AI can build.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/>
-            <polyline points="16 7 22 7 22 13"/>
-          </svg>
-        </div>
-        <h3>Progressive Scaling</h3>
-        <p>Start with zero config. Add one env var and infrastructure upgrades automatically.</p>
-      </div>
-    </div>
-    <div style="margin-top:1.5rem; text-align:center;">
-      <a href="philosophy/" style="font-size:0.875rem; color:var(--muted);">Read the full founding manifesto →</a>
-    </div>
-  </div>
+<div class="page-wrap" style="padding-top:0;">
 
   <!-- ── PACKAGES ── -->
   <div class="section">
     <div class="section-label">The framework</div>
     <h2>Three packages. One cohesive stack.</h2>
     <p style="margin-bottom:1.5rem;">AppKit handles your backend. UIKit handles your frontend. Bloom CLI wires them together and scaffolds any platform in one command.</p>
-    <div class="card-grid">
+    <div class="card-grid card-grid-3">
       <a href="appkit/" class="card">
-        <div class="card-tag">@bloomneo/appkit</div>
         <div class="card-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="2" width="20" height="8" rx="2"/>
-            <rect x="2" y="14" width="20" height="8" rx="2"/>
-            <line x1="6" y1="6" x2="6.01" y2="6"/>
-            <line x1="6" y1="18" x2="6.01" y2="18"/>
+            <rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/>
+            <line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>
           </svg>
         </div>
+        <div class="card-tag">@bloomneo/appkit</div>
         <h3>AppKit</h3>
-        <p>12 backend modules. One pattern. Auth, database, cache, queue, storage, email, events — all auto-scaling.</p>
+        <p>12 backend modules. One pattern. Auth, database, cache, queue, storage, email, events — all auto-scaling from local to production.</p>
       </a>
       <a href="uikit/" class="card">
-        <div class="card-tag">@bloomneo/uikit</div>
         <div class="card-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="18" height="18" rx="2"/>
-            <path d="M3 9h18"/>
-            <path d="M9 21V9"/>
+            <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/>
           </svg>
         </div>
+        <div class="card-tag">@bloomneo/uikit</div>
         <h3>UIKit</h3>
-        <p>45+ React components, 6 production layouts, 5 OKLCH themes. Web, desktop, mobile, extensions.</p>
+        <p>45+ React components, 6 production layouts, 5 OKLCH themes. Cross-platform: web, desktop, mobile, extensions.</p>
       </a>
       <a href="bloom/" class="card">
-        <div class="card-tag">@bloomneo/bloom</div>
         <div class="card-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="4 17 10 11 4 5"/>
-            <line x1="12" y1="19" x2="20" y2="19"/>
+            <polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/>
           </svg>
         </div>
+        <div class="card-tag">@bloomneo/bloom</div>
         <h3>Bloom CLI</h3>
-        <p>Scaffold web, desktop, or mobile apps in one command with Feature-Based Component Architecture.</p>
+        <p>Scaffold web, desktop (Electron), or mobile (Capacitor) apps in one command with Feature-Based Component Architecture.</p>
       </a>
     </div>
   </div>
@@ -141,7 +92,7 @@
   <!-- ── QUICK START ── -->
   <div class="section">
     <div class="section-label">Quick start</div>
-    <pre><code>npm install -g @bloomneo/bloom
+    <pre class="hljs-block"><code class="language-bash">npm install -g @bloomneo/bloom
 
 bloom create my-app                    # web app
 bloom create my-app userapp            # auth + user management + admin
@@ -154,7 +105,7 @@ bloom create my-app mobile-basicapp    # iOS + Android via Capacitor</code></pre
     <div class="section-label">Convention over configuration</div>
     <h2>Drop a folder. Get a route.</h2>
     <p style="margin-bottom:1rem;">No routing config. No manual registration. File-based auto-discovery on both frontend and backend.</p>
-    <pre><code>src/api/features/invoice/
+    <pre class="hljs-block"><code class="language-bash">src/api/features/invoice/
 ├── invoice.route.ts     # auto-mounts at /api/invoice
 └── invoice.service.ts
 
@@ -166,31 +117,89 @@ src/web/features/invoice/pages/
   <!-- ── TEMPLATES ── -->
   <div class="section">
     <div class="section-label">Templates</div>
+    <h2>Pick a template and go.</h2>
+    <div class="template-list">
+      <div class="template-row">
+        <div class="template-meta">
+          <span class="badge badge-green">basicapp</span>
+          <span class="template-name">Web app</span>
+          <span class="template-desc">React + Express, FBCA routing, ready to deploy</span>
+        </div>
+        <code class="template-cmd">bloom create my-app</code>
+      </div>
+      <div class="template-row">
+        <div class="template-meta">
+          <span class="badge badge-yellow">userapp</span>
+          <span class="template-name">Auth + users</span>
+          <span class="template-desc">Full auth, roles, admin panel, Prisma + PostgreSQL</span>
+        </div>
+        <code class="template-cmd">bloom create my-app userapp</code>
+      </div>
+      <div class="template-row">
+        <div class="template-meta">
+          <span class="badge badge-yellow">desktop-basicapp</span>
+          <span class="template-name">Desktop</span>
+          <span class="template-desc">Electron, FBCA, SQLite, packages to Windows / macOS / Linux</span>
+        </div>
+        <code class="template-cmd">bloom create my-app desktop-basicapp</code>
+      </div>
+      <div class="template-row">
+        <div class="template-meta">
+          <span class="badge badge-green">mobile-basicapp</span>
+          <span class="template-name">Mobile</span>
+          <span class="template-desc">Capacitor 7 — native iOS + Android from one codebase</span>
+        </div>
+        <code class="template-cmd">bloom create my-app mobile-basicapp</code>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PRINCIPLES ── -->
+  <div class="section">
+    <div class="section-label">Our principles</div>
+    <h2>Built on four core values.</h2>
     <div class="card-grid">
-      <div class="card">
-        <span class="badge badge-green">basicapp</span>
-        <h3 style="margin-top:.6rem;">Web app</h3>
-        <p>React + Express, FBCA routing, ready to deploy.</p>
-        <pre style="margin-top:.6rem;padding:.5rem .9rem;font-size:.78rem;"><code>bloom create my-app</code></pre>
+      <div class="card card-centered">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
+            <path d="M20 3v4M22 5h-4M4 17v2M5 18H3"/>
+          </svg>
+        </div>
+        <h3>Simplicity</h3>
+        <p>Clarity over complexity. Setup should take minutes, not days.</p>
       </div>
-      <div class="card">
-        <span class="badge badge-yellow">userapp</span>
-        <h3 style="margin-top:.6rem;">Auth + users</h3>
-        <p>Full auth, roles, admin panel, Prisma + PostgreSQL.</p>
-        <pre style="margin-top:.6rem;padding:.5rem .9rem;font-size:.78rem;"><code>bloom create my-app userapp</code></pre>
+      <div class="card card-centered">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <h3>Autonomy</h3>
+        <p>Use what you need. Nothing forces you to take everything.</p>
       </div>
-      <div class="card">
-        <span class="badge badge-yellow">desktop</span>
-        <h3 style="margin-top:.6rem;">Desktop</h3>
-        <p>Electron, FBCA, SQLite, packages to all platforms.</p>
-        <pre style="margin-top:.6rem;padding:.5rem .9rem;font-size:.78rem;"><code>bloom create my-app desktop-basicapp</code></pre>
+      <div class="card card-centered">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/>
+            <path d="M15 2v2M9 2v2M15 20v2M9 20v2M2 15h2M2 9h2M20 15h2M20 9h2"/>
+          </svg>
+        </div>
+        <h3>AI Innovation</h3>
+        <p>Every package ships <code>llms.txt</code> and <code>AGENTS.md</code>. We build so AI can build.</p>
       </div>
-      <div class="card">
-        <span class="badge badge-green">mobile</span>
-        <h3 style="margin-top:.6rem;">Mobile</h3>
-        <p>Capacitor 7. Native iOS + Android.</p>
-        <pre style="margin-top:.6rem;padding:.5rem .9rem;font-size:.78rem;"><code>bloom create my-app mobile-basicapp</code></pre>
+      <div class="card card-centered">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>
+          </svg>
+        </div>
+        <h3>Progressive Scaling</h3>
+        <p>Start with zero config. Add one env var and infra upgrades automatically.</p>
       </div>
+    </div>
+    <div style="margin-top:1.5rem; text-align:center;">
+      <a href="philosophy/" style="font-size:0.875rem; color:var(--muted);">Read the full founding manifesto →</a>
     </div>
   </div>
 
@@ -199,8 +208,8 @@ src/web/features/invoice/pages/
     <div class="section-label">Built for AI agents</div>
     <h2>Every package ships machine-readable docs.</h2>
     <p style="margin-bottom:1.25rem;">LLMs hallucinate APIs for undocumented packages. Every Bloomneo package ships <code>llms.txt</code> and <code>AGENTS.md</code> inside the npm tarball — copied into your project's <code>docs/</code> folder automatically on every <code>npm install</code>.</p>
-    <div class="card-grid">
-      <div class="card">
+    <div class="card-grid card-grid-3">
+      <div class="card card-centered">
         <div class="card-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
@@ -209,9 +218,9 @@ src/web/features/invoice/pages/
           </svg>
         </div>
         <h3><code>llms.txt</code></h3>
-        <p>Complete API reference. Every method and signature. Regenerated on every build — never drifts.</p>
+        <p>Complete API reference regenerated on every build. Every method, every signature — never drifts from source.</p>
       </div>
-      <div class="card">
+      <div class="card card-centered">
         <div class="card-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
@@ -219,13 +228,12 @@ src/web/features/invoice/pages/
           </svg>
         </div>
         <h3><code>AGENTS.md</code></h3>
-        <p>Rules for AI agents: always-do, never-do, canonical patterns. Avoid hallucinated method names.</p>
+        <p>Rules for AI agents: always-do, never-do, canonical patterns. Avoid hallucinated method names on the first try.</p>
       </div>
-      <div class="card">
+      <div class="card card-centered">
         <div class="card-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="23 4 23 10 17 10"/>
-            <polyline points="1 20 1 14 7 14"/>
+            <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
             <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
           </svg>
         </div>
@@ -240,6 +248,12 @@ src/web/features/invoice/pages/
 <footer>
   <p>© 2026 Bloomneo &nbsp;·&nbsp; <a href="https://github.com/bloomneo" target="_blank">GitHub</a> &nbsp;·&nbsp; <a href="https://www.npmjs.com/org/bloomneo" target="_blank">npm</a> &nbsp;·&nbsp; <a href="philosophy/">Philosophy</a></p>
 </footer>
+
+<script>
+  document.getElementById('navToggle').addEventListener('click', function() {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+</script>
 
 </body>
 </html>

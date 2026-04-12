@@ -4,15 +4,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>UIKit — Bloomneo</title>
-  <meta name="description" content="@bloomneo/uikit — Production-ready React component library with 5 themes, OKLCH color science, and cross-platform support." />
+  <meta name="description" content="@bloomneo/uikit — 45+ React components, 5 OKLCH themes, 6 production layouts. Cross-platform: web, desktop, mobile, extensions." />
   <link rel="stylesheet" href="../assets/style.css" />
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('pre.hljs-block code').forEach(el => hljs.highlightElement(el));
+    });
+  </script>
 </head>
 <body>
 
 <nav>
-  <a href="../" class="nav-brand"><svg width="22" height="22" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g transform="translate(50,50)"><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(0)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(60)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(120)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(180)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(240)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(300)"/><circle fill="#1B3A1E" r="13"/><circle fill="#E8A830" r="6"/><circle fill="#1B3A1E" r="2.5"/></g></svg>Bloom Developers</a>
-  <ul class="nav-links">
+  <a href="../" class="nav-brand">
+    <svg width="22" height="22" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><g transform="translate(50,50)"><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(0)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(60)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(120)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(180)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(240)"/><path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(300)"/><circle fill="#1B3A1E" r="13"/><circle fill="#E8A830" r="6"/><circle fill="#1B3A1E" r="2.5"/></g></svg>
+    Bloom Developer
+  </a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+  <ul class="nav-links" id="navLinks">
     <li><a href="../appkit/">AppKit</a></li>
     <li><a href="../uikit/" class="active">UIKit</a></li>
     <li><a href="../bloom/">Bloom CLI</a></li>
@@ -24,152 +39,574 @@
 <div class="page-wrap">
 
   <div class="page-header">
-    <div class="hero-badge">@bloomneo/uikit</div>
+    <div class="hero-badge">@bloomneo/uikit · v1.5.1</div>
     <h1>React components<br/>AI agents pick first</h1>
-    <p style="margin-top:1rem;">End-to-end React framework with components, layouts, themes, routing, and a generated <code>llms.txt</code>. Cross-platform: web, desktop, mobile, extensions.</p>
+    <p>45+ production-ready React components. 5 OKLCH themes. 6 layouts. Cross-platform: web, desktop, mobile, extensions. Ships with <code>llms.txt</code> so AI gets the API right on the first try.</p>
     <div class="btn-row" style="justify-content:flex-start; margin-top:1.5rem;">
       <a href="https://www.npmjs.com/package/@bloomneo/uikit" target="_blank" class="btn btn-primary">npm ↗</a>
       <a href="https://github.com/bloomneo/uikit" target="_blank" class="btn btn-outline">GitHub ↗</a>
+      <a href="llms.txt" class="btn btn-outline">llms.txt ↗</a>
     </div>
   </div>
 
+  <!-- INSTALL -->
   <div class="section">
     <div class="section-label">Install</div>
-    <pre><code>npm install @bloomneo/uikit</code></pre>
+    <pre class="hljs-block"><code class="language-bash">npm install @bloomneo/uikit</code></pre>
   </div>
 
+  <!-- SETUP -->
   <div class="section">
-    <div class="section-label">Setup</div>
-    <pre><code>// 1. Import styles once at app entry
+    <div class="section-label">Setup — one time per app</div>
+    <h2>Three steps to a working UI</h2>
+    <pre class="hljs-block"><code class="language-tsx">// 1. Import the core stylesheet ONCE at your app entry (e.g. main.tsx)
 import '@bloomneo/uikit/styles';
 
-// 2. Wrap your app
+// Optional: import theme fonts (Elegant, Metro, Studio, Vivid)
+import '@bloomneo/uikit/styles/fonts';
+
+// 2. Wrap your app with providers
 import { ThemeProvider, ToastProvider, ConfirmProvider } from '@bloomneo/uikit';
 
 &lt;ThemeProvider theme="base" mode="light"&gt;
-  &lt;ToastProvider /&gt;
+  &lt;ToastProvider position="bottom-right" /&gt;
   &lt;ConfirmProvider&gt;
     &lt;App /&gt;
   &lt;/ConfirmProvider&gt;
 &lt;/ThemeProvider&gt;
 
-// 3. Add FOUC prevention to index.html &lt;head&gt; (prevents flash before React mounts)
+// 3. Add FOUC prevention in index.html &lt;head&gt; — prevents theme flash before React mounts
 import { foucScript } from '@bloomneo/uikit/fouc';
-&lt;script dangerouslySetInnerHTML=&#123;&#123; __html: foucScript() &#125;&#125; /&gt;</code></pre>
+&lt;script dangerouslySetInnerHTML={{ __html: foucScript() }} /&gt;</code></pre>
   </div>
 
+  <!-- IMPORT -->
   <div class="section">
-    <div class="section-label">One import path</div>
-    <p style="margin-bottom:0.75rem;">There is exactly one canonical import — always use the flat import:</p>
-    <pre><code>import { Button, DataTable, Modal, useTheme } from '@bloomneo/uikit';</code></pre>
-    <p>Deep imports like <code>@bloomneo/uikit/button</code> exist for tree-shaking but are not the canonical form.</p>
+    <div class="section-label">One canonical import path</div>
+    <p style="margin-bottom:0.75rem;">There is exactly ONE supported import path for normal use. Always use the flat import:</p>
+    <pre class="hljs-block"><code class="language-typescript">import {
+  Button, Input, Card, CardHeader, CardTitle, CardContent,
+  Alert, AlertDescription, Badge, DataTable, Dialog,
+  DialogContent, DialogHeader, DialogTitle, DialogFooter,
+  Select, Combobox, DatePicker, Skeleton, EmptyState,
+  PageHeader, PermissionGate, PermissionProvider,
+  FormField, PasswordInput, toast, useToast, useConfirm,
+  useTheme, useApi, usePagination, useBreakpoint,
+  formatBytes, formatCurrency, formatDate, timeAgo,
+} from '@bloomneo/uikit';
+
+// Deep imports like '@bloomneo/uikit/button' exist for tree-shaking
+// but are NOT the canonical form. Don't mix styles in one file.</code></pre>
   </div>
 
+  <!-- THEMES -->
   <div class="section">
-    <div class="section-label">Themes</div>
-    <p style="margin-bottom:1rem;">Five built-in themes using OKLCH color science for perceptually uniform palettes.</p>
+    <div class="section-label">5 OKLCH themes</div>
+    <h2>Perceptually uniform color science</h2>
+    <p style="margin-bottom:1.25rem;">OKLCH color space ensures colors look consistent across devices and scale predictably — no muddy mid-tones or clipped highs. Each theme ships in light and dark mode.</p>
     <div class="card-grid">
-      <div class="card"><h3>base</h3><p>Clean neutral foundation. Good default for any app.</p></div>
-      <div class="card"><h3>elegant</h3><p>Refined, subdued palette. Professional and polished.</p></div>
-      <div class="card"><h3>metro</h3><p>High contrast, bold. Inspired by transit design systems.</p></div>
-      <div class="card"><h3>studio</h3><p>Creative, warm. For design tools and media apps.</p></div>
-      <div class="card"><h3>vivid</h3><p>Saturated, energetic. For consumer and marketing apps.</p></div>
+      <div class="card">
+        <h3>base</h3>
+        <p>Clean neutral foundation. Good default for any product.</p>
+      </div>
+      <div class="card">
+        <h3>elegant</h3>
+        <p>Refined, subdued palette. Professional and polished.</p>
+      </div>
+      <div class="card">
+        <h3>metro</h3>
+        <p>High contrast, bold. Inspired by transit design systems.</p>
+      </div>
+      <div class="card">
+        <h3>studio</h3>
+        <p>Creative, warm. For design tools and media apps.</p>
+      </div>
+      <div class="card">
+        <h3>vivid</h3>
+        <p>Saturated, energetic. For consumer and marketing apps.</p>
+      </div>
     </div>
-    <pre style="margin-top:1rem;"><code>const { theme, setTheme, mode, toggleMode } = useTheme();
+    <pre class="hljs-block" style="margin-top:1.25rem;"><code class="language-tsx">const { theme, mode, availableThemes, setTheme, toggleMode } = useTheme();
 
-setTheme('elegant');   // switch theme
-toggleMode();          // light ↔ dark</code></pre>
+setTheme('elegant');   // switch theme at runtime
+toggleMode();          // light ↔ dark
+
+// All available themes:
+// 'base' | 'elegant' | 'metro' | 'studio' | 'vivid' | (your custom theme)</code></pre>
   </div>
 
+  <!-- BUTTON -->
   <div class="section">
-    <div class="section-label">Component examples</div>
-    <pre><code>import { Button, Input, Card, CardHeader, CardTitle, CardContent,
-         Alert, AlertDescription, Badge, DataTable, Modal,
-         Select, Combobox, DatePicker, useToast, useConfirm
-       } from '@bloomneo/uikit';
+    <div class="section-label">Component — Button</div>
+    <pre class="hljs-block"><code class="language-tsx">import { Button } from '@bloomneo/uikit';
 
-// Button
-&lt;Button variant="default"&gt;Save&lt;/Button&gt;
-&lt;Button variant="outline" size="sm"&gt;Cancel&lt;/Button&gt;
+// Variants
+&lt;Button&gt;Default&lt;/Button&gt;
+&lt;Button variant="secondary"&gt;Secondary&lt;/Button&gt;
+&lt;Button variant="outline"&gt;Outline&lt;/Button&gt;
+&lt;Button variant="ghost"&gt;Ghost&lt;/Button&gt;
 &lt;Button variant="destructive"&gt;Delete&lt;/Button&gt;
 
-// Card
-&lt;Card&gt;
-  &lt;CardHeader&gt;
-    &lt;CardTitle&gt;Users&lt;/CardTitle&gt;
-  &lt;/CardHeader&gt;
-  &lt;CardContent&gt;...&lt;/CardContent&gt;
-&lt;/Card&gt;
+// Sizes
+&lt;Button size="sm"&gt;Small&lt;/Button&gt;
+&lt;Button size="lg"&gt;Large&lt;/Button&gt;
 
-// Toast
-const { toast } = useToast();
-toast({ title: 'Saved', description: 'Changes saved successfully.' });
-
-// Confirm dialog
-const confirm = useConfirm();
-const ok = await confirm({ title: 'Delete user?', description: 'This cannot be undone.' });
-if (ok) { /* proceed */ }</code></pre>
+// States
+&lt;Button disabled&gt;Disabled&lt;/Button&gt;
+&lt;Button loading&gt;Saving...&lt;/Button&gt;</code></pre>
   </div>
 
+  <!-- CARD -->
+  <div class="section">
+    <div class="section-label">Component — Card</div>
+    <pre class="hljs-block"><code class="language-tsx">import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, Button } from '@bloomneo/uikit';
+
+&lt;Card&gt;
+  &lt;CardHeader&gt;
+    &lt;CardTitle&gt;User Settings&lt;/CardTitle&gt;
+    &lt;CardDescription&gt;Manage your account preferences&lt;/CardDescription&gt;
+  &lt;/CardHeader&gt;
+  &lt;CardContent&gt;
+    &lt;p&gt;Content goes here&lt;/p&gt;
+  &lt;/CardContent&gt;
+  &lt;CardFooter&gt;
+    &lt;Button&gt;Save changes&lt;/Button&gt;
+  &lt;/CardFooter&gt;
+&lt;/Card&gt;</code></pre>
+  </div>
+
+  <!-- DATA TABLE -->
+  <div class="section">
+    <div class="section-label">Component — DataTable</div>
+    <p style="margin-bottom:1rem;">Sortable, filterable, paginated table with row actions. Define columns once and let the table handle the rest.</p>
+    <pre class="hljs-block"><code class="language-tsx">import { DataTable, type DataTableColumn, type RowAction } from '@bloomneo/uikit';
+import { Pencil, Trash2 } from 'lucide-react';
+
+type User = { id: string; name: string; email: string; role: 'admin' | 'user'; createdAt: string; };
+
+const columns: DataTableColumn&lt;User&gt;[] = [
+  { id: 'name',      header: 'Name',  accessorKey: 'name',      sortable: true },
+  { id: 'email',     header: 'Email', accessorKey: 'email' },
+  { id: 'role',      header: 'Role',  accessorKey: 'role',      sortable: true },
+  { id: 'createdAt', header: 'Joined', accessorKey: 'createdAt', sortable: true, dataType: 'date' },
+];
+
+const actions: RowAction&lt;User&gt;[] = [
+  { id: 'edit',   label: 'Edit',   icon: &lt;Pencil size={14} /&gt;, onClick: (row) =&gt; handleEdit(row) },
+  { id: 'delete', label: 'Delete', icon: &lt;Trash2 size={14} /&gt;, onClick: (row) =&gt; handleDelete(row), destructive: true },
+];
+
+&lt;DataTable&lt;User&gt;
+  data={users}
+  columns={columns}
+  rowActions={actions}
+  searchable
+  pagination
+  pageSize={10}
+  getRowId={(row) =&gt; row.id}
+/&gt;</code></pre>
+  </div>
+
+  <!-- FORM -->
+  <div class="section">
+    <div class="section-label">Component — Forms</div>
+    <pre class="hljs-block"><code class="language-tsx">import { FormField, Input, PasswordInput, Select, Combobox, Button } from '@bloomneo/uikit';
+
+// FormField wraps any input with label, error, and helper text
+&lt;FormField label="Email" required error={emailError} helper="We'll never share this"&gt;
+  &lt;Input type="email" value={email} onChange={(e) =&gt; setEmail(e.target.value)} /&gt;
+&lt;/FormField&gt;
+
+&lt;FormField label="Password" required&gt;
+  &lt;PasswordInput value={password} onChange={(e) =&gt; setPassword(e.target.value)} /&gt;
+&lt;/FormField&gt;
+
+// Searchable select with async loading
+&lt;Combobox
+  value={country}
+  onChange={setCountry}
+  options={countries}
+  placeholder="Select a country"
+  searchPlaceholder="Search countries..."
+  clearable
+/&gt;</code></pre>
+  </div>
+
+  <!-- TOAST -->
+  <div class="section">
+    <div class="section-label">Component — Toast</div>
+    <p style="margin-bottom:1rem;">Mount <code>&lt;ToastProvider /&gt;</code> once at the root. Call <code>toast.*</code> from anywhere — no hooks, no context drilling.</p>
+    <pre class="hljs-block"><code class="language-tsx">import { toast } from '@bloomneo/uikit';
+
+// Simple toasts
+toast.success('Changes saved');
+toast.error('Something went wrong');
+toast.info('Heads up — deployment is running');
+toast.warning('Your session expires in 5 minutes');
+
+// With description and action
+toast('Saved', {
+  description: 'Your changes are now live',
+  action: {
+    label: 'Undo',
+    onClick: () => toast.info('Undone'),
+  },
+});</code></pre>
+  </div>
+
+  <!-- CONFIRM -->
+  <div class="section">
+    <div class="section-label">Component — Confirm Dialog</div>
+    <p style="margin-bottom:1rem;"><code>useConfirm()</code> returns a promise — <code>true</code> if confirmed, <code>false</code> if cancelled. No boilerplate modal state needed.</p>
+    <pre class="hljs-block"><code class="language-tsx">import { useConfirm } from '@bloomneo/uikit';
+
+function DeleteButton() {
+  const confirm = useConfirm();
+
+  async function handleDelete() {
+    const ok = await confirm({
+      title: 'Delete this record?',
+      description: 'This cannot be undone.',
+      confirmLabel: 'Delete',
+      tone: 'destructive',
+    });
+    if (!ok) return;
+    await deleteRecord();
+    toast.success('Deleted');
+  }
+
+  // High-stakes: user must type a phrase before confirm enables
+  async function handleHardDelete() {
+    const ok = await confirm.destructive({
+      title: 'Delete account',
+      description: 'This will permanently delete the account and all its data.',
+      verifyText: 'delete my account',
+    });
+    if (ok) await nukeAccount();
+  }
+
+  return &lt;Button variant="destructive" onClick={handleDelete}&gt;Delete&lt;/Button&gt;;
+}</code></pre>
+  </div>
+
+  <!-- DIALOG -->
+  <div class="section">
+    <div class="section-label">Component — Dialog</div>
+    <pre class="hljs-block"><code class="language-tsx">import { useState } from 'react';
+import { Button, Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@bloomneo/uikit';
+
+export function EditProfileDialog() {
+  const [open, setOpen] = useState(false);
+  return (
+    &lt;&gt;
+      &lt;Button onClick={() =&gt; setOpen(true)}&gt;Edit profile&lt;/Button&gt;
+      &lt;Dialog open={open} onOpenChange={setOpen}&gt;
+        &lt;DialogContent&gt;
+          &lt;DialogHeader&gt;
+            &lt;DialogTitle&gt;Edit profile&lt;/DialogTitle&gt;
+            &lt;DialogDescription&gt;Make changes and save when you're done.&lt;/DialogDescription&gt;
+          &lt;/DialogHeader&gt;
+          &lt;p className="text-sm text-muted-foreground"&gt;Form fields go here.&lt;/p&gt;
+          &lt;DialogFooter&gt;
+            &lt;Button variant="outline" onClick={() =&gt; setOpen(false)}&gt;Cancel&lt;/Button&gt;
+            &lt;Button onClick={() =&gt; setOpen(false)}&gt;Save changes&lt;/Button&gt;
+          &lt;/DialogFooter&gt;
+        &lt;/DialogContent&gt;
+      &lt;/Dialog&gt;
+    &lt;/&gt;
+  );
+}</code></pre>
+  </div>
+
+  <!-- PAGE HEADER -->
+  <div class="section">
+    <div class="section-label">Component — PageHeader</div>
+    <pre class="hljs-block"><code class="language-tsx">import { Users } from 'lucide-react';
+import { Button, PageHeader } from '@bloomneo/uikit';
+
+&lt;PageHeader
+  icon={&lt;Users /&gt;}
+  title="User management"
+  description="View and manage all users in your workspace"
+  breadcrumbs={[
+    { label: 'Admin', href: '/admin' },
+    { label: 'Users' },
+  ]}
+  actions={&lt;Button&gt;Add user&lt;/Button&gt;}
+/&gt;</code></pre>
+  </div>
+
+  <!-- EMPTY STATE -->
+  <div class="section">
+    <div class="section-label">Component — EmptyState</div>
+    <pre class="hljs-block"><code class="language-tsx">import { Inbox } from 'lucide-react';
+import { Button, EmptyState } from '@bloomneo/uikit';
+
+&lt;EmptyState
+  icon={&lt;Inbox /&gt;}
+  title="No invoices yet"
+  description="Create your first invoice to get started."
+  action={&lt;Button onClick={handleCreate}&gt;Create invoice&lt;/Button&gt;}
+/&gt;</code></pre>
+  </div>
+
+  <!-- PERMISSION GATE -->
+  <div class="section">
+    <div class="section-label">Component — PermissionGate</div>
+    <pre class="hljs-block"><code class="language-tsx">import { PermissionGate, PermissionProvider, Button } from '@bloomneo/uikit';
+
+// Bring your own auth source — just provide a check function
+const check = (perm: string) =&gt; currentUser.roles.includes(perm);
+
+&lt;PermissionProvider check={check}&gt;
+  {/* Single permission */}
+  &lt;PermissionGate when="admin"&gt;
+    &lt;Button variant="destructive"&gt;Delete user (admin only)&lt;/Button&gt;
+  &lt;/PermissionGate&gt;
+
+  {/* OR logic across multiple roles */}
+  &lt;PermissionGate when={['admin', 'moderator']} fallback={&lt;span&gt;Restricted&lt;/span&gt;}&gt;
+    &lt;Button&gt;Moderate content&lt;/Button&gt;
+  &lt;/PermissionGate&gt;
+
+  {/* Custom predicate */}
+  &lt;PermissionGate when={() =&gt; currentUser.plan === 'pro'}&gt;
+    &lt;ProFeature /&gt;
+  &lt;/PermissionGate&gt;
+&lt;/PermissionProvider&gt;</code></pre>
+  </div>
+
+  <!-- FORMAT UTILS -->
+  <div class="section">
+    <div class="section-label">Utilities — Format</div>
+    <pre class="hljs-block"><code class="language-tsx">import { formatBytes, formatCurrency, formatDate, timeAgo, Time } from '@bloomneo/uikit';
+
+formatCurrency(1234.56, { currency: 'USD' })             // '$1,234.56'
+formatCurrency(1234.56, { currency: 'INR', locale: 'en-IN' }) // '₹1,234.56'
+formatDate(new Date(), { preset: 'long' })               // 'April 12, 2026'
+timeAgo(new Date(Date.now() - 10 * 60 * 1000))           // '10 minutes ago'
+formatBytes(1_572_864)                                    // '1.5 MB'
+
+// Auto-updating relative time component
+&lt;Time date={publishedAt} /&gt;</code></pre>
+  </div>
+
+  <!-- HOOKS -->
+  <div class="section">
+    <div class="section-label">Hooks</div>
+    <h2>Data fetching, theme, breakpoints, pagination</h2>
+    <pre class="hljs-block"><code class="language-tsx">import { useApi, useTheme, usePagination, useBreakpoint, useActiveBreakpoint, useMediaQuery } from '@bloomneo/uikit';
+
+// API hook — managed loading/data/error state
+const api = useApi({ baseURL: 'http://localhost:3000' });
+await api.get('/api/users');
+// api.data, api.loading, api.error available reactively
+
+// Theme hook
+const { theme, mode, setTheme, toggleMode, availableThemes } = useTheme();
+
+// Pagination hook — works with any data source
+const pagination = usePagination({ total: 234, pageSize: 10 });
+const visible = allItems.slice(pagination.startIndex, pagination.endIndex);
+// pagination.page, pagination.pageCount, pagination.hasPrev, pagination.hasNext
+// pagination.prev(), pagination.next(), pagination.goTo(n), pagination.pages
+
+// Responsive breakpoints
+const isAtLeastMd = useBreakpoint('md');          // true when ≥ 768px
+const isMobile    = useBreakpoint('md', 'down');  // true when &lt; 768px
+const active      = useActiveBreakpoint();         // 'sm' | 'md' | 'lg' | 'xl' | '2xl'
+const reduced     = useMediaQuery('(prefers-reduced-motion: reduce)');</code></pre>
+  </div>
+
+  <!-- LAYOUTS -->
   <div class="section">
     <div class="section-label">Layout components</div>
     <ul class="module-list">
-      <li><code>Header / HeaderLogo / HeaderNav</code><span>Sticky nav with logo and navigation items</span></li>
-      <li><code>Footer</code><span>Page footer with configurable columns</span></li>
-      <li><code>Sidebar / SidebarNav</code><span>Collapsible sidebar navigation</span></li>
-      <li><code>PageLayout</code><span>Full-page layout wrapper with header/sidebar/footer slots</span></li>
-      <li><code>Section / Container</code><span>Content containers with spacing variants</span></li>
+      <li><code>Header / HeaderLogo / HeaderNav</code><span>Sticky top nav with logo and navigation links</span></li>
+      <li><code>Footer</code><span>Page footer with configurable column layout</span></li>
+      <li><code>Sidebar / SidebarNav</code><span>Collapsible sidebar with nested navigation support</span></li>
+      <li><code>PageLayout</code><span>Full-page wrapper with header, sidebar, content, and footer slots</span></li>
+      <li><code>Section / Container</code><span>Content containers with spacing variants and max-width constraints</span></li>
+      <li><code>MobileLayout / TabBar / SafeArea</code><span>Mobile-specific layouts for Capacitor apps</span></li>
     </ul>
   </div>
 
-  <div class="section">
-    <div class="section-label">Data components</div>
-    <ul class="module-list">
-      <li><code>DataTable</code><span>Sortable, filterable, paginated table with column definitions</span></li>
-      <li><code>DataList</code><span>Key-value display component</span></li>
-      <li><code>StatCard</code><span>Metric card with label, value, and trend</span></li>
-    </ul>
-  </div>
-
+  <!-- FORM COMPONENTS LIST -->
   <div class="section">
     <div class="section-label">Form components</div>
     <ul class="module-list">
-      <li><code>Input / Textarea / Select</code><span>Standard form inputs</span></li>
-      <li><code>Combobox</code><span>Searchable select with async option loading</span></li>
-      <li><code>DatePicker / DateRangePicker</code><span>Calendar-based date selection</span></li>
+      <li><code>Input / Textarea</code><span>Standard text inputs with consistent styling</span></li>
+      <li><code>PasswordInput</code><span>Password input with show/hide toggle</span></li>
+      <li><code>Select</code><span>Dropdown select for static option lists</span></li>
+      <li><code>Combobox</code><span>Searchable select with async option loading and clearable</span></li>
+      <li><code>DatePicker / DateRangePicker</code><span>Calendar-based date and date-range selection</span></li>
       <li><code>Checkbox / Radio / Switch</code><span>Boolean and choice inputs</span></li>
-      <li><code>FileUpload</code><span>Drag-and-drop file input with preview</span></li>
+      <li><code>FileUpload</code><span>Drag-and-drop file input with preview and progress</span></li>
+      <li><code>FormField</code><span>Wrapper providing label, required marker, error, and helper text</span></li>
     </ul>
   </div>
 
+  <!-- DATA COMPONENTS LIST -->
   <div class="section">
-    <div class="section-label">API hooks</div>
-    <pre><code>import { useApi, useTheme } from '@bloomneo/uikit';
-
-// API hook — manages loading, data, error state
-const api = useApi({ baseURL: 'http://localhost:3000' });
-await api.get('/api/users');
-// api.data, api.loading, api.error
-
-// Theme hook
-const { theme, mode, setTheme, toggleMode, availableThemes } = useTheme();</code></pre>
+    <div class="section-label">Data display components</div>
+    <ul class="module-list">
+      <li><code>DataTable</code><span>Sortable, filterable, paginated table with row actions and column definitions</span></li>
+      <li><code>DataList</code><span>Key-value display for detail views</span></li>
+      <li><code>StatCard</code><span>Metric card with label, value, change indicator, and optional sparkline</span></li>
+      <li><code>Badge</code><span>Status / label chip in multiple color variants</span></li>
+      <li><code>Alert / AlertDescription</code><span>Inline status messages with info, warning, error, success variants</span></li>
+      <li><code>Skeleton</code><span>Loading placeholder that matches the shape of real content</span></li>
+    </ul>
   </div>
 
+  <!-- COOKBOOK -->
+  <div class="section">
+    <div class="section-label">Cookbook — CRUD page pattern</div>
+    <p style="margin-bottom:1rem;">A complete user list with search, sort, row actions, and delete-with-confirm — in ~80 lines:</p>
+    <pre class="hljs-block"><code class="language-tsx">import { useState } from 'react';
+import { Pencil, Trash2, Users } from 'lucide-react';
+import {
+  Button, ConfirmProvider, DataTable, PageHeader,
+  ToastProvider, toast, useConfirm,
+  type DataTableColumn, type RowAction,
+} from '@bloomneo/uikit';
+
+type User = { id: string; name: string; email: string; role: 'admin' | 'user' };
+
+function UserListPage() {
+  const [users, setUsers] = useState&lt;User[]&gt;(initialUsers);
+  const confirm = useConfirm();
+
+  const columns: DataTableColumn&lt;User&gt;[] = [
+    { id: 'name',  header: 'Name',  accessorKey: 'name',  sortable: true },
+    { id: 'email', header: 'Email', accessorKey: 'email' },
+    { id: 'role',  header: 'Role',  accessorKey: 'role',  sortable: true },
+  ];
+
+  const actions: RowAction&lt;User&gt;[] = [
+    { id: 'edit',   label: 'Edit',   icon: &lt;Pencil size={14} /&gt;, onClick: handleEdit },
+    {
+      id: 'delete', label: 'Delete', icon: &lt;Trash2 size={14} /&gt;, destructive: true,
+      onClick: async (user) =&gt; {
+        const ok = await confirm({ title: `Delete ${user.name}?`, tone: 'destructive' });
+        if (!ok) return;
+        setUsers(prev =&gt; prev.filter(u =&gt; u.id !== user.id));
+        toast.success(`${user.name} deleted`);
+      },
+    },
+  ];
+
+  return (
+    &lt;&gt;
+      &lt;PageHeader icon={&lt;Users /&gt;} title="Users" actions={&lt;Button&gt;Add user&lt;/Button&gt;} /&gt;
+      &lt;DataTable data={users} columns={columns} rowActions={actions} searchable pagination getRowId={r =&gt; r.id} /&gt;
+    &lt;/&gt;
+  );
+}
+
+export default function App() {
+  return (
+    &lt;ConfirmProvider&gt;
+      &lt;ToastProvider position="bottom-right" /&gt;
+      &lt;UserListPage /&gt;
+    &lt;/ConfirmProvider&gt;
+  );
+}</code></pre>
+  </div>
+
+  <!-- CROSS PLATFORM -->
   <div class="section">
     <div class="section-label">Cross-platform</div>
+    <h2>One component library, four targets</h2>
     <div class="card-grid">
-      <div class="card"><h3>Web</h3><p>Vite + React. Full component library with all themes.</p></div>
-      <div class="card"><h3>Desktop</h3><p>Electron renderer. Same components, same themes.</p></div>
-      <div class="card"><h3>Mobile</h3><p>Capacitor + React. Touch-optimised with scroll containers.</p></div>
-      <div class="card"><h3>Extensions</h3><p>Browser extension popup. Constrained layout variants.</p></div>
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/>
+          </svg>
+        </div>
+        <h3>Web</h3>
+        <p>Vite + React. Full component library with all themes. SSR-compatible.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+          </svg>
+        </div>
+        <h3>Desktop</h3>
+        <p>Electron renderer process. Same components, same themes, same API.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/>
+          </svg>
+        </div>
+        <h3>Mobile</h3>
+        <p>Capacitor + React. Touch-optimised with <code>MobileLayout</code>, <code>TabBar</code>, <code>SafeArea</code>.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20A14.5 14.5 0 0 0 12 2"/><path d="M2 12h20"/>
+          </svg>
+        </div>
+        <h3>Extensions</h3>
+        <p>Browser extension popup. Constrained layout variants for small viewports.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI DOCS -->
+  <div class="section">
+    <div class="section-label">AI agent reference</div>
+    <div class="card-grid card-grid-3">
+      <div class="card card-centered">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+        </div>
+        <h3><code>llms.txt</code></h3>
+        <p>One canonical snippet per component. No hallucinated prop shapes. <a href="llms.txt">View →</a></p>
+      </div>
+      <div class="card card-centered">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <polyline points="9 12 11 14 15 10"/>
+          </svg>
+        </div>
+        <h3><code>AGENTS.md</code></h3>
+        <p>Always-do, never-do rules: one import path, required providers, canonical patterns. <a href="AGENTS.md">View →</a></p>
+      </div>
+      <div class="card card-centered">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+          </svg>
+        </div>
+        <h3>Cookbook patterns</h3>
+        <p>CRUD page, dashboard, login flow, settings page, delete flow — full working examples in <code>llms.txt</code>.</p>
+      </div>
     </div>
   </div>
 
 </div>
 
 <footer>
-  <p>© 2026 Bloomneo &nbsp;·&nbsp; <a href="https://github.com/bloomneo/uikit" target="_blank">GitHub</a> &nbsp;·&nbsp; <a href="https://www.npmjs.com/package/@bloomneo/uikit" target="_blank">npm</a></p>
+  <p>© 2026 Bloomneo &nbsp;·&nbsp; <a href="https://github.com/bloomneo/uikit" target="_blank">GitHub</a> &nbsp;·&nbsp; <a href="https://www.npmjs.com/package/@bloomneo/uikit" target="_blank">npm</a> &nbsp;·&nbsp; <a href="llms.txt">llms.txt</a></p>
 </footer>
+
+<script>
+  document.getElementById('navToggle').addEventListener('click', function() {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+</script>
 
 </body>
 </html>

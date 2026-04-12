@@ -1,0 +1,101 @@
+# Bloomneo — Machine-Readable Reference
+
+> This is the root llms.txt for the Bloomneo developer framework.
+> It indexes all three packages and provides quick-start context for AI coding agents.
+> For full API references, follow the links to each package's llms.txt below.
+
+## What is Bloomneo?
+
+Bloomneo is an open-source developer toolkit for building fast, modular, AI-first apps.
+Three packages work together — or independently:
+
+- **@bloomneo/appkit** — Node.js backend toolkit (12 modules: auth, database, cache, queue, storage, email, events, logging, config, security, util)
+- **@bloomneo/uikit** — React component library (45+ components, 5 OKLCH themes, cross-platform)
+- **@bloomneo/bloom** — CLI scaffolding (web, desktop via Electron, mobile via Capacitor)
+
+## Package references
+
+| Package | Version | llms.txt | AGENTS.md |
+|---|---|---|---|
+| `@bloomneo/appkit` | 1.5.2 | [appkit/llms.txt](appkit/llms.txt) | [appkit/AGENTS.md](appkit/AGENTS.md) |
+| `@bloomneo/uikit`  | 1.5.1 | [uikit/llms.txt](uikit/llms.txt)   | [uikit/AGENTS.md](uikit/AGENTS.md)   |
+| `@bloomneo/bloom`  | 1.5.3 | [bloom/llms.txt](bloom/llms.txt)   | —                                     |
+
+## The one pattern that matters (AppKit)
+
+Every AppKit module follows `xxxClass.get()`. There are no constructors, no factories.
+
+```ts
+import { authClass, databaseClass, errorClass, cacheClass } from '@bloomneo/appkit';
+
+const auth     = authClass.get();
+const database = await databaseClass.get();   // async
+const error    = errorClass.get();
+const cache    = cacheClass.get('users');     // optional namespace
+```
+
+## The one import rule (UIKit)
+
+Always use the flat import from `@bloomneo/uikit`. Never deep-import unless optimising bundle size.
+
+```ts
+import { Button, DataTable, useTheme, toast } from '@bloomneo/uikit';
+```
+
+## Quick start (Bloom CLI)
+
+```bash
+npm install -g @bloomneo/bloom
+
+bloom create my-app                  # web app
+bloom create my-app userapp          # web app + full auth system
+bloom create my-app desktop-basicapp # Electron desktop
+bloom create my-app mobile-basicapp  # iOS + Android via Capacitor
+```
+
+## Feature-Based Component Architecture (FBCA)
+
+Drop a folder inside `features/` — it's auto-discovered. No config, no registration.
+
+```
+src/api/features/invoice/
+├── invoice.route.ts     # → /api/invoice (auto-mounted)
+└── invoice.service.ts
+
+src/web/features/invoice/pages/
+├── index.tsx            # → /invoice
+└── [id].tsx             # → /invoice/:id
+```
+
+## Auto-scaling (no code changes)
+
+| Module   | Default     | Set env var                              | Upgrades to         |
+|----------|-------------|------------------------------------------|---------------------|
+| Cache    | in-memory   | `REDIS_URL`                              | Redis               |
+| Queue    | in-memory   | `REDIS_URL`                              | Redis               |
+| Events   | in-memory   | `REDIS_URL`                              | Redis pub/sub       |
+| Storage  | local disk  | `AWS_S3_BUCKET` or `R2_BUCKET`           | S3 / Cloudflare R2  |
+| Email    | console log | `SMTP_HOST` or `RESEND_API_KEY`          | SMTP / Resend       |
+
+## Required env vars (minimum viable production)
+
+```bash
+BLOOM_AUTH_SECRET=<min 32 chars>           # JWT signing (AppKit auth)
+DATABASE_URL=postgresql://...              # Prisma connection (AppKit database)
+BLOOM_SECURITY_CSRF_SECRET=<min 32 chars> # CSRF protection (AppKit security)
+```
+
+## What NOT to do
+
+- Never `new AuthClass()` — always `authClass.get()`
+- Never `import { Button } from '@bloomneo/uikit/button'` as the primary import — use flat import
+- Never read `process.env.X` directly in business code — use `configClass.get('section.key')`
+- Never `throw new Error(...)` in Express routes — use `error.badRequest(...)`, `error.notFound(...)`, etc.
+- Never chain `requireUserRoles()` after `requireApiToken()` — API tokens have no user roles
+
+## Links
+
+- GitHub: https://github.com/bloomneo
+- npm org: https://www.npmjs.com/org/bloomneo
+- Docs site: https://dev.bloomneo.com
+- Philosophy: https://dev.bloomneo.com/philosophy/

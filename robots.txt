@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dev.bloomneo.com/sitemap.xml
+
+# AI agent / LLM reference files
+# llms.txt: https://dev.bloomneo.com/llms.txt
+# AppKit:   https://dev.bloomneo.com/appkit/llms.txt
+# UIKit:    https://dev.bloomneo.com/uikit/llms.txt
+# Bloom:    https://dev.bloomneo.com/bloom/llms.txt
