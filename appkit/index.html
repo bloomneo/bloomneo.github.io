@@ -94,18 +94,18 @@
   <div class="section">
     <div class="section-label">What you can build</div>
     <h2>One toolkit. Real-world backends.</h2>
-    <p style="margin-bottom:1.25rem;">AppKit is the Node.js backend toolkit teams reach for when they need to ship — not evaluate ten libraries. Use it to build:</p>
-    <ul class="module-list">
-      <li><strong>Multi-tenant SaaS backends</strong><span>Row-level tenant isolation, per-org databases, 9-level role hierarchy, JWT login + API tokens — the full stack for B2B SaaS on one pattern.</span></li>
-      <li><strong>REST &amp; JSON APIs</strong><span>Semantic HTTP errors, async route wrapping, request validation, rate limiting, CSRF — everything a production Express or Fastify API needs out of the box.</span></li>
-      <li><strong>Admin dashboards &amp; internal tools</strong><span>Role-based access control, audit logging, background exports, file uploads — wire an internal tool in an afternoon instead of a sprint.</span></li>
-      <li><strong>AI agent backends &amp; LLM apps</strong><span>Token-authenticated tool endpoints, Redis-backed conversation cache, long-running background jobs, webhook ingestion — the infra layer behind your agent.</span></li>
-      <li><strong>Background job &amp; worker systems</strong><span>Email sending, report generation, webhook fan-out, scheduled cleanup — in-memory for dev, Redis-backed in production, zero code changes.</span></li>
-      <li><strong>File upload &amp; media services</strong><span>Avatars, document storage, signed private downloads, S3/R2 streaming — local disk in dev, cloud storage in prod with the same API.</span></li>
-      <li><strong>Webhook receivers &amp; integrations</strong><span>API-token-authenticated endpoints for Stripe, GitHub, Slack. Replay-safe queue ingestion. Per-route rate limits.</span></li>
-      <li><strong>Transactional email pipelines</strong><span>Welcome emails, password resets, order confirmations, reports. Console logging in dev, Resend or SMTP in prod — one <code>send()</code> call either way.</span></li>
-      <li><strong>Event-driven services</strong><span>Pub/sub across processes via Redis, wildcard subscriptions, namespace isolation — power notifications, audit trails, real-time feeds.</span></li>
-      <li><strong>Scaffolded full-stack apps</strong><span>Pair with <code>@bloomneo/bloom</code> CLI to generate a complete web, desktop (Electron) or mobile (Capacitor) app wired to AppKit modules in one command.</span></li>
+    <p style="margin-bottom:1.5rem;">AppKit is the Node.js backend toolkit teams reach for when they need to ship — not evaluate ten libraries.</p>
+    <ul class="use-case-grid">
+      <li><strong>Multi-tenant SaaS backends</strong><span>Row-level tenant isolation, per-org databases, 9-level role hierarchy, JWT login + API tokens.</span></li>
+      <li><strong>REST &amp; JSON APIs</strong><span>Semantic HTTP errors, async route wrapping, rate limiting, CSRF — Express or Fastify, ready out of the box.</span></li>
+      <li><strong>Admin dashboards &amp; internal tools</strong><span>Role-based access, audit logging, background exports, file uploads — ship an internal tool in an afternoon.</span></li>
+      <li><strong>AI agent backends &amp; LLM apps</strong><span>Token-authenticated tool endpoints, Redis conversation cache, long-running jobs, webhook ingestion.</span></li>
+      <li><strong>Background job &amp; worker systems</strong><span>Emails, reports, webhook fan-out, cleanup — in-memory for dev, Redis-backed in prod, zero code changes.</span></li>
+      <li><strong>File upload &amp; media services</strong><span>Avatars, documents, signed private downloads, S3/R2 streaming — same API in dev and prod.</span></li>
+      <li><strong>Webhook receivers &amp; integrations</strong><span>API-token-authenticated endpoints for Stripe, GitHub, Slack. Replay-safe queue ingestion.</span></li>
+      <li><strong>Transactional email pipelines</strong><span>Welcome, password reset, order confirmations, reports — console in dev, Resend/SMTP in prod.</span></li>
+      <li><strong>Event-driven services</strong><span>Pub/sub across processes via Redis, wildcard subscriptions, namespace isolation.</span></li>
+      <li><strong>Scaffolded full-stack apps</strong><span>Pair with <code>@bloomneo/bloom</code> CLI for web, Electron desktop or Capacitor mobile in one command.</span></li>
     </ul>
   </div>
 
@@ -131,19 +131,19 @@ const cache    = cacheClass.get('users');     // optional namespace for isolatio
   <!-- MODULES OVERVIEW -->
   <div class="section">
     <div class="section-label">12 modules at a glance</div>
-    <ul class="module-list">
-      <li><code>authClass</code><span>JWT login/API tokens, 9-level role hierarchy, Express middleware, password hashing</span></li>
+    <ul class="module-grid">
+      <li><code>authClass</code><span>JWT login, API tokens, roles, middleware, password hashing</span></li>
       <li><code>databaseClass</code><span>Prisma client, multi-tenant filtering, per-org databases</span></li>
-      <li><code>securityClass</code><span>Rate limiting, CSRF protection, AES-256-GCM encryption, input sanitization</span></li>
-      <li><code>errorClass</code><span>Semantic HTTP errors (400–500), async route wrapper, centralized error middleware</span></li>
-      <li><code>cacheClass</code><span>Memory → Redis auto-scaling, <code>getOrSet()</code> pattern, namespace isolation</span></li>
-      <li><code>storageClass</code><span>Local disk → S3/R2 auto-scaling, presigned URLs, file listing, copy</span></li>
-      <li><code>queueClass</code><span>Memory → Redis background jobs, <code>add()</code>, <code>process()</code>, <code>schedule(delayMs)</code></span></li>
-      <li><code>emailClass</code><span>Console → SMTP → Resend auto-scaling, <code>sendTemplate()</code>, batch send</span></li>
-      <li><code>eventClass</code><span>Memory → Redis pub/sub, wildcard patterns, namespace isolation</span></li>
-      <li><code>loggerClass</code><span>Structured logging, multi-transport (console / file / HTTP)</span></li>
-      <li><code>configClass</code><span>Type-safe env access, <code>getRequired()</code>, <code>validateRequired()</code></span></li>
-      <li><code>utilClass</code><span>12 zero-dependency helpers: slugify, uuid, chunk, debounce, clamp, formatBytes, and more</span></li>
+      <li><code>securityClass</code><span>Rate limiting, CSRF, AES-256-GCM encryption, sanitization</span></li>
+      <li><code>errorClass</code><span>Semantic HTTP errors, async route wrapper, error middleware</span></li>
+      <li><code>cacheClass</code><span>Memory → Redis auto-scaling, <code>getOrSet()</code>, namespaces</span></li>
+      <li><code>storageClass</code><span>Local → S3/R2, presigned URLs, file listing</span></li>
+      <li><code>queueClass</code><span>Memory → Redis background jobs, retries, delays</span></li>
+      <li><code>emailClass</code><span>Console → SMTP → Resend, templates, batch send</span></li>
+      <li><code>eventClass</code><span>Memory → Redis pub/sub, wildcards, namespaces</span></li>
+      <li><code>loggerClass</code><span>Structured JSON logs, multi-transport (console/file/HTTP)</span></li>
+      <li><code>configClass</code><span>Type-safe env access, boot-time validation</span></li>
+      <li><code>utilClass</code><span>12 zero-dep helpers: slugify, uuid, chunk, clamp, …</span></li>
     </ul>
   </div>
 
@@ -256,14 +256,6 @@ dbAll.user.groupBy({ by: ['tenant_id'], _count: true })
 
 // Per-org databases (multi-org SaaS)
 const acmeDb = await databaseClass.org('acme').get();  // reads ORG_ACME env var</code></pre>
-    <table style="margin-top:1rem;">
-      <thead><tr><th>Env var</th><th>Purpose</th></tr></thead>
-      <tbody>
-        <tr><td><code>DATABASE_URL</code></td><td>Prisma connection string (required)</td></tr>
-        <tr><td><code>BLOOM_DB_TENANT=auto</code></td><td>Enable automatic multi-tenant filtering</td></tr>
-        <tr><td><code>ORG_&lt;NAME&gt;=postgresql://...</code></td><td>Per-org database URL</td></tr>
-      </tbody>
-    </table>
   </div>
 
   <!-- SECURITY -->
@@ -287,13 +279,6 @@ const plaintext  = security.decrypt(ciphertext);
 const clean    = security.input(userInput);      // strip XSS + control chars
 const safeHtml = security.html(userHtml);        // strip disallowed HTML tags
 const escaped  = security.escape(userText);      // &amp; &lt; &gt; etc.</code></pre>
-    <table style="margin-top:1rem;">
-      <thead><tr><th>Env var</th><th>Purpose</th></tr></thead>
-      <tbody>
-        <tr><td><code>BLOOM_SECURITY_CSRF_SECRET</code></td><td>CSRF token signing (min 32 chars)</td></tr>
-        <tr><td><code>BLOOM_SECURITY_ENCRYPTION_KEY</code></td><td>AES-256-GCM key (64 hex chars)</td></tr>
-      </tbody>
-    </table>
   </div>
 
   <!-- ERROR -->
@@ -435,14 +420,7 @@ await email.sendTemplate('password-reset', {
 
 // Batch
 await email.sendBatch(emailsArray, batchSize?);</code></pre>
-    <table style="margin-top:1rem;">
-      <thead><tr><th>Strategy</th><th>When active</th></tr></thead>
-      <tbody>
-        <tr><td><code>console</code></td><td>Default in dev — logs email to terminal</td></tr>
-        <tr><td><code>smtp</code></td><td><code>SMTP_HOST</code> + <code>SMTP_USER</code> + <code>SMTP_PASS</code> set</td></tr>
-        <tr><td><code>resend</code></td><td><code>RESEND_API_KEY</code> set</td></tr>
-      </tbody>
-    </table>
+    <p style="margin-top:0.75rem;">Default is <code>console</code> in dev. Set <code>RESEND_API_KEY</code> (or <code>SMTP_HOST</code> + <code>SMTP_USER</code> + <code>SMTP_PASS</code>) to switch transports automatically.</p>
   </div>
 
   <!-- EVENT -->
@@ -482,14 +460,7 @@ logger.info('User created', { userId: newUser.id });
 logger.warn('Rate limit approaching', { ip: req.ip, count: 95 });
 logger.error('Database query failed', { error: err.message });
 logger.fatal('Service unresponsive', { service: 'redis' });</code></pre>
-    <table style="margin-top:1rem;">
-      <thead><tr><th>Env var</th><th>Effect</th></tr></thead>
-      <tbody>
-        <tr><td>(none)</td><td>Console transport only (default)</td></tr>
-        <tr><td><code>BLOOM_LOGGER_FILE_PATH=/var/log/app.log</code></td><td>Adds file transport</td></tr>
-        <tr><td><code>BLOOM_LOGGER_HTTP_URL=https://logs.example.com</code></td><td>Adds HTTP transport</td></tr>
-      </tbody>
-    </table>
+    <p style="margin-top:0.75rem;">Console transport by default. Set <code>BLOOM_LOGGER_FILE_PATH</code> for file transport or <code>BLOOM_LOGGER_HTTP_URL</code> for HTTP shipping.</p>
   </div>
 
   <!-- CONFIG -->
