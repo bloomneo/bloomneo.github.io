@@ -61,11 +61,33 @@ multiple modules in the same file) but it tree-shakes slightly better.
 
 For full method signatures and examples, read `llms.txt` in this same directory.
 
+## Pick your starting point (task → files)
+
+If you know *what you want to build*, jump straight to the files that demonstrate it.
+Every file path below ships inside the npm tarball at `node_modules/@bloomneo/appkit/`.
+
+| Goal | Start here |
+|---|---|
+| Authenticate a user with password + JWT | [`examples/auth.ts`](./examples/auth.ts) |
+| Protect a route by login | [`examples/auth.ts`](./examples/auth.ts) → [`cookbook/auth-protected-crud.ts`](./cookbook/auth-protected-crud.ts) |
+| Protect a route by role or permission | [`cookbook/auth-protected-crud.ts`](./cookbook/auth-protected-crud.ts) |
+| Issue and verify API keys (service-to-service) | [`cookbook/api-key-service.ts`](./cookbook/api-key-service.ts) |
+| Query a tenant-aware database | [`examples/database.ts`](./examples/database.ts) |
+| Build a multi-tenant SaaS (auth + db + org scoping) | [`cookbook/multi-tenant-saas.ts`](./cookbook/multi-tenant-saas.ts) |
+| Upload + process files in the background | [`cookbook/file-upload-pipeline.ts`](./cookbook/file-upload-pipeline.ts) |
+| Real-time pub/sub across processes | [`cookbook/real-time-chat.ts`](./cookbook/real-time-chat.ts) |
+| Send email (dev → SMTP → Resend) | [`examples/email.ts`](./examples/email.ts) |
+| Cache DB queries (memory → Redis) | [`examples/cache.ts`](./examples/cache.ts) |
+| Background jobs with retries | [`examples/queue.ts`](./examples/queue.ts) |
+| Structured logging with components | [`examples/logger.ts`](./examples/logger.ts) |
+| Type-safe env vars | [`examples/config.ts`](./examples/config.ts) |
+| Rate limit / CSRF / crypto / sanitize | [`examples/security.ts`](./examples/security.ts) |
+| Error-handling middleware | [`examples/error.ts`](./examples/error.ts) |
+| Small helpers (uuid, chunk, debounce, slugify) | [`examples/util.ts`](./examples/util.ts) |
+
 ## Environment variables
 
-AppKit reads env vars with the `BLOOM_*` prefix. There is **no** backwards
-compatibility for the legacy `VOILA_*` prefix from `@voilajsx/appkit` —
-that was removed entirely in 1.5.2.
+AppKit reads env vars with the `BLOOM_*` prefix.
 
 Required for production:
 
@@ -178,14 +200,7 @@ backend, no frontend.
 
 ## Migration notes
 
-- This package was previously published as `@voilajsx/appkit` (frozen at
-  1.2.8). Run a project-wide find-and-replace of `@voilajsx/appkit` →
-  `@bloomneo/appkit`. The API is identical.
-- **BREAKING (1.5.2):** the legacy `VOILA_*` env var prefix is gone.
-  Rename every `VOILA_FOO` in your `.env` files to `BLOOM_FOO`. There
-  is no fallback, no deprecation warning, no compatibility shim — the
-  rebrand is a clean break and consumers upgrading from earlier versions
-  must rename in one go.
+**BREAKING in 2.0.0:** pre-v1 API audit — see [`CHANGELOG.md`](./CHANGELOG.md#200---2026-04-15) for the full rename list. Key renames with no aliases: `auth.getUser()` (was `auth.user`), `auth.hasPermission()` (was `auth.can`), `security.forms()` (was `security.csrf`).
 
 ## Where to look next
 

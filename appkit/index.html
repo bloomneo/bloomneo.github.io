@@ -39,7 +39,7 @@
 <div class="page-wrap">
 
   <div class="page-header">
-    <div class="hero-badge">@bloomneo/appkit · v1.5.2</div>
+    <div class="hero-badge">@bloomneo/appkit · v2.0.0</div>
     <h1>Express backend,<br/>batteries included</h1>
     <p>12 modules. One pattern. Auto-scaling from in-memory to Redis to cloud — without changing a single line of code.</p>
     <div class="btn-row" style="justify-content:flex-start; margin-top:1.5rem;">
@@ -123,9 +123,9 @@ auth.requireUserRoles(['admin.tenant']): ExpressMiddleware // role check (OR log
 auth.requireUserPermissions(['manage:users']): ExpressMiddleware  // permission check (AND logic)
 
 // Request helpers
-auth.user(req): JwtPayload | null   // null-safe extract from req.user
+auth.getUser(req): JwtPayload | null   // null-safe extract from req.user
 auth.hasRole(userRole, requiredRole): boolean   // inheritance-aware comparison
-auth.can(user, permission): boolean</code></pre>
+auth.hasPermission(user, permission): boolean</code></pre>
 
     <div class="section-label" style="margin-top:2rem;">Login flow</div>
     <pre class="hljs-block"><code class="language-typescript">import { authClass, databaseClass, errorClass } from '@bloomneo/appkit';

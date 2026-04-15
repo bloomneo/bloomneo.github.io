@@ -64,7 +64,7 @@ const auth = authClass.get();
 // Token generation — these are the ONLY two public token-creation methods.
 // (`signToken` is a private internal — never call it from consumer code.)
 auth.generateLoginToken(payload, expiresIn?: string): string
-//   payload: { userId: number, role: string, level: string, permissions?: string[] }
+//   payload: { userId: string | number, role: string, level: string, permissions?: string[], email?: string }
 //   default expiresIn: '7d'
 
 auth.generateApiToken(payload, expiresIn?: string): string
@@ -86,9 +86,9 @@ auth.requireUserRoles(['admin.tenant', 'admin.org']): ExpressMiddleware
 auth.requireUserPermissions(['manage:users']): ExpressMiddleware // permission check (AND within array)
 
 // Request helpers
-auth.user(req: ExpressRequest): JwtPayload | null   // null-safe extract from req.user OR req.token
+auth.getUser(req: ExpressRequest): JwtPayload | null   // null-safe extract from req.user OR req.token
 auth.hasRole(userRoleLevel: string, requiredRoleLevel: string): boolean   // inheritance-aware
-auth.can(user: JwtPayload, permission: string): boolean   // permission inheritance
+auth.hasPermission(user: JwtPayload, permission: string): boolean   // permission inheritance
 ```
 
 ### Middleware chaining rules
@@ -161,7 +161,7 @@ app.delete(
   auth.requireLoginToken(),                    // 1. authenticate
   auth.requireUserRoles(['admin.tenant']),     // 2. authorize (chained)
   error.asyncRoute(async (req, res) => {
-    const me = auth.user(req);                 // null-safe; non-null after middleware
+    const me = auth.getUser(req);              // null-safe; non-null after middleware
     if (!me) throw error.unauthorized();
     await database.user.delete({ where: { id: Number(req.params.id) } });
     res.json({ deleted: true });
@@ -257,7 +257,7 @@ throw error.forbidden('message')         // 403
 throw error.notFound('message')          // 404
 throw error.conflict('message')          // 409
 throw error.tooMany('message')           // 429
-throw error.internal('message')          // 500
+throw error.serverError('message')       // 500  (alias: error.internal)
 
 // Async route wrapper (catches throws)
 app.get('/x', error.asyncRoute(async (req, res) => {
@@ -460,7 +460,7 @@ const config = configClass.get();
 config.get('section.key', defaultValue?)         // always returns string | undefined
 config.has('section.key'): boolean
 config.getRequired('section.key'): string        // throws if missing
-config.getMany(['KEY_A', 'KEY_B']): Record<string, string | undefined>
+config.getMany({ a: 'section.key_a', b: 'section.key_b' }): { a: string, b: string }  // object in, object out
 config.getAll(): Record<string, string | undefined>
 
 // NOTE: getNumber() and getBoolean() do NOT exist on the config instance.
@@ -475,8 +475,8 @@ configClass.isTest(): boolean
 configClass.validateRequired(['BLOOM_AUTH_SECRET', 'DATABASE_URL'])  // throws if missing
 ```
 
-`config.get('auth.secret')` reads `BLOOM_AUTH_SECRET` (and falls back to
-`BLOOM_AUTH_SECRET` for backwards compatibility, with a dev-mode warning).
+`config.get('auth.secret')` reads `BLOOM_AUTH_SECRET`. All env vars use
+the `BLOOM_*` prefix.
 
 ---
 
@@ -519,10 +519,7 @@ logger.fatal(message: string, meta?)
 | `BLOOM_LOGGER_HTTP_URL` | HTTP transport for logger | optional |
 | `ORG_<NAME>` | Per-org database (multi-org SaaS) | optional |
 
-**No backwards compatibility.** The legacy `VOILA_*` env var prefix from
-`@voilajsx/appkit` was removed entirely in 1.5.2. There is no fallback,
-no deprecation warning, no compatibility shim. Consumers upgrading must
-rename `VOILA_FOO` → `BLOOM_FOO` in their `.env` files in one go.
+All environment variables use the `BLOOM_*` prefix. No legacy fallbacks.
 
 ---
 
@@ -550,21 +547,21 @@ modules are used in the same file (most common case).
 
 ---
 
-## Migration from `@voilajsx/appkit`
+## Migration — 1.5.x → 2.0.0
 
-```diff
-- import { authClass } from '@voilajsx/appkit/auth';
-+ import { authClass } from '@bloomneo/appkit/auth';
-```
+Pre-v1 audit. No aliases kept. Project-wide find-and-replace:
 
-```diff
-- VOILA_AUTH_SECRET=...
-+ BLOOM_AUTH_SECRET=...
-```
+- `auth.user(req)` → `auth.getUser(req)`
+- `auth.can(user, perm)` → `auth.hasPermission(user, perm)`
+- `security.csrf()` → `security.forms()`
+- `error.handleErrors({ includeStack })` → `error.handleErrors({ showStack })`
 
-**BREAKING in 1.5.2:** the legacy `VOILA_*` env var prefix is gone. Rename
-every `VOILA_*` in your `.env` files to `BLOOM_*` in one go. There is no
-fallback, no deprecation warning.
+Removed (never actually existed — docs were wrong): `auth.requireLogin()`,
+`auth.requireRole()`, `logger.gethasTransport()`, `logger.getclear()`. Use
+`auth.requireLoginToken()`, `auth.requireUserRoles([...])`,
+`loggerClass.hasTransport()`, `loggerClass.clear()`.
+
+See [`CHANGELOG.md`](./CHANGELOG.md#200---2026-04-15) for the full list.
 
 ---
 
@@ -586,6 +583,6 @@ For frontend + backend together, use `@bloomneo/bloom` which scaffolds both.
 
 - **Rules** (always/never): `AGENTS.md` in this same directory
 - **Source code**: `dist/` (compiled TypeScript with .d.ts)
-- **Per-module READMEs**: `https://github.com/bloomneo/appkit/tree/main/src` (not shipped in tarball after 1.5.2 — they're verbose human-facing docs available on GitHub for browsing)
+- **Per-module READMEs**: shipped in the tarball at `node_modules/@bloomneo/appkit/src/<module>/README.md` (long-form human-facing docs; also browsable at `https://github.com/bloomneo/appkit/tree/main/src`)
 - **CHANGELOG**: `CHANGELOG.md`
 - **Issues**: https://github.com/bloomneo/appkit/issues
