@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Node.js backend toolkit for humans &amp; AI agents · @bloomneo/appkit</title>
-  <meta name="description" content="Production-ready Node.js backends in minutes. 12 typed modules — auth, database, cache, queue, storage, email — that auto-scale from in-memory to Redis to cloud without a rewrite. Ships with llms.txt + AGENTS.md so AI coding agents build it right the first time." />
-  <meta name="keywords" content="Node.js backend, Express toolkit, Fastify, TypeScript backend, JWT auth, multi-tenant SaaS, Prisma, Redis cache, job queue, S3 storage, AI coding agents, llms.txt, AGENTS.md, framework agnostic, agentic development" />
+  <title>@bloomneo/appkit — Node.js backend toolkit for SaaS, APIs &amp; AI apps</title>
+  <meta name="description" content="Build REST APIs, multi-tenant SaaS, admin dashboards, background jobs and AI apps on Node.js. 12 typed modules — JWT auth, Prisma database, Redis cache &amp; queue, S3 storage, SMTP/Resend email — that auto-scale without a rewrite. Ships llms.txt + AGENTS.md for AI coding agents." />
+  <meta name="keywords" content="Node.js backend framework, Express API boilerplate, Fastify toolkit, TypeScript backend starter, JWT authentication library, multi-tenant SaaS backend, Prisma ORM, Redis cache library, background job queue Node, S3 file upload Node.js, transactional email library, rate limiting middleware, CSRF protection Express, AI coding agents, llms.txt, AGENTS.md, agentic development, REST API scaffold" />
   <meta name="author" content="Bloomneo" />
   <link rel="canonical" href="https://dev.bloomneo.com/appkit/" />
 
@@ -14,12 +14,16 @@
   <meta property="og:title" content="Node.js backend toolkit for humans &amp; AI agents" />
   <meta property="og:description" content="12 typed modules for Express &amp; Fastify. Auto-scales from in-memory to Redis to cloud — same API, zero rewrites. Ships llms.txt + AGENTS.md so AI coding agents build it right the first time." />
   <meta property="og:url" content="https://dev.bloomneo.com/appkit/" />
-  <meta property="og:image" content="https://dev.bloomneo.com/assets/favicon.svg" />
+  <meta property="og:image" content="https://dev.bloomneo.com/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="@bloomneo/appkit — Production Node.js backends in minutes" />
 
-  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="@bloomneo/appkit — Node.js backend for humans &amp; AI agents" />
   <meta name="twitter:description" content="12 typed modules. Auto-scaling. Ships llms.txt + AGENTS.md for AI coding agents." />
-  <meta name="twitter:image" content="https://dev.bloomneo.com/assets/favicon.svg" />
+  <meta name="twitter:image" content="https://dev.bloomneo.com/assets/og-image.png" />
+  <meta name="twitter:image:alt" content="@bloomneo/appkit — Production Node.js backends in minutes" />
 
   <script type="application/ld+json">
   {
@@ -86,6 +90,25 @@
     <pre class="hljs-block"><code class="language-bash">npm install @bloomneo/appkit</code></pre>
   </div>
 
+  <!-- WHAT YOU CAN BUILD -->
+  <div class="section">
+    <div class="section-label">What you can build</div>
+    <h2>One toolkit. Real-world backends.</h2>
+    <p style="margin-bottom:1.25rem;">AppKit is the Node.js backend toolkit teams reach for when they need to ship — not evaluate ten libraries. Use it to build:</p>
+    <ul class="module-list">
+      <li><strong>Multi-tenant SaaS backends</strong><span>Row-level tenant isolation, per-org databases, 9-level role hierarchy, JWT login + API tokens — the full stack for B2B SaaS on one pattern.</span></li>
+      <li><strong>REST &amp; JSON APIs</strong><span>Semantic HTTP errors, async route wrapping, request validation, rate limiting, CSRF — everything a production Express or Fastify API needs out of the box.</span></li>
+      <li><strong>Admin dashboards &amp; internal tools</strong><span>Role-based access control, audit logging, background exports, file uploads — wire an internal tool in an afternoon instead of a sprint.</span></li>
+      <li><strong>AI agent backends &amp; LLM apps</strong><span>Token-authenticated tool endpoints, Redis-backed conversation cache, long-running background jobs, webhook ingestion — the infra layer behind your agent.</span></li>
+      <li><strong>Background job &amp; worker systems</strong><span>Email sending, report generation, webhook fan-out, scheduled cleanup — in-memory for dev, Redis-backed in production, zero code changes.</span></li>
+      <li><strong>File upload &amp; media services</strong><span>Avatars, document storage, signed private downloads, S3/R2 streaming — local disk in dev, cloud storage in prod with the same API.</span></li>
+      <li><strong>Webhook receivers &amp; integrations</strong><span>API-token-authenticated endpoints for Stripe, GitHub, Slack. Replay-safe queue ingestion. Per-route rate limits.</span></li>
+      <li><strong>Transactional email pipelines</strong><span>Welcome emails, password resets, order confirmations, reports. Console logging in dev, Resend or SMTP in prod — one <code>send()</code> call either way.</span></li>
+      <li><strong>Event-driven services</strong><span>Pub/sub across processes via Redis, wildcard subscriptions, namespace isolation — power notifications, audit trails, real-time feeds.</span></li>
+      <li><strong>Scaffolded full-stack apps</strong><span>Pair with <code>@bloomneo/bloom</code> CLI to generate a complete web, desktop (Electron) or mobile (Capacitor) app wired to AppKit modules in one command.</span></li>
+    </ul>
+  </div>
+
   <!-- UNIVERSAL PATTERN -->
   <div class="section">
     <div class="section-label">The universal pattern</div>
@@ -128,6 +151,7 @@ const cache    = cacheClass.get('users');     // optional namespace for isolatio
   <div class="section">
     <div class="section-label">Module 1 — Auth</div>
     <h2>JWT tokens, roles, and middleware</h2>
+    <p style="margin-bottom:0.75rem;"><strong>Use it when</strong> you need user login, signup, password hashing, API tokens for webhooks or service-to-service calls, role-based access control for admin routes, or tiered pricing (Free / Pro / Enterprise) enforced at the route level.</p>
     <p style="margin-bottom:1rem;">Two token types: <strong>login tokens</strong> (humans) and <strong>API tokens</strong> (services / webhooks). Both verified with the same <code>verifyToken()</code>.</p>
     <pre class="hljs-block"><code class="language-typescript">const auth = authClass.get();
 
@@ -219,6 +243,7 @@ app.post('/auth/login', error.asyncRoute(async (req, res) => {
   <div class="section">
     <div class="section-label">Module 2 — Database</div>
     <h2>Multi-tenant Prisma with auto-filtering</h2>
+    <p style="margin-bottom:1rem;"><strong>Use it when</strong> you're building a B2B SaaS where each customer's data must be isolated, or running multi-org deployments where each organisation has its own database. Every query is automatically scoped to the current tenant — no <code>where: { tenant_id }</code> boilerplate, no cross-tenant data leaks.</p>
     <pre class="hljs-block"><code class="language-typescript">const database = await databaseClass.get();
 
 // Standard Prisma queries — auto-filtered by tenant_id when BLOOM_DB_TENANT=auto
@@ -245,6 +270,7 @@ const acmeDb = await databaseClass.org('acme').get();  // reads ORG_ACME env var
   <div class="section">
     <div class="section-label">Module 3 — Security</div>
     <h2>Rate limiting, CSRF, encryption</h2>
+    <p style="margin-bottom:1rem;"><strong>Use it when</strong> you need to protect login endpoints from brute force, rate-limit a public API, add CSRF protection to HTML form routes, encrypt sensitive fields at rest (API keys, PII), or sanitize user-generated HTML before rendering.</p>
     <pre class="hljs-block"><code class="language-typescript">const security = securityClass.get();
 
 // Rate limiting middleware
@@ -274,6 +300,7 @@ const escaped  = security.escape(userText);      // &amp; &lt; &gt; etc.</code><
   <div class="section">
     <div class="section-label">Module 4 — Error</div>
     <h2>Semantic HTTP errors with auto-middleware</h2>
+    <p style="margin-bottom:1rem;"><strong>Use it when</strong> you want one consistent error shape across every route, no more <code>try/catch</code> in every handler, and no accidental <code>500</code>s when a resource isn't found. Throw once, the middleware renders the right status code and JSON body.</p>
     <pre class="hljs-block"><code class="language-typescript">const error = errorClass.get();
 
 // Throw semantic errors — each sets the correct HTTP status automatically
@@ -300,6 +327,7 @@ app.use(error.handleErrors());</code></pre>
   <div class="section">
     <div class="section-label">Module 5 — Cache</div>
     <h2>Memory → Redis. Zero code changes.</h2>
+    <p style="margin-bottom:1rem;"><strong>Use it when</strong> you need to cache expensive database queries, API responses, or LLM completions; share cache across instances behind a load balancer; or throttle third-party API calls with a short TTL. Starts in-memory for dev, upgrades to Redis by setting one env var.</p>
     <pre class="hljs-block"><code class="language-typescript">const cache = cacheClass.get('users');   // namespace for isolation
 
 // The recommended pattern — cache-or-fetch in one call
@@ -327,6 +355,7 @@ await cache.delete('all-active');</code></pre>
   <div class="section">
     <div class="section-label">Module 6 — Storage</div>
     <h2>Local disk → S3/R2. Same API.</h2>
+    <p style="margin-bottom:1rem;"><strong>Use it when</strong> you need to handle user file uploads (avatars, documents, attachments), store generated PDFs or reports, serve private downloads with expiring signed URLs, or migrate from local disk to AWS S3 or Cloudflare R2 without rewriting code.</p>
     <pre class="hljs-block"><code class="language-typescript">const storage = storageClass.get();
 
 // Upload a file
@@ -349,6 +378,7 @@ await storage.copy('src/file.jpg', 'dst/file.jpg');</code></pre>
   <div class="section">
     <div class="section-label">Module 7 — Queue</div>
     <h2>Background jobs with automatic scaling</h2>
+    <p style="margin-bottom:1rem;"><strong>Use it when</strong> you need to offload slow work from the request path: sending emails, resizing images, calling third-party APIs, generating reports, fanning out webhooks, syncing data, or running scheduled cleanup. In-memory for local dev, Redis-backed in production — same code.</p>
     <pre class="hljs-block"><code class="language-typescript">const queue = queueClass.get();
 
 // Enqueue a job
@@ -379,6 +409,7 @@ await queue.remove(jobId);</code></pre>
   <div class="section">
     <div class="section-label">Module 8 — Email</div>
     <h2>Console → SMTP → Resend. Auto-configured.</h2>
+    <p style="margin-bottom:1rem;"><strong>Use it when</strong> you need transactional email: welcome emails, password reset links, order confirmations, weekly reports, invoice receipts, or notification digests. Logs to console in dev so you don't spam real inboxes, switches to Resend or SMTP in production.</p>
     <pre class="hljs-block"><code class="language-typescript">const email = emailClass.get();
 
 // Plain or HTML email
@@ -418,6 +449,7 @@ await email.sendBatch(emailsArray, batchSize?);</code></pre>
   <div class="section">
     <div class="section-label">Module 9 — Event</div>
     <h2>Pub/Sub with wildcard patterns</h2>
+    <p style="margin-bottom:1rem;"><strong>Use it when</strong> you need loose coupling between features: fire <code>user.created</code> once and have email, analytics and audit log all react independently; broadcast across multiple Node.js processes behind a load balancer; or build real-time notifications, activity feeds, and audit trails.</p>
     <pre class="hljs-block"><code class="language-typescript">const events = eventClass.get();
 const userEvents = eventClass.get('users');   // namespace isolation
 
@@ -442,6 +474,7 @@ events.off('user.created', handler);</code></pre>
   <div class="section">
     <div class="section-label">Module 10 — Logger</div>
     <h2>Structured logging with multi-transport</h2>
+    <p style="margin-bottom:1rem;"><strong>Use it when</strong> you need JSON logs for Datadog, Grafana Loki or CloudWatch; tagged per-component logs so you can filter "just the API" or "just the queue worker"; or an HTTP transport that ships logs to a central service without running an agent.</p>
     <pre class="hljs-block"><code class="language-typescript">const logger = loggerClass.get('api');   // component-tagged
 
 logger.debug('Processing request', { path: req.path });
@@ -463,6 +496,7 @@ logger.fatal('Service unresponsive', { service: 'redis' });</code></pre>
   <div class="section">
     <div class="section-label">Module 11 — Config</div>
     <h2>Type-safe environment variables</h2>
+    <p style="margin-bottom:1rem;"><strong>Use it when</strong> you want one place for all environment variables, validation on boot so missing secrets crash early (not at 3am in production), and <code>NODE_ENV</code>-aware helpers for dev / prod / test branches.</p>
     <pre class="hljs-block"><code class="language-typescript">const config = configClass.get();
 
 // Read values
@@ -486,6 +520,7 @@ configClass.validateRequired(['BLOOM_AUTH_SECRET', 'DATABASE_URL'])  // throws i
   <div class="section">
     <div class="section-label">Module 12 — Util</div>
     <h2>12 zero-dependency helpers</h2>
+    <p style="margin-bottom:1rem;"><strong>Use it when</strong> you'd otherwise reach for lodash for a single function, need URL-safe slugs for blog posts, UUIDs for request IDs, chunked batch processing, or human-readable byte formatting — without the dependency footprint.</p>
     <pre class="hljs-block"><code class="language-typescript">const util = utilClass.get();
 
 util.get(obj, 'a.b.c', defaultValue)  // safe deep property read (no util.set())

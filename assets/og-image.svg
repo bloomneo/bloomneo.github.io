@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1B3A1E"/>
+      <stop offset="100%" stop-color="#0F2511"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <g transform="translate(90,80)">
+    <g transform="scale(1.4)">
+      <path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(0)"/>
+      <path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(60)"/>
+      <path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(120)"/>
+      <path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(180)"/>
+      <path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(240)"/>
+      <path fill="#E8A830" d="M0,0C9,-12 11,-30 0,-40C-11,-30 -9,-12 0,0" transform="rotate(300)"/>
+      <circle fill="#1B3A1E" r="13"/>
+      <circle fill="#E8A830" r="6"/>
+      <circle fill="#1B3A1E" r="2.5"/>
+    </g>
+    <text x="55" y="8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="600" fill="#B8C5B0" letter-spacing="2">BLOOMNEO</text>
+  </g>
+
+  <g transform="translate(90,260)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+    <text x="0" y="0" font-size="108" font-weight="800" fill="#FFFFFF" letter-spacing="-3">@bloomneo/appkit</text>
+    <text x="0" y="70" font-size="36" font-weight="500" fill="#E8A830" letter-spacing="-0.5">Production Node.js backends in minutes</text>
+  </g>
+
+  <g transform="translate(90,440)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+    <text x="0" y="0" font-size="24" font-weight="500" fill="#B8C5B0" letter-spacing="0">Auth  ·  Database  ·  Cache  ·  Queue  ·  Storage  ·  Email  ·  Events  ·  Logger</text>
+    <text x="0" y="42" font-size="22" font-weight="400" fill="#7A8C73">12 typed modules for Express &amp; Fastify  ·  auto-scales to Redis &amp; cloud  ·  ships llms.txt + AGENTS.md</text>
+  </g>
+
+  <g transform="translate(90,560)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif">
+    <rect x="0" y="-25" width="90" height="34" rx="6" fill="#E8A830"/>
+    <text x="45" y="-3" font-size="18" font-weight="700" fill="#1B3A1E" text-anchor="middle">v2.0.0</text>
+    <text x="108" y="0" font-size="20" font-weight="500" fill="#B8C5B0">dev.bloomneo.com/appkit</text>
+  </g>
+</svg>
