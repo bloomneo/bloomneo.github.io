@@ -40,6 +40,95 @@
   }
   </script>
 
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is @bloomneo/appkit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "@bloomneo/appkit is a Node.js backend framework designed for agentic code workflows — the era where developers and AI coding agents (Claude Code, Cursor, GitHub Copilot, Windsurf) build backends together. It ships twelve typed modules — auth, database, cache, queue, storage, email, events, logging, config, security, error, util — under one canonical pattern and includes llms.txt and AGENTS.md machine-readable specs in every release."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is AppKit different from NestJS, AdonisJS, or Fastify directly?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "NestJS and AdonisJS are opinionated frameworks that replace Express. AppKit is a toolkit you drop into an existing Express or Fastify app. You pick your HTTP framework; AppKit provides the twelve infrastructure modules every production backend needs under one consistent pattern."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does AppKit work with Fastify?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The middleware factories are compatible with both Express and Fastify. Non-HTTP modules (cache, queue, storage, email, events, logger, config, util, database) are framework-agnostic and work in any Node.js process."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I use AppKit with Claude Code, Cursor, or GitHub Copilot?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Point your AI agent at https://dev.bloomneo.com/appkit/llms.txt and /appkit/AGENTS.md — these are authoritative, machine-readable specs. Or scaffold with @bloomneo/bloom, which copies the latest llms.txt and AGENTS.md into your project's docs/ folder on install."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does it support TypeScript?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "AppKit is written in TypeScript and ships full type definitions for all twelve modules. Every method signature, payload shape, and env var is typed. JavaScript consumers also work."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does auto-scaling work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Cache, queue, events, storage, email, and logger start with in-process defaults. Set one environment variable — REDIS_URL, AWS_S3_BUCKET, RESEND_API_KEY, BLOOM_LOGGER_FILE_PATH — and the same module transparently switches to the production backend. No refactor, no new library, no code change."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use AppKit for multi-tenant SaaS?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — that's a primary use case. Set BLOOM_DB_TENANT=auto and every Prisma query is automatically scoped to the current tenant via row-level filtering. For multi-org deployments, use databaseClass.org('acme').get() backed by per-org connection strings."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What database does AppKit use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The database module wraps Prisma, so you can use PostgreSQL, MySQL, SQLite, SQL Server, MongoDB, or CockroachDB — anything Prisma supports. AppKit adds multi-tenant filtering and per-org connection handling on top."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is AppKit production-ready?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. AppKit v2.0.0 is stable, semver-tracked, and designed for production. All twelve modules ship with structured error handling, graceful degradation, and sensible defaults. Required env vars are validated on boot so missing secrets crash early."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What license is AppKit under?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MIT. Use it in commercial projects, fork it, vendor it — no attribution required. The source lives on GitHub at github.com/bloomneo/appkit."
+        }
+      }
+    ]
+  }
+  </script>
+
   <link rel="stylesheet" href="../assets/style.css" />
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
@@ -74,9 +163,12 @@
 <div class="page-wrap">
 
   <div class="page-header">
-    <div class="hero-badge">@bloomneo/appkit · v2.0.0</div>
-    <h1>Production backends,<br/>for humans and AI</h1>
-    <p>12 typed modules for Express &amp; Fastify — auth, database, cache, queue, storage, email — under one canonical pattern. Auto-scales from in-memory to Redis to cloud without a rewrite. Every module ships <code>llms.txt</code> and <code>AGENTS.md</code> so both developers and AI coding agents build it right the first time.</p>
+    <div class="hero-package">
+      <span class="pkg-name">@bloomneo/appkit</span>
+      <span class="pkg-version">v2.0.0</span>
+    </div>
+    <h1>Built for the age of<br/>agentic coding</h1>
+    <p>AppKit is a Node.js backend framework designed for agentic code workflows. Twelve typed modules, one canonical pattern, and machine-readable specs (<code>llms.txt</code> + <code>AGENTS.md</code>) in every package — so AI coding agents generate correct code, and developers review work they actually understand.</p>
     <div class="btn-row" style="justify-content:flex-start; margin-top:1.5rem;">
       <a href="https://www.npmjs.com/package/@bloomneo/appkit" target="_blank" class="btn btn-primary">npm ↗</a>
       <a href="https://github.com/bloomneo/appkit" target="_blank" class="btn btn-outline">GitHub ↗</a>
@@ -88,6 +180,53 @@
   <div class="section">
     <div class="section-label">Install</div>
     <pre class="hljs-block"><code class="language-bash">npm install @bloomneo/appkit</code></pre>
+  </div>
+
+  <!-- AI AGENT CALLOUT -->
+  <div class="section">
+    <div class="ai-callout">
+      <div class="ai-callout-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="16" rx="2"/>
+          <path d="M8 10h8M8 14h5"/>
+          <circle cx="12" cy="2" r="1" fill="currentColor"/>
+          <path d="M12 3v1"/>
+        </svg>
+      </div>
+      <div class="ai-callout-body">
+        <h3>For AI coding agents (Claude, Cursor, Copilot, Windsurf)</h3>
+        <p>This page is written for humans. Agents should fetch <code>/appkit/llms.txt</code> and <code>/appkit/AGENTS.md</code> as the authoritative specs — they list every method signature, the canonical pattern, and what NOT to do. Same files ship inside the published npm package under <code>docs/</code> and are kept in sync on every release.</p>
+        <div class="ai-callout-links">
+          <a href="llms.txt">Read llms.txt →</a>
+          <a href="AGENTS.md">Read AGENTS.md →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHEAT SHEET -->
+  <div class="section">
+    <div class="section-label">Cheat sheet — all 12 modules in one block</div>
+    <h2>Copy this into any Node.js file</h2>
+    <p style="margin-bottom:1rem;">The minimum to have every module available in a single file. All twelve follow the same <code>xxxClass.get()</code> pattern — no constructors, no factories.</p>
+    <pre class="hljs-block"><code class="language-typescript">import {
+  authClass, databaseClass, securityClass, errorClass,
+  cacheClass, storageClass, queueClass, emailClass,
+  eventClass, loggerClass, configClass, utilClass,
+} from '@bloomneo/appkit';
+
+const auth     = authClass.get();
+const database = await databaseClass.get();     // async — opens Prisma connection
+const security = securityClass.get();
+const error    = errorClass.get();
+const cache    = cacheClass.get('users');        // optional namespace
+const storage  = storageClass.get();
+const queue    = queueClass.get();
+const email    = emailClass.get();
+const events   = eventClass.get();
+const logger   = loggerClass.get('api');         // optional component label
+const config   = configClass.get();
+const util     = utilClass.get();</code></pre>
   </div>
 
   <!-- WHAT YOU CAN BUILD -->
@@ -128,6 +267,20 @@ const logger   = loggerClass.get('api');      // optional component label
 const cache    = cacheClass.get('users');     // optional namespace for isolation</code></pre>
   </div>
 
+  <!-- WHAT NOT TO DO -->
+  <div class="section">
+    <div class="section-label">What NOT to do (for you and your agent)</div>
+    <h2>The five mistakes AppKit won't let you make twice</h2>
+    <p style="margin-bottom:1.25rem;">These are the only ways to misuse AppKit. Memorise them — or point your AI agent at <code>AGENTS.md</code> where they're spelled out line by line.</p>
+    <ul class="dont-list">
+      <li><span class="x" aria-hidden="true">✕</span><span><strong>Never call <code>new AuthClass()</code>, <code>new DatabaseClass()</code>, etc.</strong> Always <code>authClass.get()</code>. There are no constructors. Every module is a singleton.</span></li>
+      <li><span class="x" aria-hidden="true">✕</span><span><strong>Never deep-import individual modules as your primary pattern.</strong> Use the flat <code>import { … } from '@bloomneo/appkit'</code>. Subpath imports are for tree-shaking only.</span></li>
+      <li><span class="x" aria-hidden="true">✕</span><span><strong>Never read <code>process.env.X</code> directly in business code.</strong> Go through <code>configClass.get('section.key')</code> so missing secrets fail at boot, not at 3am.</span></li>
+      <li><span class="x" aria-hidden="true">✕</span><span><strong>Never <code>throw new Error(...)</code> from an Express route.</strong> Use <code>error.badRequest()</code>, <code>error.notFound()</code>, etc. Otherwise you leak stack traces and return HTTP 500 for things that aren't 500.</span></li>
+      <li><span class="x" aria-hidden="true">✕</span><span><strong>Never chain <code>requireUserRoles()</code> after <code>requireApiToken()</code>.</strong> API tokens don't have user roles. Chain <code>requireUserRoles()</code> after <code>requireLoginToken()</code> only.</span></li>
+    </ul>
+  </div>
+
   <!-- MODULES OVERVIEW -->
   <div class="section">
     <div class="section-label">12 modules at a glance</div>
@@ -147,11 +300,27 @@ const cache    = cacheClass.get('users');     // optional namespace for isolatio
     </ul>
   </div>
 
+  <!-- MODULES LAYOUT (main + sticky affix) -->
+  <div class="modules-layout">
+    <div class="modules-main">
+
   <!-- AUTH -->
-  <div class="section">
+  <div class="section" id="mod-auth">
     <div class="section-label">Module 1 — Auth</div>
     <h2>JWT tokens, roles, and middleware</h2>
-    <p style="margin-bottom:0.75rem;"><strong>Use it when</strong> you need user login, signup, password hashing, API tokens for webhooks or service-to-service calls, role-based access control for admin routes, or tiered pricing (Free / Pro / Enterprise) enforced at the route level.</p>
+    <div class="use-when">
+      <div class="use-when-label">Use it when you need</div>
+      <ul>
+        <li>JWT authentication for Express or Fastify APIs</li>
+        <li>User signup, login, bcrypt password hashing</li>
+        <li>API keys for webhooks or service-to-service calls</li>
+        <li>Role-based access control (RBAC) for admin routes</li>
+        <li>Tiered pricing enforcement (Free / Pro / Enterprise)</li>
+        <li>Multi-tenant user isolation</li>
+        <li>SSO callback handling, magic-link login, OAuth</li>
+        <li>Refresh-token rotation for long-lived sessions</li>
+      </ul>
+    </div>
     <p style="margin-bottom:1rem;">Two token types: <strong>login tokens</strong> (humans) and <strong>API tokens</strong> (services / webhooks). Both verified with the same <code>verifyToken()</code>.</p>
     <pre class="hljs-block"><code class="language-typescript">const auth = authClass.get();
 
@@ -240,10 +409,22 @@ app.post('/auth/login', error.asyncRoute(async (req, res) => {
   </div>
 
   <!-- DATABASE -->
-  <div class="section">
+  <div class="section" id="mod-database">
     <div class="section-label">Module 2 — Database</div>
     <h2>Multi-tenant Prisma with auto-filtering</h2>
-    <p style="margin-bottom:1rem;"><strong>Use it when</strong> you're building a B2B SaaS where each customer's data must be isolated, or running multi-org deployments where each organisation has its own database. Every query is automatically scoped to the current tenant — no <code>where: { tenant_id }</code> boilerplate, no cross-tenant data leaks.</p>
+    <div class="use-when">
+      <div class="use-when-label">Use it when you need</div>
+      <ul>
+        <li>B2B SaaS with row-level tenant isolation</li>
+        <li>Multi-tenant PostgreSQL, MySQL, SQLite backends</li>
+        <li>Multi-org deployments with per-customer databases</li>
+        <li>Prisma-powered Node.js APIs without boilerplate</li>
+        <li>Data-residency-sensitive apps (EU / US split)</li>
+        <li>HIPAA-aligned healthcare backends</li>
+        <li>SOC2-aligned customer data isolation</li>
+        <li>Zero-leak guarantee across tenants</li>
+      </ul>
+    </div>
     <pre class="hljs-block"><code class="language-typescript">const database = await databaseClass.get();
 
 // Standard Prisma queries — auto-filtered by tenant_id when BLOOM_DB_TENANT=auto
@@ -259,10 +440,22 @@ const acmeDb = await databaseClass.org('acme').get();  // reads ORG_ACME env var
   </div>
 
   <!-- SECURITY -->
-  <div class="section">
+  <div class="section" id="mod-security">
     <div class="section-label">Module 3 — Security</div>
     <h2>Rate limiting, CSRF, encryption</h2>
-    <p style="margin-bottom:1rem;"><strong>Use it when</strong> you need to protect login endpoints from brute force, rate-limit a public API, add CSRF protection to HTML form routes, encrypt sensitive fields at rest (API keys, PII), or sanitize user-generated HTML before rendering.</p>
+    <div class="use-when">
+      <div class="use-when-label">Use it when you need</div>
+      <ul>
+        <li>Brute-force protection on login endpoints</li>
+        <li>Per-IP / per-user rate limiting for REST &amp; GraphQL</li>
+        <li>CSRF protection for Express form routes</li>
+        <li>AES-256-GCM encryption for API keys, tokens, PII</li>
+        <li>XSS input sanitization for user-generated content</li>
+        <li>Safe HTML rendering in CMS or comment systems</li>
+        <li>PCI-DSS / SOC2-adjacent security hardening</li>
+        <li>Replay-attack protection for webhook receivers</li>
+      </ul>
+    </div>
     <pre class="hljs-block"><code class="language-typescript">const security = securityClass.get();
 
 // Rate limiting middleware
@@ -282,10 +475,21 @@ const escaped  = security.escape(userText);      // &amp; &lt; &gt; etc.</code><
   </div>
 
   <!-- ERROR -->
-  <div class="section">
+  <div class="section" id="mod-error">
     <div class="section-label">Module 4 — Error</div>
     <h2>Semantic HTTP errors with auto-middleware</h2>
-    <p style="margin-bottom:1rem;"><strong>Use it when</strong> you want one consistent error shape across every route, no more <code>try/catch</code> in every handler, and no accidental <code>500</code>s when a resource isn't found. Throw once, the middleware renders the right status code and JSON body.</p>
+    <div class="use-when">
+      <div class="use-when-label">Use it when you need</div>
+      <ul>
+        <li>Consistent JSON error responses across every endpoint</li>
+        <li>Correct HTTP status codes (400 / 401 / 403 / 404 / 409 / 429 / 500)</li>
+        <li>Clean <code>async</code> routes without <code>try/catch</code> boilerplate</li>
+        <li>Centralised error logging, redacted in production</li>
+        <li>Prisma / Zod / JWT errors mapped to HTTP semantics</li>
+        <li>Structured error bodies for frontend error boundaries</li>
+        <li>One global error middleware for any Express app</li>
+      </ul>
+    </div>
     <pre class="hljs-block"><code class="language-typescript">const error = errorClass.get();
 
 // Throw semantic errors — each sets the correct HTTP status automatically
@@ -309,10 +513,22 @@ app.use(error.handleErrors());</code></pre>
   </div>
 
   <!-- CACHE -->
-  <div class="section">
+  <div class="section" id="mod-cache">
     <div class="section-label">Module 5 — Cache</div>
     <h2>Memory → Redis. Zero code changes.</h2>
-    <p style="margin-bottom:1rem;"><strong>Use it when</strong> you need to cache expensive database queries, API responses, or LLM completions; share cache across instances behind a load balancer; or throttle third-party API calls with a short TTL. Starts in-memory for dev, upgrades to Redis by setting one env var.</p>
+    <div class="use-when">
+      <div class="use-when-label">Use it when you need</div>
+      <ul>
+        <li>Cache expensive Prisma or Postgres queries</li>
+        <li>Memoize GraphQL resolver results</li>
+        <li>Cache LLM completions (OpenAI, Anthropic, Gemini)</li>
+        <li>Share a warm cache across Node.js processes</li>
+        <li>Throttle third-party API calls (Stripe, Twilio)</li>
+        <li>Deduplicate webhook deliveries</li>
+        <li>Back a session store for Express</li>
+        <li>Upgrade in-memory cache to Redis in production</li>
+      </ul>
+    </div>
     <pre class="hljs-block"><code class="language-typescript">const cache = cacheClass.get('users');   // namespace for isolation
 
 // The recommended pattern — cache-or-fetch in one call
@@ -337,10 +553,22 @@ await cache.delete('all-active');</code></pre>
   </div>
 
   <!-- STORAGE -->
-  <div class="section">
+  <div class="section" id="mod-storage">
     <div class="section-label">Module 6 — Storage</div>
     <h2>Local disk → S3/R2. Same API.</h2>
-    <p style="margin-bottom:1rem;"><strong>Use it when</strong> you need to handle user file uploads (avatars, documents, attachments), store generated PDFs or reports, serve private downloads with expiring signed URLs, or migrate from local disk to AWS S3 or Cloudflare R2 without rewriting code.</p>
+    <div class="use-when">
+      <div class="use-when-label">Use it when you need</div>
+      <ul>
+        <li>User file uploads (avatars, documents, video)</li>
+        <li>Stream multipart uploads to S3 or Cloudflare R2</li>
+        <li>Generate + store PDF invoices or CSV exports</li>
+        <li>Private downloads with expiring presigned URLs</li>
+        <li>Back a CMS media library</li>
+        <li>Store AI-generated images (DALL·E, Stable Diffusion)</li>
+        <li>Migrate local disk → S3 / R2 / DigitalOcean Spaces</li>
+        <li>Admin tooling with copy / list / delete operations</li>
+      </ul>
+    </div>
     <pre class="hljs-block"><code class="language-typescript">const storage = storageClass.get();
 
 // Upload a file
@@ -360,10 +588,22 @@ await storage.copy('src/file.jpg', 'dst/file.jpg');</code></pre>
   </div>
 
   <!-- QUEUE -->
-  <div class="section">
+  <div class="section" id="mod-queue">
     <div class="section-label">Module 7 — Queue</div>
     <h2>Background jobs with automatic scaling</h2>
-    <p style="margin-bottom:1rem;"><strong>Use it when</strong> you need to offload slow work from the request path: sending emails, resizing images, calling third-party APIs, generating reports, fanning out webhooks, syncing data, or running scheduled cleanup. In-memory for local dev, Redis-backed in production — same code.</p>
+    <div class="use-when">
+      <div class="use-when-label">Use it when you need</div>
+      <ul>
+        <li>Send transactional emails in the background</li>
+        <li>Resize or transcode uploaded images &amp; videos</li>
+        <li>Call long-running APIs (OpenAI, Stripe, SendGrid)</li>
+        <li>Generate PDF reports, CSV or Excel exports</li>
+        <li>Fan-out webhook deliveries to subscribers</li>
+        <li>Scheduled cleanup, data archival, retry logic</li>
+        <li>CSV imports, CRM sync, analytics ETL pipelines</li>
+        <li>LLM prompt batching with exponential backoff</li>
+      </ul>
+    </div>
     <pre class="hljs-block"><code class="language-typescript">const queue = queueClass.get();
 
 // Enqueue a job
@@ -391,10 +631,22 @@ await queue.remove(jobId);</code></pre>
   </div>
 
   <!-- EMAIL -->
-  <div class="section">
+  <div class="section" id="mod-email">
     <div class="section-label">Module 8 — Email</div>
     <h2>Console → SMTP → Resend. Auto-configured.</h2>
-    <p style="margin-bottom:1rem;"><strong>Use it when</strong> you need transactional email: welcome emails, password reset links, order confirmations, weekly reports, invoice receipts, or notification digests. Logs to console in dev so you don't spam real inboxes, switches to Resend or SMTP in production.</p>
+    <div class="use-when">
+      <div class="use-when-label">Use it when you need</div>
+      <ul>
+        <li>Welcome onboarding emails, email verification flows</li>
+        <li>Password reset links, magic-link login</li>
+        <li>Order confirmations, shipping notifications</li>
+        <li>Invoice receipts and billing alerts</li>
+        <li>Weekly digest newsletters, lifecycle drip campaigns</li>
+        <li>Templated emails with variable substitution</li>
+        <li>HTML + plain-text multipart sending</li>
+        <li>Failover between Resend and SMTP providers</li>
+      </ul>
+    </div>
     <pre class="hljs-block"><code class="language-typescript">const email = emailClass.get();
 
 // Plain or HTML email
@@ -424,10 +676,22 @@ await email.sendBatch(emailsArray, batchSize?);</code></pre>
   </div>
 
   <!-- EVENT -->
-  <div class="section">
+  <div class="section" id="mod-event">
     <div class="section-label">Module 9 — Event</div>
     <h2>Pub/Sub with wildcard patterns</h2>
-    <p style="margin-bottom:1rem;"><strong>Use it when</strong> you need loose coupling between features: fire <code>user.created</code> once and have email, analytics and audit log all react independently; broadcast across multiple Node.js processes behind a load balancer; or build real-time notifications, activity feeds, and audit trails.</p>
+    <div class="use-when">
+      <div class="use-when-label">Use it when you need</div>
+      <ul>
+        <li>Decouple features: one event, many independent reactors</li>
+        <li>Broadcast across Node.js processes via Redis pub/sub</li>
+        <li>Domain-event bus or lightweight event sourcing</li>
+        <li>Real-time notifications (SSE, WebSockets)</li>
+        <li>Activity feeds, audit trails, inbox notifications</li>
+        <li>Downstream webhook delivery triggers</li>
+        <li>Monolith → microservices migration path</li>
+        <li>Avoid pulling in Kafka or RabbitMQ for small workloads</li>
+      </ul>
+    </div>
     <pre class="hljs-block"><code class="language-typescript">const events = eventClass.get();
 const userEvents = eventClass.get('users');   // namespace isolation
 
@@ -449,10 +713,22 @@ events.off('user.created', handler);</code></pre>
   </div>
 
   <!-- LOGGER -->
-  <div class="section">
+  <div class="section" id="mod-logger">
     <div class="section-label">Module 10 — Logger</div>
     <h2>Structured logging with multi-transport</h2>
-    <p style="margin-bottom:1rem;"><strong>Use it when</strong> you need JSON logs for Datadog, Grafana Loki or CloudWatch; tagged per-component logs so you can filter "just the API" or "just the queue worker"; or an HTTP transport that ships logs to a central service without running an agent.</p>
+    <div class="use-when">
+      <div class="use-when-label">Use it when you need</div>
+      <ul>
+        <li>Structured JSON logs for Datadog, Loki, CloudWatch</li>
+        <li>Ship to Papertrail, Logtail, Axiom, Honeycomb</li>
+        <li>Component-tagged logs (filter by service)</li>
+        <li>Correlation IDs across request and worker</li>
+        <li>Multi-level logging (debug / info / warn / error / fatal)</li>
+        <li>Log-to-file transport for audit compliance</li>
+        <li>HTTP shipping without running a sidecar agent</li>
+        <li>Automatic redaction of secrets and PII</li>
+      </ul>
+    </div>
     <pre class="hljs-block"><code class="language-typescript">const logger = loggerClass.get('api');   // component-tagged
 
 logger.debug('Processing request', { path: req.path });
@@ -464,10 +740,21 @@ logger.fatal('Service unresponsive', { service: 'redis' });</code></pre>
   </div>
 
   <!-- CONFIG -->
-  <div class="section">
+  <div class="section" id="mod-config">
     <div class="section-label">Module 11 — Config</div>
     <h2>Type-safe environment variables</h2>
-    <p style="margin-bottom:1rem;"><strong>Use it when</strong> you want one place for all environment variables, validation on boot so missing secrets crash early (not at 3am in production), and <code>NODE_ENV</code>-aware helpers for dev / prod / test branches.</p>
+    <div class="use-when">
+      <div class="use-when-label">Use it when you need</div>
+      <ul>
+        <li>Single source of truth for environment config</li>
+        <li>Fail-fast validation on boot for missing secrets</li>
+        <li>Typed accessors for URLs, API keys, feature flags</li>
+        <li><code>NODE_ENV</code>-aware dev / staging / prod / test branches</li>
+        <li>Dotenv-compatible loading</li>
+        <li>Keep <code>process.env</code> out of business logic</li>
+        <li>Testable config — inject different values per test</li>
+      </ul>
+    </div>
     <pre class="hljs-block"><code class="language-typescript">const config = configClass.get();
 
 // Read values
@@ -488,10 +775,22 @@ configClass.validateRequired(['BLOOM_AUTH_SECRET', 'DATABASE_URL'])  // throws i
   </div>
 
   <!-- UTIL -->
-  <div class="section">
+  <div class="section" id="mod-util">
     <div class="section-label">Module 12 — Util</div>
     <h2>12 zero-dependency helpers</h2>
-    <p style="margin-bottom:1rem;"><strong>Use it when</strong> you'd otherwise reach for lodash for a single function, need URL-safe slugs for blog posts, UUIDs for request IDs, chunked batch processing, or human-readable byte formatting — without the dependency footprint.</p>
+    <div class="use-when">
+      <div class="use-when-label">Use it when you need</div>
+      <ul>
+        <li>URL-safe slugs for blog posts and CMS routes</li>
+        <li>UUID v4 for request IDs and entity keys</li>
+        <li>Chunked batch processing for bulk inserts / API calls</li>
+        <li>Debounced input handlers</li>
+        <li>Clamp / safe-get / deep-pick helpers</li>
+        <li>Human-readable byte formatting (1.5 MB)</li>
+        <li>Text truncation with ellipsis</li>
+        <li>Replace lodash, ramda, nanoid for one-off helpers</li>
+      </ul>
+    </div>
     <pre class="hljs-block"><code class="language-typescript">const util = utilClass.get();
 
 util.get(obj, 'a.b.c', defaultValue)  // safe deep property read (no util.set())
@@ -507,6 +806,28 @@ util.slugify('Hello World')          // → 'hello-world'
 util.formatBytes(1_572_864)          // → '1.5 MB'
 util.truncate(longText, 80)          // truncate with ellipsis</code></pre>
   </div>
+
+    </div><!-- /.modules-main -->
+
+    <aside class="module-affix" id="moduleAffix" aria-label="Module navigation">
+      <div class="module-affix-label">12 Modules</div>
+      <ol>
+        <li><a href="#mod-auth"><span class="num">01</span>authClass</a></li>
+        <li><a href="#mod-database"><span class="num">02</span>databaseClass</a></li>
+        <li><a href="#mod-security"><span class="num">03</span>securityClass</a></li>
+        <li><a href="#mod-error"><span class="num">04</span>errorClass</a></li>
+        <li><a href="#mod-cache"><span class="num">05</span>cacheClass</a></li>
+        <li><a href="#mod-storage"><span class="num">06</span>storageClass</a></li>
+        <li><a href="#mod-queue"><span class="num">07</span>queueClass</a></li>
+        <li><a href="#mod-email"><span class="num">08</span>emailClass</a></li>
+        <li><a href="#mod-event"><span class="num">09</span>eventClass</a></li>
+        <li><a href="#mod-logger"><span class="num">10</span>loggerClass</a></li>
+        <li><a href="#mod-config"><span class="num">11</span>configClass</a></li>
+        <li><a href="#mod-util"><span class="num">12</span>utilClass</a></li>
+      </ol>
+    </aside>
+
+  </div><!-- /.modules-layout -->
 
   <!-- AUTO-SCALING TABLE -->
   <div class="section">
@@ -596,6 +917,74 @@ app.post(
 app.use(error.handleErrors());</code></pre>
   </div>
 
+  <!-- FAQ -->
+  <div class="section" id="faq">
+    <div class="section-label">FAQ</div>
+    <h2>Frequently asked questions</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>What is @bloomneo/appkit?</summary>
+        <div class="faq-item-body">
+          @bloomneo/appkit is a Node.js backend framework designed for agentic code workflows — the era where developers and AI coding agents (Claude Code, Cursor, GitHub Copilot, Windsurf) build backends together. It ships twelve typed modules — auth, database, cache, queue, storage, email, events, logging, config, security, error, util — under one canonical pattern (<code>xxxClass.get()</code>) and includes <code>llms.txt</code> and <code>AGENTS.md</code> machine-readable specs in every release so agents generate correct code the first time.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>How is AppKit different from NestJS, AdonisJS, or Fastify directly?</summary>
+        <div class="faq-item-body">
+          NestJS and AdonisJS are opinionated frameworks that replace Express. AppKit is the opposite: it's a <em>toolkit</em> you drop into an existing Express or Fastify app (or a bare Node.js script). You pick your HTTP framework; AppKit provides the twelve infrastructure modules every production backend needs, under one consistent pattern. Think of it as "the batteries Express was missing" rather than a framework lock-in.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Does AppKit work with Fastify?</summary>
+        <div class="faq-item-body">
+          Yes. The middleware factories (<code>auth.requireLoginToken()</code>, <code>error.asyncRoute()</code>, <code>security.requests()</code>) are compatible with both Express and Fastify. Non-HTTP modules (cache, queue, storage, email, events, logger, config, util, database) are framework-agnostic and work in any Node.js process — HTTP server, worker, CLI, or cron job.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>How do I use AppKit with Claude Code, Cursor, or GitHub Copilot?</summary>
+        <div class="faq-item-body">
+          Two options. (1) Point your agent at <code>https://dev.bloomneo.com/appkit/llms.txt</code> and <code>/appkit/AGENTS.md</code> — these are authoritative, machine-readable specs. (2) Scaffold with <code>@bloomneo/bloom</code>, which copies the latest <code>llms.txt</code> and <code>AGENTS.md</code> into your project's <code>docs/</code> folder on install. Most agents pick them up automatically from that location.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Does it support TypeScript?</summary>
+        <div class="faq-item-body">
+          AppKit is written in TypeScript and ships full type definitions for all twelve modules. Every method signature, payload shape, and env var is typed. JavaScript consumers also work — types simply aren't enforced.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>How does auto-scaling work?</summary>
+        <div class="faq-item-body">
+          Cache, queue, events, storage, email, and logger start with in-process defaults (in-memory map, local disk, console output). Set one environment variable — <code>REDIS_URL</code>, <code>AWS_S3_BUCKET</code>, <code>RESEND_API_KEY</code>, <code>BLOOM_LOGGER_FILE_PATH</code> — and the same module transparently switches to the production backend. No refactor, no new library, no code change.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Can I use AppKit for multi-tenant SaaS?</summary>
+        <div class="faq-item-body">
+          Yes — that's a primary use case. Set <code>BLOOM_DB_TENANT=auto</code> and every Prisma query is automatically scoped to the current tenant via row-level filtering. For multi-org deployments where each customer has its own database, use <code>databaseClass.org('acme').get()</code> backed by per-org connection strings (<code>ORG_ACME=postgresql://…</code>).
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>What database does AppKit use?</summary>
+        <div class="faq-item-body">
+          The database module wraps Prisma, so you can use PostgreSQL, MySQL, SQLite, SQL Server, MongoDB, or CockroachDB — anything Prisma supports. Your <code>schema.prisma</code> stays yours; AppKit adds multi-tenant filtering and per-org connection handling on top.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Is AppKit production-ready?</summary>
+        <div class="faq-item-body">
+          Yes. AppKit v2.0.0 is stable, semver-tracked, and designed for production. All twelve modules ship with structured error handling, graceful degradation, and sensible defaults. Required env vars (<code>BLOOM_AUTH_SECRET</code>, <code>DATABASE_URL</code>, <code>BLOOM_SECURITY_CSRF_SECRET</code>) are validated on boot so missing secrets crash early, not at 3am.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>What license is AppKit under?</summary>
+        <div class="faq-item-body">
+          MIT. Use it in commercial projects, fork it, vendor it — no attribution required. The source lives on GitHub at <a href="https://github.com/bloomneo/appkit" target="_blank">github.com/bloomneo/appkit</a>.
+        </div>
+      </details>
+    </div>
+  </div>
+
   <!-- AI DOCS -->
   <div class="section">
     <div class="section-label">AI agent reference</div>
@@ -636,6 +1025,16 @@ app.use(error.handleErrors());</code></pre>
 
 </div>
 
+<div class="affix-backdrop" id="affixBackdrop" aria-hidden="true"></div>
+<button class="affix-trigger" id="affixTrigger" aria-label="Open module navigation" aria-controls="moduleAffix" aria-expanded="false">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="4" y1="7" x2="20" y2="7"/>
+    <line x1="4" y1="12" x2="20" y2="12"/>
+    <line x1="4" y1="17" x2="14" y2="17"/>
+  </svg>
+  <span class="affix-trigger-label">12 Modules</span>
+</button>
+
 <footer>
   <p>© 2026 Bloomneo &nbsp;·&nbsp; <a href="https://github.com/bloomneo/appkit" target="_blank">GitHub</a> &nbsp;·&nbsp; <a href="https://www.npmjs.com/package/@bloomneo/appkit" target="_blank">npm</a> &nbsp;·&nbsp; <a href="llms.txt">llms.txt</a></p>
 </footer>
@@ -644,6 +1043,51 @@ app.use(error.handleErrors());</code></pre>
   document.getElementById('navToggle').addEventListener('click', function() {
     document.getElementById('navLinks').classList.toggle('open');
   });
+
+  // Mobile affix toggle (bottom sheet)
+  (function () {
+    const affix = document.getElementById('moduleAffix');
+    const trigger = document.getElementById('affixTrigger');
+    const backdrop = document.getElementById('affixBackdrop');
+    if (!affix || !trigger || !backdrop) return;
+    const open = () => {
+      affix.classList.add('open');
+      backdrop.classList.add('open');
+      trigger.setAttribute('aria-expanded', 'true');
+    };
+    const close = () => {
+      affix.classList.remove('open');
+      backdrop.classList.remove('open');
+      trigger.setAttribute('aria-expanded', 'false');
+    };
+    trigger.addEventListener('click', () => {
+      affix.classList.contains('open') ? close() : open();
+    });
+    backdrop.addEventListener('click', close);
+    affix.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  })();
+
+  // Module affix scrollspy
+  (function () {
+    const affix = document.querySelector('.module-affix');
+    if (!affix) return;
+    const links = affix.querySelectorAll('a');
+    const byId = {};
+    links.forEach(a => { byId[a.getAttribute('href').slice(1)] = a; });
+    const sections = Array.from(document.querySelectorAll('[id^="mod-"]'));
+    const setActive = (id) => {
+      links.forEach(a => a.classList.remove('active'));
+      if (byId[id]) byId[id].classList.add('active');
+    };
+    const io = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter(e => e.isIntersecting)
+        .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+      if (visible) setActive(visible.target.id);
+    }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+    sections.forEach(s => io.observe(s));
+  })();
 </script>
 
 </body>
