@@ -413,7 +413,11 @@ pre code.hljs {
 .modules-layout > .modules-main { min-width: 0; }
 
 /* offset anchor jumps so heading clears the sticky nav */
-[id^="mod-"] { scroll-margin-top: 80px; }
+[id^="mod-"],
+[id^="comp-"],
+#install, #setup, #import, #themes, #use-cases, #mistakes, #controlled-props,
+#hooks, #layouts, #form-components, #data-components, #cookbook,
+#cross-platform, #faq, #ai-docs { scroll-margin-top: 80px; }
 
 /* ── Module affix (side TOC) ── */
 .module-affix {

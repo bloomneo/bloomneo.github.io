@@ -3,8 +3,124 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UIKit — Bloomneo</title>
-  <meta name="description" content="@bloomneo/uikit — 45+ React components, 5 OKLCH themes, 6 production layouts. Cross-platform: web, desktop, mobile, extensions." />
+  <title>@bloomneo/uikit — React components AI agents pick first</title>
+  <meta name="description" content="Build React apps faster: 45+ typed components, 5 OKLCH themes, 6 production layouts and cross-platform targets (web, desktop, mobile, browser extensions). Ships llms.txt + AGENTS.md so AI coding agents generate correct JSX on the first try." />
+  <meta name="keywords" content="React component library, Tailwind UI kit, Radix UI components, shadcn alternative, OKLCH themes, React admin dashboard template, TypeScript React components, DataTable React, React form components, React design system, AI-friendly UI library, agentic React, llms.txt, AGENTS.md, Capacitor React UI, Electron UI, browser extension UI, Next.js components" />
+  <meta name="author" content="Bloomneo" />
+  <link rel="canonical" href="https://dev.bloomneo.com/uikit/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Bloom Developer" />
+  <meta property="og:title" content="React components for humans &amp; AI agents" />
+  <meta property="og:description" content="45+ components, 5 OKLCH themes, 6 layouts. Cross-platform: web, desktop, mobile, browser extensions. Ships llms.txt + AGENTS.md so AI coding agents build correct JSX the first time." />
+  <meta property="og:url" content="https://dev.bloomneo.com/uikit/" />
+  <meta property="og:image" content="https://dev.bloomneo.com/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="@bloomneo/uikit — React components AI coding agents pick first" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="@bloomneo/uikit — React for humans &amp; AI agents" />
+  <meta name="twitter:description" content="45+ components. 5 themes. Cross-platform. Ships llms.txt + AGENTS.md for AI coding agents." />
+  <meta name="twitter:image" content="https://dev.bloomneo.com/assets/og-image.png" />
+  <meta name="twitter:image:alt" content="@bloomneo/uikit — React components AI coding agents pick first" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    "name": "@bloomneo/uikit",
+    "description": "React component library with 45+ typed components, 5 OKLCH themes, 6 production layouts and cross-platform targets (web, desktop, mobile, browser extensions). Designed for humans and AI coding agents.",
+    "url": "https://dev.bloomneo.com/uikit/",
+    "codeRepository": "https://github.com/bloomneo/uikit",
+    "programmingLanguage": "TypeScript",
+    "runtimePlatform": "React",
+    "license": "https://opensource.org/licenses/MIT",
+    "author": { "@type": "Organization", "name": "Bloomneo" }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is @bloomneo/uikit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "@bloomneo/uikit is a React component library designed for agentic code workflows — the era where developers and AI coding agents (Claude Code, Cursor, GitHub Copilot, Windsurf) build UIs together. It ships 45+ typed components, 5 OKLCH themes, 6 production layouts and includes llms.txt + AGENTS.md machine-readable specs in every release so agents generate correct JSX on the first try."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is UIKit different from shadcn/ui, Mantine, MUI, Chakra, or Radix directly?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "UIKit is a composable React component library built on Radix primitives + Tailwind. Unlike shadcn (copy-paste) or MUI (opinionated design), UIKit ships as a versioned npm package with unified conventions: one canonical import path, one provider tree, one controlled-prop convention, and cross-platform targets (web, desktop, mobile, extensions). Every component carries @llm-rule JSDoc so AI agents pick the correct API on the first try."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does UIKit work with Next.js App Router?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. All interactive components ship the 'use client' directive and work in the App Router. Server Components can import non-interactive primitives like Card, Badge, Alert directly."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I use UIKit with Claude Code, Cursor, or GitHub Copilot?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Point your AI agent at https://dev.bloomneo.com/uikit/llms.txt and /uikit/AGENTS.md — these are authoritative, machine-readable specs regenerated on every build. Or scaffold with @bloomneo/bloom, which copies the latest llms.txt + AGENTS.md into your project's docs/ folder on install. Claude Code users can also drop the .claude/skills/bloomneo-uikit directory into their repo for auto-triggered per-component guidance."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does UIKit support TypeScript?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "UIKit is written in TypeScript and ships full type definitions. Zero any in the public surface — DataTable<User>, RowAction<User>, formatters and hooks all infer correctly so agent autocomplete actually works."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What themes does UIKit ship with?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Five OKLCH themes — base, elegant, metro, studio, vivid — each in light and dark mode. Switch at runtime with useTheme().setTheme('elegant'). Custom themes are a first-class citizen: run `npx uikit generate theme <name>` to scaffold one."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I build cross-platform apps (desktop, mobile, extensions)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. UIKit is web-first (React DOM) but ships platform-detection helpers (isTauri, isNative, isExtension) and mobile-specific layouts (MobileLayout, TabBar, SafeArea). Use the same components for web, Electron desktop, Capacitor mobile and browser extension popups from one codebase."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is UIKit production-ready?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. UIKit v2.0.0 is stable and semver-tracked. Every component ships with typed errors (UIKitError subclasses), docs-URL links in error messages, and a drift-checked public surface enforced in CI. The unified controlled-prop convention (onValueChange / onChange / onCheckedChange / onOpenChange) means agents never silently generate broken handlers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What license is UIKit under?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MIT. Use it in commercial projects, fork it, vendor it — no attribution required. The source lives on GitHub at github.com/bloomneo/uikit."
+        }
+      }
+    ]
+  }
+  </script>
+
   <link rel="stylesheet" href="../assets/style.css" />
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
@@ -39,9 +155,12 @@
 <div class="page-wrap">
 
   <div class="page-header">
-    <div class="hero-badge">@bloomneo/uikit · v1.5.1</div>
-    <h1>React components<br/>AI agents pick first</h1>
-    <p>45+ production-ready React components. 5 OKLCH themes. 6 layouts. Cross-platform: web, desktop, mobile, extensions. Ships with <code>llms.txt</code> so AI gets the API right on the first try.</p>
+    <div class="hero-package">
+      <span class="pkg-name">@bloomneo/uikit</span>
+      <span class="pkg-version">v2.0.0</span>
+    </div>
+    <h1>React components<br/>built for agentic coding</h1>
+    <p>UIKit is a React component library designed for agentic code workflows. 45+ typed components, 5 OKLCH themes, and 6 production layouts under one canonical pattern — with machine-readable specs (<code>llms.txt</code> + <code>AGENTS.md</code>) so AI coding agents generate correct TSX, and developers review work they actually understand.</p>
     <div class="btn-row" style="justify-content:flex-start; margin-top:1.5rem;">
       <a href="https://www.npmjs.com/package/@bloomneo/uikit" target="_blank" class="btn btn-primary">npm ↗</a>
       <a href="https://github.com/bloomneo/uikit" target="_blank" class="btn btn-outline">GitHub ↗</a>
@@ -50,13 +169,90 @@
   </div>
 
   <!-- INSTALL -->
-  <div class="section">
+  <div class="section" id="install">
     <div class="section-label">Install</div>
+    <h2>One <code>npm install</code>, every component</h2>
     <pre class="hljs-block"><code class="language-bash">npm install @bloomneo/uikit</code></pre>
   </div>
 
-  <!-- SETUP -->
+  <!-- AI AGENT CALLOUT -->
   <div class="section">
+    <div class="ai-callout">
+      <div class="ai-callout-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="16" rx="2"/>
+          <path d="M8 10h8M8 14h5"/>
+          <circle cx="12" cy="2" r="1" fill="currentColor"/>
+          <path d="M12 3v1"/>
+        </svg>
+      </div>
+      <div class="ai-callout-body">
+        <h3>For AI coding agents (Claude, Cursor, Copilot, Windsurf)</h3>
+        <p>This page is written for humans. Agents should fetch <code>/uikit/llms.txt</code> and <code>/uikit/AGENTS.md</code> as the authoritative specs — every component's exact prop shape, canonical setup, and what NOT to do. Same files ship inside the published npm package under <code>node_modules/@bloomneo/uikit/</code> and are regenerated on every release.</p>
+        <div class="ai-callout-links">
+          <a href="llms.txt">Read llms.txt →</a>
+          <a href="AGENTS.md">Read AGENTS.md →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT YOU CAN BUILD -->
+  <div class="section" id="use-cases">
+    <div class="section-label">What you can build</div>
+    <h2>One component library. Every React surface.</h2>
+    <p style="margin-bottom:1.5rem;">UIKit is the React library teams reach for when they need to ship — not evaluate five headless kits and style them by hand.</p>
+    <ul class="use-case-grid">
+      <li><strong>Admin dashboards &amp; SaaS consoles</strong><span>PageHeader, DataTable, StatCard, Sidebar — drop-in pieces every internal tool rebuilds by hand.</span></li>
+      <li><strong>B2B apps with role-based UI</strong><span><code>PermissionGate</code> + role-aware dropdown menus, gated buttons, protected routes.</span></li>
+      <li><strong>Marketing &amp; landing pages</strong><span>PageLayout, Section, Container, responsive hero blocks, feature grids — themeable in minutes.</span></li>
+      <li><strong>CRUD-heavy internal tools</strong><span>Sortable tables, searchable combobox, bulk row actions, delete-with-confirm, toast feedback — wired out of the box.</span></li>
+      <li><strong>Auth flows &amp; settings pages</strong><span>FormField, PasswordInput, Select, Combobox, DatePicker with a11y wiring and error display baked in.</span></li>
+      <li><strong>AI agent UIs &amp; LLM chat surfaces</strong><span>Command palette, Dialog, HoverCard, streaming-friendly typography — ship a tool UI in an afternoon.</span></li>
+      <li><strong>Mobile apps (Capacitor)</strong><span><code>MobileLayout</code>, <code>TabBar</code>, <code>SafeArea</code> with touch-optimised components and platform detection.</span></li>
+      <li><strong>Desktop apps (Electron, Tauri)</strong><span>Same components, same themes, same API — <code>isTauri()</code> / <code>isNative()</code> helpers for platform-specific tweaks.</span></li>
+      <li><strong>Browser extensions</strong><span><code>PopupLayout</code> with constrained viewports and extension-safe CSP configuration.</span></li>
+      <li><strong>Design-system starters</strong><span>OKLCH themes, <code>cn()</code> helper, semantic tokens — fork the design system without forking the components.</span></li>
+    </ul>
+  </div>
+
+  <!-- WHAT NOT TO DO -->
+  <div class="section" id="mistakes">
+    <div class="section-label">What NOT to do (for you and your agent)</div>
+    <h2>The five mistakes UIKit won't let you make twice</h2>
+    <p style="margin-bottom:1.25rem;">These are the only ways to silently break UIKit code. Memorise them — or point your AI agent at <code>AGENTS.md</code> where they're spelled out line by line.</p>
+    <ul class="dont-list">
+      <li><span class="x" aria-hidden="true">✕</span><span><strong>Never use <code>onChange</code> on <code>&lt;Select&gt;</code> or <code>&lt;Combobox&gt;</code>.</strong> Both use <code>onValueChange(newValue)</code>. Using <code>onChange</code> fails silently — no error, no update. <code>onChange</code> is reserved for native input wrappers (Input, Textarea, PasswordInput).</span></li>
+      <li><span class="x" aria-hidden="true">✕</span><span><strong>Never pass <code>undefined</code> to <code>&lt;DataTable data&gt;</code>.</strong> Always fall back to <code>[]</code> during loading: <code>data={users ?? []}</code>. Passing undefined throws <code>UIKitError</code>.</span></li>
+      <li><span class="x" aria-hidden="true">✕</span><span><strong>Never mount <code>&lt;ToastProvider&gt;</code> or <code>&lt;ConfirmProvider&gt;</code> twice.</strong> Duplicate mounts produce doubled behaviour in prod and fire a dev-only warning. Exactly one per app.</span></li>
+      <li><span class="x" aria-hidden="true">✕</span><span><strong>Never wrap inputs without <code>&lt;FormField&gt;</code>.</strong> Bare <code>&lt;Label&gt; + &lt;Input&gt;</code> misses error display and a11y wiring. <code>&lt;FormField label="..." error={...}&gt;</code> handles both.</span></li>
+      <li><span class="x" aria-hidden="true">✕</span><span><strong>Never hardcode theme colours.</strong> Use semantic tokens (<code>bg-primary</code>, <code>text-muted-foreground</code>, <code>border-border</code>). Raw Tailwind colours (<code>bg-blue-500</code>) break the moment a user switches themes.</span></li>
+    </ul>
+  </div>
+
+  <!-- CONTROLLED PROPS CHEAT SHEET -->
+  <div class="section" id="controlled-props">
+    <div class="section-label">The universal pattern — controlled props</div>
+    <h2>Every stateful component, the same convention</h2>
+    <p style="margin-bottom:1rem;">Four handler families. Picking the right one is the single biggest thing agents and humans get wrong. Memorise this table.</p>
+    <table>
+      <thead><tr><th>Component family</th><th>Value prop</th><th>Change handler</th></tr></thead>
+      <tbody>
+        <tr><td>Native inputs — <code>Input</code>, <code>Textarea</code>, <code>PasswordInput</code></td><td><code>value</code></td><td><code>onChange(e)</code> — ChangeEvent</td></tr>
+        <tr><td>Radix pickers — <code>Select</code>, <code>Combobox</code>, <code>Slider</code>, <code>Tabs</code>, <code>Accordion</code></td><td><code>value</code></td><td><code>onValueChange(newValue)</code></td></tr>
+        <tr><td>Radix checkables — <code>Checkbox</code>, <code>Switch</code>, <code>RadioGroup</code></td><td><code>checked</code></td><td><code>onCheckedChange(checked)</code></td></tr>
+        <tr><td>Overlays — <code>Dialog</code>, <code>Sheet</code>, <code>Popover</code></td><td><code>open</code></td><td><code>onOpenChange(open)</code></td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:0.75rem;">In 2.0, <code>&lt;Combobox&gt;</code> switched from <code>onChange</code> to <code>onValueChange</code> to match <code>&lt;Select&gt;</code>. No alias kept — this is drift-checked in CI.</p>
+  </div>
+
+  <!-- MODULES LAYOUT (main + sticky affix) -->
+  <div class="modules-layout">
+    <div class="modules-main">
+
+  <!-- SETUP -->
+  <div class="section" id="setup">
     <div class="section-label">Setup — one time per app</div>
     <h2>Three steps to a working UI</h2>
     <pre class="hljs-block"><code class="language-tsx">// 1. Import the core stylesheet ONCE at your app entry (e.g. main.tsx)
@@ -81,8 +277,9 @@ import { foucScript } from '@bloomneo/uikit/fouc';
   </div>
 
   <!-- IMPORT -->
-  <div class="section">
+  <div class="section" id="import">
     <div class="section-label">One canonical import path</div>
+    <h2>Flat imports only</h2>
     <p style="margin-bottom:0.75rem;">There is exactly ONE supported import path for normal use. Always use the flat import:</p>
     <pre class="hljs-block"><code class="language-typescript">import {
   Button, Input, Card, CardHeader, CardTitle, CardContent,
@@ -100,7 +297,7 @@ import { foucScript } from '@bloomneo/uikit/fouc';
   </div>
 
   <!-- THEMES -->
-  <div class="section">
+  <div class="section" id="themes">
     <div class="section-label">5 OKLCH themes</div>
     <h2>Perceptually uniform color science</h2>
     <p style="margin-bottom:1.25rem;">OKLCH color space ensures colors look consistent across devices and scale predictably — no muddy mid-tones or clipped highs. Each theme ships in light and dark mode.</p>
@@ -136,7 +333,7 @@ toggleMode();          // light ↔ dark
   </div>
 
   <!-- BUTTON -->
-  <div class="section">
+  <div class="section" id="comp-button">
     <div class="section-label">Component — Button</div>
     <pre class="hljs-block"><code class="language-tsx">import { Button } from '@bloomneo/uikit';
 
@@ -176,7 +373,7 @@ toggleMode();          // light ↔ dark
   </div>
 
   <!-- DATA TABLE -->
-  <div class="section">
+  <div class="section" id="comp-datatable">
     <div class="section-label">Component — DataTable</div>
     <p style="margin-bottom:1rem;">Sortable, filterable, paginated table with row actions. Define columns once and let the table handle the rest.</p>
     <pre class="hljs-block"><code class="language-tsx">import { DataTable, type DataTableColumn, type RowAction } from '@bloomneo/uikit';
@@ -208,7 +405,7 @@ const actions: RowAction&lt;User&gt;[] = [
   </div>
 
   <!-- FORM -->
-  <div class="section">
+  <div class="section" id="comp-forms">
     <div class="section-label">Component — Forms</div>
     <pre class="hljs-block"><code class="language-tsx">import { FormField, Input, PasswordInput, Select, Combobox, Button } from '@bloomneo/uikit';
 
@@ -224,7 +421,7 @@ const actions: RowAction&lt;User&gt;[] = [
 // Searchable select with async loading
 &lt;Combobox
   value={country}
-  onChange={setCountry}
+  onValueChange={setCountry}
   options={countries}
   placeholder="Select a country"
   searchPlaceholder="Search countries..."
@@ -392,7 +589,7 @@ formatBytes(1_572_864)                                    // '1.5 MB'
   </div>
 
   <!-- HOOKS -->
-  <div class="section">
+  <div class="section" id="hooks">
     <div class="section-label">Hooks</div>
     <h2>Data fetching, theme, breakpoints, pagination</h2>
     <pre class="hljs-block"><code class="language-tsx">import { useApi, useTheme, usePagination, useBreakpoint, useActiveBreakpoint, useMediaQuery } from '@bloomneo/uikit';
@@ -419,8 +616,9 @@ const reduced     = useMediaQuery('(prefers-reduced-motion: reduce)');</code></p
   </div>
 
   <!-- LAYOUTS -->
-  <div class="section">
+  <div class="section" id="layouts">
     <div class="section-label">Layout components</div>
+    <h2>Six production-ready layouts</h2>
     <ul class="module-list">
       <li><code>Header / HeaderLogo / HeaderNav</code><span>Sticky top nav with logo and navigation links</span></li>
       <li><code>Footer</code><span>Page footer with configurable column layout</span></li>
@@ -432,8 +630,9 @@ const reduced     = useMediaQuery('(prefers-reduced-motion: reduce)');</code></p
   </div>
 
   <!-- FORM COMPONENTS LIST -->
-  <div class="section">
+  <div class="section" id="form-components">
     <div class="section-label">Form components</div>
+    <h2>Every form primitive, typed</h2>
     <ul class="module-list">
       <li><code>Input / Textarea</code><span>Standard text inputs with consistent styling</span></li>
       <li><code>PasswordInput</code><span>Password input with show/hide toggle</span></li>
@@ -447,8 +646,9 @@ const reduced     = useMediaQuery('(prefers-reduced-motion: reduce)');</code></p
   </div>
 
   <!-- DATA COMPONENTS LIST -->
-  <div class="section">
+  <div class="section" id="data-components">
     <div class="section-label">Data display components</div>
+    <h2>Tables, lists, stats, badges</h2>
     <ul class="module-list">
       <li><code>DataTable</code><span>Sortable, filterable, paginated table with row actions and column definitions</span></li>
       <li><code>DataList</code><span>Key-value display for detail views</span></li>
@@ -460,14 +660,15 @@ const reduced     = useMediaQuery('(prefers-reduced-motion: reduce)');</code></p
   </div>
 
   <!-- COOKBOOK -->
-  <div class="section">
+  <div class="section" id="cookbook">
     <div class="section-label">Cookbook — CRUD page pattern</div>
-    <p style="margin-bottom:1rem;">A complete user list with search, sort, row actions, and delete-with-confirm — in ~80 lines:</p>
+    <h2>A full CRUD page in ~80 lines</h2>
+    <p style="margin-bottom:1rem;">A complete user list with search, sort, row actions, and delete-with-confirm:</p>
     <pre class="hljs-block"><code class="language-tsx">import { useState } from 'react';
 import { Pencil, Trash2, Users } from 'lucide-react';
 import {
   Button, ConfirmProvider, DataTable, PageHeader,
-  ToastProvider, toast, useConfirm,
+  ThemeProvider, ToastProvider, toast, useConfirm,
   type DataTableColumn, type RowAction,
 } from '@bloomneo/uikit';
 
@@ -506,16 +707,18 @@ function UserListPage() {
 
 export default function App() {
   return (
-    &lt;ConfirmProvider&gt;
+    &lt;ThemeProvider theme="base" mode="light"&gt;
       &lt;ToastProvider position="bottom-right" /&gt;
-      &lt;UserListPage /&gt;
-    &lt;/ConfirmProvider&gt;
+      &lt;ConfirmProvider&gt;
+        &lt;UserListPage /&gt;
+      &lt;/ConfirmProvider&gt;
+    &lt;/ThemeProvider&gt;
   );
 }</code></pre>
   </div>
 
   <!-- CROSS PLATFORM -->
-  <div class="section">
+  <div class="section" id="cross-platform">
     <div class="section-label">Cross-platform</div>
     <h2>One component library, four targets</h2>
     <div class="card-grid">
@@ -558,9 +761,78 @@ export default function App() {
     </div>
   </div>
 
+  <!-- FAQ -->
+  <div class="section" id="faq">
+    <div class="section-label">FAQ</div>
+    <h2>Frequently asked questions</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>What is @bloomneo/uikit?</summary>
+        <div class="faq-item-body">
+          @bloomneo/uikit is a React component library designed for agentic code workflows — the era where developers and AI coding agents (Claude Code, Cursor, GitHub Copilot, Windsurf) build UIs together. It ships 45+ typed components, 5 OKLCH themes, 6 production layouts, and includes <code>llms.txt</code> and <code>AGENTS.md</code> machine-readable specs in every release so agents generate correct JSX on the first try.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>How is UIKit different from shadcn/ui, Mantine, MUI, Chakra, or Radix directly?</summary>
+        <div class="faq-item-body">
+          UIKit is a composable React component library built on Radix primitives + Tailwind. Unlike shadcn (copy-paste source into your repo) or MUI (opinionated visual design you can't escape), UIKit ships as a versioned npm package with unified conventions: one canonical import path, one provider tree, one controlled-prop convention, and cross-platform targets (web, desktop, mobile, extensions). Every component carries <code>@llm-rule</code> JSDoc so AI agents pick the correct API on the first try.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Does UIKit work with Next.js App Router?</summary>
+        <div class="faq-item-body">
+          Yes. All 44 interactive components in <code>src/components/ui/*.tsx</code> ship the <code>"use client"</code> directive and work in the App Router. Server Components can import non-interactive primitives like <code>Card</code>, <code>Badge</code>, <code>Alert</code> directly. SSR and FOUC are handled via the <code>foucScript()</code> helper for <code>&lt;head&gt;</code>.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Can I use UIKit without Tailwind?</summary>
+        <div class="faq-item-body">
+          Not out of the box — UIKit compiles to Tailwind utility classes and relies on Tailwind's design-token CSS variables at runtime. You don't need a <code>tailwind.config.js</code> in your app (the bundled stylesheet is self-contained), but you do need to import <code>@bloomneo/uikit/styles</code>.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>How do I use UIKit with Claude Code, Cursor, or GitHub Copilot?</summary>
+        <div class="faq-item-body">
+          Three options. (1) Point your agent at <code>https://dev.bloomneo.com/uikit/llms.txt</code> and <code>/uikit/AGENTS.md</code> — authoritative machine-readable specs. (2) Install the package; the same files ship inside <code>node_modules/@bloomneo/uikit/</code>. (3) Claude Code users: copy <code>skills/bloomneo-uikit/</code> into your repo's <code>.claude/skills/</code> for auto-triggered per-component guidance.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Does UIKit support TypeScript?</summary>
+        <div class="faq-item-body">
+          UIKit is written in TypeScript and ships full type definitions. Zero <code>any</code> in the public surface — <code>DataTable&lt;User&gt;</code>, <code>RowAction&lt;User&gt;</code>, formatters and hooks all infer correctly so agent autocomplete actually works. A drift-checked public-surface test in CI prevents accidental API changes.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>What themes does UIKit ship with?</summary>
+        <div class="faq-item-body">
+          Five OKLCH themes — <code>base</code>, <code>elegant</code>, <code>metro</code>, <code>studio</code>, <code>vivid</code> — each in light and dark mode. Switch at runtime with <code>useTheme().setTheme('elegant')</code>. Custom themes are first-class: run <code>npx uikit generate theme &lt;name&gt;</code> to scaffold one with OKLCH tokens and a dark-mode variant.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Can I build cross-platform apps (desktop, mobile, extensions)?</summary>
+        <div class="faq-item-body">
+          Yes. UIKit is web-first (React DOM) but ships platform-detection helpers (<code>isTauri()</code>, <code>isNative()</code>, <code>isExtension()</code>) and mobile-specific layouts (<code>MobileLayout</code>, <code>TabBar</code>, <code>SafeArea</code>). Use the same components for web, Electron desktop, Capacitor mobile, and browser extension popups from one codebase.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Is UIKit production-ready?</summary>
+        <div class="faq-item-body">
+          Yes. UIKit v2.0.0 is stable and semver-tracked. Every component ships with typed errors (<code>UIKitError</code> subclasses — <code>DataTableError</code>, <code>FormFieldError</code>, <code>ThemeError</code>, etc.), docs-URL links in error messages, and a drift-checked public surface enforced in CI. The unified controlled-prop convention means agents never silently generate broken handlers.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>What license is UIKit under?</summary>
+        <div class="faq-item-body">
+          MIT. Use it in commercial projects, fork it, vendor it — no attribution required. The source lives on GitHub at <a href="https://github.com/bloomneo/uikit" target="_blank">github.com/bloomneo/uikit</a>.
+        </div>
+      </details>
+    </div>
+  </div>
+
   <!-- AI DOCS -->
-  <div class="section">
+  <div class="section" id="ai-docs">
     <div class="section-label">AI agent reference</div>
+    <h2>Machine-readable specs for coding agents</h2>
     <div class="card-grid card-grid-3">
       <div class="card card-centered">
         <div class="card-icon">
@@ -596,7 +868,39 @@ export default function App() {
     </div>
   </div>
 
+    </div><!-- /.modules-main -->
+
+    <aside class="module-affix" id="pageAffix" aria-label="Page navigation">
+      <div class="module-affix-label">On this page</div>
+      <ol>
+        <li><a href="#setup"><span class="num">01</span>Setup</a></li>
+        <li><a href="#import"><span class="num">02</span>Imports</a></li>
+        <li><a href="#themes"><span class="num">03</span>Themes</a></li>
+        <li><a href="#comp-button"><span class="num">04</span>Components</a></li>
+        <li><a href="#comp-datatable"><span class="num">05</span>DataTable</a></li>
+        <li><a href="#comp-forms"><span class="num">06</span>Forms</a></li>
+        <li><a href="#hooks"><span class="num">07</span>Hooks</a></li>
+        <li><a href="#layouts"><span class="num">08</span>Layouts</a></li>
+        <li><a href="#cookbook"><span class="num">09</span>Cookbook</a></li>
+        <li><a href="#cross-platform"><span class="num">10</span>Cross-platform</a></li>
+        <li><a href="#faq"><span class="num">11</span>FAQ</a></li>
+        <li><a href="#ai-docs"><span class="num">12</span>AI reference</a></li>
+      </ol>
+    </aside>
+
+  </div><!-- /.modules-layout -->
+
 </div>
+
+<div class="affix-backdrop" id="affixBackdrop" aria-hidden="true"></div>
+<button class="affix-trigger" id="affixTrigger" aria-label="Open page navigation" aria-controls="pageAffix" aria-expanded="false">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="4" y1="7" x2="20" y2="7"/>
+    <line x1="4" y1="12" x2="20" y2="12"/>
+    <line x1="4" y1="17" x2="14" y2="17"/>
+  </svg>
+  <span class="affix-trigger-label">On this page</span>
+</button>
 
 <footer>
   <p>© 2026 Bloomneo &nbsp;·&nbsp; <a href="https://github.com/bloomneo/uikit" target="_blank">GitHub</a> &nbsp;·&nbsp; <a href="https://www.npmjs.com/package/@bloomneo/uikit" target="_blank">npm</a> &nbsp;·&nbsp; <a href="llms.txt">llms.txt</a></p>
@@ -606,6 +910,56 @@ export default function App() {
   document.getElementById('navToggle').addEventListener('click', function() {
     document.getElementById('navLinks').classList.toggle('open');
   });
+
+  // Mobile affix toggle (bottom sheet)
+  (function () {
+    const affix = document.getElementById('pageAffix');
+    const trigger = document.getElementById('affixTrigger');
+    const backdrop = document.getElementById('affixBackdrop');
+    if (!affix || !trigger || !backdrop) return;
+    const open = () => {
+      affix.classList.add('open');
+      backdrop.classList.add('open');
+      trigger.setAttribute('aria-expanded', 'true');
+    };
+    const close = () => {
+      affix.classList.remove('open');
+      backdrop.classList.remove('open');
+      trigger.setAttribute('aria-expanded', 'false');
+    };
+    trigger.addEventListener('click', () => {
+      affix.classList.contains('open') ? close() : open();
+    });
+    backdrop.addEventListener('click', close);
+    affix.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  })();
+
+  // Page affix scrollspy
+  (function () {
+    const affix = document.getElementById('pageAffix');
+    if (!affix) return;
+    const links = affix.querySelectorAll('a');
+    const byId = {};
+    const targetIds = [];
+    links.forEach(a => {
+      const id = a.getAttribute('href').slice(1);
+      byId[id] = a;
+      targetIds.push(id);
+    });
+    const sections = targetIds.map(id => document.getElementById(id)).filter(Boolean);
+    const setActive = (id) => {
+      links.forEach(a => a.classList.remove('active'));
+      if (byId[id]) byId[id].classList.add('active');
+    };
+    const io = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter(e => e.isIntersecting)
+        .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+      if (visible) setActive(visible.target.id);
+    }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+    sections.forEach(s => io.observe(s));
+  })();
 </script>
 
 </body>
