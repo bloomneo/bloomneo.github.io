@@ -3,8 +3,117 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bloomneo — Developer Docs</title>
-  <meta name="description" content="Build Fast. Stay Modular. Code with AI. The Bloomneo developer framework — AppKit, UIKit, and Bloom CLI." />
+  <title>Bloom — The agentic full-stack framework for React, Node &amp; cross-platform apps</title>
+  <meta name="description" content="Bloom is the TypeScript full-stack framework built for agentic coding. Three packages — UIKit (React components) + AppKit (Node backend) + Bloom CLI (scaffolder) — cover web, desktop (Electron), mobile (Capacitor) and browser extensions from one codebase. Every package ships llms.txt + AGENTS.md so AI coding agents generate correct code on the first try." />
+  <meta name="keywords" content="agentic framework, AI coding framework, full-stack TypeScript framework, React Node framework, Electron React framework, Capacitor React framework, llms.txt framework, AGENTS.md, Feature-Based Component Architecture, FBCA, Claude Code framework, Cursor-friendly framework, shadcn alternative, Next.js alternative, T3 Stack alternative, NestJS alternative, cross-platform React" />
+  <meta name="author" content="Bloomneo" />
+  <link rel="canonical" href="https://dev.bloomneo.com/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Bloom Developer" />
+  <meta property="og:title" content="Bloom — The agentic full-stack framework" />
+  <meta property="og:description" content="React + Node + scaffolding CLI. Web, desktop, mobile, extensions from one codebase. Every package ships llms.txt + AGENTS.md so AI agents generate correct code on the first try." />
+  <meta property="og:url" content="https://dev.bloomneo.com/" />
+  <meta property="og:image" content="https://dev.bloomneo.com/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Bloom — The agentic full-stack framework" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Bloom — The agentic full-stack framework" />
+  <meta name="twitter:description" content="React + Node + scaffolder. Web, desktop, mobile, extensions. Built for humans and AI agents." />
+  <meta name="twitter:image" content="https://dev.bloomneo.com/assets/og-image.png" />
+  <meta name="twitter:image:alt" content="Bloom — The agentic full-stack framework" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Bloomneo",
+    "url": "https://dev.bloomneo.com/",
+    "logo": "https://dev.bloomneo.com/assets/favicon.svg",
+    "sameAs": [
+      "https://github.com/bloomneo",
+      "https://www.npmjs.com/org/bloomneo"
+    ]
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Bloom Developer",
+    "url": "https://dev.bloomneo.com/",
+    "description": "The agentic full-stack framework — AppKit (Node backend), UIKit (React components), Bloom CLI (scaffolder). Web, desktop, mobile, extensions."
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Bloom?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bloom is a TypeScript full-stack framework built for the era where developers and AI coding agents ship software together. It ships three packages — AppKit (Node backend toolkit), UIKit (React component library), and Bloom CLI (scaffolder) — that compose into web, desktop (Electron), mobile (Capacitor) and browser-extension apps from one codebase. Every package ships llms.txt + AGENTS.md machine-readable specs so AI coding agents generate correct code on the first try."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is Bloom different from Laravel, NestJS, T3 Stack, or Next.js?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bloom is designed from day one assuming AI coding agents write a significant portion of application code. No other major framework ships llms.txt, AGENTS.md, Claude Code skills, per-component @llm-rule JSDoc, drift-checked docs and auto-hydrated docs/ in scaffolded projects. In scope Bloom is closest to T3 Stack or RedwoodJS — but extends to cross-platform (web + desktop + mobile + extensions) which no competitor covers in one stack."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use one Bloom package standalone?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. AppKit works in any Express or Fastify app. UIKit works in any React project. Bloom CLI is optional — use it when you want the full scaffold and FBCA conventions. The three packages are designed to compose but don't require each other."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I use Bloom with Claude Code, Cursor, or GitHub Copilot?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Scaffold a project with bloom create, then run npm install. The postinstall hook copies appkit + uikit llms.txt + AGENTS.md into docs/, and every Claude Code skill into .claude/skills/. Point your agent at the project root — it reads AGENTS.md first, then the package-specific docs. Agents generate correct code without guessing API shapes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What platforms does Bloom cover?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Web (Vite + React), desktop (Electron with embedded Express), mobile (Capacitor 7 for iOS + Android), and browser extensions (Chrome/Firefox popups). Same UIKit components and same FBCA conventions across all four surfaces."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Bloom production-ready?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. AppKit 4.0, UIKit 2.0, and Bloom 4.0 are stable and semver-tracked. A CI drift-check across the monorepo enforces that docs, types and template pins stay in sync with package.json — so agents never read stale guidance."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What license is Bloom under?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MIT across all three packages. Use it commercially, fork it, vendor it — no attribution required."
+        }
+      }
+    ]
+  }
+  </script>
+
   <link rel="stylesheet" href="assets/style.css" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
@@ -38,22 +147,26 @@
 
 <!-- ── HERO ── -->
 <section class="hero">
-  <div class="hero-badge">Global Initiative · Open Source · AI-First</div>
+  <div class="hero-package" style="justify-content:center;">
+    <span class="pkg-name">Bloom</span>
+    <span class="pkg-version">Open source · MIT</span>
+  </div>
   <h1>Where applications are<br/>generated, not written</h1>
-  <p>A developer toolkit for fast, modular, multi-platform apps — engineered for AI collaboration and scalable architecture from day one.</p>
+  <p>Bloom is a TypeScript full-stack framework built for agentic coding. <strong>UIKit</strong> (React) + <strong>AppKit</strong> (Node) + <strong>Bloom CLI</strong> — cover web, desktop (Electron), mobile (Capacitor) and browser extensions from one codebase. Every package ships <code>llms.txt</code> + <code>AGENTS.md</code> so AI coding agents generate correct code on the first try.</p>
   <div class="btn-row">
     <a href="bloom/" class="btn btn-primary">Start building →</a>
     <a href="philosophy/" class="btn btn-outline">Read the manifesto</a>
+    <a href="#compare" class="btn btn-outline">Why Bloom?</a>
   </div>
 </section>
 
 <div class="page-wrap" style="padding-top:0;">
 
   <!-- ── PACKAGES ── -->
-  <div class="section">
+  <div class="section" id="packages">
     <div class="section-label">The framework</div>
-    <h2>Three packages. One cohesive stack.</h2>
-    <p style="margin-bottom:1.5rem;">AppKit handles your backend. UIKit handles your frontend. Bloom CLI wires them together and scaffolds any platform in one command.</p>
+    <h2>Three packages. One framework.</h2>
+    <p style="margin-bottom:1.5rem;">AppKit handles your backend. UIKit handles your frontend. Bloom CLI wires them together and scaffolds any platform in one command. They compose, but work standalone.</p>
     <div class="card-grid card-grid-3">
       <a href="appkit/" class="card">
         <div class="card-icon">
@@ -154,8 +267,33 @@ src/web/features/invoice/pages/
     </div>
   </div>
 
+  <!-- ── WHY BLOOM ── -->
+  <div class="section" id="compare">
+    <div class="section-label">Why Bloom</div>
+    <h2>Where Bloom stands vs established frameworks</h2>
+    <p style="margin-bottom:1.25rem;">Closest in scope to <strong>T3 Stack</strong> or <strong>RedwoodJS</strong> — not Laravel or NestJS directly. Bloom's differentiator is agentic-first design and cross-platform coverage in one stack. Honest comparison:</p>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead><tr><th>Capability</th><th>Bloom</th><th>Laravel</th><th>NestJS</th><th>T3 Stack</th><th>Next.js</th></tr></thead>
+        <tbody>
+          <tr><td>Backend toolkit</td><td>✓ AppKit</td><td>✓ (PHP)</td><td>✓ core</td><td>Next API</td><td>Partial</td></tr>
+          <tr><td>Frontend component library</td><td>✓ UIKit</td><td>Blade</td><td>—</td><td>✓ Next</td><td>✓</td></tr>
+          <tr><td>Desktop (Electron) template</td><td>✓</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>Mobile native (Capacitor)</td><td>✓</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>Browser extension template</td><td>✓</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>Ships <code>llms.txt</code></td><td>✓</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>Ships <code>AGENTS.md</code></td><td>✓</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>Claude Code skills bundled</td><td>✓ 13</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>Drift-checked docs (CI)</td><td>✓</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>Auto-hydrated <code>docs/</code> in scaffold</td><td>✓</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:1rem;"><strong>Best fit today:</strong> solo developers and small teams (≤10) shipping with heavy Claude Code / Cursor / Copilot usage, and anyone building cross-platform products without stitching three stacks. <strong>Not yet the right fit:</strong> large enterprise teams where ecosystem age and hiring pool matter more than agentic ergonomics — use Laravel or NestJS for those.</p>
+  </div>
+
   <!-- ── PRINCIPLES ── -->
-  <div class="section">
+  <div class="section" id="principles">
     <div class="section-label">Our principles</div>
     <h2>Built on four core values.</h2>
     <div class="card-grid">
@@ -204,10 +342,10 @@ src/web/features/invoice/pages/
   </div>
 
   <!-- ── AI DOCS ── -->
-  <div class="section">
+  <div class="section" id="ai-docs">
     <div class="section-label">Built for AI agents</div>
     <h2>Every package ships machine-readable docs.</h2>
-    <p style="margin-bottom:1.25rem;">LLMs hallucinate APIs for undocumented packages. Every Bloomneo package ships <code>llms.txt</code> and <code>AGENTS.md</code> inside the npm tarball — copied into your project's <code>docs/</code> folder automatically on every <code>npm install</code>.</p>
+    <p style="margin-bottom:1.25rem;">LLMs hallucinate APIs for undocumented packages. Every Bloom package ships <code>llms.txt</code> and <code>AGENTS.md</code> inside the npm tarball — copied into your project's <code>docs/</code> folder automatically on every <code>npm install</code>.</p>
     <div class="card-grid card-grid-3">
       <div class="card card-centered">
         <div class="card-icon">
@@ -243,10 +381,60 @@ src/web/features/invoice/pages/
     </div>
   </div>
 
+  <!-- ── FAQ ── -->
+  <div class="section" id="faq">
+    <div class="section-label">FAQ</div>
+    <h2>Frequently asked questions</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>What is Bloom?</summary>
+        <div class="faq-item-body">
+          Bloom is a TypeScript full-stack framework built for the era where developers and AI coding agents ship software together. Three packages — <strong>AppKit</strong> (Node backend toolkit), <strong>UIKit</strong> (React component library), <strong>Bloom CLI</strong> (scaffolder) — compose into web, desktop (Electron), mobile (Capacitor), and browser-extension apps from one codebase. Every package ships <code>llms.txt</code> + <code>AGENTS.md</code> machine-readable specs so AI agents generate correct code on the first try.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>How is Bloom different from Laravel, NestJS, T3 Stack, or Next.js?</summary>
+        <div class="faq-item-body">
+          Bloom is designed from day one assuming AI coding agents write a significant portion of application code. No other major framework ships <code>llms.txt</code>, <code>AGENTS.md</code>, Claude Code skills, per-component <code>@llm-rule</code> JSDoc, drift-checked docs, and auto-hydrated <code>docs/</code> in scaffolded projects. In scope Bloom is closest to <strong>T3 Stack</strong> or <strong>RedwoodJS</strong> — but extends to cross-platform (web + desktop + mobile + extensions) which no competitor covers in one stack.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Can I use one Bloom package standalone?</summary>
+        <div class="faq-item-body">
+          Yes. <strong>AppKit</strong> works in any Express or Fastify app. <strong>UIKit</strong> works in any React project. <strong>Bloom CLI</strong> is optional — use it when you want the full scaffold and FBCA conventions. The three packages are designed to compose but don't require each other.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>How do I use Bloom with Claude Code, Cursor, or GitHub Copilot?</summary>
+        <div class="faq-item-body">
+          Scaffold a project with <code>bloom create</code>, then run <code>npm install</code>. The postinstall hook copies appkit + uikit <code>llms.txt</code> + <code>AGENTS.md</code> into <code>docs/</code>, and every Claude Code skill into <code>.claude/skills/</code>. Point your agent at the project root — it reads <code>AGENTS.md</code> first, then the package-specific docs. Agents generate correct code without guessing API shapes.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>What platforms does Bloom cover?</summary>
+        <div class="faq-item-body">
+          Web (Vite + React), desktop (Electron with embedded Express), mobile (Capacitor 7 for iOS + Android), and browser extensions (Chrome/Firefox popups). Same UIKit components and same FBCA conventions across all four surfaces.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Is Bloom production-ready?</summary>
+        <div class="faq-item-body">
+          Yes. AppKit 4.0, UIKit 2.0, and Bloom 4.0 are stable and semver-tracked. A CI drift-check across the monorepo enforces that docs, types, and template pins stay in sync with <code>package.json</code> — so agents never read stale guidance.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>What license is Bloom under?</summary>
+        <div class="faq-item-body">
+          MIT across all three packages. Use it commercially, fork it, vendor it — no attribution required. The source lives on GitHub at <a href="https://github.com/bloomneo" target="_blank">github.com/bloomneo</a>.
+        </div>
+      </details>
+    </div>
+  </div>
+
 </div>
 
 <footer>
-  <p>© 2026 Bloomneo &nbsp;·&nbsp; <a href="https://github.com/bloomneo" target="_blank">GitHub</a> &nbsp;·&nbsp; <a href="https://www.npmjs.com/org/bloomneo" target="_blank">npm</a> &nbsp;·&nbsp; <a href="philosophy/">Philosophy</a></p>
+  <p>© 2026 Bloomneo &nbsp;·&nbsp; <a href="appkit/">AppKit</a> &nbsp;·&nbsp; <a href="uikit/">UIKit</a> &nbsp;·&nbsp; <a href="bloom/">Bloom</a> &nbsp;·&nbsp; <a href="philosophy/">Philosophy</a> &nbsp;·&nbsp; <a href="https://github.com/bloomneo" target="_blank">GitHub</a> &nbsp;·&nbsp; <a href="https://www.npmjs.com/org/bloomneo" target="_blank">npm</a> &nbsp;·&nbsp; MIT</p>
 </footer>
 
 <script>

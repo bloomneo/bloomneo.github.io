@@ -3,8 +3,124 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bloom CLI — Bloomneo</title>
-  <meta name="description" content="@bloomneo/bloom — CLI scaffolding for fullstack web, desktop (Electron), and mobile (Capacitor) apps with Feature-Based Component Architecture." />
+  <title>Bloom — The agentic full-stack framework (React + Node, web · desktop · mobile)</title>
+  <meta name="description" content="Bloom is the full-stack framework built for agentic coding. UIKit (React components) + AppKit (Node backend) + a scaffolding CLI — web, desktop (Electron), mobile (Capacitor), browser extensions. Every package ships llms.txt + AGENTS.md so AI coding agents generate correct code the first time." />
+  <meta name="keywords" content="fullstack scaffolder, React Express scaffolder, Node.js fullstack CLI, Electron React scaffolder, Capacitor React template, Feature-Based Component Architecture, FBCA, file-based routing, agentic scaffolding, llms.txt scaffold, AGENTS.md, Prisma starter, TypeScript fullstack template, cross-platform React, Vite + Express starter, SaaS starter kit, AI coding agents" />
+  <meta name="author" content="Bloomneo" />
+  <link rel="canonical" href="https://dev.bloomneo.com/bloom/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Bloom Developer" />
+  <meta property="og:title" content="Bloom — The agentic full-stack framework" />
+  <meta property="og:description" content="Full-stack framework for the AI era. React (UIKit) + Node (AppKit) + scaffolding CLI. Web, desktop, mobile, browser extensions from one codebase. llms.txt + AGENTS.md in every package." />
+  <meta property="og:url" content="https://dev.bloomneo.com/bloom/" />
+  <meta property="og:image" content="https://dev.bloomneo.com/assets/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="@bloomneo/bloom — Fullstack scaffolder for web, desktop and mobile" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Bloom — The agentic full-stack framework" />
+  <meta name="twitter:description" content="React + Node + CLI. Web, desktop, mobile, extensions. Built for the age of AI coding agents. llms.txt + AGENTS.md in every package." />
+  <meta name="twitter:image" content="https://dev.bloomneo.com/assets/og-image.png" />
+  <meta name="twitter:image:alt" content="@bloomneo/bloom — Fullstack scaffolder for web, desktop and mobile" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    "name": "@bloomneo/bloom",
+    "description": "CLI scaffolder that combines @bloomneo/appkit (Express backend) and @bloomneo/uikit (React frontend) into fullstack web, desktop (Electron) and mobile (Capacitor) apps via Feature-Based Component Architecture (FBCA).",
+    "url": "https://dev.bloomneo.com/bloom/",
+    "codeRepository": "https://github.com/bloomneo/bloom",
+    "programmingLanguage": "TypeScript",
+    "runtimePlatform": "Node.js",
+    "license": "https://opensource.org/licenses/MIT",
+    "author": { "@type": "Organization", "name": "Bloomneo" }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Bloom?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bloom is a TypeScript full-stack framework built for agentic coding. It ships three packages that compose: AppKit (Node backend toolkit with 12 modules), UIKit (React component library with 45+ components), and a scaffolding CLI that wires them together via Feature-Based Component Architecture. Five templates cover web, desktop (Electron), and mobile (Capacitor). Every package ships llms.txt + AGENTS.md machine-readable specs so AI coding agents generate correct code on the first try."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is Bloom different from create-next-app, Remix CLI, T3 stack, or Expo CLI?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bloom is narrower and more opinionated about one thing: keeping AI agents, humans, and the installed library versions in sync. Every scaffold ships a postinstall hook that copies llms.txt + AGENTS.md + Claude Code skills from node_modules into the project on every npm install — so docs never drift from installed versions. The CLI itself is tiny: bloom create and bloom start, nothing else."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is FBCA (Feature-Based Component Architecture)?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "FBCA is a convention where every feature lives in its own folder with a canonical shape. Backend: src/api/features/<name>/*.route.ts auto-mounts at /api/<name>. Frontend: src/web/features/<name>/pages/*.tsx auto-routes via import.meta.glob. Add a feature = create a folder. No manual route registration, no router config to edit. Dynamic segments use [param], catch-all uses [...path]."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I use Bloom with Claude Code, Cursor, or GitHub Copilot?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "After bloom create, run npm install. The postinstall hook copies appkit + uikit llms.txt + AGENTS.md into docs/, and every Claude Code skill into .claude/skills/. Point your agent at the project root; it will find AGENTS.md, then docs/appkit-agents.md + docs/uikit-agents.md for library-specific rules. No extra configuration required."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I build desktop and mobile apps with Bloom?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. desktop-basicapp and desktop-userapp scaffold Electron apps with an embedded Express backend (and SQLite for userapp). mobile-basicapp scaffolds a Capacitor 7 iOS + Android project that connects to a separate backend. Same UIKit components, same themes, same API across surfaces."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Bloom require a database?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Only the *userapp and desktop-userapp templates require a database (Prisma with Postgres or SQLite). basicapp, desktop-basicapp, and mobile-basicapp run without one."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Bloom production-ready?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Bloom v4.0.0 is stable. Its scaffolded apps use production-ready appkit 4.x + uikit 2.x components. A CI drift-check enforces that docs, template pins and the installed bloom version stay in sync with package.json — so agents never read stale guidance."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I add a feature to an existing Bloom project?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — by creating a folder. For a backend endpoint, add src/api/features/<name>/<name>.route.ts. For a page, add src/web/features/<name>/pages/index.tsx. FBCA auto-discovers both. There is no bloom add feature command; features are just folders."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What license is Bloom under?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MIT. Use Bloom itself and any scaffolded templates in commercial projects, fork them, vendor them — no attribution required. The source lives on GitHub at github.com/bloomneo/bloom."
+        }
+      }
+    ]
+  }
+  </script>
+
   <link rel="stylesheet" href="../assets/style.css" />
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
@@ -39,18 +155,23 @@
 <div class="page-wrap">
 
   <div class="page-header">
-    <div class="hero-badge">@bloomneo/bloom · v1.5.3</div>
-    <h1>One CLI.<br/>Web, desktop, mobile.</h1>
-    <p>Bloom scaffolds fullstack apps with Feature-Based Component Architecture. AppKit backend + UIKit frontend — wired up, configured, AI-ready, and running in minutes.</p>
+    <div class="hero-package">
+      <span class="pkg-name">Bloom</span>
+      <span class="pkg-version">v4.0.0</span>
+    </div>
+    <h1>The full-stack framework<br/>built for agentic coding</h1>
+    <p>Bloom is a TypeScript full-stack framework designed for the era where developers and AI coding agents ship software together. <strong>UIKit</strong> (React components) + <strong>AppKit</strong> (Node backend) + a tiny scaffolding CLI — cover web, desktop (Electron), mobile (Capacitor), and browser extensions from one codebase. Every package ships <code>llms.txt</code> + <code>AGENTS.md</code> machine-readable specs so AI agents generate correct code, and developers review work they actually understand.</p>
     <div class="btn-row" style="justify-content:flex-start; margin-top:1.5rem;">
       <a href="https://www.npmjs.com/package/@bloomneo/bloom" target="_blank" class="btn btn-primary">npm ↗</a>
       <a href="https://github.com/bloomneo/bloom" target="_blank" class="btn btn-outline">GitHub ↗</a>
+      <a href="llms.txt" class="btn btn-outline">llms.txt ↗</a>
     </div>
   </div>
 
   <!-- QUICK START -->
-  <div class="section">
+  <div class="section" id="quickstart">
     <div class="section-label">Install and create</div>
+    <h2>From zero to running in under a minute</h2>
     <pre class="hljs-block"><code class="language-bash">npm install -g @bloomneo/bloom
 
 # Web app (React + Express, FBCA routing)
@@ -67,9 +188,197 @@ bloom create my-app desktop-userapp
 bloom create my-app mobile-basicapp</code></pre>
   </div>
 
-  <!-- AFTER CREATE -->
+  <!-- AI AGENT CALLOUT -->
   <div class="section">
+    <div class="ai-callout">
+      <div class="ai-callout-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="4" width="18" height="16" rx="2"/>
+          <path d="M8 10h8M8 14h5"/>
+          <circle cx="12" cy="2" r="1" fill="currentColor"/>
+          <path d="M12 3v1"/>
+        </svg>
+      </div>
+      <div class="ai-callout-body">
+        <h3>For AI coding agents (Claude, Cursor, Copilot, Windsurf)</h3>
+        <p>This page is written for humans. Agents should fetch <code>/bloom/llms.txt</code> and <code>/bloom/AGENTS.md</code> for the authoritative CLI + template reference. Inside a scaffolded project, read the project's root <code>AGENTS.md</code> first, then <code>docs/appkit-agents.md</code> + <code>docs/uikit-agents.md</code> (auto-populated by <code>npm install</code>) for library-specific rules.</p>
+        <div class="ai-callout-links">
+          <a href="llms.txt">Read llms.txt →</a>
+          <a href="AGENTS.md">Read AGENTS.md →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THREE PILLARS -->
+  <div class="section" id="pillars">
+    <div class="section-label">What ships in Bloom</div>
+    <h2>Three packages. One framework.</h2>
+    <p style="margin-bottom:1.5rem;">Bloom isn't monolithic. Install the full stack with <code>bloom create</code>, or pull any pillar into an existing project. They're designed to compose but work standalone.</p>
+    <div class="card-grid card-grid-3">
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="16" rx="2"/>
+            <path d="M3 10h18M7 15h2M11 15h6"/>
+          </svg>
+        </div>
+        <h3><a href="../appkit/">AppKit</a> · backend</h3>
+        <p>Node.js toolkit with 12 typed modules — JWT auth, Prisma multi-tenancy, Redis cache &amp; queue, S3 storage, SMTP/Resend email, structured logging, CSRF &amp; rate limiting, semantic HTTP errors, typed config. Auto-scales memory → Redis → cloud without a rewrite.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="7" height="7" rx="1"/>
+            <rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/>
+            <rect x="14" y="14" width="7" height="7" rx="1"/>
+          </svg>
+        </div>
+        <h3><a href="../uikit/">UIKit</a> · frontend</h3>
+        <p>45+ typed React components, 5 OKLCH themes, 6 production layouts. Forms, tables, dialogs, toasts, confirms, permission gates, responsive hooks — all wired on Radix + Tailwind. Web, Electron desktop, Capacitor mobile, browser-extension popups.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 6h16M4 12h16M4 18h10"/>
+            <path d="M20 18l-3-3 3-3"/>
+          </svg>
+        </div>
+        <h3>Bloom CLI · scaffolder</h3>
+        <p>5 templates (web / auth+users / desktop / desktop+auth / mobile). Feature-Based Component Architecture — add a route by adding a folder. Every scaffold ships <code>docs/</code> + <code>.claude/skills/</code> auto-populated from installed packages, kept version-matched on every <code>npm install</code>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- UNIVERSAL PATTERN — FBCA -->
+  <div class="section" id="pattern">
+    <div class="section-label">The universal pattern — FBCA</div>
+    <h2>Add a folder. Get a route.</h2>
+    <p style="margin-bottom:1rem;">Bloom has one load-bearing convention across every template: <strong>Feature-Based Component Architecture</strong>. Backend endpoints and frontend pages are auto-discovered by scanning feature folders. No router config to edit, no import list to maintain, no manual registration. Adding functionality = creating files.</p>
+    <pre class="hljs-block"><code class="language-bash"># Backend — drop a folder → auto-mounted API route
+src/api/features/
+└── invoice/
+    ├── invoice.route.ts     → /api/invoice
+    ├── invoice.service.ts   (business logic; uses appkit)
+    └── invoice.types.ts     (shared with frontend)
+
+# Frontend — drop a folder → auto-routed page
+src/web/features/
+└── invoice/
+    ├── pages/
+    │   ├── index.tsx        → /invoice
+    │   ├── [id].tsx         → /invoice/:id   (dynamic segment)
+    │   └── [...path].tsx    → /invoice/*     (catch-all)
+    ├── components/          (local to this feature)
+    └── services/            (API calls; uses uikit useApi)</code></pre>
+    <p style="margin-top:1rem; margin-bottom:0.75rem;"><strong>Route pattern rules</strong> — how file paths become URLs:</p>
+    <table>
+      <thead><tr><th>File path</th><th>Becomes route</th></tr></thead>
+      <tbody>
+        <tr><td><code>features/main/pages/index.tsx</code></td><td><code>/</code> (root)</td></tr>
+        <tr><td><code>features/blog/pages/index.tsx</code></td><td><code>/blog</code></td></tr>
+        <tr><td><code>features/blog/pages/[slug].tsx</code></td><td><code>/blog/:slug</code></td></tr>
+        <tr><td><code>features/docs/pages/[...path].tsx</code></td><td><code>/docs/*</code> (catch-all)</td></tr>
+        <tr><td><code>features/invoice/invoice.route.ts</code></td><td><code>/api/invoice</code></td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:0.75rem;">Under the hood: the web router uses <code>import.meta.glob('../features/*/pages/**/*.tsx')</code>; the API router scans <code>src/api/features/</code> at boot. Both are re-discovered on hot reload — no server restart required when you add a feature.</p>
+  </div>
+
+  <!-- AGENTIC BY DEFAULT -->
+  <div class="section" id="agentic">
+    <div class="section-label">Agentic by default</div>
+    <h2>Designed assuming 50%+ of the code is written by an AI</h2>
+    <p style="margin-bottom:1.25rem;">Most frameworks were built for humans, then retro-fitted with an LLM integration post-ChatGPT. Bloom is engineered from day one around the assumption that Claude, Cursor, Copilot and Windsurf are your teammates. Nine concrete places that plays out:</p>
+    <table>
+      <thead><tr><th>What Bloom ships</th><th>Why it matters for agents</th></tr></thead>
+      <tbody>
+        <tr><td><code>llms.txt</code> in every package</td><td>Single machine-readable API reference. Auto-regenerated on every build — never drifts from source.</td></tr>
+        <tr><td><code>AGENTS.md</code> with always-do / never-do rules</td><td>Prescriptive guardrails that prevent the most common LLM failure modes (wrong prop names, double providers, undefined data).</td></tr>
+        <tr><td>Claude Code skills bundled</td><td>13 skills ship inside the packages. Copy <code>.claude/skills/</code> into your repo — auto-triggered by import patterns.</td></tr>
+        <tr><td><code>@llm-rule WHEN / AVOID / NOTE</code> JSDoc on every UI component</td><td>Agents reading source code get usage rules inline. 44 of 44 uikit components annotated.</td></tr>
+        <tr><td>Postinstall doc hydration</td><td>Scaffolded projects auto-copy appkit + uikit docs into <code>docs/</code> on every <code>npm install</code>. Agents always read docs matching the <em>installed</em> version.</td></tr>
+        <tr><td>Drift-checked public surface (CI)</td><td>Every package fails CI if docs, types, or template pins drift from source. Agents can't be taught a hallucinated method — CI rejects the teaching material first.</td></tr>
+        <tr><td>Enforced naming policy</td><td><code>get&lt;Thing&gt;</code> nullable, <code>require&lt;Thing&gt;</code> middleware, <code>has/is/can</code> booleans, no synonym drift. Agents pattern-match one rule across 12 modules.</td></tr>
+        <tr><td>Typed errors with <code>module</code> + <code>code</code> + <code>docsUrl</code></td><td>Error messages embed the exact docs anchor. Agents reading an error can fetch the fix — no guessing.</td></tr>
+        <tr><td>Single canonical API pattern</td><td><code>xxxClass.get()</code> across all 12 appkit modules. One flat import for uikit. Two commands for bloom. No decorators, no DI, no factory variants.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- HOW IT COMPARES -->
+  <div class="section" id="compare">
+    <div class="section-label">How Bloom compares</div>
+    <h2>Where Bloom stands vs established frameworks</h2>
+    <p style="margin-bottom:1.25rem;">Closest in scope to <strong>T3 Stack</strong> or <strong>RedwoodJS</strong> — not Laravel or NestJS directly. Bloom's differentiator is agentic-first design + cross-platform coverage; its weakness is ecosystem age.</p>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead><tr><th>Dimension</th><th>Bloom</th><th>Laravel</th><th>NestJS</th><th>T3 Stack</th><th>Next.js</th></tr></thead>
+        <tbody>
+          <tr><td>Backend</td><td>✓ AppKit</td><td>✓ (PHP)</td><td>✓ core</td><td>Next API</td><td>Partial</td></tr>
+          <tr><td>Frontend</td><td>✓ UIKit</td><td>Blade</td><td>—</td><td>✓ Next</td><td>✓</td></tr>
+          <tr><td>Desktop (Electron)</td><td>✓</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>Mobile native (Capacitor)</td><td>✓</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>Browser extensions</td><td>✓</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>Auth built-in</td><td>✓ JWT + roles</td><td>✓</td><td>via Passport</td><td>NextAuth</td><td>—</td></tr>
+          <tr><td>Queue / background jobs</td><td>✓ memory→Redis</td><td>✓ Horizon</td><td>✓ Bull</td><td>—</td><td>—</td></tr>
+          <tr><td>Ships <code>llms.txt</code></td><td>✓</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>Ships <code>AGENTS.md</code></td><td>✓</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>Claude Code skills</td><td>✓ 13</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>Drift-checked docs (CI)</td><td>✓</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>Postinstall doc hydration</td><td>✓</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>Ecosystem maturity</td><td>New</td><td>14 yrs</td><td>7 yrs</td><td>3 yrs</td><td>8 yrs</td></tr>
+          <tr><td>LLM training-data familiarity</td><td>Low</td><td>High</td><td>High</td><td>Medium</td><td>Very high</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:1rem;">Bloom's bet: runtime <code>llms.txt</code> fetching closes the training-data gap. Agents don't need to have seen Bloom before — the docs ship with the code, version-matched, ready to load into context.</p>
+    <p style="margin-top:0.5rem;"><strong>Best fit today:</strong> solo developers and small teams (≤10) shipping SaaS with heavy Claude Code / Cursor / Copilot usage, and anyone building cross-platform products (web + desktop + mobile) who doesn't want to stitch three stacks.</p>
+    <p style="margin-top:0.5rem;"><strong>Not yet the right fit:</strong> 100-engineer enterprise teams where hiring pool and 10-year ecosystem matter more than agentic ergonomics. Use Laravel or NestJS for those.</p>
+  </div>
+
+  <!-- WHAT YOU CAN BUILD -->
+  <div class="section" id="use-cases">
+    <div class="section-label">What you can build</div>
+    <h2>One framework. Every shippable surface.</h2>
+    <p style="margin-bottom:1.5rem;">Bloom is the scaffolder teams reach for when they need a working stack — not an evening evaluating starters.</p>
+    <ul class="use-case-grid">
+      <li><strong>B2B SaaS products</strong><span>Auth + role-based admin + Prisma in one command. Scaffold with <code>userapp</code> and ship MVP in a weekend.</span></li>
+      <li><strong>Internal admin tools</strong><span>DataTable, PageHeader, role-gated UI, audit logging — inherited from UIKit and AppKit out of the box.</span></li>
+      <li><strong>Multi-tenant SaaS backends</strong><span>AppKit's row-level tenant filtering + per-org databases are wired into the <code>userapp</code> template.</span></li>
+      <li><strong>Cross-platform desktop apps</strong><span><code>desktop-basicapp</code> / <code>desktop-userapp</code> ship Electron + embedded Express + SQLite. Packages to Windows, macOS, Linux.</span></li>
+      <li><strong>Native mobile (iOS + Android)</strong><span><code>mobile-basicapp</code> via Capacitor 7. Same React codebase, same UIKit components, native builds on both stores.</span></li>
+      <li><strong>Marketing / content sites</strong><span>FBCA file-based routing + UIKit <code>PageLayout</code> + themes. Swap the default template's pages for yours.</span></li>
+      <li><strong>AI agent platforms &amp; LLM apps</strong><span>Every scaffold is AI-ready — <code>docs/</code> and <code>.claude/skills/</code> are populated on install so agents extend your app correctly.</span></li>
+      <li><strong>Internal developer portals</strong><span>Docs site, API explorer, internal status page — FBCA feature folders keep domain boundaries clean.</span></li>
+      <li><strong>CRUD-heavy ops dashboards</strong><span>Inventory, invoicing, ticketing — <code>userapp</code> + a few feature folders, no router config to manage.</span></li>
+      <li><strong>Prototypes that survive</strong><span>Bloom scaffolds production defaults from day one — the prototype doesn't get rewritten when it grows.</span></li>
+    </ul>
+  </div>
+
+  <!-- WHAT NOT TO DO -->
+  <div class="section" id="mistakes">
+    <div class="section-label">What NOT to do (for you and your agent)</div>
+    <h2>The five mistakes Bloom won't let you make twice</h2>
+    <p style="margin-bottom:1.25rem;">These are the only ways to silently break a Bloom project. Memorise them — or point your AI agent at <code>AGENTS.md</code> where they're spelled out line by line.</p>
+    <ul class="dont-list">
+      <li><span class="x" aria-hidden="true">✕</span><span><strong>Never <code>import { ... } from '@bloomneo/bloom'</code>.</strong> Bloom is a CLI, not a runtime library. Nothing ships in <code>node_modules</code> for your app to import. If you're writing that import, you're off the canonical path.</span></li>
+      <li><span class="x" aria-hidden="true">✕</span><span><strong>Never hand-edit the page-router in a scaffolded project.</strong> The router auto-discovers features. Add a route = create <code>features/&lt;name&gt;/pages/index.tsx</code>. Don't touch the router file.</span></li>
+      <li><span class="x" aria-hidden="true">✕</span><span><strong>Never overwrite <code>docs/appkit.md</code> / <code>docs/uikit.md</code>.</strong> They're regenerated from <code>node_modules</code> on every <code>npm install</code>. Edit the upstream package's <code>llms.txt</code>, not the copy.</span></li>
+      <li><span class="x" aria-hidden="true">✕</span><span><strong>Never <code>bloom create</code> into a non-empty directory.</strong> Exits 1 with a conflict error. Use <code>.</code> for the current directory only if it's empty (other than dotfiles).</span></li>
+      <li><span class="x" aria-hidden="true">✕</span><span><strong>Never pin appkit or uikit to <code>latest</code>.</strong> Templates pin <code>@bloomneo/appkit@^4.0.0</code> and <code>@bloomneo/uikit@^2.0.1</code> for a reason — coordinated majors need a new bloom release.</span></li>
+    </ul>
+  </div>
+
+  <!-- MODULES LAYOUT (main + sticky affix) -->
+  <div class="modules-layout">
+    <div class="modules-main">
+
+  <!-- AFTER CREATE -->
+  <div class="section" id="after-create">
     <div class="section-label">After create</div>
+    <h2>Run the app</h2>
     <pre class="hljs-block"><code class="language-bash">cd my-app
 npm install        # installs dependencies AND copies appkit/uikit docs into docs/
 npm run dev        # starts frontend + backend concurrently</code></pre>
@@ -84,7 +393,7 @@ npm run dev        # starts frontend + backend concurrently</code></pre>
   </div>
 
   <!-- TEMPLATES -->
-  <div class="section">
+  <div class="section" id="templates">
     <div class="section-label">Templates</div>
     <h2>Pick a starting point.</h2>
     <div class="template-list">
@@ -131,43 +440,10 @@ npm run dev        # starts frontend + backend concurrently</code></pre>
     </div>
   </div>
 
-  <!-- FBCA -->
-  <div class="section">
-    <div class="section-label">Feature-Based Component Architecture</div>
-    <h2>Drop a folder. Get a route.</h2>
-    <p style="margin-bottom:1rem;">No routing config. No manual registration. No import lists. Drop a folder inside <code>features/</code> and it's automatically discovered on both frontend and backend.</p>
-    <pre class="hljs-block"><code class="language-bash"># Backend — drop a folder → auto-registered API route
-src/api/features/
-└── invoice/
-    ├── invoice.route.ts     # Auto-mounts at /api/invoice
-    └── invoice.service.ts
-
-# Frontend — drop a folder → auto-routed page
-src/web/features/
-└── invoice/
-    └── pages/
-        ├── index.tsx        # → /invoice
-        ├── [id].tsx         # → /invoice/:id (dynamic)
-        └── new.tsx          # → /invoice/new</code></pre>
-
-    <div style="margin-top:1.5rem;">
-      <div class="section-label">Route pattern examples</div>
-      <table>
-        <thead><tr><th>File path</th><th>Becomes route</th></tr></thead>
-        <tbody>
-          <tr><td><code>features/main/pages/index.tsx</code></td><td><code>/</code></td></tr>
-          <tr><td><code>features/blog/pages/index.tsx</code></td><td><code>/blog</code></td></tr>
-          <tr><td><code>features/blog/pages/[slug].tsx</code></td><td><code>/blog/:slug</code></td></tr>
-          <tr><td><code>features/docs/pages/[...path].tsx</code></td><td><code>/docs/*</code> (catch-all)</td></tr>
-          <tr><td><code>features/invoice/invoice.route.ts</code></td><td><code>/api/invoice</code></td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
   <!-- WEB PROJECT STRUCTURE -->
-  <div class="section">
+  <div class="section" id="web-structure">
     <div class="section-label">Project structure — web app (basicapp)</div>
+    <h2>What a web scaffold looks like</h2>
     <pre class="hljs-block"><code class="language-bash">my-app/
 ├── src/
 │   ├── api/                      # Express backend (AppKit)
@@ -197,8 +473,9 @@ src/web/features/
   </div>
 
   <!-- USERAPP EXTRAS -->
-  <div class="section">
+  <div class="section" id="userapp-structure">
     <div class="section-label">Project structure — userapp (with auth)</div>
+    <h2>What an auth-enabled scaffold adds</h2>
     <pre class="hljs-block"><code class="language-bash">my-app/
 ├── src/
 │   ├── api/features/
@@ -236,8 +513,9 @@ npm run dev            # start frontend + backend</code></pre>
   </div>
 
   <!-- DESKTOP -->
-  <div class="section">
+  <div class="section" id="desktop-structure">
     <div class="section-label">Project structure — desktop app (Electron)</div>
+    <h2>Electron with an embedded backend</h2>
     <pre class="hljs-block"><code class="language-bash">my-desktop-app/
 ├── src/
 │   └── desktop/
@@ -268,8 +546,9 @@ npm run preview      # preview production build in Electron
   </div>
 
   <!-- MOBILE -->
-  <div class="section">
+  <div class="section" id="mobile-structure">
     <div class="section-label">Project structure — mobile app (Capacitor)</div>
+    <h2>iOS + Android from one React codebase</h2>
     <pre class="hljs-block"><code class="language-bash">my-mobile-app/
 ├── src/
 │   └── web/                      # React frontend (UIKit)
@@ -302,8 +581,9 @@ npm run android:build          # Build APK</code></pre>
   </div>
 
   <!-- CREATING A FEATURE -->
-  <div class="section">
+  <div class="section" id="add-feature">
     <div class="section-label">Adding a feature — the FBCA way</div>
+    <h2>New feature = new folder</h2>
     <p style="margin-bottom:1rem;">Every new feature lives in its own folder. No imports to add, no routing files to edit.</p>
     <pre class="hljs-block"><code class="language-bash"># 1. Create the backend feature
 mkdir -p src/api/features/invoice
@@ -343,7 +623,7 @@ export default router;</code></pre>
   </div>
 
   <!-- AI READY -->
-  <div class="section">
+  <div class="section" id="ai-ready">
     <div class="section-label">AI-ready by default</div>
     <h2>Every project ships with AI context built in</h2>
     <div class="card-grid card-grid-3">
@@ -382,8 +662,9 @@ export default router;</code></pre>
   </div>
 
   <!-- ENV -->
-  <div class="section">
+  <div class="section" id="env">
     <div class="section-label">Environment variables by template</div>
+    <h2>What each template needs in <code>.env</code></h2>
     <table>
       <thead><tr><th>Template</th><th>Required env vars</th></tr></thead>
       <tbody>
@@ -407,7 +688,139 @@ export default router;</code></pre>
     </table>
   </div>
 
+  <!-- FAQ -->
+  <div class="section" id="faq">
+    <div class="section-label">FAQ</div>
+    <h2>Frequently asked questions</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>What is Bloom?</summary>
+        <div class="faq-item-body">
+          Bloom is a TypeScript full-stack framework built for agentic coding. It ships three packages that compose: <strong>AppKit</strong> (Node backend toolkit with 12 modules), <strong>UIKit</strong> (React component library with 45+ components), and a scaffolding CLI that wires them together via Feature-Based Component Architecture. Five templates cover web, desktop (Electron), and mobile (Capacitor). Every package ships <code>llms.txt</code> + <code>AGENTS.md</code> machine-readable specs so AI coding agents generate correct code on the first try.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>How is Bloom different from create-next-app, Remix CLI, T3 stack, or Expo CLI?</summary>
+        <div class="faq-item-body">
+          Bloom is narrower and more opinionated about one thing: keeping AI agents, humans, and the installed library versions in sync. Every scaffold ships a postinstall hook that copies <code>llms.txt</code> + <code>AGENTS.md</code> + Claude Code skills from <code>node_modules</code> into the project on every <code>npm install</code> — so docs never drift from installed versions. The CLI itself is tiny: <code>bloom create</code> and <code>bloom start</code>, nothing else.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>What is FBCA (Feature-Based Component Architecture)?</summary>
+        <div class="faq-item-body">
+          FBCA is a convention where every feature lives in its own folder with a canonical shape. Backend: <code>src/api/features/&lt;name&gt;/*.route.ts</code> auto-mounts at <code>/api/&lt;name&gt;</code>. Frontend: <code>src/web/features/&lt;name&gt;/pages/*.tsx</code> auto-routes via <code>import.meta.glob</code>. Add a feature = create a folder. No manual route registration, no router config to edit. Dynamic segments use <code>[param]</code>, catch-all uses <code>[...path]</code>.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>How do I use Bloom with Claude Code, Cursor, or GitHub Copilot?</summary>
+        <div class="faq-item-body">
+          After <code>bloom create</code>, run <code>npm install</code>. The postinstall hook copies appkit + uikit <code>llms.txt</code> + <code>AGENTS.md</code> into <code>docs/</code>, and every Claude Code skill into <code>.claude/skills/</code>. Point your agent at the project root; it will find <code>AGENTS.md</code> first, then <code>docs/appkit-agents.md</code> + <code>docs/uikit-agents.md</code> for library-specific rules. No extra configuration.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Can I build desktop and mobile apps with Bloom?</summary>
+        <div class="faq-item-body">
+          Yes. <code>desktop-basicapp</code> and <code>desktop-userapp</code> scaffold Electron apps with an embedded Express backend (and SQLite for userapp). <code>mobile-basicapp</code> scaffolds a Capacitor 7 iOS + Android project that connects to a separate backend. Same UIKit components, same themes, same API across surfaces.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Does Bloom require a database?</summary>
+        <div class="faq-item-body">
+          Only the <code>userapp</code> and <code>desktop-userapp</code> templates require a database (Prisma with Postgres or SQLite). <code>basicapp</code>, <code>desktop-basicapp</code>, and <code>mobile-basicapp</code> run without one.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Is Bloom production-ready?</summary>
+        <div class="faq-item-body">
+          Yes. Bloom v4.0.0 is stable. Scaffolded apps use production-ready appkit 4.x + uikit 2.x components. A CI drift-check enforces that docs, template pins, and the installed bloom version stay in sync with <code>package.json</code> — so agents never read stale guidance.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>Can I add a feature to an existing Bloom project?</summary>
+        <div class="faq-item-body">
+          Yes — by creating a folder. For a backend endpoint, add <code>src/api/features/&lt;name&gt;/&lt;name&gt;.route.ts</code>. For a page, add <code>src/web/features/&lt;name&gt;/pages/index.tsx</code>. FBCA auto-discovers both. There is no <code>bloom add feature</code> command; features are just folders.
+        </div>
+      </details>
+      <details class="faq-item">
+        <summary>What license is Bloom under?</summary>
+        <div class="faq-item-body">
+          MIT. Use Bloom itself and any scaffolded templates in commercial projects, fork them, vendor them — no attribution required. The source lives on GitHub at <a href="https://github.com/bloomneo/bloom" target="_blank">github.com/bloomneo/bloom</a>.
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <!-- AI DOCS -->
+  <div class="section" id="ai-docs">
+    <div class="section-label">AI agent reference</div>
+    <h2>Machine-readable specs for coding agents</h2>
+    <div class="card-grid card-grid-3">
+      <div class="card card-centered">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+        </div>
+        <h3><code>llms.txt</code></h3>
+        <p>Canonical CLI + template reference. Commands, templates, exit codes, flags, FBCA rules. <a href="llms.txt">View →</a></p>
+      </div>
+      <div class="card card-centered">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <polyline points="9 12 11 14 15 10"/>
+          </svg>
+        </div>
+        <h3><code>AGENTS.md</code></h3>
+        <p>Always-do, never-do rules: what Bloom IS / IS NOT, template decision tree, FBCA conventions. <a href="AGENTS.md">View →</a></p>
+      </div>
+      <div class="card card-centered">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/>
+          </svg>
+        </div>
+        <h3>Auto-hydrated <code>docs/</code></h3>
+        <p>Every scaffold's postinstall copies appkit + uikit <code>llms.txt</code> + <code>AGENTS.md</code> into <code>docs/</code> on every <code>npm install</code>. Agents always read version-matched docs.</p>
+      </div>
+    </div>
+  </div>
+
+    </div><!-- /.modules-main -->
+
+    <aside class="module-affix" id="pageAffix" aria-label="Page navigation">
+      <div class="module-affix-label">On this page</div>
+      <ol>
+        <li><a href="#after-create"><span class="num">01</span>Run the app</a></li>
+        <li><a href="#templates"><span class="num">02</span>Templates</a></li>
+        <li><a href="#web-structure"><span class="num">03</span>Web app</a></li>
+        <li><a href="#userapp-structure"><span class="num">04</span>Userapp + auth</a></li>
+        <li><a href="#desktop-structure"><span class="num">05</span>Desktop</a></li>
+        <li><a href="#mobile-structure"><span class="num">06</span>Mobile</a></li>
+        <li><a href="#add-feature"><span class="num">07</span>Add a feature</a></li>
+        <li><a href="#ai-ready"><span class="num">08</span>AI-ready</a></li>
+        <li><a href="#env"><span class="num">09</span>Env vars</a></li>
+        <li><a href="#faq"><span class="num">10</span>FAQ</a></li>
+        <li><a href="#ai-docs"><span class="num">11</span>AI reference</a></li>
+      </ol>
+    </aside>
+
+  </div><!-- /.modules-layout -->
+
 </div>
+
+<div class="affix-backdrop" id="affixBackdrop" aria-hidden="true"></div>
+<button class="affix-trigger" id="affixTrigger" aria-label="Open page navigation" aria-controls="pageAffix" aria-expanded="false">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="4" y1="7" x2="20" y2="7"/>
+    <line x1="4" y1="12" x2="20" y2="12"/>
+    <line x1="4" y1="17" x2="14" y2="17"/>
+  </svg>
+  <span class="affix-trigger-label">On this page</span>
+</button>
 
 <footer>
   <p>© 2026 Bloomneo &nbsp;·&nbsp; <a href="https://github.com/bloomneo/bloom" target="_blank">GitHub</a> &nbsp;·&nbsp; <a href="https://www.npmjs.com/package/@bloomneo/bloom" target="_blank">npm</a></p>
@@ -417,6 +830,56 @@ export default router;</code></pre>
   document.getElementById('navToggle').addEventListener('click', function() {
     document.getElementById('navLinks').classList.toggle('open');
   });
+
+  // Mobile affix toggle (bottom sheet)
+  (function () {
+    const affix = document.getElementById('pageAffix');
+    const trigger = document.getElementById('affixTrigger');
+    const backdrop = document.getElementById('affixBackdrop');
+    if (!affix || !trigger || !backdrop) return;
+    const open = () => {
+      affix.classList.add('open');
+      backdrop.classList.add('open');
+      trigger.setAttribute('aria-expanded', 'true');
+    };
+    const close = () => {
+      affix.classList.remove('open');
+      backdrop.classList.remove('open');
+      trigger.setAttribute('aria-expanded', 'false');
+    };
+    trigger.addEventListener('click', () => {
+      affix.classList.contains('open') ? close() : open();
+    });
+    backdrop.addEventListener('click', close);
+    affix.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+  })();
+
+  // Page affix scrollspy
+  (function () {
+    const affix = document.getElementById('pageAffix');
+    if (!affix) return;
+    const links = affix.querySelectorAll('a');
+    const byId = {};
+    const targetIds = [];
+    links.forEach(a => {
+      const id = a.getAttribute('href').slice(1);
+      byId[id] = a;
+      targetIds.push(id);
+    });
+    const sections = targetIds.map(id => document.getElementById(id)).filter(Boolean);
+    const setActive = (id) => {
+      links.forEach(a => a.classList.remove('active'));
+      if (byId[id]) byId[id].classList.add('active');
+    };
+    const io = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter(e => e.isIntersecting)
+        .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+      if (visible) setActive(visible.target.id);
+    }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+    sections.forEach(s => io.observe(s));
+  })();
 </script>
 
 </body>

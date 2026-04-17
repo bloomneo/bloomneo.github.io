@@ -417,7 +417,12 @@ pre code.hljs {
 [id^="comp-"],
 #install, #setup, #import, #themes, #use-cases, #mistakes, #controlled-props,
 #hooks, #layouts, #form-components, #data-components, #cookbook,
-#cross-platform, #faq, #ai-docs { scroll-margin-top: 80px; }
+#cross-platform, #faq, #ai-docs,
+#quickstart, #after-create, #templates, #fbca,
+#web-structure, #userapp-structure, #desktop-structure, #mobile-structure,
+#add-feature, #ai-ready, #env,
+#pillars, #agentic, #compare, #pattern,
+#packages, #principles { scroll-margin-top: 80px; }
 
 /* ── Module affix (side TOC) ── */
 .module-affix {
