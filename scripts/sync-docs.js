@@ -29,6 +29,8 @@ const copies = [
   ['appkit/AGENTS.md',  'appkit/AGENTS.md'],
   ['uikit/llms.txt',    'uikit/llms.txt'],
   ['uikit/AGENTS.md',   'uikit/AGENTS.md'],
+  ['bloom/llms.txt',    'bloom/llms.txt'],
+  ['bloom/AGENTS.md',   'bloom/AGENTS.md'],
 ];
 
 let synced = 0;
