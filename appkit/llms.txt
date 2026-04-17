@@ -547,9 +547,79 @@ modules are used in the same file (most common case).
 
 ---
 
-## Migration — 1.5.x → 2.0.0
+## Error Types (4.0.0+)
 
-Pre-v1 audit. No aliases kept. Project-wide find-and-replace:
+Every typed error extends `AppKitError`. Catch once, handle all:
+
+```ts
+import { AppKitError } from '@bloomneo/appkit';
+
+try { ... } catch (err) {
+  if (err instanceof AppKitError) {
+    logger.warn('appkit error', { module: err.module, code: err.code });
+  }
+  throw err;
+}
+```
+
+### Codes by module
+
+| Module | Class | Common codes | Fix |
+|---|---|---|---|
+| auth | `TokenError` | `expired` / `not_before` / `invalid` / `malformed` | Refresh or re-issue the token |
+| cache | `CacheError` | `CACHE_GET_FAILED` / `CACHE_SET_FAILED` / `CACHE_INVALID_KEY` / `CACHE_CONNECT_FAILED` | Check Redis connectivity / key format |
+| database | `DatabaseError` | `DATABASE_MISSING_URL` / `DATABASE_ERROR` | Set `DATABASE_URL` |
+| email | `EmailError` | `EMAIL_PROD_NO_PROVIDER` / `EMAIL_ERROR` | Set `RESEND_API_KEY` or `SMTP_HOST` in production |
+| error | `AppError` | HTTP type string (`BAD_REQUEST`, `NOT_FOUND`, etc.) | Handled by `error.handleErrors()` middleware automatically |
+| event | `EventError` | `EVENT_ERROR` | Fix serialization / handler shape |
+| logger | `LoggerError` | `LOGGER_ERROR` | Check transport config |
+| queue | `QueueError` | `QUEUE_ERROR` / `QUEUE_HANDLER_TIMEOUT` | Investigate handler; override `{ timeout }` on `process()` if intentional |
+| security | `SecurityError` | `SECURITY_MISSING_CONFIG` / `SECURITY_400` / `SECURITY_403` | Set required env; reject invalid input |
+| storage | `StorageError` | `STORAGE_ERROR` | Check bucket creds / key path |
+| util | `AppKitError` (via `requireProp` / `requireEnv`) | `UTIL_MISSING_PROP` / `UTIL_MISSING_ENV` | Fix the caller |
+
+Every message is prefixed `[@bloomneo/appkit/<module>]` and ends with
+`See: <README anchor URL>` so an agent can fetch the doc section and self-correct.
+
+---
+
+## Migration → 4.0.0
+
+Full table: [`CHANGELOG.md`](./CHANGELOG.md#400---2026-04-17).
+
+### From 2.0.0 → 4.0.0
+
+Teardown verb unified across every stateful module:
+
+```
+cacheClass.flushAll(      → cacheClass.clearAll(
+cacheClass.shutdown(      → cacheClass.disconnectAll(
+queueClass.clear(         → queueClass.disconnectAll(
+emailClass.shutdown(      → emailClass.disconnectAll(
+emailClass.clear(         → emailClass.disconnectAll(
+eventClass.shutdown(      → eventClass.disconnectAll(
+eventClass.clear(         → eventClass.disconnectAll(
+storageClass.shutdown(    → storageClass.disconnectAll(
+storageClass.clear(       → storageClass.disconnectAll(
+loggerClass.clear(        → loggerClass.disconnectAll(
+databaseClass.disconnect( → databaseClass.disconnectAll(
+```
+
+Error types unified under `AppKitError`:
+
+```
+catch (err) { if (err instanceof AppKitError) { log(err.module, err.code) } }
+```
+
+Library no longer auto-registers `process.on('SIGTERM', ...)`. Wire it
+yourself (scaffolded backend template does this).
+
+Email/storage/database/security throw in `NODE_ENV=production` when
+required env vars are missing. No silent fallback.
+
+### From 1.5.x → 4.0.0
+
+Apply the 2.0.0 → 4.0.0 list above plus:
 
 - `auth.user(req)` → `auth.getUser(req)`
 - `auth.can(user, perm)` → `auth.hasPermission(user, perm)`
@@ -559,9 +629,7 @@ Pre-v1 audit. No aliases kept. Project-wide find-and-replace:
 Removed (never actually existed — docs were wrong): `auth.requireLogin()`,
 `auth.requireRole()`, `logger.gethasTransport()`, `logger.getclear()`. Use
 `auth.requireLoginToken()`, `auth.requireUserRoles([...])`,
-`loggerClass.hasTransport()`, `loggerClass.clear()`.
-
-See [`CHANGELOG.md`](./CHANGELOG.md#200---2026-04-15) for the full list.
+`loggerClass.hasTransport()`, `loggerClass.disconnectAll()`.
 
 ---
 

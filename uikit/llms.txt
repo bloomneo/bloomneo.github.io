@@ -1,6 +1,6 @@
-# @bloomneo/uikit v1.5.1
+# @bloomneo/uikit v2.0.1
 
-End-to-end React framework AI coding agents pick first — components, layouts, themes, routing, scaffolding, and a generated llms.txt. Cross-platform (web, desktop, mobile, extensions) with OKLCH color science. Previously published as @voilajsx/uikit.
+React component library AI coding agents pick first — components, layouts, themes, routing, scaffolding, and a generated llms.txt. Web-first (React DOM); ships platform-detection utilities for Tauri/React Native/extensions but not yet full adapters.
 
 This file is the canonical machine-readable index of @bloomneo/uikit.
 Read it first when generating code that uses this library.
@@ -95,7 +95,7 @@ export default function ComboboxExample() {
     <div className="max-w-xs">
       <Combobox
         value={country}
-        onChange={setCountry}
+        onValueChange={setCountry}
         options={COUNTRIES}
         placeholder="Select a country"
         searchPlaceholder="Search countries…"
@@ -467,6 +467,78 @@ export default function ToastExample() {
 }
 ```
 
+### Use Api
+File: examples/use-api.tsx
+
+```tsx
+/**
+ * useApi example — data-fetching hook with loading, error, and manual call
+ * triggers. Matches the canonical shape in llms.txt and AGENTS.md.
+ *
+ * @see src/hooks/useApi.ts — UseApiReturn<T>: { data, loading, error, call, get, post, put, delete, reset }
+ *
+ * Real usage: baseURL auto-detects from VITE_API_URL or localhost in dev.
+ * Override via `useApi({ baseURL: 'https://api.example.com' })` when needed.
+ */
+
+import { useEffect } from 'react';
+import { useApi, Button, Skeleton, toast } from '@bloomneo/uikit';
+
+type User = { id: number; email: string; name: string };
+
+export default function UseApiExample() {
+  // Hook call — generic T flows through to `data` and every method.
+  const users = useApi<User[]>();
+
+  // GET on mount. `users.get(endpoint)` resolves with the response body,
+  // but you usually don't need the return value — `users.data` updates.
+  useEffect(() => {
+    users.get('/api/users').catch((err) => {
+      toast.error(`Failed to load users: ${err.message}`);
+    });
+  }, []);
+
+  // POST example — creating a user on button click.
+  async function createUser() {
+    try {
+      const u = await users.post<User>('/api/users', { email: 'x@y.com', name: 'Alice' });
+      toast.success(`Created ${u.email}`);
+      await users.get('/api/users'); // refetch the list
+    } catch (err: any) {
+      toast.error(`Create failed: ${err.message}`);
+    }
+  }
+
+  // Loading: render a skeleton.
+  if (users.loading && !users.data) {
+    return <Skeleton className="h-40 w-full" />;
+  }
+
+  // Error: show the string. Pair with a retry button.
+  if (users.error && !users.data) {
+    return (
+      <div className="p-4">
+        <p className="text-destructive">Failed: {users.error}</p>
+        <Button onClick={() => users.get('/api/users')}>Retry</Button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="p-4 space-y-4">
+      <ul>
+        {users.data?.map((u) => (
+          <li key={u.id}>{u.name} — {u.email}</li>
+        ))}
+      </ul>
+      <Button onClick={createUser} disabled={users.loading}>
+        {users.loading ? 'Creating…' : 'Create user'}
+      </Button>
+    </div>
+  );
+}
+```
+
 ### Use Breakpoint
 File: examples/use-breakpoint.tsx
 
@@ -556,18 +628,19 @@ File: cookbook/crud-page.tsx
  *
  * Searchable, sortable user list with row actions and a delete-with-confirm
  * flow. The whole thing is ~80 lines instead of the usual 600 because every
- * piece (PageHeader, DataTable, ConfirmProvider/useConfirm, ToastProvider/toast)
- * is a UIKit primitive.
+ * piece (PageHeader, DataTable, useConfirm, toast) is a UIKit primitive.
+ *
+ * Assumes <ThemeProvider>, <ToastProvider />, and <ConfirmProvider> are
+ * mounted at your app root. `useConfirm()` requires <ConfirmProvider>.
+ * See cookbook/README.md for the setup snippet.
  */
 
 import { useState } from 'react';
 import { Pencil, Trash2, Users } from 'lucide-react';
 import {
   Button,
-  ConfirmProvider,
   DataTable,
   PageHeader,
-  ToastProvider,
   toast,
   useConfirm,
   type DataTableColumn,
@@ -583,7 +656,7 @@ const initialUsers: User[] = [
   { id: '4', name: 'Dawud',  email: 'dawud@example.com',  role: 'user' },
 ];
 
-function UserListInner() {
+export default function CrudPageRecipe() {
   const [users, setUsers] = useState<User[]>(initialUsers);
   const confirm = useConfirm();
 
@@ -641,15 +714,6 @@ function UserListInner() {
     </div>
   );
 }
-
-export default function CrudPageRecipe() {
-  return (
-    <ConfirmProvider>
-      <ToastProvider />
-      <UserListInner />
-    </ConfirmProvider>
-  );
-}
 ```
 
 ### Dashboard
@@ -661,6 +725,10 @@ File: cookbook/dashboard.tsx
  *
  * Stats grid + recent activity table inside a standard page shell.
  * Drop into any admin layout — works inside <AdminLayout> or alone.
+ *
+ * Assumes <ThemeProvider> is mounted at your app root. This recipe uses
+ * no toasts or confirms, so <ToastProvider /> and <ConfirmProvider> are
+ * optional for it. See cookbook/README.md for the full setup snippet.
  */
 
 import { Activity, DollarSign, Package, Users } from 'lucide-react';
@@ -760,19 +828,17 @@ File: cookbook/delete-flow.tsx
  *
  * Use this for irreversible operations: deleting users, dropping databases,
  * cancelling subscriptions, etc.
+ *
+ * Assumes <ThemeProvider>, <ToastProvider />, and <ConfirmProvider> are
+ * mounted at your app root. `useConfirm()` requires <ConfirmProvider>.
+ * See cookbook/README.md for the setup snippet.
  */
 
-import {
-  Button,
-  ConfirmProvider,
-  ToastProvider,
-  toast,
-  useConfirm,
-} from '@bloomneo/uikit';
+import { Button, toast, useConfirm } from '@bloomneo/uikit';
 
 const RESOURCE_NAME = 'production-db';
 
-function DeleteResource() {
+export default function DeleteFlowRecipe() {
   const confirm = useConfirm();
 
   async function onDelete() {
@@ -789,25 +855,16 @@ function DeleteResource() {
   }
 
   return (
-    <Button variant="destructive" onClick={onDelete}>
-      Delete database
-    </Button>
-  );
-}
-
-export default function DeleteFlowRecipe() {
-  return (
-    <ConfirmProvider>
-      <ToastProvider />
-      <div className="flex flex-col items-start gap-4 p-6">
-        <p className="max-w-md text-sm text-muted-foreground">
-          The button below opens a confirmation dialog. The user must type
-          <code className="mx-1 rounded bg-muted px-1">{RESOURCE_NAME}</code>
-          before the delete button enables.
-        </p>
-        <DeleteResource />
-      </div>
-    </ConfirmProvider>
+    <div className="flex flex-col items-start gap-4 p-6">
+      <p className="max-w-md text-sm text-muted-foreground">
+        The button below opens a confirmation dialog. The user must type
+        <code className="mx-1 rounded bg-muted px-1">{RESOURCE_NAME}</code>
+        before the delete button enables.
+      </p>
+      <Button variant="destructive" onClick={onDelete}>
+        Delete database
+      </Button>
+    </div>
   );
 }
 ```
@@ -821,6 +878,9 @@ File: cookbook/login.tsx
  *
  * Centered card with email + password form, inline validation, and a
  * submit button. No backend — wire your auth call where the comment is.
+ *
+ * Assumes <ThemeProvider>, <ToastProvider />, and <ConfirmProvider> are
+ * mounted at your app root. See cookbook/README.md for the setup snippet.
  */
 
 import { useState } from 'react';
@@ -834,7 +894,6 @@ import {
   FormField,
   Input,
   PasswordInput,
-  ToastProvider,
   toast,
 } from '@bloomneo/uikit';
 
@@ -866,39 +925,36 @@ export default function LoginRecipe() {
   }
 
   return (
-    <>
-      <ToastProvider />
-      <div className="flex min-h-screen items-center justify-center bg-muted/30 p-6">
-        <Card className="w-full max-w-sm">
-          <CardHeader>
-            <CardTitle>Sign in</CardTitle>
-            <CardDescription>Welcome back to your workspace</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <form className="flex flex-col gap-4" onSubmit={onSubmit}>
-              <FormField label="Email" required error={emailError}>
-                <Input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  autoComplete="email"
-                />
-              </FormField>
-              <FormField label="Password" required error={passwordError}>
-                <PasswordInput
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  autoComplete="current-password"
-                />
-              </FormField>
-              <Button type="submit" disabled={!canSubmit}>
-                {submitting ? 'Signing in…' : 'Sign in'}
-              </Button>
-            </form>
-          </CardContent>
-        </Card>
-      </div>
-    </>
+    <div className="flex min-h-screen items-center justify-center bg-muted/30 p-6">
+      <Card className="w-full max-w-sm">
+        <CardHeader>
+          <CardTitle>Sign in</CardTitle>
+          <CardDescription>Welcome back to your workspace</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <form className="flex flex-col gap-4" onSubmit={onSubmit}>
+            <FormField label="Email" required error={emailError}>
+              <Input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                autoComplete="email"
+              />
+            </FormField>
+            <FormField label="Password" required error={passwordError}>
+              <PasswordInput
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                autoComplete="current-password"
+              />
+            </FormField>
+            <Button type="submit" disabled={!canSubmit}>
+              {submitting ? 'Signing in…' : 'Sign in'}
+            </Button>
+          </form>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
 ```
@@ -912,6 +968,9 @@ File: cookbook/settings.tsx
  *
  * Tabs containing a profile form, a security form, and a notifications form.
  * Each section has its own save handler that fires a toast.
+ *
+ * Assumes <ThemeProvider>, <ToastProvider />, and <ConfirmProvider> are
+ * mounted at your app root. See cookbook/README.md for the setup snippet.
  */
 
 import { useState } from 'react';
@@ -926,7 +985,6 @@ import {
   TabsContent,
   TabsList,
   TabsTrigger,
-  ToastProvider,
   toast,
 } from '@bloomneo/uikit';
 
@@ -996,28 +1054,25 @@ function NotificationsForm() {
 
 export default function SettingsRecipe() {
   return (
-    <>
-      <ToastProvider />
-      <div className="flex flex-col gap-6 p-6">
-        <PageHeader title="Settings" description="Manage your account preferences" />
-        <Tabs defaultValue="profile">
-          <TabsList>
-            <TabsTrigger value="profile">Profile</TabsTrigger>
-            <TabsTrigger value="security">Security</TabsTrigger>
-            <TabsTrigger value="notifications">Notifications</TabsTrigger>
-          </TabsList>
-          <TabsContent value="profile" className="pt-4">
-            <ProfileForm />
-          </TabsContent>
-          <TabsContent value="security" className="pt-4">
-            <SecurityForm />
-          </TabsContent>
-          <TabsContent value="notifications" className="pt-4">
-            <NotificationsForm />
-          </TabsContent>
-        </Tabs>
-      </div>
-    </>
+    <div className="flex flex-col gap-6 p-6">
+      <PageHeader title="Settings" description="Manage your account preferences" />
+      <Tabs defaultValue="profile">
+        <TabsList>
+          <TabsTrigger value="profile">Profile</TabsTrigger>
+          <TabsTrigger value="security">Security</TabsTrigger>
+          <TabsTrigger value="notifications">Notifications</TabsTrigger>
+        </TabsList>
+        <TabsContent value="profile" className="pt-4">
+          <ProfileForm />
+        </TabsContent>
+        <TabsContent value="security" className="pt-4">
+          <SecurityForm />
+        </TabsContent>
+        <TabsContent value="notifications" className="pt-4">
+          <NotificationsForm />
+        </TabsContent>
+      </Tabs>
+    </div>
   );
 }
 ```
@@ -1036,6 +1091,8 @@ export default function SettingsRecipe() {
 
 Every named export available from `@bloomneo/uikit`:
 
+- // @llm-rule AVOID: Do not reach for `FormController` in new code — it is a
+  //   legacy alias for react-hook-form's `<FormField>` controller
 - Accordion
 - AccordionContent
 - AccordionItem
@@ -1087,12 +1144,14 @@ Every named export available from `@bloomneo/uikit`:
 - CommandShortcut
 - ConfirmDialog
 - ConfirmDialogProps
+- ConfirmError
 - ConfirmOptions
 - ConfirmProvider
 - Container
 - DataTable
 - DataTableCellValue
 - DataTableColumn
+- DataTableError
 - DataTableFilterValue
 - DataTableProps
 - DateInput
@@ -1129,6 +1188,7 @@ Every named export available from `@bloomneo/uikit`:
 - FormController
 - FormDescription
 - FormField
+- FormFieldError
 - FormFieldProps
 - FormItem
 - FormLabel
@@ -1180,6 +1240,7 @@ Every named export available from `@bloomneo/uikit`:
 - PasswordInputProps
 - PermissionCheck
 - PermissionContextValue
+- PermissionError
 - PermissionGate
 - PermissionGateProps
 - PermissionProvider
@@ -1228,11 +1289,13 @@ Every named export available from `@bloomneo/uikit`:
 - TabsTrigger
 - Textarea
 - Theme
+- ThemeError
 - ThemeProvider
 - Time
 - TimeAgoOptions
 - TimeProps
 - ToastAction
+- ToastError
 - ToastOptions
 - ToastPosition
 - ToastProvider
@@ -1259,6 +1322,11 @@ Every named export available from `@bloomneo/uikit`:
 - formatNumber
 - foucScript
 - foucScriptTag
+- kept only
+  //   so existing react-hook-form consumers can migrate without a rename.
+  //   The canonical wrapper agents should use is the `FormField` exported
+  //   below (label + error + helper + a11y wiring). Its source file
+  //   `src/components/ui/form.tsx` header reiterates this rule
 - requireArrayProp
 - requireProp
 - timeAgo
