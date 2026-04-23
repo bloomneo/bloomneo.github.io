@@ -11,15 +11,15 @@ Three packages work together — or independently:
 
 - **@bloomneo/appkit** — Node.js backend toolkit (12 modules: auth, database, cache, queue, storage, email, events, logging, config, security, util)
 - **@bloomneo/uikit** — React component library (45+ components, 5 OKLCH themes, cross-platform)
-- **@bloomneo/bloom** — CLI scaffolding (web, desktop via Electron, mobile via Capacitor)
+- **@bloomneo/bloom** — CLI scaffolding (web, admin console, desktop via Electron, mobile via Capacitor)
 
 ## Package references
 
 | Package | Version | llms.txt | AGENTS.md |
 |---|---|---|---|
-| `@bloomneo/appkit` | 2.0.0 | [appkit/llms.txt](appkit/llms.txt) | [appkit/AGENTS.md](appkit/AGENTS.md) |
-| `@bloomneo/uikit`  | 1.5.1 | [uikit/llms.txt](uikit/llms.txt)   | [uikit/AGENTS.md](uikit/AGENTS.md)   |
-| `@bloomneo/bloom`  | 1.5.3 | [bloom/llms.txt](bloom/llms.txt)   | —                                     |
+| `@bloomneo/appkit` | 4.0.0 | [appkit/llms.txt](appkit/llms.txt) | [appkit/AGENTS.md](appkit/AGENTS.md) |
+| `@bloomneo/uikit`  | 2.1.5 | [uikit/llms.txt](uikit/llms.txt)   | [uikit/AGENTS.md](uikit/AGENTS.md)   |
+| `@bloomneo/bloom`  | 4.2.4 | [bloom/llms.txt](bloom/llms.txt)   | —                                     |
 
 ## The one pattern that matters (AppKit)
 
@@ -49,6 +49,7 @@ npm install -g @bloomneo/bloom
 
 bloom create my-app                  # web app
 bloom create my-app userapp          # web app + full auth system
+bloom create my-app adminapp         # admin console (audit, settings, dashboard, 3-tier roles)
 bloom create my-app desktop-basicapp # Electron desktop
 bloom create my-app mobile-basicapp  # iOS + Android via Capacitor
 ```

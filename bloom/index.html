@@ -49,7 +49,7 @@
         "name": "What is Bloom?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Bloom is a TypeScript full-stack framework built for agentic coding. It ships three packages that compose: AppKit (Node backend toolkit with 12 modules), UIKit (React component library with 45+ components), and a scaffolding CLI that wires them together via Feature-Based Component Architecture. Five templates cover web, desktop (Electron), and mobile (Capacitor). Every package ships llms.txt + AGENTS.md machine-readable specs so AI coding agents generate correct code on the first try."
+          "text": "Bloom is a TypeScript full-stack framework built for agentic coding. It ships three packages that compose: AppKit (Node backend toolkit with 12 modules), UIKit (React component library with 45+ components), and a scaffolding CLI that wires them together via Feature-Based Component Architecture. Six templates cover web, admin console, desktop (Electron), and mobile (Capacitor). Every package ships llms.txt + AGENTS.md machine-readable specs so AI coding agents generate correct code on the first try."
         }
       },
       {
@@ -97,7 +97,7 @@
         "name": "Is Bloom production-ready?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. Bloom v4.0.0 is stable. Its scaffolded apps use production-ready appkit 4.x + uikit 2.x components. A CI drift-check enforces that docs, template pins and the installed bloom version stay in sync with package.json — so agents never read stale guidance."
+          "text": "Yes. Bloom v4.2.4 is stable. Its scaffolded apps use production-ready appkit 4.x + uikit 2.x components. A CI drift-check enforces that docs, template pins and the installed bloom version stay in sync with package.json — so agents never read stale guidance."
         }
       },
       {
@@ -157,7 +157,7 @@
   <div class="page-header">
     <div class="hero-package">
       <span class="pkg-name">Bloom</span>
-      <span class="pkg-version">v4.0.0</span>
+      <span class="pkg-version">v4.2.4</span>
     </div>
     <h1>The full-stack framework<br/>built for agentic coding</h1>
     <p>Bloom is a TypeScript full-stack framework designed for the era where developers and AI coding agents ship software together. <strong>UIKit</strong> (React components) + <strong>AppKit</strong> (Node backend) + a tiny scaffolding CLI — cover web, desktop (Electron), mobile (Capacitor), and browser extensions from one codebase. Every package ships <code>llms.txt</code> + <code>AGENTS.md</code> machine-readable specs so AI agents generate correct code, and developers review work they actually understand.</p>
@@ -179,6 +179,9 @@ bloom create my-app
 
 # Auth + user management + admin panel
 bloom create my-app userapp
+
+# Admin console (userapp + audit log, settings dashboard, 3-tier roles)
+bloom create my-app adminapp
 
 # Desktop app (Electron, SQLite, cross-platform)
 bloom create my-app desktop-basicapp
@@ -345,7 +348,7 @@ src/web/features/
     <p style="margin-bottom:1.5rem;">Bloom is the scaffolder teams reach for when they need a working stack — not an evening evaluating starters.</p>
     <ul class="use-case-grid">
       <li><strong>B2B SaaS products</strong><span>Auth + role-based admin + Prisma in one command. Scaffold with <code>userapp</code> and ship MVP in a weekend.</span></li>
-      <li><strong>Internal admin tools</strong><span>DataTable, PageHeader, role-gated UI, audit logging — inherited from UIKit and AppKit out of the box.</span></li>
+      <li><strong>Internal admin consoles</strong><span>Audit log, settings editor, dashboard, 3-tier roles — all wired in <code>adminapp</code> out of the box. Add a feature folder and ship.</span></li>
       <li><strong>Multi-tenant SaaS backends</strong><span>AppKit's row-level tenant filtering + per-org databases are wired into the <code>userapp</code> template.</span></li>
       <li><strong>Cross-platform desktop apps</strong><span><code>desktop-basicapp</code> / <code>desktop-userapp</code> ship Electron + embedded Express + SQLite. Packages to Windows, macOS, Linux.</span></li>
       <li><strong>Native mobile (iOS + Android)</strong><span><code>mobile-basicapp</code> via Capacitor 7. Same React codebase, same UIKit components, native builds on both stores.</span></li>
@@ -412,6 +415,14 @@ npm run dev        # starts frontend + backend concurrently</code></pre>
           <span class="template-desc">Registration, email verification, login, password reset. Role-based access, admin panel, Prisma + PostgreSQL</span>
         </div>
         <code class="template-cmd">bloom create my-app userapp</code>
+      </div>
+      <div class="template-row">
+        <div class="template-meta">
+          <span class="badge badge-yellow">adminapp</span>
+          <span class="template-name">Admin console</span>
+          <span class="template-desc">userapp + audit log, settings editor, dashboard widgets, 3-tier roles, marketing + legal pages, mobile bottom-nav</span>
+        </div>
+        <code class="template-cmd">bloom create my-app adminapp</code>
       </div>
       <div class="template-row">
         <div class="template-meta">

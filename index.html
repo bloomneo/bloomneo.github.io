@@ -98,7 +98,7 @@
         "name": "Is Bloom production-ready?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. AppKit 4.0, UIKit 2.0, and Bloom 4.0 are stable and semver-tracked. A CI drift-check across the monorepo enforces that docs, types and template pins stay in sync with package.json — so agents never read stale guidance."
+          "text": "Yes. AppKit 4.0, UIKit 2.1, and Bloom 4.2 are stable and semver-tracked. A CI drift-check across the monorepo enforces that docs, types and template pins stay in sync with package.json — so agents never read stale guidance."
         }
       },
       {
@@ -208,7 +208,8 @@
     <pre class="hljs-block"><code class="language-bash">npm install -g @bloomneo/bloom
 
 bloom create my-app                    # web app
-bloom create my-app userapp            # auth + user management + admin
+bloom create my-app userapp            # auth + user management
+bloom create my-app adminapp           # admin console (audit, settings, dashboard)
 bloom create my-app desktop-basicapp   # Electron desktop
 bloom create my-app mobile-basicapp    # iOS + Android via Capacitor</code></pre>
   </div>
@@ -247,6 +248,14 @@ src/web/features/invoice/pages/
           <span class="template-desc">Full auth, roles, admin panel, Prisma + PostgreSQL</span>
         </div>
         <code class="template-cmd">bloom create my-app userapp</code>
+      </div>
+      <div class="template-row">
+        <div class="template-meta">
+          <span class="badge badge-yellow">adminapp</span>
+          <span class="template-name">Admin console</span>
+          <span class="template-desc">userapp + audit log, settings editor, dashboard, 3-tier roles, mobile bottom-nav</span>
+        </div>
+        <code class="template-cmd">bloom create my-app adminapp</code>
       </div>
       <div class="template-row">
         <div class="template-meta">
