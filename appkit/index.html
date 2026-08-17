@@ -81,7 +81,7 @@
         "name": "Does it support TypeScript?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "AppKit is written in TypeScript and ships full type definitions for all twelve modules. Every method signature, payload shape, and env var is typed. JavaScript consumers also work."
+          "text": "AppKit is written in TypeScript and ships full type definitions for all fourteen modules. Every method signature, payload shape, and env var is typed. JavaScript consumers also work."
         }
       },
       {
@@ -113,7 +113,7 @@
         "name": "Is AppKit production-ready?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. AppKit v4.0.0 is stable, semver-tracked, and designed for production. All twelve modules ship with structured error handling, graceful degradation, and sensible defaults. Required env vars are validated on boot so missing secrets crash early."
+          "text": "Yes. AppKit v5.1.1 is stable, semver-tracked, and designed for production. All fourteen modules ship with structured error handling, graceful degradation, and sensible defaults. Required env vars are validated on boot so missing secrets crash early."
         }
       },
       {
@@ -165,10 +165,10 @@
   <div class="page-header">
     <div class="hero-package">
       <span class="pkg-name">@bloomneo/appkit</span>
-      <span class="pkg-version">v4.0.0</span>
+      <span class="pkg-version">v5.1.1</span>
     </div>
     <h1>Built for the age of<br/>agentic coding</h1>
-    <p>AppKit is a Node.js backend framework designed for agentic code workflows. Twelve typed modules, one canonical pattern, and machine-readable specs (<code>llms.txt</code> + <code>AGENTS.md</code>) in every package — so AI coding agents generate correct code, and developers review work they actually understand.</p>
+    <p>AppKit is a Node.js backend framework designed for agentic code workflows. Fourteen typed modules, one canonical pattern, and machine-readable specs (<code>llms.txt</code> + <code>AGENTS.md</code>) in every package — so AI coding agents generate correct code, and developers review work they actually understand.</p>
     <div class="btn-row" style="justify-content:flex-start; margin-top:1.5rem;">
       <a href="https://www.npmjs.com/package/@bloomneo/appkit" target="_blank" class="btn btn-primary">npm ↗</a>
       <a href="https://github.com/bloomneo/appkit" target="_blank" class="btn btn-outline">GitHub ↗</a>
@@ -206,9 +206,9 @@
 
   <!-- CHEAT SHEET -->
   <div class="section">
-    <div class="section-label">Cheat sheet — all 12 modules in one block</div>
+    <div class="section-label">Cheat sheet — all 14 modules in one block</div>
     <h2>Copy this into any Node.js file</h2>
-    <p style="margin-bottom:1rem;">The minimum to have every module available in a single file. All twelve follow the same <code>xxxClass.get()</code> pattern — no constructors, no factories.</p>
+    <p style="margin-bottom:1rem;">The minimum to have every module available in a single file. All fourteen follow the same <code>xxxClass.get()</code> pattern — no constructors, no factories.</p>
     <pre class="hljs-block"><code class="language-typescript">import {
   authClass, databaseClass, securityClass, errorClass,
   cacheClass, storageClass, queueClass, emailClass,
@@ -226,7 +226,9 @@ const email    = emailClass.get();
 const events   = eventClass.get();
 const logger   = loggerClass.get('api');         // optional component label
 const config   = configClass.get();
-const util     = utilClass.get();</code></pre>
+const util     = utilClass.get();
+const mcp      = mcpClass.get();                 // your app as an MCP server
+const verifier = verifyClass.get();              // prove tenant isolation</code></pre>
   </div>
 
   <!-- WHAT YOU CAN BUILD -->
@@ -270,7 +272,7 @@ const cache    = cacheClass.get('users');     // optional namespace for isolatio
   <!-- WHAT NOT TO DO -->
   <div class="section">
     <div class="section-label">What NOT to do (for you and your agent)</div>
-    <h2>The five mistakes AppKit won't let you make twice</h2>
+    <h2>The seven mistakes AppKit won't let you make twice</h2>
     <p style="margin-bottom:1.25rem;">These are the only ways to misuse AppKit. Memorise them — or point your AI agent at <code>AGENTS.md</code> where they're spelled out line by line.</p>
     <ul class="dont-list">
       <li><span class="x" aria-hidden="true">✕</span><span><strong>Never call <code>new AuthClass()</code>, <code>new DatabaseClass()</code>, etc.</strong> Always <code>authClass.get()</code>. There are no constructors. Every module is a singleton.</span></li>
@@ -278,12 +280,14 @@ const cache    = cacheClass.get('users');     // optional namespace for isolatio
       <li><span class="x" aria-hidden="true">✕</span><span><strong>Never read <code>process.env.X</code> directly in business code.</strong> Go through <code>configClass.get('section.key')</code> so missing secrets fail at boot, not at 3am.</span></li>
       <li><span class="x" aria-hidden="true">✕</span><span><strong>Never <code>throw new Error(...)</code> from an Express route.</strong> Use <code>error.badRequest()</code>, <code>error.notFound()</code>, etc. Otherwise you leak stack traces and return HTTP 500 for things that aren't 500.</span></li>
       <li><span class="x" aria-hidden="true">✕</span><span><strong>Never chain <code>requireUserRoles()</code> after <code>requireApiToken()</code>.</strong> API tokens don't have user roles. Chain <code>requireUserRoles()</code> after <code>requireLoginToken()</code> only.</span></li>
-    </ul>
+      <li><span class="x" aria-hidden="true">✕</span><span><strong>Never call <code>databaseClass.get()</code> for tenant data in a multi-tenant app.</strong> It cannot prove a tenant was applied, so from 5.0 it throws. Use <code>database.tenant(req, db =&gt; …)</code>, or <code>database.bypass('reason', db =&gt; …)</code> when crossing tenants deliberately. Single-tenant apps keep using <code>get()</code> exactly as before.</span></li>
+      <li><span class="x" aria-hidden="true">✕</span><span><strong>Never mount the MCP router without the root discovery router.</strong> Connector clients probe <code>/.well-known/oauth-authorization-server/mcp</code> at the root. If your SPA answers that path first, the client reports “couldn't register” even though <code>/mcp/register</code> works. Mount <code>wellKnown</code> before the catch-all.</span></li>
+</ul>
   </div>
 
   <!-- MODULES OVERVIEW -->
   <div class="section">
-    <div class="section-label">12 modules at a glance</div>
+    <div class="section-label">14 modules at a glance</div>
     <ul class="module-grid">
       <li><code>authClass</code><span>JWT login, API tokens, roles, middleware, password hashing</span></li>
       <li><code>databaseClass</code><span>Prisma client, multi-tenant filtering, per-org databases</span></li>
@@ -297,6 +301,8 @@ const cache    = cacheClass.get('users');     // optional namespace for isolatio
       <li><code>loggerClass</code><span>Structured JSON logs, multi-transport (console/file/HTTP)</span></li>
       <li><code>configClass</code><span>Type-safe env access, boot-time validation</span></li>
       <li><code>utilClass</code><span>12 zero-dep helpers: slugify, uuid, chunk, clamp, …</span></li>
+      <li><code>mcpClass</code><span>Your app as an MCP server — OAuth 2.1, FBCA tool discovery</span></li>
+      <li><code>verifyClass</code><span>Generates the cross-tenant attack matrix, fails CI on a leak</span></li>
     </ul>
   </div>
 
@@ -807,6 +813,69 @@ util.formatBytes(1_572_864)          // → '1.5 MB'
 util.truncate(longText, 80)          // truncate with ellipsis</code></pre>
   </div>
 
+  <!-- MCP -->
+  <div class="section" id="mod-mcp">
+    <div class="section-label">Module 13 — MCP</div>
+    <h2>Your app as an MCP server</h2>
+    <div class="use-when">
+      <div class="use-when-label">Use it when you need</div>
+      <ul>
+        <li>A claude.ai custom connector pointed at your own backend</li>
+        <li>Claude Desktop to call your app's features as tools</li>
+        <li>An agent-callable API without hand-writing an OAuth server</li>
+        <li>Per-tool role gating, so one connector serves several roles</li>
+        <li>Tools that live beside the routes they complement (FBCA)</li>
+      </ul>
+    </div>
+    <p>Three lines turn a Bloom backend into a connector. The OAuth 2.1 authorization server is the part that matters — a connector client <strong>cannot</strong> attach to a bare bearer-token endpoint, so without it there is no connector.</p>
+    <pre class="hljs-block"><code class="language-typescript">const mcp = mcpClass.get();
+await mcp.discover(join(__dirname, 'features'));   // features/&lt;n&gt;/&lt;n&gt;.mcp.ts
+
+const { wellKnown, mcp: mcpRouter } = await mcp.routers({
+  serviceName: 'My App',
+  authenticate: async (email, password) =&gt; {
+    const user = await verify(email, password);
+    return user ? { sub: user.id, label: user.email } : null;   // null rejects
+  },
+});
+
+app.use(wellKnown);          // ROOT — MUST be before any SPA catch-all
+app.use('/mcp', mcpRouter);</code></pre>
+    <p><strong>Two mounts, not one.</strong> RFC 8414/9728 clients probe the discovery documents at the <em>root</em> with the mount path inserted — <code>/.well-known/oauth-authorization-server/mcp</code> — not under <code>/mcp</code>. Mount only under the path and those requests fall through to your SPA; the client receives HTML and reports “couldn't register”, while <code>/mcp/register</code> works perfectly when called directly.</p>
+    <p>Everything is stateless: client id, auth code, access and refresh token are all signed JWTs, and a fresh server is built per request. An app running N workers needs no shared store and no sticky sessions.</p>
+    <p><code>express</code> and <code>@modelcontextprotocol/sdk</code> are <strong>optional peers</strong> — the other thirteen modules stay importable without them.</p>
+  </div>
+
+  <!-- VERIFY -->
+  <div class="section" id="mod-verify">
+    <div class="section-label">Module 14 — Verify</div>
+    <h2>Prove the app doesn't leak across tenants</h2>
+    <div class="use-when">
+      <div class="use-when-label">Use it when you need</div>
+      <ul>
+        <li>A CI gate that fails on a cross-tenant leak</li>
+        <li>Confidence in a multi-tenant app an agent largely wrote</li>
+        <li>Coverage that grows with the app instead of going stale</li>
+        <li>Evidence for a procurement or audit question</li>
+      </ul>
+    </div>
+    <p>Nobody reviews 414 route handlers. An audit of one 176k-line production app found <strong>4 of 44 route files</strong> missing the tenant filter — in a codebase that had already been reviewed by hand.</p>
+    <pre class="hljs-block"><code class="language-typescript">const report = await verifyClass.get().run({
+  baseUrl: 'http://localhost:3000',
+  identities: [
+    { label: 'firm-a', email: 'owner@a.test', password: 'pw' },
+    { label: 'firm-b', email: 'owner@b.test', password: 'pw' },
+    { label: 'platform', email: 'admin@x.test', password: 'pw', crossTenant: true },
+  ],
+});
+
+console.log(verifyClass.get().format(report));
+if (!report.ok) process.exit(1);</code></pre>
+    <p><strong>Ids are discovered, not declared.</strong> It logs in as each identity, asks the FBCA api-router which features exist, harvests the ids each identity can legitimately see, then replays every id against every other identity — GET, PATCH, DELETE — and flags anything that isn't a 404. No per-app manifest of routes, fixtures or response shapes. Add a feature and it is covered on the next run.</p>
+    <p><strong>A skip is never a pass.</strong> <code>report.ok</code> is true only when checks actually ran <em>and</em> nothing was skipped. A gate going green on an app the verifier never reached is worse than no gate, so an incomplete run reports <code>INCONCLUSIVE</code> and fails.</p>
+    <p>It issues writes and deletes — point it at a seeded test database, never production.</p>
+  </div>
+
     </div><!-- /.modules-main -->
 
     <aside class="module-affix" id="moduleAffix" aria-label="Module navigation">
@@ -824,6 +893,8 @@ util.truncate(longText, 80)          // truncate with ellipsis</code></pre>
         <li><a href="#mod-logger"><span class="num">10</span>loggerClass</a></li>
         <li><a href="#mod-config"><span class="num">11</span>configClass</a></li>
         <li><a href="#mod-util"><span class="num">12</span>utilClass</a></li>
+        <li><a href="#mod-mcp"><span class="num">13</span>mcpClass</a></li>
+        <li><a href="#mod-verify"><span class="num">14</span>verifyClass</a></li>
       </ol>
     </aside>
 
@@ -949,7 +1020,7 @@ app.use(error.handleErrors());</code></pre>
       <details class="faq-item">
         <summary>Does it support TypeScript?</summary>
         <div class="faq-item-body">
-          AppKit is written in TypeScript and ships full type definitions for all twelve modules. Every method signature, payload shape, and env var is typed. JavaScript consumers also work — types simply aren't enforced.
+          AppKit is written in TypeScript and ships full type definitions for all fourteen modules. Every method signature, payload shape, and env var is typed. JavaScript consumers also work — types simply aren't enforced.
         </div>
       </details>
       <details class="faq-item">
@@ -973,7 +1044,7 @@ app.use(error.handleErrors());</code></pre>
       <details class="faq-item">
         <summary>Is AppKit production-ready?</summary>
         <div class="faq-item-body">
-          Yes. AppKit v4.0.0 is stable, semver-tracked, and designed for production. All twelve modules ship with structured error handling, graceful degradation, and sensible defaults. Required env vars (<code>BLOOM_AUTH_SECRET</code>, <code>DATABASE_URL</code>, <code>BLOOM_SECURITY_CSRF_SECRET</code>) are validated on boot so missing secrets crash early, not at 3am.
+          Yes. AppKit v5.1.1 is stable, semver-tracked, and designed for production. All fourteen modules ship with structured error handling, graceful degradation, and sensible defaults. Required env vars (<code>BLOOM_AUTH_SECRET</code>, <code>DATABASE_URL</code>, <code>BLOOM_SECURITY_CSRF_SECRET</code>) are validated on boot so missing secrets crash early, not at 3am.
         </div>
       </details>
       <details class="faq-item">

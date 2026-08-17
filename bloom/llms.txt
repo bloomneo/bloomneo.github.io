@@ -1,4 +1,4 @@
-# @bloomneo/bloom v4.0.0
+# @bloomneo/bloom v4.2.4
 
 Scaffolding CLI for full-stack apps combining `@bloomneo/appkit` (Express
 backend) and `@bloomneo/uikit` (React frontend) with Feature-Based
@@ -52,6 +52,7 @@ Prints the installed bloom version. Exits 0.
 |---|---|---|---|---|
 | `basicapp` | Web | Express (appkit) | — | `npm run dev` |
 | `userapp` | Web | Express + Prisma + auth | Prisma (Postgres/SQLite) | `npx prisma db push && npm run dev` |
+| `adminapp` | Web | Express + Prisma + auth + admin console | Prisma (Postgres) | `npx prisma db push && npm run dev` |
 | `desktop-basicapp` | Desktop (Electron) | Embedded Express | — | `npm run dev` |
 | `desktop-userapp` | Desktop (Electron) | Embedded Express | better-sqlite3 | `npm run dev` |
 | `mobile-basicapp` | Mobile (Capacitor) | **None (UI-only)** | — | `npx cap sync ios\|android` + native build |
@@ -60,8 +61,9 @@ Prints the installed bloom version. Exits 0.
 
 - **Plain fullstack web app** → `basicapp`
 - **Fullstack + auth + users** → `userapp`
+- **Admin console on top of userapp** (audit log, settings editor, dashboard, mobile bottom-nav, public marketing + legal pages) → `adminapp`
 - **Cross-platform desktop** → `desktop-basicapp` or `desktop-userapp`
-- **Native mobile (no backend)** → `mobile-basicapp` (needs a `basicapp` / `userapp` deployed separately)
+- **Native mobile (no backend)** → `mobile-basicapp` (needs a `basicapp` / `userapp` / `adminapp` deployed separately)
 
 ---
 
@@ -116,9 +118,43 @@ Adding a new page = creating a file. Don't edit the page-router.
 
 ## Migration
 
-Current release: **4.0.0**. Jumping from any pre-4 version needs the
-breaking ecosystem-pin bumps below. Existing scaffolded projects keep
-working against their pinned versions — nothing auto-upgrades.
+Current release: **4.2.4**. Docs-only patch: README gains an `adminapp`
+Quick Start example and documents the `ADMIN_USER_ROLES`,
+`ADMIN_ENABLE_AUDIT_LOG`, and `ADMIN_DASHBOARD_WIDGETS` env vars in the
+Configuration section.
+
+Prior release: **4.2.3**. Bumps the `@bloomneo/uikit` pin across all
+templates from `^2.1.3` to `^2.1.5`. uikit 2.1.5 is a cosmetic cleanup
+release that drops lingering `@voilajsx/uikit` references from its
+user-facing docs (README, AGENTS.md, SKILL.md) — scaffolded apps no
+longer inherit the voilajsx warnings through the postinstall hook.
+
+Prior release: **4.2.2**. Dropped historical `@voilajsx/helix`
+references (README, package.json description, llms.txt — changelog
+history kept). Cleaned up `(err: any)` in the inherited userapp user
+admin routes via a `normalizeError()` helper so strict TS catches
+regressions.
+
+Prior release: **4.2.1**. Security hardening pass on adminapp —
+login now gates on `isVerified`, admin mutations are rate-limited
+(60/5min), auth routes log through appkit/logger (not console.error),
+error handling in auth routes is typed (`unknown` not `any`), and
+`docs/admin-patterns.md` gains a security-posture section.
+
+Prior release: **4.2.0**. Polished the `adminapp` template: three-
+tier role model (admin/moderator/user), live `/contact` wiring,
+signup gate, last-admin protection, consolidated settings UI, perf
+sweep on admin pages, + `docs/admin-patterns.md` reference doc.
+
+Prior release: **4.1.0**. Added the `adminapp` template + a
+system-wide cuid primary key for User + folded the pending 4.0.1 bug
+fixes (copy-agent-docs JSDoc fix, api-router structured errors,
+VOILA_→BLOOM_ env migration, prisma version alignment) into one
+release. Templates repinned to `@bloomneo/uikit@^2.1.3` for the
+mobile sidebar → bottom-nav behavior. Jumping from any pre-4 version
+needs the breaking ecosystem-pin bumps below. Existing scaffolded
+projects keep working against their pinned versions — nothing
+auto-upgrades.
 
 ### From `@bloomneo/bloom@1.5.x` / 2.x / 3.x → `4.0.0`
 
@@ -164,8 +200,7 @@ bumps are breaking per semver, so each gets its own major.
   `bloom-<template>`), so scaffolded projects get the user's actual
   name.
 - Deleted stale `docs/UIKIT_*.md` template docs (deep imports +
-  hallucinated `ValidatedInput` + nonexistent "UIKit CLI" — all
-  inherited from the `@voilajsx/uikit` era).
+  hallucinated `ValidatedInput` + nonexistent "UIKit CLI").
 - Dead code removed from `bin/bloom.js`.
 - Deleted 274MB `docs/` nested vite subproject (not shipped, no
   references).

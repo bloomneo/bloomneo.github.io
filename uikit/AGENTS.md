@@ -1,6 +1,6 @@
 # AGENTS.md — @bloomneo/uikit
 
-> Rules for AI coding agents generating code with `@bloomneo/uikit` v2.0.0.
+> Rules for AI coding agents generating code with `@bloomneo/uikit` v2.1.4.
 > Read this FIRST, then `llms.txt` for per-component snippets.
 
 ## Always do
@@ -26,9 +26,8 @@
 4. Never create custom toast UI — use `ToastProvider` + `toast.*`.
 5. Never manage Dialog/Sheet/Confirm open state with a custom boolean when a provider hook exists.
 6. Never skip `ThemeProvider` — components depend on CSS variables it sets.
-7. Never import from `@voilajsx/uikit` — that is the old, deprecated scope name.
-8. Never use `onChange` on `<Select>` or `<Combobox>` — both use `onValueChange(newValue)` in 2.0+. `onChange(e)` is reserved for native input wrappers (Input, Textarea, PasswordInput).
-9. Never render `<ToastProvider>` or `<ConfirmProvider>` more than once in the component tree.
+7. Never use `onChange` on `<Select>` or `<Combobox>` — both use `onValueChange(newValue)` in 2.0+. `onChange(e)` is reserved for native input wrappers (Input, Textarea, PasswordInput).
+8. Never render `<ToastProvider>` or `<ConfirmProvider>` more than once in the component tree.
 10. Never pass `undefined` to the `DataTable` `data` prop — use `[]` for empty or loading states.
 
 ## Required setup (every app)

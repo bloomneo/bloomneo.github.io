@@ -9,7 +9,7 @@
 Bloomneo is an open-source developer toolkit for building fast, modular, AI-first apps.
 Three packages work together — or independently:
 
-- **@bloomneo/appkit** — Node.js backend toolkit (12 modules: auth, database, cache, queue, storage, email, events, logging, config, security, util)
+- **@bloomneo/appkit** — Node.js backend toolkit (14 modules: auth, database, cache, queue, storage, email, events, logging, config, security, util, error, mcp, verify)
 - **@bloomneo/uikit** — React component library (45+ components, 5 OKLCH themes, cross-platform)
 - **@bloomneo/bloom** — CLI scaffolding (web, admin console, desktop via Electron, mobile via Capacitor)
 
@@ -17,7 +17,7 @@ Three packages work together — or independently:
 
 | Package | Version | llms.txt | AGENTS.md |
 |---|---|---|---|
-| `@bloomneo/appkit` | 4.0.0 | [appkit/llms.txt](appkit/llms.txt) | [appkit/AGENTS.md](appkit/AGENTS.md) |
+| `@bloomneo/appkit` | 5.1.1 | [appkit/llms.txt](appkit/llms.txt) | [appkit/AGENTS.md](appkit/AGENTS.md) |
 | `@bloomneo/uikit`  | 2.1.5 | [uikit/llms.txt](uikit/llms.txt)   | [uikit/AGENTS.md](uikit/AGENTS.md)   |
 | `@bloomneo/bloom`  | 4.2.4 | [bloom/llms.txt](bloom/llms.txt)   | —                                     |
 
