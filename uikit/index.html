@@ -97,7 +97,7 @@
         "name": "Can I build cross-platform apps (desktop, mobile, extensions)?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. UIKit is web-first (React DOM) and ships platform-detection helpers (isTauri, isNative, isExtension). The components are responsive and work in Electron, Capacitor and extension popups; the shell for each target is yours to write, which is what 4.0 changed."
+          "text": "Yes. UIKit is web-first (React DOM) and ships platform-detection helpers (isTauri, isNative, isBrowser, detectPlatform). The components are responsive and work in Electron, Capacitor and extension popups; the shell for each target is yours to write, which is what 4.0 changed."
         }
       },
       {
@@ -157,7 +157,7 @@
   <div class="page-header">
     <div class="hero-package">
       <span class="pkg-name">@bloomneo/uikit</span>
-      <span class="pkg-version">v4.1.0</span>
+      <span class="pkg-version">v4.1.1</span>
     </div>
     <h1>A component library,<br/>not a framework</h1>
     <p>30 typed components and one design-token palette, built for agentic code workflows. UIKit ships the pieces and the tokens; <strong>your app owns its own chrome</strong>. Tailwind's default palette is removed, so <code>bg-blue-600</code> compiles to nothing and <code>bg-primary</code> works — which is what keeps a generated codebase looking like one product instead of thirty. Machine-readable specs (<code>llms.txt</code> + <code>AGENTS.md</code>) ship in the package so agents generate correct TSX first time.</p>
@@ -827,7 +827,7 @@ export default function App() {
       <details class="faq-item">
         <summary>Can I build cross-platform apps (desktop, mobile, extensions)?</summary>
         <div class="faq-item-body">
-          Yes. UIKit is web-first (React DOM) and ships platform-detection helpers (<code>isTauri()</code>, <code>isNative()</code>, <code>isExtension()</code>). The components are responsive and work in Electron, Capacitor and extension popups from one codebase. The <em>shell</em> for each target is yours to write — 4.0 removed the bundled <code>MobileLayout</code> and <code>PopupLayout</code> because every real app replaced them.
+          Yes. UIKit is web-first (React DOM) and ships platform-detection helpers (<code>isTauri()</code>, <code>isNative()</code>, <code>isBrowser()</code>, <code>detectPlatform()</code>). The components are responsive and work in Electron, Capacitor and extension popups from one codebase. The <em>shell</em> for each target is yours to write — 4.0 removed the bundled <code>MobileLayout</code> and <code>PopupLayout</code> because every real app replaced them.
         </div>
       </details>
       <details class="faq-item">

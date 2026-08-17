@@ -18,7 +18,7 @@ Three packages work together — or independently:
 | Package | Version | llms.txt | AGENTS.md |
 |---|---|---|---|
 | `@bloomneo/appkit` | 5.1.1 | [appkit/llms.txt](appkit/llms.txt) | [appkit/AGENTS.md](appkit/AGENTS.md) |
-| `@bloomneo/uikit`  | 4.1.0 | [uikit/llms.txt](uikit/llms.txt)   | [uikit/AGENTS.md](uikit/AGENTS.md)   |
+| `@bloomneo/uikit`  | 4.1.1 | [uikit/llms.txt](uikit/llms.txt)   | [uikit/AGENTS.md](uikit/AGENTS.md)   |
 | `@bloomneo/bloom`  | 4.2.4 | [bloom/llms.txt](bloom/llms.txt)   | —                                     |
 
 ## The one pattern that matters (AppKit)

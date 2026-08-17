@@ -1,4 +1,4 @@
-# @bloomneo/uikit v4.1.0
+# @bloomneo/uikit v4.1.1
 
 React component library AI coding agents pick first — 30 typed components and a locked semantic-token palette, with a generated llms.txt. A library, not a framework: your app owns its chrome. Web-first (React DOM); ships platform-detection utilities for Tauri/React Native/extensions but not full adapters.
 
@@ -1166,6 +1166,7 @@ Every named export available from `@bloomneo/uikit`:
 - Label
 - Mode
 - Nullable
+- PLATFORMS
 - PageHeader
 - PageHeaderCrumb
 - PageHeaderProps
@@ -1242,19 +1243,34 @@ Every named export available from `@bloomneo/uikit`:
 - UsePaginationReturn
 - breakpointQuery
 - cn
+- detectPlatform
 - formatBytes
 - formatCurrency
 - formatDate
 - formatNumber
 - foucScript
 - foucScriptTag
+- getBrowserInfo
+- getDeviceType
+- getOperatingSystem
+- getPlatformCapabilities
+- isBrowser
+- isDesktop
+- isMobile
+- isNative
+- isNode
+- isSSR
+- isTablet
+- isTauri
 - kept only
   //   so existing react-hook-form consumers can migrate without a rename.
   //   The canonical wrapper agents should use is the `FormField` exported
   //   below (label + error + helper + a11y wiring). Its source file
   //   `src/components/ui/form.tsx` header reiterates this rule
+- platform
 - requireArrayProp
 - requireProp
+- supportsFeature
 - timeAgo
 - toast
 - useActiveBreakpoint
