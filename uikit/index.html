@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>@bloomneo/uikit — React components AI agents pick first</title>
-  <meta name="description" content="Build React apps faster: 45+ typed components, 5 OKLCH themes, 6 production layouts and cross-platform targets (web, desktop, mobile, browser extensions). Ships llms.txt + AGENTS.md so AI coding agents generate correct JSX on the first try." />
+  <meta name="description" content="A React component library, not a framework: 30 typed components and a locked design-token palette where bg-blue-600 compiles to nothing. Ships llms.txt + AGENTS.md so AI coding agents generate correct JSX on the first try." />
   <meta name="author" content="Bloomneo" />
   <link rel="canonical" href="https://dev.bloomneo.com/uikit/" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Bloom Developer" />
   <meta property="og:title" content="React components for humans &amp; AI agents" />
-  <meta property="og:description" content="45+ components, 5 OKLCH themes, 6 layouts. Cross-platform: web, desktop, mobile, browser extensions. Ships llms.txt + AGENTS.md so AI coding agents build correct JSX the first time." />
+  <meta property="og:description" content="30 components and one locked token palette. Your app owns its chrome. Ships llms.txt + AGENTS.md so AI coding agents build correct JSX the first time." />
   <meta property="og:url" content="https://dev.bloomneo.com/uikit/" />
   <meta property="og:image" content="https://dev.bloomneo.com/assets/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -20,7 +20,7 @@
 
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="@bloomneo/uikit — React for humans &amp; AI agents" />
-  <meta name="twitter:description" content="45+ components. 5 themes. Cross-platform. Ships llms.txt + AGENTS.md for AI coding agents." />
+  <meta name="twitter:description" content="30 components. One locked token palette. Ships llms.txt + AGENTS.md for AI coding agents." />
   <meta name="twitter:image" content="https://dev.bloomneo.com/assets/og-image.png" />
   <meta name="twitter:image:alt" content="@bloomneo/uikit — React components AI coding agents pick first" />
 
@@ -29,7 +29,7 @@
     "@context": "https://schema.org",
     "@type": "SoftwareSourceCode",
     "name": "@bloomneo/uikit",
-    "description": "React component library with 45+ typed components, 5 OKLCH themes, 6 production layouts and cross-platform targets (web, desktop, mobile, browser extensions). Designed for humans and AI coding agents.",
+    "description": "React component library with 30 typed components and a locked semantic-token palette. A library, not a framework — your app owns its chrome. Designed for humans and AI coding agents.",
     "url": "https://dev.bloomneo.com/uikit/",
     "codeRepository": "https://github.com/bloomneo/uikit",
     "programmingLanguage": "TypeScript",
@@ -49,7 +49,7 @@
         "name": "What is @bloomneo/uikit?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "@bloomneo/uikit is a React component library designed for agentic code workflows — the era where developers and AI coding agents (Claude Code, Cursor, GitHub Copilot, Windsurf) build UIs together. It ships 45+ typed components, 5 OKLCH themes, 6 production layouts and includes llms.txt + AGENTS.md machine-readable specs in every release so agents generate correct JSX on the first try."
+          "text": "@bloomneo/uikit is a React component library designed for agentic code workflows — the era where developers and AI coding agents (Claude Code, Cursor, GitHub Copilot, Windsurf) build UIs together. It ships 30 typed components and a locked semantic-token palette, plus llms.txt + AGENTS.md machine-readable specs in every release so agents generate correct JSX on the first try. It is a library, not a framework: it ships no layouts and does not scaffold applications."
         }
       },
       {
@@ -89,7 +89,7 @@
         "name": "What themes does UIKit ship with?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Five OKLCH themes — base, elegant, metro, studio, vivid — each in light and dark mode. Switch at runtime with useTheme().setTheme('elegant'). Custom themes are a first-class citizen: run `npx uikit generate theme <name>` to scaffold one."
+          "text": "One bundled theme, base, in light and dark. 4.0 removed elegant, metro, studio and vivid. Custom themes are the supported path and are first-class: run `npx uikit generate theme <name>` to scaffold one with OKLCH tokens and a dark variant, then useTheme().setTheme(name) switches at runtime."
         }
       },
       {
@@ -97,7 +97,7 @@
         "name": "Can I build cross-platform apps (desktop, mobile, extensions)?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. UIKit is web-first (React DOM) but ships platform-detection helpers (isTauri, isNative, isExtension) and mobile-specific layouts (MobileLayout, TabBar, SafeArea). Use the same components for web, Electron desktop, Capacitor mobile and browser extension popups from one codebase."
+          "text": "Yes. UIKit is web-first (React DOM) and ships platform-detection helpers (isTauri, isNative, isExtension). The components are responsive and work in Electron, Capacitor and extension popups; the shell for each target is yours to write, which is what 4.0 changed."
         }
       },
       {
@@ -157,10 +157,10 @@
   <div class="page-header">
     <div class="hero-package">
       <span class="pkg-name">@bloomneo/uikit</span>
-      <span class="pkg-version">v2.0.0</span>
+      <span class="pkg-version">v4.1.0</span>
     </div>
-    <h1>React components<br/>built for agentic coding</h1>
-    <p>UIKit is a React component library designed for agentic code workflows. 45+ typed components, 5 OKLCH themes, and 6 production layouts under one canonical pattern — with machine-readable specs (<code>llms.txt</code> + <code>AGENTS.md</code>) so AI coding agents generate correct TSX, and developers review work they actually understand.</p>
+    <h1>A component library,<br/>not a framework</h1>
+    <p>30 typed components and one design-token palette, built for agentic code workflows. UIKit ships the pieces and the tokens; <strong>your app owns its own chrome</strong>. Tailwind's default palette is removed, so <code>bg-blue-600</code> compiles to nothing and <code>bg-primary</code> works — which is what keeps a generated codebase looking like one product instead of thirty. Machine-readable specs (<code>llms.txt</code> + <code>AGENTS.md</code>) ship in the package so agents generate correct TSX first time.</p>
     <div class="btn-row" style="justify-content:flex-start; margin-top:1.5rem;">
       <a href="https://www.npmjs.com/package/@bloomneo/uikit" target="_blank" class="btn btn-primary">npm ↗</a>
       <a href="https://github.com/bloomneo/uikit" target="_blank" class="btn btn-outline">GitHub ↗</a>
@@ -200,20 +200,49 @@
   <!-- WHAT YOU CAN BUILD -->
   <div class="section" id="use-cases">
     <div class="section-label">What you can build</div>
-    <h2>One component library. Every React surface.</h2>
-    <p style="margin-bottom:1.5rem;">UIKit is the React library teams reach for when they need to ship — not evaluate five headless kits and style them by hand.</p>
+    <h2>One component library. You bring the shell.</h2>
+    <p style="margin-bottom:1.5rem;">4.0 removed every layout component. Not because they were broken — because every real application replaced them within weeks. App chrome is where product identity lives, and a generic sidebar is the first thing anyone rewrites. What UIKit ships is the part nobody wants to rebuild.</p>
     <ul class="use-case-grid">
-      <li><strong>Admin dashboards &amp; SaaS consoles</strong><span>PageHeader, DataTable, StatCard, Sidebar — drop-in pieces every internal tool rebuilds by hand.</span></li>
-      <li><strong>B2B apps with role-based UI</strong><span><code>PermissionGate</code> + role-aware dropdown menus, gated buttons, protected routes.</span></li>
-      <li><strong>Marketing &amp; landing pages</strong><span>PageLayout, Section, Container, responsive hero blocks, feature grids — themeable in minutes.</span></li>
-      <li><strong>CRUD-heavy internal tools</strong><span>Sortable tables, searchable combobox, bulk row actions, delete-with-confirm, toast feedback — wired out of the box.</span></li>
-      <li><strong>Auth flows &amp; settings pages</strong><span>FormField, PasswordInput, Select, Combobox, DatePicker with a11y wiring and error display baked in.</span></li>
-      <li><strong>AI agent UIs &amp; LLM chat surfaces</strong><span>Command palette, Dialog, HoverCard, streaming-friendly typography — ship a tool UI in an afternoon.</span></li>
-      <li><strong>Mobile apps (Capacitor)</strong><span><code>MobileLayout</code>, <code>TabBar</code>, <code>SafeArea</code> with touch-optimised components and platform detection.</span></li>
-      <li><strong>Desktop apps (Electron, Tauri)</strong><span>Same components, same themes, same API — <code>isTauri()</code> / <code>isNative()</code> helpers for platform-specific tweaks.</span></li>
-      <li><strong>Browser extensions</strong><span><code>PopupLayout</code> with constrained viewports and extension-safe CSP configuration.</span></li>
-      <li><strong>Design-system starters</strong><span>OKLCH themes, <code>cn()</code> helper, semantic tokens — fork the design system without forking the components.</span></li>
+      <li><strong>Admin dashboards &amp; SaaS consoles</strong><span><code>PageHeader</code>, <code>DataTable</code>, <code>EmptyState</code>, <code>ConfirmDialog</code> — the pieces every internal tool rebuilds by hand.</span></li>
+      <li><strong>B2B apps with role-based UI</strong><span><code>PermissionGate</code> fails closed, plus role-aware menus and gated buttons.</span></li>
+      <li><strong>CRUD-heavy internal tools</strong><span>Sortable, searchable tables with bulk row actions, delete-with-confirm and toast feedback — wired out of the box.</span></li>
+      <li><strong>Auth flows &amp; settings pages</strong><span><code>Form</code>, <code>FormField</code>, <code>Select</code>, <code>Combobox</code> with a11y wiring and error display baked in.</span></li>
+      <li><strong>AI agent UIs &amp; LLM chat surfaces</strong><span><code>Command</code> palette, <code>Dialog</code>, <code>HoverCard</code>, streaming-friendly typography.</span></li>
+      <li><strong>Marketing pages</strong><span>Cards, badges, tabs and the token palette. The header and footer are yours — marketing chrome and app chrome share almost nothing.</span></li>
+      <li><strong>Design-system starters</strong><span>OKLCH tokens, the <code>cn()</code> helper, and <code>uikit generate theme</code>. Fork the design system without forking the components.</span></li>
+      <li><strong>Whole applications</strong><span>Use <a href="../bloom/">@bloomneo/bloom</a>. It scaffolds the shell — layout route, auth guard, routing — and wires UIKit and AppKit together.</span></li>
     </ul>
+  </div>
+
+  <!-- WHAT REPLACED LAYOUTS -->
+  <div class="section" id="shell">
+    <div class="section-label">What replaced the layout components</div>
+    <h2>A layout route, and pages that own their header</h2>
+    <p style="margin-bottom:1.25rem;">This is the pattern two production apps arrived at independently, by hand, after abandoning the shipped <code>AdminLayout</code>. It is now the recommended shape. The shell is a <em>route</em>, so it mounts once and survives navigation — sidebar scroll position, open menus and any providers stay put.</p>
+    <pre class="hljs-block"><code class="language-tsx">// AdminLayoutRoute.tsx — the shell, written once, in your app
+export function AdminLayoutRoute() {
+  return (
+    &lt;div className="flex min-h-screen"&gt;
+      &lt;Sidebar /&gt;                {/* yours */}
+      &lt;main className="flex-1 p-6"&gt;
+        &lt;Outlet /&gt;
+      &lt;/main&gt;
+    &lt;/div&gt;
+  );
+}
+
+// Any page — owns its header, returns plain content
+import { PageHeader, Button } from '@bloomneo/uikit';
+
+export default function UsersPage() {
+  return (
+    &lt;div className="space-y-6"&gt;
+      &lt;PageHeader title="Users" actions={&lt;Button&gt;Invite&lt;/Button&gt;} /&gt;
+      &lt;UsersTable /&gt;
+    &lt;/div&gt;
+  );
+}</code></pre>
+    <p style="margin-top:1rem;"><code>PageHeader</code> survived 4.0 precisely because it is the replacement for the <code>title</code> and <code>breadcrumbs</code> props the layouts used to own.</p>
   </div>
 
   <!-- WHAT NOT TO DO -->
@@ -226,7 +255,7 @@
       <li><span class="x" aria-hidden="true">✕</span><span><strong>Never pass <code>undefined</code> to <code>&lt;DataTable data&gt;</code>.</strong> Always fall back to <code>[]</code> during loading: <code>data={users ?? []}</code>. Passing undefined throws <code>UIKitError</code>.</span></li>
       <li><span class="x" aria-hidden="true">✕</span><span><strong>Never mount <code>&lt;ToastProvider&gt;</code> or <code>&lt;ConfirmProvider&gt;</code> twice.</strong> Duplicate mounts produce doubled behaviour in prod and fire a dev-only warning. Exactly one per app.</span></li>
       <li><span class="x" aria-hidden="true">✕</span><span><strong>Never wrap inputs without <code>&lt;FormField&gt;</code>.</strong> Bare <code>&lt;Label&gt; + &lt;Input&gt;</code> misses error display and a11y wiring. <code>&lt;FormField label="..." error={...}&gt;</code> handles both.</span></li>
-      <li><span class="x" aria-hidden="true">✕</span><span><strong>Never hardcode theme colours.</strong> Use semantic tokens (<code>bg-primary</code>, <code>text-muted-foreground</code>, <code>border-border</code>). Raw Tailwind colours (<code>bg-blue-500</code>) break the moment a user switches themes.</span></li>
+      <li><span class="x" aria-hidden="true">✕</span><span><strong>Never hardcode theme colours.</strong> Use semantic tokens (<code>bg-primary</code>, <code>text-muted-foreground</code>, <code>border-border</code>). Since 3.0 this one is not advice — the raw palette is <em>removed</em>, so <code>bg-blue-500</code> compiles to nothing and the element renders unstyled. You find out immediately, not six months later.</span></li>
     </ul>
   </div>
 
@@ -255,11 +284,14 @@
   <div class="section" id="setup">
     <div class="section-label">Setup — one time per app</div>
     <h2>Three steps to a working UI</h2>
-    <pre class="hljs-block"><code class="language-tsx">// 1. Import the core stylesheet ONCE at your app entry (e.g. main.tsx)
+    <pre class="hljs-block"><code class="language-tsx">// 1. Wire the styles. If your app runs its own Tailwind — the normal case —
+//    add this to your CSS instead of importing a stylesheet:
+//
+//      @import "tailwindcss";
+//      @import "@bloomneo/uikit/theme";
+//
+//    Only if your app ships no build, import the prebuilt sheet at the entry:
 import '@bloomneo/uikit/styles';
-
-// Optional: import theme fonts (Elegant, Metro, Studio, Vivid)
-import '@bloomneo/uikit/styles/fonts';
 
 // 2. Wrap your app with providers
 import { ThemeProvider, ToastProvider, ConfirmProvider } from '@bloomneo/uikit';
@@ -285,7 +317,7 @@ import { foucScript } from '@bloomneo/uikit/fouc';
   Button, Input, Card, CardHeader, CardTitle, CardContent,
   Alert, AlertDescription, Badge, DataTable, Dialog,
   DialogContent, DialogHeader, DialogTitle, DialogFooter,
-  Select, Combobox, DatePicker, Skeleton, EmptyState,
+  Select, Combobox, Sheet, Tooltip, EmptyState,
   PageHeader, PermissionGate, PermissionProvider,
   FormField, PasswordInput, toast, useToast, useConfirm,
   useTheme, useApi, usePagination, useBreakpoint,
@@ -298,41 +330,42 @@ import { foucScript } from '@bloomneo/uikit/fouc';
 
   <!-- THEMES -->
   <div class="section" id="themes">
-    <div class="section-label">5 OKLCH themes</div>
-    <h2>Perceptually uniform color science</h2>
-    <p style="margin-bottom:1.25rem;">OKLCH color space ensures colors look consistent across devices and scale predictably — no muddy mid-tones or clipped highs. Each theme ships in light and dark mode.</p>
-    <div class="card-grid">
-      <div class="card">
-        <h3>base</h3>
-        <p>Clean neutral foundation. Good default for any product.</p>
-      </div>
-      <div class="card">
-        <h3>elegant</h3>
-        <p>Refined, subdued palette. Professional and polished.</p>
-      </div>
-      <div class="card">
-        <h3>metro</h3>
-        <p>High contrast, bold. Inspired by transit design systems.</p>
-      </div>
-      <div class="card">
-        <h3>studio</h3>
-        <p>Creative, warm. For design tools and media apps.</p>
-      </div>
-      <div class="card">
-        <h3>vivid</h3>
-        <p>Saturated, energetic. For consumer and marketing apps.</p>
-      </div>
-    </div>
-    <pre class="hljs-block" style="margin-top:1.25rem;"><code class="language-tsx">const { theme, mode, availableThemes, setTheme, toggleMode } = useTheme();
-
-setTheme('elegant');   // switch theme at runtime
-toggleMode();          // light ↔ dark
-
-// All available themes:
-// 'base' | 'elegant' | 'metro' | 'studio' | 'vivid' | (your custom theme)</code></pre>
+    <div class="section-label">Design tokens</div>
+    <h2>The palette is the enforcement</h2>
+    <p style="margin-bottom:1.25rem;">A design system that is merely <em>documented</em> gets bypassed. One production app accumulated <strong>1,547 hardcoded palette classes against 196 semantic ones</strong> — not carelessness, but because both were equally available and the raw palette needed no lookup. Removing the alternative is the only version of the rule that holds.</p>
+    <pre class="hljs-block"><code class="language-css">/* your app's index.css */
+@import "tailwindcss";
+@import "@bloomneo/uikit/theme";   /* tokens + the palette lockdown */</code></pre>
+    <p style="margin:1rem 0 .5rem;"><strong>This import matters more than it looks.</strong> A prebuilt stylesheet cannot constrain your build: if your app runs its own <code>@import "tailwindcss"</code>, your Tailwind generates whatever utilities your source uses, <code>bg-blue-600</code> included, no matter what UIKit ships. The reset only takes effect when it participates in the build that scans your code — which is why <code>/theme</code> is shipped as source rather than compiled CSS.</p>
+    <table class="prop-table">
+      <thead><tr><th>Class</th><th><code>/theme</code> &amp; <code>/styles</code></th><th><code>/styles/permissive</code></th></tr></thead>
+      <tbody>
+        <tr><td><code>bg-primary</code>, <code>text-muted-foreground</code>, <code>bg-card</code></td><td>✅</td><td>✅</td></tr>
+        <tr><td><code>bg-success</code>, <code>bg-warning</code>, <code>bg-contrast</code></td><td>✅</td><td>✅</td></tr>
+        <tr><td><code>bg-blue-600</code>, <code>text-gray-900</code>, <code>border-red-400</code></td><td>🚫 compiles to nothing</td><td>✅ 2.x behaviour</td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:1rem;"><code>/styles/permissive</code> is a migration aid with an end date, not a supported mode.</p>
   </div>
 
-  <!-- BUTTON -->
+  <!-- THEMES -->
+  <div class="section" id="themes">
+    <div class="section-label">Themes</div>
+    <h2>One bundled theme, and a generator for yours</h2>
+    <p style="margin-bottom:1.25rem;">4.0 removed the <code>elegant</code>, <code>metro</code>, <code>studio</code> and <code>vivid</code> presets — four more palettes to keep consistent, and near-zero projects switched to them. 4.1 removed the 3.4&nbsp;MB of typefaces that served them. What remains covers the real case: <strong>one brand palette per product</strong>.</p>
+    <pre class="hljs-block"><code class="language-bash">npx uikit generate theme brand    # scaffold the preset
+npx uikit bundle                  # compile it to CSS</code></pre>
+    <p style="margin:1rem 0 .5rem;">A theme is just a class that redefines the token custom properties. Every UIKit utility already resolves through <code>var(--color-…)</code>, so this re-skins all 30 components at once — no component import changes:</p>
+    <pre class="hljs-block"><code class="language-css">.theme-ops {
+  --color-primary: #8B5CF6;
+  --color-background: #0B0A12;
+  --color-chart1: #A78BFA;  --color-chart2: #22D3EE;
+  --color-chart3: #34D399;  --color-chart4: #FBBF24;  --color-chart5: #F43F5E;
+  --color-radius: 0.375rem;
+}</code></pre>
+    <p style="margin-top:1rem;">Switch at runtime with <code>useTheme().setTheme('ops')</code>. Setting the class on <code>&lt;html&gt;</code> by hand does <em>not</em> work — <code>ThemeProvider</code> strips any <code>theme-*</code> class it did not set. The <code>Theme</code> type is <code>'base' | (string &amp; {})</code> so generated ids type-check.</p>
+  </div>
+
   <div class="section" id="comp-button">
     <div class="section-label">Component — Button</div>
     <pre class="hljs-block"><code class="language-tsx">import { Button } from '@bloomneo/uikit';
@@ -615,48 +648,31 @@ const active      = useActiveBreakpoint();         // 'sm' | 'md' | 'lg' | 'xl' 
 const reduced     = useMediaQuery('(prefers-reduced-motion: reduce)');</code></pre>
   </div>
 
-  <!-- LAYOUTS -->
-  <div class="section" id="layouts">
-    <div class="section-label">Layout components</div>
-    <h2>Six production-ready layouts</h2>
+  <!-- COMPONENT INVENTORY -->
+  <div class="section" id="components">
+    <div class="section-label">The full surface</div>
+    <h2>30 components, and nothing you won't use</h2>
+    <p style="margin-bottom:1.25rem;">4.0 cut the export surface from 197 to 139 by removing the layouts, the sections, and fourteen primitives no shipped application had imported. What is left is what internal tools actually rebuild by hand.</p>
     <ul class="module-list">
-      <li><code>Header / HeaderLogo / HeaderNav</code><span>Sticky top nav with logo and navigation links</span></li>
-      <li><code>Footer</code><span>Page footer with configurable column layout</span></li>
-      <li><code>Sidebar / SidebarNav</code><span>Collapsible sidebar with nested navigation support</span></li>
-      <li><code>PageLayout</code><span>Full-page wrapper with header, sidebar, content, and footer slots</span></li>
-      <li><code>Section / Container</code><span>Content containers with spacing variants and max-width constraints</span></li>
-      <li><code>MobileLayout / TabBar / SafeArea</code><span>Mobile-specific layouts for Capacitor apps</span></li>
+      <li><code>Button / Input / Textarea / Label</code><span>The basics, with consistent focus rings and disabled states</span></li>
+      <li><code>PasswordInput</code><span>Password field with a show/hide toggle</span></li>
+      <li><code>Select / Combobox</code><span>Static option lists, and searchable/clearable pickers built on Command + Popover</span></li>
+      <li><code>Checkbox / RadioGroup / Switch</code><span>Boolean and choice inputs — all <code>onCheckedChange</code></span></li>
+      <li><code>Form / FormField</code><span>react-hook-form + Zod wiring, plus the label / required marker / error / helper wrapper</span></li>
+      <li><code>DataTable</code><span>Sortable, searchable, paginated, with row actions and typed column definitions</span></li>
+      <li><code>Table</code><span>The raw primitives, for when a page wants control of every cell</span></li>
+      <li><code>PageHeader</code><span>Title, description, breadcrumbs, actions — what a page owns instead of a layout</span></li>
+      <li><code>EmptyState</code><span>No-results and first-run states, with <code>role="status"</code></span></li>
+      <li><code>Card / Badge / Alert / Tabs</code><span>Presentation and grouping</span></li>
+      <li><code>Dialog / Sheet / Popover / HoverCard / Tooltip</code><span>Overlays, all controlled with <code>open</code> + <code>onOpenChange</code></span></li>
+      <li><code>ConfirmDialog / useConfirm</code><span>Promise-based confirmation — <code>await confirm({ title })</code></span></li>
+      <li><code>Toast / Toaster</code><span>Sonner-backed notifications via the <code>toast.*</code> API</span></li>
+      <li><code>Command / CommandDialog</code><span>⌘K palettes, built on cmdk</span></li>
+      <li><code>DropdownMenu</code><span>Action menus, with checkbox, radio and submenu items</span></li>
+      <li><code>PermissionGate</code><span>Role-gated UI that fails closed, with a fallback slot</span></li>
+      <li><code>Time</code><span>Auto-updating relative timestamp</span></li>
     </ul>
-  </div>
-
-  <!-- FORM COMPONENTS LIST -->
-  <div class="section" id="form-components">
-    <div class="section-label">Form components</div>
-    <h2>Every form primitive, typed</h2>
-    <ul class="module-list">
-      <li><code>Input / Textarea</code><span>Standard text inputs with consistent styling</span></li>
-      <li><code>PasswordInput</code><span>Password input with show/hide toggle</span></li>
-      <li><code>Select</code><span>Dropdown select for static option lists</span></li>
-      <li><code>Combobox</code><span>Searchable select with async option loading and clearable</span></li>
-      <li><code>DatePicker / DateRangePicker</code><span>Calendar-based date and date-range selection</span></li>
-      <li><code>Checkbox / Radio / Switch</code><span>Boolean and choice inputs</span></li>
-      <li><code>FileUpload</code><span>Drag-and-drop file input with preview and progress</span></li>
-      <li><code>FormField</code><span>Wrapper providing label, required marker, error, and helper text</span></li>
-    </ul>
-  </div>
-
-  <!-- DATA COMPONENTS LIST -->
-  <div class="section" id="data-components">
-    <div class="section-label">Data display components</div>
-    <h2>Tables, lists, stats, badges</h2>
-    <ul class="module-list">
-      <li><code>DataTable</code><span>Sortable, filterable, paginated table with row actions and column definitions</span></li>
-      <li><code>DataList</code><span>Key-value display for detail views</span></li>
-      <li><code>StatCard</code><span>Metric card with label, value, change indicator, and optional sparkline</span></li>
-      <li><code>Badge</code><span>Status / label chip in multiple color variants</span></li>
-      <li><code>Alert / AlertDescription</code><span>Inline status messages with info, warning, error, success variants</span></li>
-      <li><code>Skeleton</code><span>Loading placeholder that matches the shape of real content</span></li>
-    </ul>
+    <p style="margin-top:1rem;"><strong>Removed in 4.0:</strong> <code>AdminLayout</code>, <code>PageLayout</code>, <code>AuthLayout</code>, <code>BlankLayout</code>, <code>PopupLayout</code>, <code>MobileLayout</code>, <code>Header</code>, <code>Footer</code>, <code>Container</code>, <code>SafeArea</code>, <code>TabBar</code>, <code>Skeleton</code>, <code>Separator</code>, <code>Avatar</code>, <code>Progress</code>, <code>Accordion</code>, <code>Breadcrumb</code>, <code>Calendar</code>, <code>Collapsible</code>, <code>Menubar</code>, <code>Pagination</code>, <code>Slider</code>, <code>Toggle</code>, <code>Motion</code>, <code>DetailPage</code>. For a loading placeholder, <code>&lt;div className="h-40 animate-pulse rounded-md bg-muted" /&gt;</code> is one line and stays on the palette.</p>
   </div>
 
   <!-- COOKBOOK -->
@@ -747,7 +763,7 @@ export default function App() {
           </svg>
         </div>
         <h3>Mobile</h3>
-        <p>Capacitor + React. Touch-optimised with <code>MobileLayout</code>, <code>TabBar</code>, <code>SafeArea</code>.</p>
+        <p>Capacitor + React. The components are responsive; the mobile shell (tab bar, safe areas) is yours to write.</p>
       </div>
       <div class="card">
         <div class="card-icon">
@@ -756,7 +772,7 @@ export default function App() {
           </svg>
         </div>
         <h3>Extensions</h3>
-        <p>Browser extension popup. Constrained layout variants for small viewports.</p>
+        <p>Browser extension popup. Constrain the viewport in your own popup shell.</p>
       </div>
     </div>
   </div>
@@ -769,13 +785,13 @@ export default function App() {
       <details class="faq-item">
         <summary>What is @bloomneo/uikit?</summary>
         <div class="faq-item-body">
-          @bloomneo/uikit is a React component library designed for agentic code workflows — the era where developers and AI coding agents (Claude Code, Cursor, GitHub Copilot, Windsurf) build UIs together. It ships 45+ typed components, 5 OKLCH themes, 6 production layouts, and includes <code>llms.txt</code> and <code>AGENTS.md</code> machine-readable specs in every release so agents generate correct JSX on the first try.
+          @bloomneo/uikit is a React component library designed for agentic code workflows — the era where developers and AI coding agents (Claude Code, Cursor, GitHub Copilot, Windsurf) build UIs together. It ships 30 typed components and a locked semantic-token palette, plus <code>llms.txt</code> and <code>AGENTS.md</code> machine-readable specs in every release so agents generate correct JSX on the first try. It is a <strong>library, not a framework</strong>: it deliberately ships no layouts and does not scaffold applications — that is <a href="../bloom/">@bloomneo/bloom</a>'s job.
         </div>
       </details>
       <details class="faq-item">
         <summary>How is UIKit different from shadcn/ui, Mantine, MUI, Chakra, or Radix directly?</summary>
         <div class="faq-item-body">
-          UIKit is a composable React component library built on Radix primitives + Tailwind. Unlike shadcn (copy-paste source into your repo) or MUI (opinionated visual design you can't escape), UIKit ships as a versioned npm package with unified conventions: one canonical import path, one provider tree, one controlled-prop convention, and cross-platform targets (web, desktop, mobile, extensions). Every component carries <code>@llm-rule</code> JSDoc so AI agents pick the correct API on the first try.
+          UIKit is a composable React component library built on Radix primitives + Tailwind. Unlike shadcn (copy-paste source into your repo) or MUI (opinionated visual design you can't escape), UIKit ships as a versioned npm package with unified conventions: one canonical import path, one provider tree, one controlled-prop convention. The distinguishing choice is the <strong>palette lockdown</strong> — the raw Tailwind palette is removed, so a design rule that every other library can only document is here enforced by the compiler. Every component also carries <code>@llm-rule</code> JSDoc so agents pick the correct API first time.
         </div>
       </details>
       <details class="faq-item">
@@ -805,13 +821,13 @@ export default function App() {
       <details class="faq-item">
         <summary>What themes does UIKit ship with?</summary>
         <div class="faq-item-body">
-          Five OKLCH themes — <code>base</code>, <code>elegant</code>, <code>metro</code>, <code>studio</code>, <code>vivid</code> — each in light and dark mode. Switch at runtime with <code>useTheme().setTheme('elegant')</code>. Custom themes are first-class: run <code>npx uikit generate theme &lt;name&gt;</code> to scaffold one with OKLCH tokens and a dark-mode variant.
+          One: <code>base</code>, in light and dark. 4.0 removed <code>elegant</code>, <code>metro</code>, <code>studio</code> and <code>vivid</code> — four more palettes to keep consistent, and near-zero projects switched to them; 4.1 removed the 3.4&nbsp;MB of typefaces that served them. Custom themes are the supported path and are first-class: <code>npx uikit generate theme &lt;name&gt;</code> scaffolds one with OKLCH tokens and a dark variant, then <code>useTheme().setTheme('&lt;name&gt;')</code> switches at runtime. A theme is just a class redefining the <code>--color-*</code> properties, so it re-skins all 30 components at once.
         </div>
       </details>
       <details class="faq-item">
         <summary>Can I build cross-platform apps (desktop, mobile, extensions)?</summary>
         <div class="faq-item-body">
-          Yes. UIKit is web-first (React DOM) but ships platform-detection helpers (<code>isTauri()</code>, <code>isNative()</code>, <code>isExtension()</code>) and mobile-specific layouts (<code>MobileLayout</code>, <code>TabBar</code>, <code>SafeArea</code>). Use the same components for web, Electron desktop, Capacitor mobile, and browser extension popups from one codebase.
+          Yes. UIKit is web-first (React DOM) and ships platform-detection helpers (<code>isTauri()</code>, <code>isNative()</code>, <code>isExtension()</code>). The components are responsive and work in Electron, Capacitor and extension popups from one codebase. The <em>shell</em> for each target is yours to write — 4.0 removed the bundled <code>MobileLayout</code> and <code>PopupLayout</code> because every real app replaced them.
         </div>
       </details>
       <details class="faq-item">

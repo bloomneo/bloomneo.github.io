@@ -1,6 +1,6 @@
-# @bloomneo/uikit v2.1.5
+# @bloomneo/uikit v4.1.0
 
-React component library AI coding agents pick first — components, layouts, themes, routing, scaffolding, and a generated llms.txt. Web-first (React DOM); ships platform-detection utilities for Tauri/React Native/extensions but not yet full adapters.
+React component library AI coding agents pick first — 30 typed components and a locked semantic-token palette, with a generated llms.txt. A library, not a framework: your app owns its chrome. Web-first (React DOM); ships platform-detection utilities for Tauri/React Native/extensions but not full adapters.
 
 This file is the canonical machine-readable index of @bloomneo/uikit.
 Read it first when generating code that uses this library.
@@ -337,97 +337,6 @@ export default function PageHeaderExample() {
 }
 ```
 
-### Page Layout Sidebar Mobile
-File: examples/page-layout-sidebar-mobile.tsx
-
-```tsx
-/**
- * Example: PageLayout with sidebar that becomes a bottom-nav on mobile.
- *
- * Desktop (≥ md / 768px): fixed 220-ish px left sidebar with labels.
- * Mobile (< md):           fixed bottom bar with the first 4 items + a
- *                          "More" button that opens a slide-up sheet.
- *
- * The API is intentionally identical to the old sidebar usage — you pass a
- * `navigation` array and a `currentPath`. The mobile swap is automatic, no
- * extra props, no JS breakpoint code in your app. Resize the browser to
- * cross 768px and watch the nav change.
- *
- * This file is the canonical copy-paste example indexed by llms.txt — keep
- * it minimal and self-contained (no router, no API calls). For a richer
- * playground with providers + theme switcher, see `src/demo-sidebar.tsx`
- * in the uikit dev app.
- */
-
-import * as React from 'react';
-import {
-  PageLayout,
-  type NavigationItem,
-} from '@bloomneo/uikit';
-import {
-  LayoutDashboard,
-  Users,
-  FileText,
-  Settings,
-  ShieldCheck,
-  Bell,
-  BarChart3,
-  LogOut,
-} from 'lucide-react';
-
-export default function PageLayoutSidebarMobileExample() {
-  // Start on Dashboard. In a real app this comes from your router
-  // (react-router's `useLocation().pathname`, Next.js `usePathname()`, etc.).
-  const [currentPath, setCurrentPath] = React.useState('/admin');
-
-  // 7 items — deliberately more than 4 so the mobile bar shows 4 tabs plus
-  // a "More" button. The first 4 become the bottom tabs; items 5+ land in
-  // the overflow sheet. Keep labels short — the mobile bar renders only
-  // the first word.
-  const navigation: NavigationItem[] = [
-    { key: 'dashboard', label: 'Dashboard', href: '/admin', icon: LayoutDashboard },
-    { key: 'users', label: 'Users', href: '/admin/users', icon: Users },
-    { key: 'content', label: 'Content', href: '/admin/content', icon: FileText },
-    { key: 'analytics', label: 'Analytics', href: '/admin/analytics', icon: BarChart3 },
-    // Items below this line go into the "More" sheet on mobile.
-    { key: 'notifications', label: 'Notifications', href: '/admin/notifications', icon: Bell, badge: '3' },
-    { key: 'security', label: 'Security', href: '/admin/security', icon: ShieldCheck },
-    { key: 'settings', label: 'Settings', href: '/admin/settings', icon: Settings },
-    { key: 'signout', label: 'Sign out', onClick: () => alert('sign out'), icon: LogOut },
-  ];
-
-  return (
-    <PageLayout scheme="sidebar" tone="clean" size="xl">
-      <PageLayout.Header
-        logo={<span className="text-xl font-bold">Admin</span>}
-        actions={<span className="text-sm text-muted-foreground">kt@bloomneo.com</span>}
-      />
-      <PageLayout.Content
-        sidebar="left"
-        navigation={navigation}
-        currentPath={currentPath}
-        onNavigate={(href) => setCurrentPath(href)}
-        title="Dashboard"
-        breadcrumbs={[{ label: 'Admin', href: '/admin' }, { label: 'Dashboard' }]}
-      >
-        <div className="space-y-4">
-          <p className="text-muted-foreground">
-            Current path: <code className="font-mono text-foreground">{currentPath}</code>
-          </p>
-          <p>
-            Resize the browser below 768px — the left sidebar disappears and a
-            bottom tab bar with <strong>Dashboard · Users · Content · Analytics</strong>
-            {' '}appears. Tap <strong>More</strong> to reach Notifications, Security,
-            Settings, and Sign out.
-          </p>
-        </div>
-      </PageLayout.Content>
-      <PageLayout.Footer copyright="© 2026 bloomneo" />
-    </PageLayout>
-  );
-}
-```
-
 ### Permission Gate
 File: examples/permission-gate.tsx
 
@@ -459,24 +368,6 @@ export default function PermissionGateExample() {
         </PermissionGate>
       </div>
     </PermissionProvider>
-  );
-}
-```
-
-### Skeleton
-File: examples/skeleton.tsx
-
-```tsx
-import { Skeleton } from '@bloomneo/uikit';
-
-export default function SkeletonExample() {
-  return (
-    <div className="flex max-w-md flex-col gap-3">
-      <Skeleton className="h-8 w-2/3" />
-      <Skeleton className="h-4 w-full" />
-      <Skeleton className="h-4 w-5/6" />
-      <Skeleton className="h-4 w-3/4" />
-    </div>
   );
 }
 ```
@@ -573,7 +464,7 @@ File: examples/use-api.tsx
  */
 
 import { useEffect } from 'react';
-import { useApi, Button, Skeleton, toast } from '@bloomneo/uikit';
+import { useApi, Button, toast } from '@bloomneo/uikit';
 
 type User = { id: number; email: string; name: string };
 
@@ -600,9 +491,10 @@ export default function UseApiExample() {
     }
   }
 
-  // Loading: render a skeleton.
+  // Loading: render a skeleton. UIKit ships no Skeleton component — a
+  // pulsing muted block is one line and stays on the token palette.
   if (users.loading && !users.data) {
-    return <Skeleton className="h-40 w-full" />;
+    return <div className="h-40 w-full animate-pulse rounded-md bg-muted" />;
   }
 
   // Error: show the string. Pair with a retry button.
@@ -814,8 +706,8 @@ File: cookbook/dashboard.tsx
 /**
  * Dashboard recipe.
  *
- * Stats grid + recent activity table inside a standard page shell.
- * Drop into any admin layout — works inside <AdminLayout> or alone.
+ * Stats grid + recent activity table. Returns plain page content, so it
+ * drops into whatever layout route your app renders it through.
  *
  * Assumes <ThemeProvider> is mounted at your app root. This recipe uses
  * no toasts or confirms, so <ToastProvider /> and <ConfirmProvider> are
@@ -1184,33 +1076,16 @@ Every named export available from `@bloomneo/uikit`:
 
 - // @llm-rule AVOID: Do not reach for `FormController` in new code — it is a
   //   legacy alias for react-hook-form's `<FormField>` controller
-- Accordion
-- AccordionContent
-- AccordionItem
-- AccordionTrigger
-- AdminLayout
 - Alert
 - AlertDescription
 - AlertTitle
 - ApiOptions
 - ApiResponse
-- AuthLayout
-- Avatar
-- AvatarFallback
-- AvatarImage
 - BREAKPOINTS
 - Badge
-- BlankLayout
-- Breadcrumb
-- BreadcrumbItem
-- BreadcrumbLink
-- BreadcrumbList
-- BreadcrumbPage
-- BreadcrumbSeparator
 - Breakpoint
 - BreakpointDirection
 - Button
-- Calendar
 - Card
 - CardContent
 - CardDescription
@@ -1218,9 +1093,6 @@ Every named export available from `@bloomneo/uikit`:
 - CardHeader
 - CardTitle
 - Checkbox
-- Collapsible
-- CollapsibleContent
-- CollapsibleTrigger
 - Combobox
 - ComboboxOption
 - ComboboxProps
@@ -1238,7 +1110,6 @@ Every named export available from `@bloomneo/uikit`:
 - ConfirmError
 - ConfirmOptions
 - ConfirmProvider
-- Container
 - DataTable
 - DataTableCellValue
 - DataTableColumn
@@ -1273,7 +1144,6 @@ Every named export available from `@bloomneo/uikit`:
 - EmptyStateProps
 - FilterConfig
 - FilterOperator
-- Footer
 - Form
 - FormControl
 - FormController
@@ -1289,44 +1159,17 @@ Every named export available from `@bloomneo/uikit`:
 - FormatDateOptions
 - FormatNumberOptions
 - FoucScriptOptions
-- Header
-- HeaderLogo
-- HeaderNav
 - HoverCard
 - HoverCardContent
 - HoverCardTrigger
 - Input
 - Label
-- LayoutWrapper
-- Menubar
-- MenubarCheckboxItem
-- MenubarContent
-- MenubarItem
-- MenubarLabel
-- MenubarMenu
-- MenubarRadioGroup
-- MenubarRadioItem
-- MenubarSeparator
-- MenubarShortcut
-- MenubarSub
-- MenubarSubContent
-- MenubarSubTrigger
-- MenubarTrigger
-- MobileLayout
 - Mode
 - Nullable
 - PageHeader
 - PageHeaderCrumb
 - PageHeaderProps
-- PageLayout
-- Pagination
-- PaginationContent
-- PaginationEllipsis
-- PaginationItem
-- PaginationLink
-- PaginationNext
 - PaginationPage
-- PaginationPrevious
 - PasswordInput
 - PasswordInputProps
 - PermissionCheck
@@ -1340,12 +1183,9 @@ Every named export available from `@bloomneo/uikit`:
 - Popover
 - PopoverContent
 - PopoverTrigger
-- PopupLayout
-- Progress
 - RadioGroup
 - RadioGroupItem
 - RowAction
-- SafeArea
 - Select
 - SelectContent
 - SelectGroup
@@ -1353,7 +1193,6 @@ Every named export available from `@bloomneo/uikit`:
 - SelectLabel
 - SelectTrigger
 - SelectValue
-- Separator
 - Sheet
 - SheetClose
 - SheetContent
@@ -1362,11 +1201,8 @@ Every named export available from `@bloomneo/uikit`:
 - SheetHeader
 - SheetTitle
 - SheetTrigger
-- Skeleton
-- Slider
 - SortConfig
 - Switch
-- TabBar
 - Table
 - TableBody
 - TableCaption
@@ -1392,7 +1228,6 @@ Every named export available from `@bloomneo/uikit`:
 - ToastProvider
 - ToastProviderProps
 - Toaster
-- Toggle
 - Tooltip
 - TooltipContent
 - TooltipProvider
@@ -1430,7 +1265,6 @@ Every named export available from `@bloomneo/uikit`:
 - useDataTable
 - useLocalStorage
 - useMediaQuery
-- useMobileLayout
 - usePagination
 - usePermission
 - useTheme

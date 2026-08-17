@@ -10,7 +10,7 @@ Bloomneo is an open-source developer toolkit for building fast, modular, AI-firs
 Three packages work together — or independently:
 
 - **@bloomneo/appkit** — Node.js backend toolkit (14 modules: auth, database, cache, queue, storage, email, events, logging, config, security, util, error, mcp, verify)
-- **@bloomneo/uikit** — React component library (45+ components, 5 OKLCH themes, cross-platform)
+- **@bloomneo/uikit** — React component library (30 components, locked semantic-token palette). A library, not a framework: ships no layouts and does not scaffold apps.
 - **@bloomneo/bloom** — CLI scaffolding (web, admin console, desktop via Electron, mobile via Capacitor)
 
 ## Package references
@@ -18,7 +18,7 @@ Three packages work together — or independently:
 | Package | Version | llms.txt | AGENTS.md |
 |---|---|---|---|
 | `@bloomneo/appkit` | 5.1.1 | [appkit/llms.txt](appkit/llms.txt) | [appkit/AGENTS.md](appkit/AGENTS.md) |
-| `@bloomneo/uikit`  | 2.1.5 | [uikit/llms.txt](uikit/llms.txt)   | [uikit/AGENTS.md](uikit/AGENTS.md)   |
+| `@bloomneo/uikit`  | 4.1.0 | [uikit/llms.txt](uikit/llms.txt)   | [uikit/AGENTS.md](uikit/AGENTS.md)   |
 | `@bloomneo/bloom`  | 4.2.4 | [bloom/llms.txt](bloom/llms.txt)   | —                                     |
 
 ## The one pattern that matters (AppKit)
@@ -41,6 +41,29 @@ Always use the flat import from `@bloomneo/uikit`. Never deep-import unless opti
 ```ts
 import { Button, DataTable, useTheme, toast } from '@bloomneo/uikit';
 ```
+
+## The palette is locked (UIKit 3.0+)
+
+Tailwind's default palette is removed. `bg-blue-600` and `text-gray-900` compile
+to nothing; only semantic tokens work — `bg-primary`, `bg-card`, `bg-muted`,
+`bg-success`, `bg-warning`, `bg-contrast`, `text-muted-foreground`,
+`border-border`, `--color-chart1..5`.
+
+Wire it in the app's own CSS, because a prebuilt stylesheet cannot constrain a
+consumer's Tailwind build:
+
+```css
+@import "tailwindcss";
+@import "@bloomneo/uikit/theme";
+```
+
+## UIKit ships no layouts (4.0+)
+
+`AdminLayout`, `PageLayout`, `AuthLayout`, `BlankLayout`, `PopupLayout`,
+`MobileLayout`, `Header`, `Footer`, `Container`, `SafeArea` and `TabBar` were
+removed — every real application replaced them. Write a layout **route** that
+renders pages through an `<Outlet />`, and let each page own its `<PageHeader>`.
+To scaffold an application, use `@bloomneo/bloom`.
 
 ## Quick start (Bloom CLI)
 

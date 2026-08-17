@@ -1,12 +1,23 @@
 # AGENTS.md — @bloomneo/uikit
 
-> Rules for AI coding agents generating code with `@bloomneo/uikit` v2.1.4.
+> Rules for AI coding agents generating code with `@bloomneo/uikit` v4.1.0.
 > Read this FIRST, then `llms.txt` for per-component snippets.
 
 ## Always do
 
 1. Import from `@bloomneo/uikit` (flat, canonical).
-2. Import `@bloomneo/uikit/styles` once at your app entry point.
+2. Wire the styles correctly — this is the one that gets missed:
+   - App runs its own Tailwind (every Bloom template)? Put
+     `@import "@bloomneo/uikit/theme";` after `@import "tailwindcss";` in your
+     CSS. A prebuilt stylesheet cannot constrain your build, so this is what
+     actually applies the palette lockdown.
+   - No build, prebuilt CSS only? `import '@bloomneo/uikit/styles'` at entry.
+   - Migrating a 2.x app? `@bloomneo/uikit/styles/permissive` keeps raw
+     palette classes working temporarily. It ships the
+   semantic tokens ONLY — Tailwind's default palette is removed in 3.0, so
+   `bg-blue-600` produces no CSS. Use `bg-primary`, `bg-card`,
+   `text-muted-foreground`. (Migrating a 2.x app? `@bloomneo/uikit/styles/permissive`
+   restores the old behaviour temporarily.)
 3. Wrap the app root in `ThemeProvider` > `ToastProvider` > `ConfirmProvider` (in that order).
 4. Add the FOUC-prevention script via `foucScript()` in the `<head>` of `index.html`.
 5. Pass `data` as `[]` while loading — never pass `undefined` to `DataTable`.
@@ -22,7 +33,10 @@
 
 1. Never deep-import as primary: `@bloomneo/uikit/button` is only for tree-shaking optimization.
 2. Never use `<FormController>` for new code — it is a legacy alias for react-hook-form's FormField.
-3. Never hardcode hex colors — use semantic Tailwind classes (`bg-primary`, `text-muted-foreground`).
+3. Never hardcode colors — not hex, and not Tailwind palette classes like
+   `bg-blue-600` or `text-gray-900`. They compile to nothing under the default
+   stylesheet. Use semantic classes: `bg-primary`, `text-muted-foreground`,
+   `bg-card`, `border-border`.
 4. Never create custom toast UI — use `ToastProvider` + `toast.*`.
 5. Never manage Dialog/Sheet/Confirm open state with a custom boolean when a provider hook exists.
 6. Never skip `ThemeProvider` — components depend on CSS variables it sets.
@@ -97,8 +111,8 @@ export default function RootLayout({ children }) {
 | Inline banner, stays visible | `Alert` | `toast.*` |
 | Table with sort/filter/paginate | `DataTable` | `Table` |
 | Raw HTML table for custom layouts | `Table` | `DataTable` |
-| No data exists | `EmptyState` | `Skeleton` |
-| Data is loading | `Skeleton` | `EmptyState` |
+| No data exists | `EmptyState` | a loading placeholder |
+| Data is loading | `<div className="h-N animate-pulse rounded-md bg-muted" />` | `EmptyState` |
 | Label + error + a11y input wrapper | `FormField` | `FormController` |
 | react-hook-form controller (legacy) | `FormController` (only with `useForm`) | — |
 
@@ -110,7 +124,7 @@ Controlled via `open` + `onOpenChange`.
 **Native inputs** (Input, Textarea, PasswordInput):
 Standard React DOM: `value` + `onChange(e)` where `e` is a `ChangeEvent`.
 
-**Single-value pickers** (Select, Combobox, Slider, Tabs, Accordion):
+**Single-value pickers** (Select, Combobox, Tabs):
 `value` + `onValueChange(newValue)` — the callback receives the value
 directly, not a ChangeEvent. Unified in 2.0.0; pre-2.0 Combobox used
 `onChange` — no alias kept.
@@ -137,10 +151,22 @@ directly, not a ChangeEvent. Unified in 2.0.0; pre-2.0 Combobox used
 | Bare `<Input>` without `<FormField>` | No label, no error display, broken a11y | Wrap in `<FormField label="..." error={...}>` |
 | Hardcoded colors like `bg-blue-500` | Breaks when theme changes | Use semantic classes: `bg-primary`, `text-muted-foreground` |
 
+## Icon name collisions with lucide-react
+
+Four uikit components share a name with a `lucide-react` icon:
+**Badge, Command, Sheet, Table.**
+
+Importing both unqualified makes `<Table />` ambiguous, and the icon
+usually wins because it is what most code means. Alias the icon:
+
+```tsx
+import { Table } from '@bloomneo/uikit';
+import { Table as TableIcon } from 'lucide-react';
+```
+
 ## Client-only components
 
 These components require `"use client"` at the top of the file in Next.js App Router:
 
 Dialog, Sheet, Popover, Tooltip, HoverCard, DropdownMenu, ConfirmDialog,
-Toast / ToastProvider, Command / CommandDialog, Combobox, Tabs, Accordion,
-Collapsible, Calendar, ThemeProvider.
+Toast / ToastProvider, Command / CommandDialog, Combobox, Tabs, ThemeProvider.
