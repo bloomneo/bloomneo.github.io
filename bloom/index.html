@@ -97,7 +97,7 @@
         "name": "Is Bloom production-ready?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. Bloom v4.2.4 is stable. Its scaffolded apps use production-ready appkit 4.x + uikit 2.x components. A CI drift-check enforces that docs, template pins and the installed bloom version stay in sync with package.json — so agents never read stale guidance."
+          "text": "Yes. Bloom v5.2.0 is stable. Its scaffolded apps use production-ready appkit 5.x + uikit 4.x components. A CI drift-check enforces that docs, template pins and the installed bloom version stay in sync with package.json — so agents never read stale guidance."
         }
       },
       {
@@ -157,7 +157,7 @@
   <div class="page-header">
     <div class="hero-package">
       <span class="pkg-name">Bloom</span>
-      <span class="pkg-version">v4.2.4</span>
+      <span class="pkg-version">v5.2.0</span>
     </div>
     <h1>The full-stack framework<br/>built for agentic coding</h1>
     <p>Bloom is a TypeScript full-stack framework designed for the era where developers and AI coding agents ship software together. <strong>UIKit</strong> (React components) + <strong>AppKit</strong> (Node backend) + a tiny scaffolding CLI — cover web, desktop (Electron), mobile (Capacitor), and browser extensions from one codebase. Every package ships <code>llms.txt</code> + <code>AGENTS.md</code> machine-readable specs so AI agents generate correct code, and developers review work they actually understand.</p>
@@ -398,55 +398,88 @@ npm run dev        # starts frontend + backend concurrently</code></pre>
   <!-- TEMPLATES -->
   <div class="section" id="templates">
     <div class="section-label">Templates</div>
-    <h2>Pick a starting point.</h2>
+    <h2>One base. Layers on top.</h2>
+    <p style="margin-bottom:1.5rem;">Each layer adds features across the whole stack — API routes, pages, Prisma models, dependencies — and composes with the others. The preset names below are shorthand for a set of layers, and <strong>every one still works</strong>.</p>
     <div class="template-list">
       <div class="template-row">
         <div class="template-meta">
-          <span class="badge badge-green">basicapp</span>
-          <span class="template-name">Web app</span>
-          <span class="template-desc">React + Express, FBCA routing, TypeScript, Vite — ready to deploy</span>
+          <span class="badge badge-green">app</span>
+          <span class="template-name">The base</span>
+          <span class="template-desc">React + Express, FBCA routing, TypeScript, Vite, a themeable component system, and public pages (about, contact, privacy, terms)</span>
         </div>
         <code class="template-cmd">bloom create my-app</code>
       </div>
       <div class="template-row">
         <div class="template-meta">
+          <span class="badge badge-yellow">--auth</span>
+          <span class="template-name">Accounts</span>
+          <span class="template-desc">Register, login, password reset, email verification, AuthGuard, the Prisma User model, and a guarded dashboard shell</span>
+        </div>
+        <code class="template-cmd">bloom create my-app --auth</code>
+      </div>
+      <div class="template-row">
+        <div class="template-meta">
+          <span class="badge badge-yellow">--admin</span>
+          <span class="template-name">Admin console</span>
+          <span class="template-desc">User management with full CRUD, an append-only audit trail, editable app settings — all behind a role gate. Implies --auth</span>
+        </div>
+        <code class="template-cmd">bloom create my-app --admin</code>
+      </div>
+      <div class="template-row">
+        <div class="template-meta">
+          <span class="badge badge-yellow">--desktop</span>
+          <span class="template-name">Desktop</span>
+          <span class="template-desc">Electron wrapper. Packages the same web build and the same API — not a second source tree. Ships to Windows / macOS / Linux</span>
+        </div>
+        <code class="template-cmd">bloom create my-app --desktop</code>
+      </div>
+      <div class="template-row">
+        <div class="template-meta">
+          <span class="badge badge-green">--mobile</span>
+          <span class="template-name">iOS + Android</span>
+          <span class="template-desc">Capacitor wrapper over the same web build. Safe-area handling, status bar, Android back button. <code>npx cap add ios</code> generates the native project</span>
+        </div>
+        <code class="template-cmd">bloom create my-app --mobile</code>
+      </div>
+    </div>
+
+    <div class="section-label" style="margin-top:2.5rem;">Presets are shorthand</div>
+    <div class="template-list">
+      <div class="template-row">
+        <div class="template-meta">
+          <span class="badge badge-green">basicapp</span>
+          <span class="template-name">= app</span>
+          <span class="template-desc">The base, no layers</span>
+        </div>
+        <code class="template-cmd">bloom create my-app basicapp</code>
+      </div>
+      <div class="template-row">
+        <div class="template-meta">
           <span class="badge badge-yellow">userapp</span>
-          <span class="template-name">Auth + users</span>
-          <span class="template-desc">Registration, email verification, login, password reset. Role-based access, admin panel, Prisma + PostgreSQL</span>
+          <span class="template-name">= app + auth</span>
+          <span class="template-desc">Accounts and a dashboard</span>
         </div>
         <code class="template-cmd">bloom create my-app userapp</code>
       </div>
       <div class="template-row">
         <div class="template-meta">
           <span class="badge badge-yellow">adminapp</span>
-          <span class="template-name">Admin console</span>
-          <span class="template-desc">userapp + audit log, settings editor, dashboard widgets, 3-tier roles, marketing + legal pages, mobile bottom-nav</span>
+          <span class="template-name">= app + auth + admin</span>
+          <span class="template-desc">Everything, including the console</span>
         </div>
         <code class="template-cmd">bloom create my-app adminapp</code>
       </div>
+    </div>
+
+    <p style="margin:2.5rem 0 1.5rem;">Because they compose, combinations that never existed as separate templates now do — an admin console that also ships as a desktop app and a phone app, from a single <code>src/web</code>:</p>
+    <div class="template-list">
       <div class="template-row">
         <div class="template-meta">
-          <span class="badge badge-yellow">desktop-basicapp</span>
-          <span class="template-name">Desktop</span>
-          <span class="template-desc">Electron, FBCA architecture, SQLite via better-sqlite3, packages to Windows / macOS / Linux</span>
+          <span class="badge badge-green">compose</span>
+          <span class="template-name">Everything, everywhere</span>
+          <span class="template-desc">Web + Electron + iOS + Android, one <code>src/web</code></span>
         </div>
-        <code class="template-cmd">bloom create my-app desktop-basicapp</code>
-      </div>
-      <div class="template-row">
-        <div class="template-meta">
-          <span class="badge badge-yellow">desktop-userapp</span>
-          <span class="template-name">Desktop + auth</span>
-          <span class="template-desc">Electron with full auth system, role-based access, user management, SQLite</span>
-        </div>
-        <code class="template-cmd">bloom create my-app desktop-userapp</code>
-      </div>
-      <div class="template-row">
-        <div class="template-meta">
-          <span class="badge badge-green">mobile-basicapp</span>
-          <span class="template-name">Mobile (iOS + Android)</span>
-          <span class="template-desc">Capacitor 7 — native iOS and Android from one React codebase, run on device or simulator in minutes</span>
-        </div>
-        <code class="template-cmd">bloom create my-app mobile-basicapp</code>
+        <code class="template-cmd">bloom create my-app adminapp --desktop --mobile</code>
       </div>
     </div>
   </div>
@@ -743,7 +776,7 @@ export default router;</code></pre>
       <details class="faq-item">
         <summary>Is Bloom production-ready?</summary>
         <div class="faq-item-body">
-          Yes. Bloom v4.0.0 is stable. Scaffolded apps use production-ready appkit 4.x + uikit 2.x components. A CI drift-check enforces that docs, template pins, and the installed bloom version stay in sync with <code>package.json</code> — so agents never read stale guidance.
+          Yes. Bloom v5.2.0 is stable. Scaffolded apps use production-ready appkit 5.x + uikit 4.x components. A CI drift-check enforces that docs, template pins, and the installed bloom version stay in sync with <code>package.json</code> — so agents never read stale guidance.
         </div>
       </details>
       <details class="faq-item">
