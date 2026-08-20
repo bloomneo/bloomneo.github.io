@@ -33,7 +33,7 @@
 <section class="hero" style="max-width:860px;">
   <div class="hero-badge">Founding Manifesto</div>
   <h1>Why we build<br/>the way we build</h1>
-  <p>Bloomneo is a global initiative to simplify modern app development. We build tools for the AI-first era — fast, modular, multi-platform, and designed so both humans and AI coding agents can ship confidently.</p>
+  <p>Bloomneo builds for a world where most code is generated. Modular and consistent, so it stays reviewable. One codebase, so it ships everywhere.</p>
 </section>
 
 <div class="page-wrap" style="padding-top:0;">
@@ -41,8 +41,8 @@
   <!-- ── VISION ── -->
   <div class="section">
     <div class="section-label">Vision</div>
-    <h2>Any developer. Production-ready. In minutes.</h2>
-    <p>We're building a world where a solo developer can scaffold a fullstack app in one command, and an enterprise team can scale it to millions without rewriting it. No framework lock-in. No boilerplate rituals. No days lost to configuration.</p>
+    <h2>Any developer. Every surface. Code you can vouch for.</h2>
+    <p>Most code is now written by a machine, and the scarce thing stopped being keystrokes — it is confidence. Somebody still has to put their name on a change they did not type. We are building for that moment: a framework where the structure carries the correctness, so a reviewer can tell what a change does by where it lives, and a team of three can ship to browser, desktop and phone without becoming a team of nine.</p>
   </div>
 
   <!-- ── PROBLEMS ── -->
@@ -51,45 +51,35 @@
     <div class="card-grid">
       <div class="card">
         <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 3v6"/>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">             <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 3v6"/>           </svg>
         </div>
-        <h3>Complex frameworks</h3>
-        <p>Steep learning curves waste days before a single line of product code is written. Setup should take one command.</p>
+        <h3>Code arriving faster than it can be reviewed</h3>
+        <p>Most code is now generated, and the bottleneck moved from writing to signing off. A reviewer's first question — does this run on the server? — should be answered by where the file sits, not by tracing directives up a component tree.</p>
       </div>
       <div class="card">
         <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/>
-            <path d="M15 2v2M9 2v2M15 20v2M9 20v2M2 15h2M2 9h2M20 15h2M20 9h2"/>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">             <rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/>             <path d="M15 2v2M9 2v2M15 20v2M9 20v2M2 15h2M2 9h2M20 15h2M20 9h2"/>           </svg>
         </div>
-        <h3>Unreliable AI code</h3>
-        <p>LLMs hallucinate method names for undocumented packages. Every Bloomneo package ships <code>llms.txt</code> and <code>AGENTS.md</code> so agents get it right the first time.</p>
+        <h3>Safety you have to remember</h3>
+        <p>An auth check repeated in every handler is a check that will eventually be missed, and the one that is missed does not announce itself. Correctness belongs in the structure, where a handler written next month inherits it.</p>
       </div>
       <div class="card">
         <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">             <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>           </svg>
         </div>
-        <h3>Rigid architectures</h3>
-        <p>Monoliths that can't grow without pain. FBCA makes every feature isolated and independently deployable from the very first commit.</p>
+        <h3>Web-only by default</h3>
+        <p>A team that needs a desktop app or a phone app should not become three teams. Collapsing the client/server boundary buys terse code and costs every surface that is not a browser.</p>
       </div>
       <div class="card">
         <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">             <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>           </svg>
         </div>
-        <h3>Slow workflows</h3>
-        <p>Rebuilding auth, users, and database patterns on every project. Bloom templates ship with production patterns already in place.</p>
+        <h3>Failures that say nothing</h3>
+        <p>A wrong path that 404s, a config that returns HTML instead of JSON, a file the router silently ignores. Silence is the most expensive failure there is — and for an agent, whose whole debugging loop is the error message, it is total.</p>
       </div>
     </div>
   </div>
 
-  <!-- ── VALUES ── -->
   <div class="section">
     <div class="section-label">Core values</div>
     <h2>What we stand for</h2>
@@ -97,49 +87,48 @@
       <div class="value-item">
         <div class="value-title">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Simplicity
+          Correct by default
         </div>
-        <p>Clarity over complexity. Tools that are easy to learn, easy to use, and easy to leave if you outgrow them.</p>
+        <p>The safe version is the shape of the file, not a discipline you remember. The auth gate lives on the router, so a handler added next month inherits it. The role check lives on the layout, so a page added later cannot forget it. Ownership belongs in the WHERE clause, not a separate check. These are not conveniences — they are categories of bug that cannot occur.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Reviewable
+        </div>
+        <p>Where a line lives tells you what it does. A database call in <code>src/api/</code> runs on the server; there is no second reading, no tracing a directive up the component tree. When most code arrives pre-written, you are no longer reading to recall your own intent — you are auditing someone else's, at volume. Every question the structure answers for free is one you do not have to re-derive.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          One codebase, every surface
+        </div>
+        <p>The client/server boundary is real, so the API is a real API — callable by a phone, a partner, a cron job — and the web build is a real client, bundled unchanged into desktop and mobile. Browser, Electron, iOS and Android from a single source tree. Not four projects that resemble each other.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          Loud when wrong
+        </div>
+        <p>A mistake should fail immediately and point somewhere small and true. A wrong route is a compile error. A misconfigured API base says so instead of throwing a JSON parse error. A route file the router will never mount warns at startup rather than quietly 404ing. Silence is the most expensive failure mode there is — for a person, and far more so for an agent, whose entire debugging loop is the error message.</p>
       </div>
       <div class="value-item">
         <div class="value-title">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           Autonomy
         </div>
-        <p>Loosely coupled modules. Use AppKit without UIKit. Use UIKit without Bloom. Take what you need — nothing forces you to take everything.</p>
+        <p>Loosely coupled by design. Use AppKit without UIKit. Use UIKit without Bloom. Take what you need — nothing forces you to take everything.</p>
       </div>
       <div class="value-item">
         <div class="value-title">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Modularity
+          Open
         </div>
-        <p>Features are isolated by design. A change made today doesn't break something you built six months ago.</p>
-      </div>
-      <div class="value-item">
-        <div class="value-title">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          AI Innovation
-        </div>
-        <p>AI coding agents are first-class consumers of our packages. Every API decision asks: will an LLM get this right without hallucinating?</p>
-      </div>
-      <div class="value-item">
-        <div class="value-title">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Open Ecosystem
-        </div>
-        <p>MIT licensed. No vendor lock-in. No hidden tiers. The framework is the product — not the pricing page.</p>
-      </div>
-      <div class="value-item">
-        <div class="value-title">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Reliability
-        </div>
-        <p>What works in development works in production. No surprises. Auto-scaling happens through env vars, not code rewrites.</p>
+        <p>MIT licensed. No vendor lock-in, no hidden tiers. The framework is the product, not the pricing page.</p>
       </div>
     </div>
   </div>
 
-  <!-- ── DESIGN PRINCIPLES ── -->
   <div class="section">
     <div class="section-label">Design principles</div>
     <h2>How we make decisions</h2>
@@ -179,6 +168,16 @@
         </div>
         <h3>Minimal code, maximum intent</h3>
         <p>One method that does the right thing beats four that cover every edge case. Purposeful APIs with smart defaults — no bloat.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7V5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v2"/><line x1="12" y1="4" x2="12" y2="20"/><line x1="9" y1="20" x2="15" y2="20"/></svg>
+        </div>
+        <h3>Prefer a type to a document</h3>
+        <p>Documentation is consulted during research. Mistakes happen mid-sentence, when the writer is
+        confident and does not stop to check — and no document intercepts that. When a rule keeps being
+        broken, we promote it out of prose and into the type system, where it is checked at the moment the
+        wrong thing is written. Routes are generated into a union, not listed in a guide.</p>
       </div>
     </div>
   </div>
@@ -233,6 +232,15 @@
   </div>
 
   <!-- ── COMMITMENT ── -->
+  <!-- ── CLOSING THESIS ── -->
+  <div class="section">
+    <div class="section-label">The one decision</div>
+    <h2>Keep the boundary real</h2>
+    <p style="margin-top:1rem;">Server-side frameworks have spent a decade dissolving the line between client and server, and they got something real for it — code that reads as one program, and less of it. We went the other way, and everything on this page is downstream of that.</p>
+    <p style="margin-top:1rem;">Because the boundary is real, the API is a real API — callable by a phone, a partner, a scheduled job. Because it is real, the web build is a real client, and bundles unchanged into desktop and mobile. Because it is real, a reviewer can tell where a line runs by where it lives.</p>
+    <p style="margin-top:1rem;">Reviewability, reach and structural safety are not three features we shipped. <strong>They are three consequences of one decision we refused to reverse.</strong></p>
+  </div>
+
   <div class="section">
     <div class="section-label">Our commitment</div>
     <div class="manifesto-block">
@@ -245,6 +253,7 @@
       <a href="../bloom/" class="btn btn-outline">Start building</a>
     </div>
   </div>
+
 
 </div>
 
