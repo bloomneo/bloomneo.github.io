@@ -49,7 +49,7 @@
         "name": "What is Bloom?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Bloom is a TypeScript full-stack framework built for agentic coding. It ships three packages that compose: AppKit (Node backend toolkit with 12 modules), UIKit (React component library with 45+ components), and a scaffolding CLI that wires them together via Feature-Based Component Architecture. Six templates cover web, admin console, desktop (Electron), and mobile (Capacitor). Every package ships llms.txt + AGENTS.md machine-readable specs so AI coding agents generate correct code on the first try."
+          "text": "Bloom is a TypeScript full-stack framework built for agentic coding. It ships three packages that compose: AppKit (Node backend toolkit, 14 modules), UIKit (React component library, 30 components), and a scaffolding CLI that wires them together via Feature-Based Component Architecture. One base plus composable layers — auth, admin, desktop (Electron) and mobile (Capacitor) — reach browser, desktop and phone from a single source tree. Generated route types and a shared API client turn the most common agent mistakes into compile errors rather than runtime bugs."
         }
       },
       {
@@ -292,20 +292,20 @@ src/web/features/
   <!-- AGENTIC BY DEFAULT -->
   <div class="section" id="agentic">
     <div class="section-label">Agentic by default</div>
-    <h2>Designed assuming 50%+ of the code is written by an AI</h2>
-    <p style="margin-bottom:1.25rem;">Most frameworks were built for humans, then retro-fitted with an LLM integration post-ChatGPT. Bloom is engineered from day one around the assumption that Claude, Cursor, Copilot and Windsurf are your teammates. Nine concrete places that plays out:</p>
+    <h2>Built for the moment an agent is confidently wrong</h2>
+    <p style="margin-bottom:1.25rem;">Most frameworks were built for humans and retro-fitted with an LLM integration after ChatGPT. Bloom starts from a different observation: agents rarely fail while <em>researching</em> — they fail mid-sentence, writing something plausible without stopping to check. No document intercepts that. A type does. The defences below are ordered by what actually catches a mistake, not by what reads well in a README.</p>
     <table>
-      <thead><tr><th>What Bloom ships</th><th>Why it matters for agents</th></tr></thead>
+      <thead><tr><th>What Bloom ships</th><th>What it catches</th></tr></thead>
       <tbody>
-        <tr><td><code>llms.txt</code> in every package</td><td>Single machine-readable API reference. Auto-regenerated on every build — never drifts from source.</td></tr>
-        <tr><td><code>AGENTS.md</code> with always-do / never-do rules</td><td>Prescriptive guardrails that prevent the most common LLM failure modes (wrong prop names, double providers, undefined data).</td></tr>
-        <tr><td>Claude Code skills bundled</td><td>13 skills ship inside the packages. Copy <code>.claude/skills/</code> into your repo — auto-triggered by import patterns.</td></tr>
-        <tr><td><code>@llm-rule WHEN / AVOID / NOTE</code> JSDoc on every UI component</td><td>Agents reading source code get usage rules inline. 44 of 44 uikit components annotated.</td></tr>
-        <tr><td>Postinstall doc hydration</td><td>Scaffolded projects auto-copy appkit + uikit docs into <code>docs/</code> on every <code>npm install</code>. Agents always read docs matching the <em>installed</em> version.</td></tr>
-        <tr><td>Drift-checked public surface (CI)</td><td>Every package fails CI if docs, types, or template pins drift from source. Agents can't be taught a hallucinated method — CI rejects the teaching material first.</td></tr>
-        <tr><td>Enforced naming policy</td><td><code>get&lt;Thing&gt;</code> nullable, <code>require&lt;Thing&gt;</code> middleware, <code>has/is/can</code> booleans, no synonym drift. Agents pattern-match one rule across 12 modules.</td></tr>
-        <tr><td>Typed errors with <code>module</code> + <code>code</code> + <code>docsUrl</code></td><td>Error messages embed the exact docs anchor. Agents reading an error can fetch the fix — no guessing.</td></tr>
-        <tr><td>Single canonical API pattern</td><td><code>xxxClass.get()</code> across all 12 appkit modules. One flat import for uikit. Two commands for bloom. No decorators, no DI, no factory variants.</td></tr>
+        <tr><td>Generated <code>ApiRoute</code> union</td><td>Every path the API serves, derived from the route files and regenerated on install, dev and build. <code>api.get('/api/user')</code> becomes a compile error when the real route is <code>/api/user/admin/users</code> — the most expensive class of mistake, caught before the app runs.</td></tr>
+        <tr><td>One typed API client</td><td><code>shared/api.ts</code> owns the base URL, the auth token and the error shape. No feature hand-rolls fetch, so none can hand-roll it wrong.</td></tr>
+        <tr><td>Gates on the router, not the handler</td><td><code>router.use(auth.requireLoginToken())</code> once per feature. A handler added next month inherits it instead of having to remember it.</td></tr>
+        <tr><td>Errors that name the cause</td><td>A misconfigured API base says so, rather than <code>Unexpected token '&lt;'</code> from a JSON parse three frames away. A route file the router will never mount warns at startup instead of quietly 404ing.</td></tr>
+        <tr><td>Palette lockdown</td><td>Raw hex and stock Tailwind colour classes are absent from the build, so an agent cannot drift the design system — the wrong class does not exist.</td></tr>
+        <tr><td>Typed errors with <code>module</code> + <code>code</code> + <code>docsUrl</code></td><td>An error that carries the page explaining it, so the next step is a link rather than a guess.</td></tr>
+        <tr><td>Single canonical API pattern</td><td><code>xxxClass.get()</code> across every AppKit module. One shape to learn, one shape to get right.</td></tr>
+        <tr><td><code>llms.txt</code> and <code>AGENTS.md</code> in every package</td><td>The reference and the rules, re-synced from <code>node_modules</code> on every install so they cannot drift from the installed API. Genuinely useful — but read during research, which is not when mistakes happen. The rows above are what catch them.</td></tr>
+        <tr><td>Drift-checked public surface (CI)</td><td>Every package fails CI if docs, types or template pins disagree with <code>package.json</code>.</td></tr>
       </tbody>
     </table>
   </div>
@@ -363,9 +363,10 @@ src/web/features/
   <!-- WHAT NOT TO DO -->
   <div class="section" id="mistakes">
     <div class="section-label">What NOT to do (for you and your agent)</div>
-    <h2>The five mistakes Bloom won't let you make twice</h2>
-    <p style="margin-bottom:1.25rem;">These are the only ways to silently break a Bloom project. Memorise them — or point your AI agent at <code>AGENTS.md</code> where they're spelled out line by line.</p>
+    <h2>The six mistakes worth knowing before your agent makes them</h2>
+    <p style="margin-bottom:1.25rem;">Most ways to break a Bloom project now fail loudly. These are the ones that do not — the residue worth knowing. Point your AI agent at <code>AGENTS.md</code> where they're spelled out line by line.</p>
     <ul class="dont-list">
+      <li><span class="x" aria-hidden="true">✕</span><span><strong>Never mount a feature router without a gate.</strong> <code>router.use(auth.requireLoginToken())</code> belongs at the top of every route file that touches user data. A feature written without it starts cleanly and serves — this is the one silent failure we have not yet closed, and a startup warning for it is in progress.</span></li>
       <li><span class="x" aria-hidden="true">✕</span><span><strong>Never <code>import { ... } from '@bloomneo/bloom'</code>.</strong> Bloom is a CLI, not a runtime library. Nothing ships in <code>node_modules</code> for your app to import. If you're writing that import, you're off the canonical path.</span></li>
       <li><span class="x" aria-hidden="true">✕</span><span><strong>Never hand-edit the page-router in a scaffolded project.</strong> The router auto-discovers features. Add a route = create <code>features/&lt;name&gt;/pages/index.tsx</code>. Don't touch the router file.</span></li>
       <li><span class="x" aria-hidden="true">✕</span><span><strong>Never overwrite <code>docs/appkit.md</code> / <code>docs/uikit.md</code>.</strong> They're regenerated from <code>node_modules</code> on every <code>npm install</code>. Edit the upstream package's <code>llms.txt</code>, not the copy.</span></li>
@@ -699,8 +700,8 @@ export default router;</code></pre>
             <path d="M15 2v2M9 2v2M15 20v2M9 20v2M2 15h2M2 9h2M20 15h2M20 9h2"/>
           </svg>
         </div>
-        <h3>Zero hallucinations</h3>
-        <p>AI coding agents read <code>docs/appkit.md</code> first and never guess method names. LLMs.txt coverage means the first suggestion is usually the correct one.</p>
+        <h3>Mistakes that fail fast</h3>
+        <p>Agents guess — every model does. The generated <code>ApiRoute</code> union, the typed component props and the shared API client turn those guesses into compile errors instead of runtime bugs.</p>
       </div>
     </div>
   </div>
@@ -740,7 +741,7 @@ export default router;</code></pre>
       <details class="faq-item">
         <summary>What is Bloom?</summary>
         <div class="faq-item-body">
-          Bloom is a TypeScript full-stack framework built for agentic coding. It ships three packages that compose: <strong>AppKit</strong> (Node backend toolkit with 12 modules), <strong>UIKit</strong> (React component library with 45+ components), and a scaffolding CLI that wires them together via Feature-Based Component Architecture. Five templates cover web, desktop (Electron), and mobile (Capacitor). Every package ships <code>llms.txt</code> + <code>AGENTS.md</code> machine-readable specs so AI coding agents generate correct code on the first try.
+          Bloom is a TypeScript full-stack framework built for agentic coding. It ships three packages that compose: <strong>AppKit</strong> (Node backend toolkit, 14 modules), <strong>UIKit</strong> (React component library, 30 components), and a scaffolding CLI that wires them together via Feature-Based Component Architecture. One base plus composable layers — auth, admin, desktop (Electron) and mobile (Capacitor) — reach browser, desktop and phone from a single source tree. Generated route types and a shared API client turn the most common agent mistakes into compile errors rather than runtime bugs.
         </div>
       </details>
       <details class="faq-item">

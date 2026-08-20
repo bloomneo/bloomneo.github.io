@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>@bloomneo/uikit — React components AI agents pick first</title>
-  <meta name="description" content="A React component library, not a framework: 30 typed components and a locked design-token palette where bg-blue-600 compiles to nothing. Ships llms.txt + AGENTS.md so AI coding agents generate correct JSX on the first try." />
+  <meta name="description" content="A React component library, not a framework: 30 typed components and a locked design-token palette where bg-blue-600 compiles to nothing. Ships llms.txt + AGENTS.md, and types every prop so a wrong one fails to compile." />
   <meta name="author" content="Bloomneo" />
   <link rel="canonical" href="https://dev.bloomneo.com/uikit/" />
 
@@ -49,7 +49,7 @@
         "name": "What is @bloomneo/uikit?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "@bloomneo/uikit is a React component library designed for agentic code workflows — the era where developers and AI coding agents (Claude Code, Cursor, GitHub Copilot, Windsurf) build UIs together. It ships 30 typed components and a locked semantic-token palette, plus llms.txt + AGENTS.md machine-readable specs in every release so agents generate correct JSX on the first try. It is a library, not a framework: it ships no layouts and does not scaffold applications."
+          "text": "@bloomneo/uikit is a React component library designed for agentic code workflows — the era where developers and AI coding agents (Claude Code, Cursor, GitHub Copilot, Windsurf) build UIs together. It ships 30 typed components and a locked semantic-token palette, plus llms.txt + AGENTS.md machine-readable specs in every release, and typed props so a wrong one does not compile. It is a library, not a framework: it ships no layouts and does not scaffold applications."
         }
       },
       {
@@ -57,7 +57,7 @@
         "name": "How is UIKit different from shadcn/ui, Mantine, MUI, Chakra, or Radix directly?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "UIKit is a composable React component library built on Radix primitives + Tailwind. Unlike shadcn (copy-paste) or MUI (opinionated design), UIKit ships as a versioned npm package with unified conventions: one canonical import path, one provider tree, one controlled-prop convention, and cross-platform targets (web, desktop, mobile, extensions). Every component carries @llm-rule JSDoc so AI agents pick the correct API on the first try."
+          "text": "UIKit is a composable React component library built on Radix primitives + Tailwind. Unlike shadcn (copy-paste) or MUI (opinionated design), UIKit ships as a versioned npm package with unified conventions: one canonical import path, one provider tree, one controlled-prop convention, and cross-platform targets (web, desktop, mobile, extensions). Every component carries @llm-rule JSDoc, and typed props so a wrong one fails to compile."
         }
       },
       {
@@ -785,7 +785,7 @@ export default function App() {
       <details class="faq-item">
         <summary>What is @bloomneo/uikit?</summary>
         <div class="faq-item-body">
-          @bloomneo/uikit is a React component library designed for agentic code workflows — the era where developers and AI coding agents (Claude Code, Cursor, GitHub Copilot, Windsurf) build UIs together. It ships 30 typed components and a locked semantic-token palette, plus <code>llms.txt</code> and <code>AGENTS.md</code> machine-readable specs in every release so agents generate correct JSX on the first try. It is a <strong>library, not a framework</strong>: it deliberately ships no layouts and does not scaffold applications — that is <a href="../bloom/">@bloomneo/bloom</a>'s job.
+          @bloomneo/uikit is a React component library designed for agentic code workflows — the era where developers and AI coding agents (Claude Code, Cursor, GitHub Copilot, Windsurf) build UIs together. It ships 30 typed components and a locked semantic-token palette, plus <code>llms.txt</code> and <code>AGENTS.md</code> machine-readable specs in every release, and typed props so a wrong one fails to compile. It is a <strong>library, not a framework</strong>: it deliberately ships no layouts and does not scaffold applications — that is <a href="../bloom/">@bloomneo/bloom</a>'s job.
         </div>
       </details>
       <details class="faq-item">
