@@ -7,6 +7,21 @@
   <meta name="description" content="That page doesn't exist on Bloom Developer. Jump to the framework overview, a package page, or the homepage." />
   <meta name="robots" content="noindex, follow" />
   <link rel="stylesheet" href="/assets/style.css" />
+  <script>
+    /* Applied before paint: reading the stored choice after the stylesheet has
+       painted is what produces the flash of the wrong theme on reload. With no
+       stored choice no attribute is set, and the sheet's default — light —
+       stands. */
+    (function () {
+      try {
+        var t = localStorage.getItem('bloom-theme');
+        if (t === 'light' || t === 'dark') {
+          document.documentElement.setAttribute('data-theme', t);
+        }
+      } catch (e) { /* private mode: fall through to the OS preference */ }
+    })();
+  </script>
+
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
 </head>
 <body>
@@ -22,7 +37,19 @@
     <li><a href="/bloom/">Bloom CLI</a></li>
     <li><a href="/philosophy/">Philosophy</a></li>
     <li><a href="https://github.com/bloomneo" target="_blank">GitHub ↗</a></li>
-  </ul>
+      <button class="theme-toggle" id="themeToggle" type="button"
+            aria-label="Switch between light and dark theme">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="4"/>
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+      </svg>
+    </button>
+</ul>
 </nav>
 
 <section class="hero">
@@ -75,5 +102,23 @@
   <p>© 2026 Bloomneo &nbsp;·&nbsp; <a href="/appkit/">AppKit</a> &nbsp;·&nbsp; <a href="/uikit/">UIKit</a> &nbsp;·&nbsp; <a href="/bloom/">Bloom</a> &nbsp;·&nbsp; <a href="/philosophy/">Philosophy</a> &nbsp;·&nbsp; <a href="https://github.com/bloomneo" target="_blank">GitHub</a> &nbsp;·&nbsp; MIT</p>
 </footer>
 
+<script>
+  (function () {
+    var btn = document.getElementById('themeToggle');
+    if (!btn) return;
+    var root = document.documentElement;
+
+    btn.addEventListener('click', function () {
+      /* Resolve what is on screen NOW. Without the media-query fallback, the
+         first click on a machine set to dark would "switch" to dark and appear
+         to do nothing. */
+      /* Light is the default, so an absent attribute means light. */
+      var current = root.getAttribute('data-theme') || 'light';
+      var next = current === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('bloom-theme', next); } catch (e) {}
+    });
+  })();
+</script>
 </body>
 </html>

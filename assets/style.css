@@ -1,17 +1,86 @@
+/* ── Theme ────────────────────────────────────────────────────────────────
+   Light is the default; dark is opt-in via [data-theme="dark"], and also the
+   default for anyone whose OS asks for it (unless they have explicitly chosen
+   light). Every colour below is a token — the sheet previously carried twelve
+   hardcoded rgba(232,168,48, …) values, which is exactly the sort of thing that
+   survives a theme switch and then looks wrong in one mode only.
+
+   Two accents, not one:
+
+     --accent         interactive text and fills. It CHANGES per mode, because
+                      the brand gold is ~2:1 on white and unreadable as a link.
+     --accent-bright  the brand gold itself, for decoration where contrast does
+                      not apply — glows, dots, tinted rules. Same in both modes,
+                      so the identity does not shift.
+
+   --accent-rgb exists so alpha tints can be written rgba(var(--accent-rgb), .08)
+   instead of hardcoding the channels. */
 :root {
+  --bg: #fbfcfb;
+  --surface: #ffffff;
+  --border: #e3eae4;
+  --border-bright: #cbd9cd;
+  --text: #16241a;
+  --muted: #5b6d5f;
+
+  --accent: #8a5c0a;
+  --accent-rgb: 138, 92, 10;
+  --accent-dim: #704906;
+  --accent-bright: #E8A830;
+  /* Text placed ON --accent. */
+  --accent-contrast: #ffffff;
+
+  --green: #17803d;
+  --green-rgb: 23, 128, 61;
+  --yellow: #a16207;
+  --red: #b91c1c;
+  --red-rgb: 185, 28, 28;
+  --shadow-rgb: 20, 40, 24;
+  --surface-rgb: 255, 255, 255;
+
+  /* Code blocks stay dark in light mode too. The highlight.js palette in use is
+     tuned for a dark surface — recolouring the background without retuning
+     every token colour makes the syntax unreadable, which is a worse outcome
+     than a dark block on a light page. Named so the choice is visible rather
+     than looking like a value someone forgot to theme. */
+  --code-bg: #0d1a0e;
+
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+}
+
+/* Light is the site's default, full stop — not "light unless your OS says
+   otherwise". The brand reads light, and a visitor on a dark-set machine
+   should still land on the site as designed; the toggle is how they choose
+   otherwise, and that choice persists.
+
+   That is a deliberate departure from following prefers-color-scheme. The
+   trade is real: someone who prefers dark everywhere gets one extra click.
+   Making it automatic would mean half the audience never sees the design as
+   intended, and the sudden dark page would look like the theme had failed.
+
+   Dark is therefore driven only by the attribute below. */
+:root[data-theme="dark"] {
   --bg: #0f1f10;
   --surface: #162518;
   --border: #1e3320;
   --border-bright: #284a2b;
   --text: #e8e8e8;
   --muted: #8a9e8b;
+
   --accent: #E8A830;
+  --accent-rgb: 232, 168, 48;
   --accent-dim: #c98e20;
+  --accent-bright: #E8A830;
+  --accent-contrast: #1B3A1E;
+
   --green: #4ade80;
+  --green-rgb: 74, 222, 128;
   --yellow: #E8A830;
   --red: #f87171;
-  --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
-  --font-sans: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+  --red-rgb: 248, 113, 113;
+  --shadow-rgb: 8, 18, 9;
+  --surface-rgb: 8, 18, 9;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -23,7 +92,7 @@ a:hover { text-decoration: underline; }
 /* ── Nav ── */
 nav {
   position: sticky; top: 0; z-index: 100;
-  background: rgba(8,18,9,0.95);
+  background: rgba(var(--surface-rgb), 0.95);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
   padding: 0 2rem; height: 56px;
@@ -61,8 +130,46 @@ nav {
   position: relative; isolation: isolate;
 }
 
+/* ── Theme toggle ────────────────────────────────────────────────────────
+   One button, two icons, and CSS decides which is visible — rather than
+   JavaScript swapping innerHTML on every click. That keeps the markup honest:
+   both icons are always in the DOM, and the one that applies to the current
+   theme is the one shown. */
+.theme-toggle {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 34px; height: 34px;
+  margin-left: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+}
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(var(--accent-rgb), 0.08);
+}
+.theme-toggle svg { width: 17px; height: 17px; }
+
+/* Show the icon for the mode you would switch TO, which is the convention
+   people already read: a moon means "go dark". */
+.theme-toggle .icon-moon { display: block; }
+.theme-toggle .icon-sun  { display: none; }
+:root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+:root[data-theme="dark"] .theme-toggle .icon-sun  { display: block; }
+
+/* The nav is a flex row; the toggle sits between the links and the mobile
+   hamburger, and margin-left:auto would push the hamburger off on small
+   screens, so reset it once the mobile layout takes over. */
+@media (max-width: 820px) {
+  .theme-toggle { margin-left: 0; order: 2; }
+  .nav-toggle { order: 3; }
+}
+
 /* ── Hero ambient ────────────────────────────────────────────────────────
-   The hero was a flat #0f1f10 rectangle: nothing behind the headline, so the
+   The hero was a flat var(--bg) rectangle: nothing behind the headline, so the
    page opened on an absence. Two drifting blooms and a masked grid give it
    depth without putting anything in front of the words.
 
@@ -136,8 +243,8 @@ nav {
 
 .hero-badge {
   display: inline-block; font-family: var(--font-mono); font-size: 0.72rem;
-  color: var(--accent); background: rgba(232,168,48,0.08);
-  border: 1px solid rgba(232,168,48,0.2);
+  color: var(--accent); background: rgba(var(--accent-rgb), 0.08);
+  border: 1px solid rgba(var(--accent-rgb), 0.2);
   padding: 0.3rem 0.9rem; border-radius: 999px; margin-bottom: 1.5rem; letter-spacing: 0.06em;
 }
 
@@ -154,7 +261,7 @@ nav {
 .hero-package .pkg-version {
   display: inline-block;
   font-size: 0.75rem; font-weight: 700;
-  background: var(--accent); color: #1B3A1E;
+  background: var(--accent); color: var(--accent-contrast);
   padding: 0.2rem 0.55rem; border-radius: 6px;
   letter-spacing: 0.04em;
   position: relative; top: 2px;
@@ -175,7 +282,7 @@ nav {
   padding: 0.6rem 1.4rem; border-radius: 8px;
   font-size: 0.9rem; font-weight: 600; transition: all 0.15s; cursor: pointer;
 }
-.btn-primary { background: var(--accent); color: #0a0a0a; border: 1px solid var(--accent); }
+.btn-primary { background: var(--accent); color: var(--accent-contrast); border: 1px solid var(--accent); }
 .btn-primary:hover { background: var(--accent-dim); text-decoration: none; }
 .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border-bright); }
 .btn-outline:hover { border-color: var(--muted); text-decoration: none; }
@@ -236,8 +343,8 @@ nav {
   padding: 0.2rem 0.6rem; border-radius: 4px;
   font-family: var(--font-mono); letter-spacing: 0.03em;
 }
-.badge-green  { background: rgba(74,222,128,0.1);  color: var(--green);  border: 1px solid rgba(74,222,128,0.2); }
-.badge-yellow { background: rgba(232,168,48,0.1); color: var(--yellow); border: 1px solid rgba(232,168,48,0.2); }
+.badge-green  { background: rgba(var(--green-rgb), 0.1);  color: var(--green);  border: 1px solid rgba(var(--green-rgb), 0.2); }
+.badge-yellow { background: rgba(var(--accent-rgb), 0.1); color: var(--yellow); border: 1px solid rgba(var(--accent-rgb), 0.2); }
 
 /* ── Code ── */
 pre, code { font-family: var(--font-mono); font-size: 0.84rem; }
@@ -249,7 +356,7 @@ pre {
 
 /* highlight.js overrides — match our green surface theme */
 pre code.hljs {
-  background: #0d1a0e !important;
+  background: var(--code-bg) !important;
   border: 1px solid var(--border);
   border-radius: 10px;
   padding: 1.25rem 1.5rem !important;
@@ -300,7 +407,7 @@ pre code.hljs {
 
 /* ── Use-when bullets (per-module scenarios) ── */
 .use-when {
-  background: rgba(232,168,48,0.04);
+  background: rgba(var(--accent-rgb), 0.04);
   border-left: 3px solid var(--accent);
   border-radius: 0 6px 6px 0;
   padding: 0.85rem 1.1rem;
@@ -336,8 +443,8 @@ pre code.hljs {
 .ai-callout {
   display: flex; gap: 1.25rem; align-items: flex-start;
   padding: 1.5rem 1.75rem;
-  background: linear-gradient(180deg, rgba(232,168,48,0.08), rgba(232,168,48,0.03));
-  border: 1px solid rgba(232,168,48,0.25);
+  background: linear-gradient(180deg, rgba(var(--accent-rgb), 0.08), rgba(var(--accent-rgb), 0.03));
+  border: 1px solid rgba(var(--accent-rgb), 0.25);
   border-radius: 12px;
   margin: 1rem 0;
 }
@@ -345,7 +452,7 @@ pre code.hljs {
   flex-shrink: 0;
   width: 44px; height: 44px;
   border-radius: 10px;
-  background: rgba(232,168,48,0.15);
+  background: rgba(var(--accent-rgb), 0.15);
   display: flex; align-items: center; justify-content: center;
   color: var(--accent);
 }
@@ -358,7 +465,7 @@ pre code.hljs {
 .ai-callout-body p { font-size: 0.9rem; color: var(--muted); line-height: 1.65; margin: 0; }
 .ai-callout-body code {
   font-size: 0.82rem; color: var(--accent);
-  background: rgba(232,168,48,0.1);
+  background: rgba(var(--accent-rgb), 0.1);
   padding: 0.1rem 0.4rem; border-radius: 4px;
 }
 .ai-callout-links { margin-top: 0.75rem; display: flex; gap: 1rem; flex-wrap: wrap; }
@@ -372,8 +479,8 @@ pre code.hljs {
 .dont-list li {
   display: flex; gap: 0.75rem; align-items: flex-start;
   padding: 0.85rem 1rem;
-  background: rgba(248,113,113,0.05);
-  border: 1px solid rgba(248,113,113,0.15);
+  background: rgba(var(--red-rgb), 0.05);
+  border: 1px solid rgba(var(--red-rgb), 0.15);
   border-radius: 8px;
   font-size: 0.88rem; color: var(--muted);
   line-height: 1.55;
@@ -542,7 +649,7 @@ pre code.hljs {
 }
 .module-affix a.active {
   color: var(--accent);
-  background: rgba(232,168,48,0.08);
+  background: rgba(var(--accent-rgb), 0.08);
 }
 .module-affix .num {
   font-size: 0.65rem;
@@ -562,9 +669,9 @@ pre code.hljs {
   padding: 0.7rem 1.1rem 0.7rem 0.95rem;
   border-radius: 999px;
   background: var(--accent);
-  color: #1B3A1E;
+  color: var(--accent-contrast);
   border: none; cursor: pointer;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.4), 0 0 0 4px rgba(232,168,48,0.15);
+  box-shadow: 0 8px 24px rgba(var(--shadow-rgb), 0.28), 0 0 0 4px rgba(var(--accent-rgb), 0.15);
   align-items: center; gap: 0.5rem;
   font-family: var(--font-sans);
   font-size: 0.88rem;
@@ -711,7 +818,7 @@ footer a:hover { color: var(--text); }
   .nav-links {
     display: none; flex-direction: column; align-items: flex-start;
     position: absolute; top: 56px; left: 0; right: 0;
-    background: rgba(8,18,9,0.98);
+    background: rgba(var(--shadow-rgb), 0.98);
     border-bottom: 1px solid var(--border);
     padding: 0.75rem 1rem 1rem;
     gap: 0;
