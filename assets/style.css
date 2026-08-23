@@ -55,6 +55,83 @@ nav {
 .hero {
   text-align: center; padding: 5rem 2rem 4rem;
   max-width: 760px; margin: 0 auto;
+  /* isolate is load-bearing: the ambient layer below sits at z-index -1, and
+     without a stacking context here that -1 escapes upward and paints behind
+     the page background — present, correct, and invisible. */
+  position: relative; isolation: isolate;
+}
+
+/* ── Hero ambient ────────────────────────────────────────────────────────
+   The hero was a flat #0f1f10 rectangle: nothing behind the headline, so the
+   page opened on an absence. Two drifting blooms and a masked grid give it
+   depth without putting anything in front of the words.
+
+   The hero is a 760px centred column, so the layer breaks out to the full
+   viewport — light that stops at the text edge reads as a panel, not as light.
+   It also lifts above the hero's own top padding so the wash starts at the
+   window rather than partway down the page. */
+.hero-ambient {
+  position: absolute;
+  top: -8rem; bottom: 0;
+  left: 50%; transform: translateX(-50%);
+  width: 100vw;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  -webkit-mask-image: radial-gradient(100% 115% at 50% 48%, #000 26%, transparent 76%);
+          mask-image: radial-gradient(100% 115% at 50% 48%, #000 26%, transparent 76%);
+}
+.hero-bloom {
+  position: absolute; border-radius: 50%; filter: blur(80px);
+}
+.hero-bloom-a {
+  left: 6%; top: -6rem; width: 44rem; height: 44rem; opacity: 0.20;
+  background: radial-gradient(circle, var(--green), transparent 62%);
+  animation: bloom-drift-a 28s ease-in-out infinite;
+}
+.hero-bloom-b {
+  right: 8%; top: -4rem; width: 40rem; height: 40rem; opacity: 0.16;
+  background: radial-gradient(circle, var(--accent), transparent 62%);
+  animation: bloom-drift-b 34s ease-in-out infinite;
+}
+.hero-grid {
+  position: absolute; inset: 0; opacity: 0.05;
+  background-image:
+    linear-gradient(var(--text) 1px, transparent 1px),
+    linear-gradient(90deg, var(--text) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 35%, transparent 72%);
+          mask-image: radial-gradient(ellipse at 50% 0%, #000 35%, transparent 72%);
+}
+
+@keyframes bloom-drift-a {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%      { transform: translate3d(6%, 4%, 0) scale(1.12); }
+}
+@keyframes bloom-drift-b {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1.06); }
+  50%      { transform: translate3d(-7%, -3%, 0) scale(0.96); }
+}
+@keyframes hero-rise {
+  from { opacity: 0; transform: translate3d(0, 12px, 0); }
+  to   { opacity: 1; transform: none; }
+}
+
+.hero > *:not(.hero-ambient) {
+  animation: hero-rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.hero h1        { animation-delay: 0.06s; }
+.hero > p       { animation-delay: 0.12s; }
+.hero .btn-row  { animation-delay: 0.18s; }
+
+/* Motion is decoration here, so it is the first thing to go. Everything stays
+   exactly where it lands — only the movement stops. */
+@media (prefers-reduced-motion: reduce) {
+  .hero-bloom-a,
+  .hero-bloom-b,
+  .hero > *:not(.hero-ambient) {
+    animation: none;
+  }
 }
 
 .hero-badge {

@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bloom — The agentic full-stack framework for React, Node &amp; cross-platform apps</title>
-  <meta name="description" content="Bloom is the TypeScript full-stack framework built for agentic coding. Three packages — UIKit (React components) + AppKit (Node backend) + Bloom CLI (scaffolder) — cover web, desktop (Electron), mobile (Capacitor) and browser extensions from one codebase. Every package ships llms.txt + AGENTS.md so AI coding agents generate correct code on the first try." />
+  <meta name="description" content="Bloom is the TypeScript full-stack framework built for agentic coding. Three packages — UIKit (React components) + AppKit (Node backend) + Bloom CLI (scaffolder) — cover web, desktop (Electron), mobile (Capacitor) and browser extensions from one codebase. Every package ships llms.txt + AGENTS.md so an AI coding agent has the real API in front of it rather than a guess." />
   <meta name="author" content="Bloomneo" />
   <link rel="canonical" href="https://dev.bloomneo.com/" />
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Bloom Developer" />
   <meta property="og:title" content="Bloom — The agentic full-stack framework" />
-  <meta property="og:description" content="React + Node + scaffolding CLI. Web, desktop, mobile, extensions from one codebase. Every package ships llms.txt + AGENTS.md so AI agents generate correct code on the first try." />
+  <meta property="og:description" content="React + Node + scaffolding CLI. Web, desktop, mobile, extensions from one codebase. Every package ships llms.txt + AGENTS.md so an AI agent has the real API in front of it rather than a guess." />
   <meta property="og:url" content="https://dev.bloomneo.com/" />
   <meta property="og:image" content="https://dev.bloomneo.com/assets/og-image.png" />
   <meta property="og:image:width" content="1200" />
@@ -58,7 +58,7 @@
         "name": "What is Bloom?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Bloom is a TypeScript full-stack framework built for the era where developers and AI coding agents ship software together. It ships three packages — AppKit (Node backend toolkit), UIKit (React component library), and Bloom CLI (scaffolder) — that compose into web, desktop (Electron), mobile (Capacitor) and browser-extension apps from one codebase. Every package ships llms.txt + AGENTS.md machine-readable specs so AI coding agents generate correct code on the first try."
+          "text": "Bloom is a TypeScript full-stack framework built for the era where developers and AI coding agents ship software together. It ships three packages — AppKit (Node backend toolkit), UIKit (React component library), and Bloom CLI (scaffolder) — that compose into web, desktop (Electron), mobile (Capacitor) and browser-extension apps from one codebase. Every package ships llms.txt + AGENTS.md machine-readable specs so an AI coding agent has the real API in front of it rather than a guess."
         }
       },
       {
@@ -147,12 +147,17 @@
 
 <!-- ── HERO ── -->
 <section class="hero">
+  <div class="hero-ambient" aria-hidden="true">
+    <div class="hero-bloom hero-bloom-a"></div>
+    <div class="hero-bloom hero-bloom-b"></div>
+    <div class="hero-grid"></div>
+  </div>
   <div class="hero-package" style="justify-content:center;">
     <span class="pkg-name">Bloom</span>
     <span class="pkg-version">Open source · MIT</span>
   </div>
   <h1>Where applications are<br/>generated, not written</h1>
-  <p>Bloom is a TypeScript full-stack framework built for agentic coding. <strong>UIKit</strong> (React) + <strong>AppKit</strong> (Node) + <strong>Bloom CLI</strong> — cover web, desktop (Electron), mobile (Capacitor) and browser extensions from one codebase. Every package ships <code>llms.txt</code> + <code>AGENTS.md</code> so AI coding agents generate correct code on the first try.</p>
+  <p>Bloom is a TypeScript full-stack framework built for agentic coding. <strong>UIKit</strong> (React) + <strong>AppKit</strong> (Node) + <strong>Bloom CLI</strong> — cover web, desktop (Electron), mobile (Capacitor) and browser extensions from one codebase. Every package ships <code>llms.txt</code> + <code>AGENTS.md</code> so an AI coding agent has the real API in front of it rather than a guess.</p>
   <div class="btn-row">
     <a href="bloom/" class="btn btn-primary">Start building →</a>
     <a href="philosophy/" class="btn btn-outline">Read the manifesto</a>
@@ -375,7 +380,7 @@ src/web/features/invoice/pages/
           </svg>
         </div>
         <h3><code>AGENTS.md</code></h3>
-        <p>Rules for AI agents: always-do, never-do, canonical patterns. Avoid hallucinated method names on the first try.</p>
+        <p>Rules for AI agents: always-do, never-do, canonical patterns. A wrong method name fails at the compiler, not at runtime.</p>
       </div>
       <div class="card card-centered">
         <div class="card-icon">
@@ -398,7 +403,7 @@ src/web/features/invoice/pages/
       <details class="faq-item">
         <summary>What is Bloom?</summary>
         <div class="faq-item-body">
-          Bloom is a TypeScript full-stack framework built for the era where developers and AI coding agents ship software together. Three packages — <strong>AppKit</strong> (Node backend toolkit), <strong>UIKit</strong> (React component library), <strong>Bloom CLI</strong> (scaffolder) — compose into web, desktop (Electron), mobile (Capacitor), and browser-extension apps from one codebase. Every package ships <code>llms.txt</code> + <code>AGENTS.md</code> machine-readable specs so AI agents generate correct code on the first try.
+          Bloom is a TypeScript full-stack framework built for the era where developers and AI coding agents ship software together. Three packages — <strong>AppKit</strong> (Node backend toolkit), <strong>UIKit</strong> (React component library), <strong>Bloom CLI</strong> (scaffolder) — compose into web, desktop (Electron), mobile (Capacitor), and browser-extension apps from one codebase. Every package ships <code>llms.txt</code> + <code>AGENTS.md</code> machine-readable specs so an AI agent has the real API in front of it rather than a guess.
         </div>
       </details>
       <details class="faq-item">
