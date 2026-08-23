@@ -29,11 +29,20 @@
   --accent: #005a40;
   --accent-rgb: 0, 90, 64;
   --accent-dim: #00472d;
-  /* The logo gold. Identity, not interaction: the flower mark and the Bloom
-     wordmark. Kept out of --accent because gold is ~2:1 on white. */
+  /* The logo gold. Decoration and the flower mark — kept out of --accent
+     because it is ~2:1 on white and cannot carry text there. */
   --accent-bright: #E8A830;
   /* Text placed ON --accent. */
   --accent-contrast: #ffffff;
+
+  /* The "Bloom" wordmark.
+     Gold measured 2.03:1 on the light background — large text needs 3.0, so it
+     was failing legibility, not just looking pale. Green here, gold in dark
+     where gold reaches ~8:1. The flower mark beside it stays gold in both, so
+     the identity is carried by the icon rather than by unreadable text.
+     An outline was the alternative; a stroke on 22px text thickens the
+     letterforms and adds edges without making the fill any easier to read. */
+  --wordmark: #005a40;
 
   --green: #17803d;
   --green-rgb: 23, 128, 61;
@@ -79,6 +88,7 @@
   --accent-dim: #5c947c;
   --accent-bright: #E8A830;
   --accent-contrast: #0f1f10;
+  --wordmark: #E8A830;
 
   --green: #4ade80;
   --green-rgb: 74, 222, 128;
@@ -264,9 +274,7 @@ nav {
 }
 .hero-package .pkg-name {
   font-size: clamp(1.4rem, 2.5vw, 1.85rem);
-  /* Gold, not --accent: this is the wordmark. Interaction went green to match
-     the product; the brand's own colour stays where it belongs. */
-  font-weight: 700; color: var(--accent-bright);
+  font-weight: 700; color: var(--wordmark);
   letter-spacing: -0.01em;
 }
 .hero-package .pkg-version {
