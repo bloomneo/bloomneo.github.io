@@ -86,35 +86,35 @@
   </div>
 
   <div class="section">
-    <div class="section-label">What Bloom is for</div>
+    <div class="section-label">How each one holds</div>
     <div class="card-grid">
       <div class="card">
         <div class="card-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="3"/></svg>
         </div>
-        <h3>Readable by whoever signs it off</h3>
-        <p>Writing was never the hard part, and now that a machine does most of it that is obvious. Someone still has to put their name on a change they did not type. So where a line lives tells you what it does: a database call under <code>src/api/</code> runs on the server, and there is no second reading. No tracing a directive up a component tree to answer the first question a reviewer asks.</p>
+        <h3>Where a file lives is what it does</h3>
+        <p>A database call under <code>src/api/</code> runs on the server. There is no second reading of that, and no directive to trace up a component tree — a reviewer answers “where does this run?” by looking at the path. The question that used to cost the most is the one the folder already answered.</p>
       </div>
       <div class="card">
         <div class="card-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="18" rx="1.5"/><rect x="14" y="3" width="7" height="18" rx="1.5"/></svg>
         </div>
-        <h3>A real line between front and back</h3>
-        <p>The frontend talks to the backend over HTTP, like any other client would. That keeps them genuinely separate: either side can be rewritten, deployed or scaled without the other, and the API you already have is the one a phone app or a partner integration uses. Frameworks that blur this line buy terser code and spend the boundary to get it.</p>
+        <h3>The API is a real API</h3>
+        <p>The frontend calls the backend over HTTP, exactly like any other client. So either side can be rewritten, deployed or scaled without touching the other, and the endpoints you already have are the ones a phone app or a partner integration uses. Frameworks that blur this line spend the boundary to buy terser code.</p>
       </div>
       <div class="card">
         <div class="card-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
         </div>
-        <h3>One codebase, every surface</h3>
-        <p>Browser, desktop and phone from one source tree — Electron and Capacitor wrap the same web build against the same API, not three projects that resemble each other and drift. A team of three that needs a mobile app stays a team of three.</p>
+        <h3>One build, wrapped four ways</h3>
+        <p>Electron and Capacitor wrap the same web build against the same API — browser, desktop, iOS and Android out of one source tree, rather than four projects that resemble each other on Monday and have drifted by Friday.</p>
       </div>
       <div class="card">
         <div class="card-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
         </div>
-        <h3>Built for an agent to work inside</h3>
-        <p>An agent is fast, confident and occasionally wrong, so the job is to leave it as little to guess as possible. Conventions settle what would otherwise be a choice: a file's location is its route, one pattern instantiates every module. What it can still get wrong is caught — a wrong path is a compile error, an ungated route warns at boot. Guardrails, not guidelines.</p>
+        <h3>Conventions decide, the compiler checks</h3>
+        <p>An agent is fast, confident and occasionally wrong, so the aim is to leave it as little to guess as possible. Conventions settle what would otherwise be a choice: a file’s location is its route, one pattern instantiates every module. What it can still get wrong is caught early — a wrong path is a compile error, an ungated route warns at boot.</p>
       </div>
     </div>
   </div>
