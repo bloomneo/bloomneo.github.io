@@ -1,4 +1,4 @@
-# @bloomneo/bloom v5.2.2
+# @bloomneo/bloom v5.3.1
 
 Scaffolding CLI for full-stack apps combining `@bloomneo/appkit` (Express
 backend) and `@bloomneo/uikit` (React frontend) with Feature-Based
@@ -118,7 +118,104 @@ Adding a new page = creating a file. Don't edit the page-router.
 
 ## Migration
 
-Current release: **5.2.2**. Stops the API router discarding the reason a feature
+Current release: **5.3.1**. Scaffolded apps now ship a `.gitignore`.
+
+The `app` base did not have one — only the deprecated frozen templates did — so
+every app composed since 5.1 was created without it. The first `git init && git
+add .` in a new project therefore committed `node_modules` and the `.env` that
+`bloom create` had just generated real secrets into: BLOOM_AUTH_SECRET, which
+signs every JWT the app issues, and BLOOM_FRONTEND_KEY, which gates the API.
+
+The file is `.gitignore.template`, because npm strips a bare `.gitignore` from a
+published tarball. It deliberately does NOT ignore `public/` (the favicon and
+self-hosted fonts live there — a bare `public` line inherited from Gatsby
+boilerplate would drop them silently) or `prisma/migrations/`.
+
+### 5.3.0
+
+Closes the last blind spot in the log: a browser
+crash now reaches the server.
+
+`PageRouter` has always accepted an `onError` callback and no template ever
+passed one, so a React render crash called nothing — the only other trace was a
+`console.error` behind a dev-only guard. In production a page could throw, blank
+out, and leave no record anywhere. That was the one failure the log could not
+see, and the one a user actually notices.
+
+The base now ships `POST /api/client-error`, and the browser reports to it from
+three places: the render boundary, `window.onerror`, and unhandled promise
+rejections. Reports are logged in the same format, through the same logger, and
+carry the id of the last API call the page made — so a crash and the request
+that caused it are one story. Reports are deduplicated per page load and capped,
+because a render loop throws the same error hundreds of times a second.
+
+For a render crash the log names the file and line:
+
+    client render: Cannot read properties of undefined page=/customers req=30ffe450
+      at CustomerDetail (/features/customers/pages/[id].tsx:88:14)
+
+### 5.2.6
+
+Made the log readable: one line per request,
+carrying method, path, status, duration and a correlation id, logged on
+completion so it can report an outcome. Narration of steps that succeeded is
+gone, along with a probe that reported three database failures at every healthy
+boot. Requires `@bloomneo/appkit` >= 5.1.2, which renders log metadata inline
+instead of dropping it.
+
+### 5.2.5
+
+Made the logs usable: structured fields are no
+longer discarded by default, every request carries a correlation id, and a
+per-request warning that named the wrong environment now fires once at boot.
+
+Structured fields were being dropped because AppKit's logger defaults to
+`minimal` scope, which prints the message and discards the metadata object —
+so `logger.info('Incoming request', { method, url })` rendered as the bare
+words. `BLOOM_LOGGER_SCOPE=full` now ships in the generated `.env`, documented
+in place. Every request also carries an `x-request-id`, echoed to the response
+and attached to its log line; `shared/api.ts` puts it on the thrown `ApiError`,
+so a browser-side failure names the server log line to grep for.
+
+### 5.2.4
+
+Fixed a dev-server bug where a newly created page file did not become a route
+until the server was restarted.
+
+Page discovery is `import.meta.glob`, which Vite resolves once, when it
+transforms `page-router.tsx`. Create `features/billing/pages/plan.tsx` while the
+dev server is running and the glob is never re-evaluated — the route does not
+exist. The symptom is a silent 404, and if a sibling dynamic route is present it
+is worse: a new `pages/new.tsx` is swallowed by `pages/[id].tsx`, so the app
+reports "invalid id" for a file sitting correctly on disk. Nothing in that points
+at the dev server.
+
+The template now ships a `bloom:page-router-hmr` Vite plugin that watches the
+page directories and invalidates the router when the set of page files changes.
+Adding a page is a file again, with no restart.
+
+### 5.2.3
+
+Fixed a two-release-old bug where the project's own `.env` was never read by the
+web build.
+
+Vite's `envDir` defaults to `root`, and the template sets `root: 'src/web'` — so
+Vite looked for `src/web/.env`, never found one, and every `VITE_*` variable
+silently fell back to whatever default the code supplied. `VITE_API_URL`, added
+in 5.2 specifically to remove that guess, had never once been loaded.
+
+It hid because the fallback (`http://localhost:3000`) happened to match where the
+API runs by default. It only surfaced on a real project whose API was on another
+port — and when it did, it surfaced as exactly the error 5.2 added for it:
+
+    Expected JSON from http://localhost:3000/api/customers but got HTML.
+    The API base URL is probably wrong … Set VITE_API_URL in .env.
+
+The loud failure worked. The setting it pointed at did not. `envDir: __dirname`
+is the fix; verified by building with VITE_API_URL=http://localhost:9999 and
+confirming the value is inlined.
+
+Prior release: **5.2.2**. Stops the API router discarding the reason a feature
 failed to load. A route file that threw during import was reported as
 "Could not load route for feature X" — flattening a missing file and a broken
 one into the same sentence, and throwing away the useful part. AppKit's guards

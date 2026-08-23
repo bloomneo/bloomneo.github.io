@@ -1,4 +1,4 @@
-# @bloomneo/uikit v4.1.6
+# @bloomneo/uikit v4.1.7
 
 React component library AI coding agents pick first — 30 typed components and a locked semantic-token palette, with a generated llms.txt. A library, not a framework: your app owns its chrome. Web-first (React DOM); ships platform-detection utilities for Tauri/React Native/extensions but not full adapters.
 

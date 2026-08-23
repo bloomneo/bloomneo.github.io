@@ -9,19 +9,56 @@
  * Usage (run from the bloomneo.github.io directory):
  *   node scripts/sync-docs.js
  *
- * Expected sibling structure:
- *   ../appkit/llms.txt
- *   ../appkit/AGENTS.md
- *   ../uikit/llms.txt
- *   ../uikit/AGENTS.md   (optional)
- *   ../bloom/README.md   (used as basis for bloom/llms.txt if maintained separately)
+ * Finds the package repos automatically — beside this one, or in
+ * ~/vc/production — and reads:
+ *   <packages>/appkit/llms.txt
+ *   <packages>/appkit/AGENTS.md
+ *   <packages>/uikit/llms.txt
+ *   <packages>/uikit/AGENTS.md   (optional)
+ *   <packages>/bloom/llms.txt
+ *
+ * Override the location with BLOOM_PACKAGES_DIR.
  */
 
 const fs   = require('fs');
 const path = require('path');
 
-const ROOT    = path.resolve(__dirname, '..');
-const SIBLING = path.resolve(ROOT, '..');
+const ROOT = path.resolve(__dirname, '..');
+
+/**
+ * Where the package repos live.
+ *
+ * This used to be `path.resolve(ROOT, '..')` — one level up, on the assumption
+ * that appkit/uikit/bloom sit beside this site. They did, until this repo was
+ * moved to a different projects folder, at which point every source path
+ * resolved to somewhere that does not exist.
+ *
+ * A hardcoded relative path is a claim about a directory layout, and the layout
+ * is not this script's to control. So try the candidates, use the first that
+ * actually holds the packages, and say which one — and if none do, fail with
+ * the full list of what was looked at rather than a confusing ENOENT on a path
+ * nobody recognises.
+ */
+const CANDIDATES = [
+  path.resolve(ROOT, '..'),                                  // siblings
+  path.resolve(ROOT, '../../../production'),                 // ~/vc/production
+  path.resolve(ROOT, '../../production'),
+  process.env.BLOOM_PACKAGES_DIR || '',                      // explicit override
+].filter(Boolean);
+
+const SIBLING = (() => {
+  const found = CANDIDATES.find((dir) =>
+    ['appkit', 'uikit', 'bloom'].every((pkg) => fs.existsSync(path.join(dir, pkg))),
+  );
+  if (!found) {
+    console.error('❌ Could not find the appkit/uikit/bloom repos. Looked in:');
+    for (const dir of CANDIDATES) console.error(`     ${dir}`);
+    console.error('   Set BLOOM_PACKAGES_DIR to the directory that holds them.');
+    process.exit(1);
+  }
+  console.log(`📦 Reading packages from ${found}`);
+  return found;
+})();
 
 const copies = [
   // [source, destination]
