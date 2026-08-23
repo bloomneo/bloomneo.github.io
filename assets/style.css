@@ -23,9 +23,14 @@
   --text: #16241a;
   --muted: #5b6d5f;
 
-  --accent: #8a5c0a;
-  --accent-rgb: 138, 92, 10;
-  --accent-dim: #704906;
+  /* The product's primary, oklch(0.415 0.088 165), resolved to sRGB. Deep pine
+     green — the same colour bloomneo-cloud uses for its buttons and links, so
+     the docs and the product read as one brand rather than two. */
+  --accent: #005a40;
+  --accent-rgb: 0, 90, 64;
+  --accent-dim: #00472d;
+  /* The logo gold. Identity, not interaction: the flower mark and the Bloom
+     wordmark. Kept out of --accent because gold is ~2:1 on white. */
   --accent-bright: #E8A830;
   /* Text placed ON --accent. */
   --accent-contrast: #ffffff;
@@ -68,11 +73,12 @@
   --text: #e8e8e8;
   --muted: #8a9e8b;
 
-  --accent: #E8A830;
-  --accent-rgb: 232, 168, 48;
-  --accent-dim: #c98e20;
+  /* oklch(0.70 0.0704 165) — the product's dark-mode primary. */
+  --accent: #74ad94;
+  --accent-rgb: 116, 173, 148;
+  --accent-dim: #5c947c;
   --accent-bright: #E8A830;
-  --accent-contrast: #1B3A1E;
+  --accent-contrast: #0f1f10;
 
   --green: #4ade80;
   --green-rgb: 74, 222, 128;
@@ -198,7 +204,10 @@ nav {
 }
 .hero-bloom-b {
   right: 8%; top: -4rem; width: 40rem; height: 40rem; opacity: 0.16;
-  background: radial-gradient(circle, var(--accent), transparent 62%);
+  /* --accent-bright, not --accent. This is the gold half of a green-and-gold
+     pair; when --accent moved to green it took this glow with it and both
+     blooms went the same colour. Decoration belongs on the decorative token. */
+  background: radial-gradient(circle, var(--accent-bright), transparent 62%);
   animation: bloom-drift-b 34s ease-in-out infinite;
 }
 .hero-grid {
@@ -255,7 +264,9 @@ nav {
 }
 .hero-package .pkg-name {
   font-size: clamp(1.4rem, 2.5vw, 1.85rem);
-  font-weight: 700; color: var(--accent);
+  /* Gold, not --accent: this is the wordmark. Interaction went green to match
+     the product; the brand's own colour stays where it belongs. */
+  font-weight: 700; color: var(--accent-bright);
   letter-spacing: -0.01em;
 }
 .hero-package .pkg-version {
