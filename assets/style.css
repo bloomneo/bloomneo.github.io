@@ -123,7 +123,7 @@ nav {
 }
 .nav-brand:hover { text-decoration: none; }
 
-.nav-links { display: flex; align-items: center; gap: 0.25rem; list-style: none; }
+.nav-links { display: flex; align-items: center; gap: 0.25rem; list-style: none; margin-left: auto; }
 .nav-links a { color: var(--muted); font-size: 0.875rem; padding: 0.35rem 0.75rem; border-radius: 6px; transition: color 0.15s, background 0.15s; }
 .nav-links a:hover { color: var(--text); background: var(--surface); text-decoration: none; }
 .nav-links a.active { color: var(--text); }
@@ -154,7 +154,6 @@ nav {
 .theme-toggle {
   display: inline-flex; align-items: center; justify-content: center;
   width: 34px; height: 34px;
-  margin-left: auto;
   border: 1px solid var(--border);
   border-radius: 8px;
   background: transparent;
@@ -179,9 +178,17 @@ nav {
 /* The nav is a flex row; the toggle sits between the links and the mobile
    hamburger, and margin-left:auto would push the hamburger off on small
    screens, so reset it once the mobile layout takes over. */
+/* The nav's 2rem gap is right between the brand and the links, and too wide
+   between the last link and the toggle sitting beside it. */
+.nav-links + .theme-toggle { margin-left: -1.25rem; }
+
+/* Below the breakpoint the link list goes absolute and drops out of the flex
+   row, leaving brand / hamburger / toggle. Order puts the toggle back on the
+   left of the hamburger, where it was before the move. */
 @media (max-width: 820px) {
-  .theme-toggle { margin-left: 0; order: 2; }
+  .theme-toggle { order: 2; }
   .nav-toggle { order: 3; }
+  .nav-links + .theme-toggle { margin-left: 0; }
 }
 
 /* ── Hero ambient ────────────────────────────────────────────────────────
@@ -837,7 +844,7 @@ footer a:hover { color: var(--text); }
   .nav-links {
     display: none; flex-direction: column; align-items: flex-start;
     position: absolute; top: 56px; left: 0; right: 0;
-    background: rgba(var(--shadow-rgb), 0.98);
+    background: rgba(var(--surface-rgb), 0.98);
     border-bottom: 1px solid var(--border);
     padding: 0.75rem 1rem 1rem;
     gap: 0;
