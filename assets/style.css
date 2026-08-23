@@ -186,9 +186,14 @@ nav {
    row, leaving brand / hamburger / toggle. Order puts the toggle back on the
    left of the hamburger, where it was before the move. */
 @media (max-width: 820px) {
-  .theme-toggle { order: 2; }
+  /* The list is absolute here, so the flex row is brand / hamburger / toggle
+     and `justify-content: space-between` spread all three across the full
+     width — the toggle ended up marooned in the middle of the bar.
+     margin-left:auto pushes it right so it sits against the hamburger, and the
+     two read as one control group. */
+  .theme-toggle { order: 2; margin-left: auto; margin-right: 0.5rem; }
   .nav-toggle { order: 3; }
-  .nav-links + .theme-toggle { margin-left: 0; }
+  .nav-links + .theme-toggle { margin-left: auto; }
 }
 
 /* ── Hero ambient ────────────────────────────────────────────────────────
