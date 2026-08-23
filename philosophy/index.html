@@ -70,94 +70,47 @@
 
 <div class="page-wrap" style="padding-top:0;">
 
-  <!-- ── VISION ── -->
+  <!-- ── WHAT BLOOM IS FOR ── -->
   <div class="section">
     <div class="section-label">Vision</div>
-    <h2>One team. Every surface. Code you can vouch for.</h2>
-    <p>Writing was never the hard part. Now that a machine does most of it, that is obvious — and somebody still has to put their name on a change they did not type.</p>
-    <p style="margin-top:1rem;">We build for that moment. The structure carries the correctness: the safe version is the shape of the file, and a reviewer can tell what a change does by where it lives. One codebase reaches browser, desktop and phone — so a team of three stays a team of three.</p>
+    <h2>Code a person can vouch for, on every surface, that an agent can safely write.</h2>
+    <p>Most code is generated now. That changes what a framework is for: not helping you type
+       faster, but making what arrives easy to check, hard to get wrong, and portable to
+       wherever it has to run.</p>
+    <p style="margin-top:1rem;">Four things follow from that, and the rest of Bloom is
+       downstream of them.</p>
   </div>
 
-  <!-- ── PROBLEMS ── -->
   <div class="section">
-    <div class="section-label">The problems we refuse to accept</div>
+    <div class="section-label">What Bloom is for</div>
     <div class="card-grid">
       <div class="card">
         <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">             <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 3v6"/>           </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="3"/></svg>
         </div>
-        <h3>Code arriving faster than it can be reviewed</h3>
-        <p>The bottleneck moved from writing to signing off. A reviewer's first question — does this run on the server? — should not require tracing a directive up a component tree to answer.</p>
+        <h3>Readable by whoever signs it off</h3>
+        <p>Writing was never the hard part, and now that a machine does most of it that is obvious. Someone still has to put their name on a change they did not type. So where a line lives tells you what it does: a database call under <code>src/api/</code> runs on the server, and there is no second reading. No tracing a directive up a component tree to answer the first question a reviewer asks.</p>
       </div>
       <div class="card">
         <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">             <rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/>             <path d="M15 2v2M9 2v2M15 20v2M9 20v2M2 15h2M2 9h2M20 15h2M20 9h2"/>           </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="18" rx="1.5"/><rect x="14" y="3" width="7" height="18" rx="1.5"/></svg>
         </div>
-        <h3>Safety you have to remember</h3>
-        <p>An auth check repeated in every handler is a check that will eventually be missed. The one that gets missed does not announce itself.</p>
+        <h3>A real line between front and back</h3>
+        <p>The frontend talks to the backend over HTTP, like any other client would. That keeps them genuinely separate: either side can be rewritten, deployed or scaled without the other, and the API you already have is the one a phone app or a partner integration uses. Frameworks that blur this line buy terser code and spend the boundary to get it.</p>
       </div>
       <div class="card">
         <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">             <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>           </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
         </div>
-        <h3>Web-only by default</h3>
-        <p>Collapsing the client/server boundary buys terse code and costs every surface that is not a browser. A team that needs a phone app should not become three teams.</p>
+        <h3>One codebase, every surface</h3>
+        <p>Browser, desktop and phone from one source tree — Electron and Capacitor wrap the same web build against the same API, not three projects that resemble each other and drift. A team of three that needs a mobile app stays a team of three.</p>
       </div>
       <div class="card">
         <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">             <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>           </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
         </div>
-        <h3>Failures that say nothing</h3>
-        <p>A wrong path that 404s. A config that returns HTML where JSON was expected. A file the router quietly ignores. Every one of them reports a symptom and hides the cause.</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="section-label">Core values</div>
-    <h2>What we stand for</h2>
-    <div class="values-grid" style="margin-top:1.25rem;">
-      <div class="value-item">
-        <div class="value-title">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Correct by default
-        </div>
-        <p>The safe version is the shape of the file, not a discipline you remember. The auth gate sits on the router; a handler added next month inherits it. <strong>Not a convenience — a category of bug that cannot occur.</strong></p>
-      </div>
-      <div class="value-item">
-        <div class="value-title">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Reviewable
-        </div>
-        <p>Where a line lives tells you what it does. A database call in <code>src/api/</code> runs on the server — there is no second reading. Auditing code you did not write, that is the whole job.</p>
-      </div>
-      <div class="value-item">
-        <div class="value-title">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          One codebase, every surface
-        </div>
-        <p>The boundary is real, so the API is a real API and the web build is a real client. Browser, Electron, iOS and Android from one source tree — not four projects that resemble each other.</p>
-      </div>
-      <div class="value-item">
-        <div class="value-title">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Loud when wrong
-        </div>
-        <p>A mistake should fail immediately and point somewhere small and true. A wrong route is a compile error. Silence is the most expensive failure there is — and for an agent, whose entire debugging loop is the error message, it is total.</p>
-      </div>
-      <div class="value-item">
-        <div class="value-title">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Autonomy
-        </div>
-        <p>Take only what you need. AppKit runs without UIKit, UIKit without Bloom — there is no import between them in either direction. A framework you cannot leave in pieces is a framework you cannot leave.</p>
-      </div>
-      <div class="value-item">
-        <div class="value-title">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          Open
-        </div>
-        <p>MIT licensed. No vendor lock-in, no hidden tiers. The framework is the product, not the pricing page.</p>
+        <h3>Built for an agent to work inside</h3>
+        <p>An agent is fast, confident and occasionally wrong, so the job is to leave it as little to guess as possible. Conventions settle what would otherwise be a choice: a file's location is its route, one pattern instantiates every module. What it can still get wrong is caught — a wrong path is a compile error, an ungated route warns at boot. Guardrails, not guidelines.</p>
       </div>
     </div>
   </div>
@@ -192,15 +145,6 @@
         </div>
         <h3>Start simple, scale naturally</h3>
         <p>Memory → Redis. Local → S3. Console → Resend. Every module upgrades by setting one env var. No code changes ever.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
-          </svg>
-        </div>
-        <h3>Minimal code, maximum intent</h3>
-        <p>One method that does the right thing beats four that cover every edge case. Purposeful APIs, smart defaults, and the shortest path that is still correct.</p>
       </div>
       <div class="card">
         <div class="card-icon">
