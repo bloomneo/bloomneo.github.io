@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bloom — The agentic full-stack framework for React, Node &amp; cross-platform apps</title>
-  <meta name="description" content="Bloom is the TypeScript full-stack framework built for agentic coding. Three packages — UIKit (React components) + AppKit (Node backend) + Bloom CLI (scaffolder) — cover web, desktop (Electron), mobile (Capacitor) and browser extensions from one codebase. Every package ships llms.txt + AGENTS.md so an AI coding agent has the real API in front of it rather than a guess." />
+  <meta name="description" content="Bloom is the TypeScript full-stack framework built for agentic coding. Three packages — UIKit (React components) + AppKit (Node backend) + Bloom CLI (scaffolder) — cover web, desktop (Electron) and mobile (Capacitor) from one codebase. Every package ships llms.txt + AGENTS.md so an AI coding agent has the real API in front of it rather than a guess." />
   <meta name="author" content="Bloomneo" />
   <link rel="canonical" href="https://dev.bloomneo.com/" />
 
@@ -66,7 +66,7 @@
         "name": "How is Bloom different from Laravel, NestJS, T3 Stack, or Next.js?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Bloom is designed from day one assuming AI coding agents write a significant portion of application code. No other major framework ships llms.txt, AGENTS.md, Claude Code skills, per-component @llm-rule JSDoc, drift-checked docs and auto-hydrated docs/ in scaffolded projects. In scope Bloom is closest to T3 Stack or RedwoodJS — but extends to cross-platform (web + desktop + mobile + extensions) which no competitor covers in one stack."
+          "text": "Bloom is designed from day one assuming AI coding agents write a significant portion of application code. Every package ships llms.txt, AGENTS.md, agent skills and per-component @llm-rule JSDoc, docs are drift-checked in CI, and scaffolded projects get them in docs/ automatically. In scope Bloom is closest to T3 Stack or RedwoodJS — but extends to cross-platform (web + desktop + mobile) from one stack."
         }
       },
       {
@@ -90,7 +90,7 @@
         "name": "What platforms does Bloom cover?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Web (Vite + React), desktop (Electron with embedded Express), mobile (Capacitor 7 for iOS + Android), and browser extensions (Chrome/Firefox popups). Same UIKit components and same FBCA conventions across all four surfaces."
+          "text": "Web (Vite + React), desktop (Electron with embedded Express), and mobile (Capacitor 6 for iOS + Android). Same UIKit components, same FBCA conventions and the same API across all three surfaces."
         }
       },
       {
@@ -184,7 +184,7 @@
     <span class="pkg-version">Open source · MIT</span>
   </div>
   <h1>Where applications are<br/>generated, not written</h1>
-  <p>Bloom is a TypeScript full-stack framework built for agentic coding. <strong>UIKit</strong> (React) + <strong>AppKit</strong> (Node) + <strong>Bloom CLI</strong> — cover web, desktop (Electron), mobile (Capacitor) and browser extensions from one codebase. Every package ships <code>llms.txt</code> + <code>AGENTS.md</code> so an AI coding agent has the real API in front of it rather than a guess.</p>
+  <p>Bloom is a TypeScript full-stack framework built for agentic coding. <strong>UIKit</strong> (React) + <strong>AppKit</strong> (Node) + <strong>Bloom CLI</strong> — cover web, desktop (Electron) and mobile (Capacitor) from one codebase. Every package ships <code>llms.txt</code> + <code>AGENTS.md</code> so an AI coding agent has the real API in front of it rather than a guess.</p>
   <div class="btn-row">
     <a href="bloom/" class="btn btn-primary">Start building →</a>
     <a href="philosophy/" class="btn btn-outline">Read the manifesto</a>
@@ -301,7 +301,7 @@ src/web/features/invoice/pages/
         <div class="template-meta">
           <span class="badge badge-green">mobile-basicapp</span>
           <span class="template-name">Mobile</span>
-          <span class="template-desc">Capacitor 7 — native iOS + Android from one codebase</span>
+          <span class="template-desc">Capacitor 6 — native iOS + Android from one codebase</span>
         </div>
         <code class="template-cmd">bloom create my-app mobile-basicapp</code>
       </div>
@@ -321,10 +321,9 @@ src/web/features/invoice/pages/
           <tr><td>Frontend component library</td><td>✓ UIKit</td><td>Blade</td><td>—</td><td>✓ Next</td><td>✓</td></tr>
           <tr><td>Desktop (Electron) template</td><td>✓</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
           <tr><td>Mobile native (Capacitor)</td><td>✓</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-          <tr><td>Browser extension template</td><td>✓</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
           <tr><td>Ships <code>llms.txt</code></td><td>✓</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
           <tr><td>Ships <code>AGENTS.md</code></td><td>✓</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
-          <tr><td>Claude Code skills bundled</td><td>✓ 13</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+          <tr><td>Agent skills bundled</td><td>✓</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
           <tr><td>Drift-checked docs (CI)</td><td>✓</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
           <tr><td>Auto-hydrated <code>docs/</code> in scaffold</td><td>✓</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
         </tbody>
@@ -425,7 +424,7 @@ src/web/features/invoice/pages/
       <details class="faq-item">
         <summary>How is Bloom different from Laravel, NestJS, T3 Stack, or Next.js?</summary>
         <div class="faq-item-body">
-          Bloom is designed from day one assuming AI coding agents write a significant portion of application code. No other major framework ships <code>llms.txt</code>, <code>AGENTS.md</code>, Claude Code skills, per-component <code>@llm-rule</code> JSDoc, drift-checked docs, and auto-hydrated <code>docs/</code> in scaffolded projects. In scope Bloom is closest to <strong>T3 Stack</strong> or <strong>RedwoodJS</strong> — but extends to cross-platform (web + desktop + mobile + extensions) which no competitor covers in one stack.
+          Bloom is designed from day one assuming AI coding agents write a significant portion of application code. Every package ships <code>llms.txt</code>, <code>AGENTS.md</code>, agent skills and per-component <code>@llm-rule</code> JSDoc, docs are drift-checked in CI, and scaffolded projects get them in <code>docs/</code> automatically. In scope Bloom is closest to <strong>T3 Stack</strong> or <strong>RedwoodJS</strong> — but extends to cross-platform (web + desktop + mobile) from one stack.
         </div>
       </details>
       <details class="faq-item">
@@ -443,7 +442,7 @@ src/web/features/invoice/pages/
       <details class="faq-item">
         <summary>What platforms does Bloom cover?</summary>
         <div class="faq-item-body">
-          Web (Vite + React), desktop (Electron with embedded Express), mobile (Capacitor 7 for iOS + Android), and browser extensions (Chrome/Firefox popups). Same UIKit components and same FBCA conventions across all four surfaces.
+          Web (Vite + React), desktop (Electron with embedded Express), and mobile (Capacitor 6 for iOS + Android). Same UIKit components, same FBCA conventions and the same API across all three surfaces.
         </div>
       </details>
       <details class="faq-item">
